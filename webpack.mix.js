@@ -13,5 +13,5 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/bootstrap.scss', 'public/css')
-   .sass('resources/assets/sass/fontawesome.scss', 'public/css')
+   .sass('node_modules/font-awesome/scss/font-awesome.scss', 'public/css')
    .sass('resources/assets/sass/main.scss', 'public/css');
