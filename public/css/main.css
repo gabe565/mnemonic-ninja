@@ -1,0 +1,114 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.row {
+  padding-bottom: 20px;
+}
+
+.navbar-brand {
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  -webkit-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+
+.navbar-brand:hover {
+  -webkit-transition: color .1s ease-in-out;
+  transition: color .1s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .equal {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  .fa.arrow:before {
+    content: "\F061";
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .equal > div {
+    height: auto !important;
+  }
+}
+
+.centered {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.centered > form {
+  width: 100%;
+}
+
+label {
+  font-size: 19px;
+  margin-top: 10.5px;
+  margin-bottom: 10.5px;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  font-weight: 400;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.nav > li > a {
+  -webkit-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+
+.nav > li > a:hover {
+  -webkit-transition: color .1s ease-in-out;
+  transition: color .1s ease-in-out;
+}
+
+.form-control.result {
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 4em;
+  max-height: 33em;
+  overflow-x: hidden;
+  background-color: #fff;
+  resize: none;
+}
+
+.form-control.result:focus {
+  border-color: #dce4ec;
+}
+
+.btn .fa.arrow:before {
+  content: "\F061";
+}
+
+.btn:hover .fa.arrow {
+  cursor: pointer;
+  color: #96acb7;
+}
+

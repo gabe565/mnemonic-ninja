@@ -1,0 +1,23 @@
+{% extends 'body.twig' %}
+
+{% set title = 'Converters' %}
+
+
+{% block content %}
+    <div class="container" id="vue">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h2>Converters</h2>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+        </div>
+        <converter from="Word" to="Number" url="/api/to/num/" placeholder="example" help="Enter any word to convert" joinstr=" or "></converter>
+        <div class="row">
+            <hr>
+        </div>
+        <converter from="Number" to="Word" url="/api/to/word/" placeholder="70395" help="Enter any number to convert" joinstr=",  "></converter>
+    </div>
+{% endblock %}
+
