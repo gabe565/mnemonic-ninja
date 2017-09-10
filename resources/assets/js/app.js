@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -6,7 +5,6 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 /**
@@ -20,3 +18,19 @@ Vue.component('converter', require('./components/Converter.vue'));
 new Vue({
     el: '#vue'
 })
+
+require('datatables.net');
+require('datatables.net-bs');
+require('datatables.net-fixedheader');
+require('datatables.net-responsive');
+
+$('.datatable').DataTable({
+    fixedHeader: {
+        headerOffset: $('.navbar').outerHeight()
+    },
+    info: false,
+    ordering: false,
+    paging: false,
+    responsive: true,
+    searching: false,
+});

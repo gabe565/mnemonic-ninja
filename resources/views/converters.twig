@@ -2,18 +2,11 @@
 
 {% set title = 'Converters' %}
 
-
 {% block content %}
     <div class="container" id="vue">
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h2>Converters</h2>
-            </div>
-        </div>
-        <div class="row">
-            <hr>
-        </div>
-        <converter from="Word" to="Number" url="/api/to/num/" placeholder="example" help="Enter any word to convert" joinstr=" or "></converter>
+        <h1>Converters</h1>
+        <hr>
+        <converter from="Word(s)" to="Number" url="/api/to/num/" placeholder="example" help="Enter any word to convert" joinstr=", "></converter>
         <div class="row">
             <hr>
         </div>

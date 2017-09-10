@@ -1,96 +1,152 @@
+@import "variables";
+
 //colors
 $color_1: #dce4ec;
 $color_2: #96acb7;
 
-//fonts
-$font: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
-
 html, body {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 body {
-	padding-top: 100px;
-	text-align: center;
+    padding-top: 100px;
+}
+h1,
+h2 {
+    text-align: center;
 }
 .row {
-	padding-bottom: 20px;
+    padding-bottom: 20px;
+}
+.row.centered {
+    text-align: center;
 }
 .navbar-brand {
-	font-family: $font;
-	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-	transition: color .2s ease-in-out;
-	&:hover {
-		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-		transition: color .1s ease-in-out;
-	}
+    font-family: $font-family-serif;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: color .2s ease-in-out;
+    &:hover {
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: color .1s ease-in-out;
+    }
 }
 @media(min-width: 768px) {
-	.equal {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.fa.arrow:before {
-		content: "\f061";
-	}
+    .equal {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .btn .far.arrow:before {
+        content: "\f061";
+    }
 }
 @media only screen and(max-width : 767px) {
-	.equal > div {
-		height: auto !important;
-	}
+    .equal > div {
+        height: auto !important;
+    }
 }
 .centered {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: center;
-	align-content: center;
-	justify-content: center;
-	> form {
-		width: 100%;
-	}
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    > form {
+        width: 100%;
+    }
 }
 label {
-	font-size: 19px;
-	margin-top: 10.5px;
-	margin-bottom: 10.5px;
-	font-family: $font;
-	font-weight: 400;
-	line-height: 1.1;
-	color: inherit;
+    font-size: 19px;
+    margin-top: 10.5px;
+    margin-bottom: 10.5px;
+    font-family: $font-family-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: inherit;
 }
 .nav > li > a {
-	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-	transition: color .2s ease-in-out;
-	&:hover {
-		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-		transition: color .1s ease-in-out;
-	}
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: color .2s ease-in-out;
+    &:hover {
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: color .1s ease-in-out;
+    }
 }
 .form-control.result {
-	padding: 10px;
-	//Instead of the line below you could use @include box-sizing($bs)
-	box-sizing: border-box;
-	min-height: 4em;
-	max-height: 33em;
-	overflow-x: hidden;
-	background-color: #fff;
-	resize: none;
-	&:focus {
-		border-color: $color_1;
-	}
+    padding: 10px;
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    min-height: 4em;
+    max-height: 33em;
+    overflow-x: hidden;
+    background-color: #fff;
+    resize: none;
+    &:focus {
+        border-color: $color_1;
+    }
 }
-.btn {
-    .fa.arrow {
-        &:before {
-            content: "\f061";
+@media(max-width: 767px) {
+    .btn {
+        .far.arrow {
+            &:before {
+                content: "\f063";
+            }
+        }
+
+        &:hover {
+            .fa.arrow {
+                cursor: pointer;
+                color: $color_2;
+            }
         }
     }
+}
+.table-condensed {
+    font-size: 13px;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
 
-    &:hover {
-        .fa.arrow {
-            cursor: pointer;
-            color: $color_2;
+
+    th {
+        white-space: nowrap;
+    }
+
+    ul {
+        display: table-row;
+        list-style-type: none;
+    }
+
+    ul li {
+        padding-bottom: 5px;
+    }
+}
+
+/* Custom expand buttons */
+table.dataTable.dtr-inline.collapsed > tbody > tr {
+    > {
+        td:first-child:before, th:first-child:before {
+            font-family: 'Font Awesome 5 Regular';
+            font-size: 16px;
+            top: 7px;
+            width: 1.25em;
+            color: $brand-primary;
+            border: 0;
+            box-shadow: none;
+            background-color: transparent;
+            content: '\f0fe';
+        }
+    }
+    &.selected > {
+        td:first-child:before, th:first-child:before {
+            color: #fff;
+        }
+    }
+    &.parent > {
+        td:first-child:before, th:first-child:before {
+            background-color: transparent;
+            content: '\f146';
         }
     }
 }

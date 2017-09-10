@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/bootstrap.css": "/css/bootstrap.css",
     "/css/font-awesome.css": "/css/font-awesome.css",
+    "/css/datatables.css": "/css/datatables.css",
     "/css/main.css": "/css/main.css"
 }

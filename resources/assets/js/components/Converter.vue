@@ -2,12 +2,12 @@
     <div class="row equal">
         <div class="col-sm-3 col-sm-offset-2 centered">
             <label :for="_uid">{{ from }}</label>
-            <input type="text" :id="_uid" name="query" :placeholder="placeholder" autocomplete="off" class="form-control" aria-describedby="help" autofocus v-model="query">
+            <input type="text" :id="_uid" name="query" :placeholder="placeholder" autocomplete="off" class="form-control" aria-describedby="help" v-model="query">
             <span class="help-block">{{ help }}</span>
         </div>
         <div class="col-sm-2 centered">
             <button type="submit" class="btn btn-success btn-sm">
-                <i class="fa fa-2x loader" v-bind:class="loader"></i>
+                <i class="far fa-2x fa-fw loader" v-bind:class="loader" aria-hidden="true"></i>
             </button>
         </div>
         <div class="col-sm-4">
@@ -33,7 +33,7 @@ export default {
     computed: {
         loader: function() {
             if (this.loading) {
-                return ['fa-refresh', 'fa-spin'];
+                return ['fa-sync-alt', 'fa-spin'];
             } else {
                 return ['arrow'];
             }

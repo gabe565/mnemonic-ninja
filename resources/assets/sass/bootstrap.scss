@@ -1,6 +1,6 @@
 
 // Fonts
-$web-font-path: "https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab";
+$web-font-path: "https://fonts.googleapis.com/css?family=Rubik|Roboto+Slab";
 
 // Variables
 @import "variables";
@@ -9,4 +9,4 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Bootswatch
-@import "bootswatch";
+@import "bootstrap/bootswatch";
