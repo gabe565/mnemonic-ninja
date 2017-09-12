@@ -13,5 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('to/word/{number?}', 'ConversionController@num_to_word');
-Route::get('to/num/{word?}', 'ConversionController@word_to_num');
+Route::get('to/word/{number}', 'ConversionController@num_to_word');
+Route::get('to/num/{word}', 'ConversionController@word_to_num');

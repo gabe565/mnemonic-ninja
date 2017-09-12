@@ -29,7 +29,7 @@ export default {
             loading: false
         };
     },
-    props: ['from', 'to', 'url', 'placeholder', 'help', 'joinstr'],
+    props: ['from', 'to', 'url', 'placeholder', 'help', 'joinstr', 'value'],
     computed: {
         loader: function() {
             if (this.loading) {
@@ -43,21 +43,31 @@ export default {
         }
     },
     watch: {
-        query: function() {
-            this.getResponse();
-        }
+        query: _.debounce(
+            function() {
+                this.getResponse();
+            }, 250)
     },
     methods: {
-        getResponse: _.debounce(
-            function () {
-                this.loading = true;
-                var vue = this;
-                axios.get(this.url + this.query)
-                    .then(function (response) {
-                        vue.response = response.data;
-                        vue.loading = false;
-                    });
-            }, 250)
+        getResponse: function () {
+            if (this.query == '') {
+                this.response = [];
+                return;
+            }
+            this.loading = true;
+            var vue = this;
+            axios.get(this.url + this.query)
+                .then(function (response) {
+                    vue.response = response.data.result;
+                    vue.loading = false;
+                });
+        }
+    },
+    created: function() {
+        if (this.value) {
+            this.query = this.value;
+            this.getResponse();
+        }
     }
 }
 </script>

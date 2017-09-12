@@ -8,11 +8,23 @@ use App\Letter;
 
 class ConversionController extends Controller
 {
+
+    public function show ()
+    {
+        $word = $_GET['word'] ?? '';
+        $number = $_GET['number'] ?? '';
+
+        return view('converters', [
+            'word' => $word,
+            'number' => $number
+        ]);
+    }
+
     public function word_to_num ($input = null)
     {
-        if ($input === null) return [];
+        if ($input === null) return response()->json(['result' => []]);
 
-        $words = explode(' ', $input);
+        $words = preg_split('/ /', $input, NULL, PREG_SPLIT_NO_EMPTY);
 
         foreach ($words as $word) {
             $num = Word::distinct()
@@ -51,12 +63,12 @@ class ConversionController extends Controller
             $nums[] = $num;
         }
 
-        return response()->json($nums);
+        return response()->json(['result' => $nums]);
     }
 
     public function num_to_word ($num = null)
     {
-        if ($num === null) return [];
+        if ($num === null) return response()->json(['result' => []]);
 
         $words = Word::where('number', $num)
             ->distinct()
@@ -66,6 +78,6 @@ class ConversionController extends Controller
             ->pluck('word')
             ->toArray();
 
-        return response()->json($words);
+        return response()->json(['result' => $words]);
     }
 }

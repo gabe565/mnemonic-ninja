@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('converters');
-})->name('Converters');
+Route::get('/', 'ConversionController@show')->name('Converters');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('About');
+Route::get('/about', 'ShowAbout')->name('About');
