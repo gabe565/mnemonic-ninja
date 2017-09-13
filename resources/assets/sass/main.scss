@@ -4,12 +4,16 @@
 $color_1: #dce4ec;
 $color_2: #96acb7;
 
-html, body {
+html {
+    background-color: $navbar-inverse-bg;
     width: 100%;
     height: 100%;
 }
 body {
-    padding-top: 100px;
+    background-color: $body-bg;
+    position: relative;
+    padding: 100px 0 60px;
+    min-height: 100%;
 }
 h1,
 h2,
@@ -68,7 +72,7 @@ label {
     line-height: 1.1;
     color: inherit;
 }
-.nav > li > a {
+.nav > li > a, .footer a {
     //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: color .2s ease-in-out;
     &:hover {
@@ -151,6 +155,29 @@ table.dataTable.dtr-inline.collapsed > tbody > tr {
         td:first-child:before, th:first-child:before {
             background-color: transparent;
             content: '\f146';
+        }
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: $navbar-inverse-bg;
+    color: $navbar-inverse-color;
+
+    span {
+        display: inline-block;
+        margin: 20px 0;
+    }
+
+    a {
+        color: $navbar-inverse-link-color;
+        text-decoration: none;
+
+        &:hover {
+            color: $navbar-inverse-link-hover-color;
         }
     }
 }

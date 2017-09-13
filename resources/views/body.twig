@@ -71,6 +71,19 @@
 
         {% block content %}{% endblock %}
 
-            <script src="{{ asset('js/app.js') }}"></script>
+        <div class="footer">
+            <div class="container">
+                <a href="https://github.com/gabe565/mnemonic-major-converter/blob/master/LICENSE" target="_blank" class="pull-left">
+                    <span>&copy; 2017 Gabe Cook</span>
+                </a>
+                <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank" class="pull-right">
+                    <span>
+                        <i class="fab fa-github fa-fw"></i>&nbsp;View on GitHub
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

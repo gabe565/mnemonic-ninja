@@ -1,0 +1,58 @@
+Command line:
+"travis"
+
+
+   ________                                 __
+  /        |                               /  |
+  ########/ ______    ______    __     __  ##/    _______
+     ## |  /      \  /      \  /  \   /  | /  |  /       |
+     ## | /######  | ######  | ##  \ /##/  ## | /#######/
+     ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \
+     ## | ## |      /####### |   ## ##/    ## |  ######  |
+     ## | ## |      ##    ## |    ###/     ## | /     ##/
+     ##/  ##/        #######/      #/      ##/  #######/
+
+     TRajectory Analyzer and VISualizer  -  Open-source freeware under GNU GPL v3
+
+     Copyright (c) Martin Brehm      (2009-2016)
+                   Martin Thomas     (2012-2016)
+                   Barbara Kirchner  (2009-2016)
+                   University of Leipzig / University of Bonn.
+
+     http://www.travis-analyzer.de
+
+     Please cite:
+     M. Brehm and B. Kirchner, J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.
+
+     There is absolutely no warranty on any results obtained from TRAVIS.
+
+  #  Running on tennant at Wed Sep 13 14:55:12 2017 (PID 4167).
+  #  Running in /var/www/mnemonic.gabe565.com
+  #  Source code version: Oct 13 2016.
+  #  Release version: 1.14.0.
+  #  Compiled at Oct 24 2016 21:17:59.
+  #  Compiler version: 6.2.0 20161019
+  #  Target platform: Linux
+  #  Compile flags: DEBUG_ARRAYS 
+  #  Machine: int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.
+  #  User home: /home/gabe565
+  #  Exe path: /usr/bin/travis
+  #  Input from terminal, Output to terminal
+
+ >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
+
+    No configuration file found.
+    Writing default configuration to /home/gabe565/.travis.conf ...
+
+    No trajectory file specified.
+    Please use the -p flag to specify an input trajectory in the command line.
+
+    Enter the file name of the trajectory file to open: [Quit] 
+Error while reading input from stdin (probably end of input file reached).
+
+Your redirected input file seems to have not enough lines.
+The Operating System does not allow console applications with redirected input
+to access the keyboard, so you cannot enter the missing lines per hand.
+
+TRAVIS has to stop here. I'm sorry. Use the -i flag instead for reading input files.
+
