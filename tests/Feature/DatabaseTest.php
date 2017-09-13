@@ -8,12 +8,15 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class DatabaseTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A test to make sure the database is not empty.
      *
      * @return void
      */
-    public function testExample()
+    public function testToNum()
     {
-        $this->assertTrue(true);
+        $this->assertDatabaseHas('words', [
+            'word' => 'example',
+            'number' => '70395',
+        ]);
     }
 }
