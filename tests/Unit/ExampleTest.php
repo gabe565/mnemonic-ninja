@@ -14,6 +14,8 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $this->visit('/')
+            ->see('Mnemonic Major Converter')
+            ->dontSee('Internal Server Error');
     }
 }
