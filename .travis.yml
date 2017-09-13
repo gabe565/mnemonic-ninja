@@ -1,6 +1,5 @@
 language: php
-php: 
-   - 7.0.19
+php: 7.0.19
 dist: trusty
 sudo: true
 
@@ -13,10 +12,10 @@ before_install:
 
 install:
    - cp .env.ci .env
-   - travis_retry composer install --dev --no-interaction --prefer-dist --no-suggest
+   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - php artisan key:generate
    - php artisan migrate
-   - php artisan db:seed
+   - travis_retry php artisan db:seed
 
 script:
    - vendor/bin/phpunit
