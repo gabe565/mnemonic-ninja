@@ -15,6 +15,7 @@ install:
    - composer self-update
    - travis_retry composer install --dev --no-interaction --prefer-dist --no-suggest
    - php artisan key:generate
+   - php artisan migrate:install
    - php artisan db:seed
 
 script:
