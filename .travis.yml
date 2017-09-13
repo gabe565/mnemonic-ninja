@@ -2,12 +2,13 @@ language: php
 php: 
    - 7.0.19
 dist: trusty
-sudo: false
+sudo: true
 
 services:
    - mysql
 
 before_install:
+   - bash .travis.install-mysql-5.7.sh
    - mysql -e 'CREATE DATABASE mnemonic;' 
 
 install:
