@@ -12,10 +12,9 @@ before_install:
 
 install:
    - cp .env.ci .env
-   - composer self-update
    - travis_retry composer install --dev --no-interaction --prefer-dist --no-suggest
    - php artisan key:generate
-   - php artisan migrate:install
+   - php artisan migrate
    - php artisan db:seed
 
 script:
