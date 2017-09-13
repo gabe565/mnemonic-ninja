@@ -1,16 +1,21 @@
-sudo: required
+language: php
+php: 
+   - 7.0.19
 dist: trusty
+sudo: false
 
-addons:
-   chrome: stable
+services:
+   - mysql
+
+before_install:
+   - mysql -e 'CREATE DATABASE mnemonic;' 
 
 install:
-   - cp .env.testing .env
-   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-
-before_script:
-   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-   - php artisan serve &
+   - cp .env.ci .env
+   - composer self-update
+   - travis_retry composer install --dev --no-interaction --prefer-dist --no-suggest
+   - php artisan key:generate
+   - php artisan db:seed
 
 script:
-   - php artisan dusk
+   - vendor/bin/phpunit
