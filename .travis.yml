@@ -4,7 +4,7 @@ dist: trusty
 sudo: true
 
 cache:
-    - yarn: true
+  yarn: true
   directories:
     - node_modules
     - $HOME/.composer/cache/files
