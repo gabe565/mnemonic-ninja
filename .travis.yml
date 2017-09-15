@@ -4,6 +4,7 @@ dist: trusty
 sudo: true
 
 cache:
+    - yarn: true
   directories:
     - node_modules
     - $HOME/.composer/cache/files
@@ -13,16 +14,16 @@ services:
 
 before_install:
   - bash .travis.install-mysql-5.7.sh
-  - mysql -e 'CREATE DATABASE mnemonic;' 
 
 install:
-  - cp .env.ci .env
+  - cp tests/.env.tests .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - yarn install
+  - yarn run dev
   - php artisan key:generate
+  - mysql -e 'CREATE DATABASE mnemonic;' 
   - php artisan migrate
   - travis_retry php artisan db:seed
-  - npm install
-  - npm run dev
 
 script:
   - vendor/bin/phpunit
