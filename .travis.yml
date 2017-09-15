@@ -12,9 +12,6 @@ cache:
 services:
   - mysql
 
-before_install:
-  - bash .travis.install-mysql-5.7.sh
-
 install:
   - cp tests/.env.tests .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
