@@ -8,12 +8,12 @@
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ (title is defined) ? "#{title} | " : '' }}{{ config_get('app.name') }}</title>
+        <title>@yield('title') | {{ config('app.name') }}</title>
 
-        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/datatables.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/main.css') }}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -23,18 +23,18 @@
 
         <!-- Piwik -->
         <script type="text/javascript">
-        var _paq = _paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(["setDomains", ["*.mnemonic.gabe565.com"]]);
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-            var u="//gabe565.com/analytics/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', '3']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-        })();
+            var _paq = _paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(["setDomains", ["*.mnemonic.gabe565.com"]]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                var u="//gabe565.com/analytics/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '3']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            })();
         </script>
         <noscript><p><img src="//gabe565.com/analytics/piwik.php?idsite=3&rec=1" style="border:0;" alt="" /></p></noscript>
         <!-- End Piwik Code -->
@@ -50,16 +50,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('Converters') }}">{{ config_get('app.name') }}</a>
+                    <a class="navbar-brand" href="{{ route('Converters') }}">{{ config('app.name') }}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="{{ (title == 'Converters') ? 'active' : '' }}"> 
+                        <li class="{{ (Route::currentRouteNamed('Converters') == 'Converters') ? 'active' : '' }}"> 
                             <a href="{{ route('Converters') }}" class=""><i class="far fa-exchange fa-fw" aria-hidden="true"></i>&nbsp;Converters</a>
                         </li>
-                        <li class="{{ (title == 'About') ? 'active' : '' }}">
+                        <li class="{{ (Route::currentRouteNamed('About') == 'About') ? 'active' : '' }}">
                             <a href="{{ route('About') }}"><i class="far fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp;About</a>
                         </li>
                     </ul>
@@ -69,7 +69,9 @@
             <!-- /.container -->
         </nav>
 
-        {% block content %}{% endblock %}
+        <div class="container">
+            @yield('content')
+        </div>
 
         <div class="footer">
             <div class="container">
@@ -84,6 +86,8 @@
             </div>
         </div>
 
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

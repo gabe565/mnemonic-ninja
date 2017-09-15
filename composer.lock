@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "13c6b9526795ffe06fbdb17e6f2e2fdd",
-    "content-hash": "1500e38efb689a5ac7823c0d3f0b353e",
+    "hash": "eacc30cb4e1fc1d8fcb5e2a11e80836e",
+    "content-hash": "b38af9b6ebd5bcb74a20b429119084e2",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1256,70 +1256,6 @@
             "time": "2017-08-04 13:39:04"
         },
         {
-            "name": "rcrowe/twigbridge",
-            "version": "v0.9.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rcrowe/TwigBridge.git",
-                "reference": "0a0784c6fb4d383bceebd7ee4f8a2dcac15df5cf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rcrowe/TwigBridge/zipball/0a0784c6fb4d383bceebd7ee4f8a2dcac15df5cf",
-                "reference": "0a0784c6fb4d383bceebd7ee4f8a2dcac15df5cf",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-                "illuminate/view": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-                "php": ">=5.4.0",
-                "twig/twig": "~1.30"
-            },
-            "require-dev": {
-                "laravel/framework": "5.0.*",
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "~4.0",
-                "satooshi/php-coveralls": "~0.6",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "suggest": {
-                "laravelcollective/html": "For bringing back html/form in Laravel 5.x",
-                "twig/extensions": "~1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.10-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TwigBridge\\": "src",
-                    "TwigBridge\\Tests\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                },
-                {
-                    "name": "Rob Crowe",
-                    "email": "hello@vivalacrowe.com"
-                }
-            ],
-            "description": "Adds the power of Twig to Laravel",
-            "keywords": [
-                "laravel",
-                "twig"
-            ],
-            "time": "2017-08-28 11:57:12"
-        },
-        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.0.1",
             "source": {
@@ -2167,71 +2103,6 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2016-09-20 12:50:39"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v1.34.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "f878bab48edb66ad9c6ed626bf817f60c6c096ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f878bab48edb66ad9c6ed626bf817f60c6c096ee",
-                "reference": "f878bab48edb66ad9c6ed626bf817f60c6c096ee",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.3@dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.34-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Twig_": "lib/"
-                },
-                "psr-4": {
-                    "Twig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                },
-                {
-                    "name": "Twig Team",
-                    "homepage": "http://twig.sensiolabs.org/contributors",
-                    "role": "Contributors"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "http://twig.sensiolabs.org",
-            "keywords": [
-                "templating"
-            ],
-            "time": "2017-07-04 13:19:31"
         },
         {
             "name": "vlucas/phpdotenv",
