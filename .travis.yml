@@ -21,6 +21,8 @@ install:
   - php artisan key:generate
   - php artisan migrate
   - travis_retry php artisan db:seed
+  - npm install
+  - npm run dev
 
 script:
   - vendor/bin/phpunit
