@@ -17,8 +17,6 @@ class CreateIpasTable extends Migration
             $table->smallIncrements('id');
             $table->tinyInteger('number')->unsigned();
             $table->string('symbol', 4);
-            $table->tinyInteger('length')->nullable()->virtualAs('length(`symbol`)');
-            $table->index('length', 'length');
         });
     }
 

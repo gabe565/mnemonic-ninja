@@ -16,7 +16,7 @@ class WordsTableSeeder extends Seeder
 
         $db_resp = DB::table('ipas')
             ->select('number','symbol')
-            ->orderBy('length', 'desc')
+            ->orderBy(DB::raw('length(`symbol`)'), 'desc')
             ->get()
             ->toArray();
         $ipas['symbol'] = array_column($db_resp, 'symbol');
