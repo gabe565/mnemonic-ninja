@@ -44,7 +44,7 @@ class ConversionController extends Controller
             } else {
                 if (!isset($letters)) {
                     $resp = Letter::select('number', 'symbol')
-                        ->orderBy('length', 'desc')
+                        ->orderBy(DB::raw('length(`symbol`)'), 'desc')
                         ->get();
 
                     $letters = [
