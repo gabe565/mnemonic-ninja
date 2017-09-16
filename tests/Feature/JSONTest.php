@@ -44,13 +44,15 @@ class JSONTest extends TestCase
     }
 
     public function testAPI() {
-        $this->toNum('example', 70395);
-        $this->toWord(70395, 'example');
+        $this->toNum('example', '70395');
+        $this->toWord('70395', 'example');
 
-        $this->toNum('garage', 746);
-        $this->toNum('garages', 7460);
-        $this->toNum('garagez', 7470);
+        // Test a word in wordlist, then without
+        $this->toNum('garage', '746');
+        $this->toNum('garages', '7460');
+        $this->toNum('garagez', '7470');
 
+        // Test letter conversions
         $this->toNum('s z', [0, 0]);
         $this->toNum('t d .th', [1, 1, 1]);
         $this->toNum('n', 2);
@@ -62,5 +64,11 @@ class JSONTest extends TestCase
         $this->toNum('f .ph v', [8, 8, 8]);
         $this->toNum('b p', [9, 9]);
         $this->toNum('.h .y .w a e i o u', []);
+
+        // Test to hit all of the IPA conversions
+        $this->toNum('antidisestablishmentarianism', '2110019563214203');
+        $this->toWord('2110019563214203', 'antidisestablishmentarianism');
+        $this->toNum('genossenschaftsbank', '720268109277');
+        $this->toWord('720268109277', 'genossenschaftsbank');
     }
 }
