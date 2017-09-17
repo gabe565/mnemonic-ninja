@@ -39,8 +39,6 @@ class ConversionController extends Controller
             if (array_filter($num, 'strlen')) {
                 if (count($num) == 1) {
                     $num = array_shift($num);
-                } else {
-                    $num = implode(' or ', $num);
                 }
             } else {
                 if (!isset($letters)) {
@@ -61,7 +59,7 @@ class ConversionController extends Controller
                 $num = preg_replace('/[^\d]/', '', $num);
             }
 
-            $nums[] = $num;
+            $nums[$word] = $num;
         }
 
         return response()->json(['result' => $nums]);
@@ -79,6 +77,10 @@ class ConversionController extends Controller
             ->pluck('word')
             ->toArray();
 
-        return response()->json(['result' => $words]);
+        if (count($words) == 1) {
+            $words = array_shift($words);
+        }
+
+        return response()->json(['result' => [$num => $words]]);
     }
 }

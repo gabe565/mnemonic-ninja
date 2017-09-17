@@ -26,6 +26,7 @@ export default {
         return {
             query: '',
             response: [],
+            result: '',
             loading: false
         };
     },
@@ -33,40 +34,62 @@ export default {
     computed: {
         loader: function() {
             if (this.loading) {
-                return ['fa-sync-alt', 'fa-spin'];
+                return ['fa-sync-alt', 'fa-spin']
             } else {
-                return ['arrow'];
+                return ['arrow']
             }
         },
         display: function() {
-            return this.response.join(this.joinstr);
-        }
+            return this.result
+        },
     },
     watch: {
         query: _.debounce(
             function() {
-                this.getResponse();
+                this.getResponse()
             }, 250)
     },
     methods: {
         getResponse: function () {
             if (this.query == '') {
                 this.response = [];
-                return;
+                return
             }
-            this.loading = true;
-            var vue = this;
+            this.loading = true
+            var vue = this
             axios.get(this.url + this.query)
                 .then(function (response) {
-                    vue.response = response.data.result;
-                    vue.loading = false;
+                    vue.response = response.data.result
+                    vue.loading = false
+                    vue.createResult()
                 });
+        },
+        createResult: function() {
+            var result = ''
+            var keyvals = [];
+            var vue = this
+            var words = this.query.split(' ')
+                _.forEach(words, function(value) {
+                    var it = '';
+                    if (typeof vue.response[value] != 'undefined') {
+                        if (words.length > 1)
+                            it += value.toLowerCase() + ': '
+
+                        if (typeof vue.response[value] == 'string')
+                            it += vue.response[value]
+                        else
+                            it += vue.response[value].join(', ')
+
+                        keyvals.push(it)
+                    }
+                })
+            this.result = keyvals.join('\n')
         }
     },
     created: function() {
         if (this.value) {
-            this.query = this.value;
-            this.getResponse();
+            this.query = this.value
+            this.getResponse()
         }
     }
 }

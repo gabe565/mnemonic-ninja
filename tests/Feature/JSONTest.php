@@ -12,17 +12,23 @@ class JSONTest extends TestCase
      *
      * @return void
      */
-    private function toNum($word, $num)
+    private function toNum($query, $num)
     {
-        if (!is_array($num)) {
-            $num = [$num];
-        }
-        $response = $this->json('GET', "/api/to/num/$word");
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'result' => $num,
+        $response = $this->json('GET', "/api/to/num/$query");
+        $response->assertStatus(200);
+
+        $words = explode(' ', $query);
+        if (is_array($num)) {
+            foreach ($words as $key => $word) {
+                $response->assertJson([
+                    'result' => [$word => $num[$key]],
+                ]);
+            }
+        } else {
+            $response->assertJson([
+                'result' => [$query => $num],
             ]);
+        }
     }
 
     /**
@@ -32,14 +38,14 @@ class JSONTest extends TestCase
      */
     private function toWord($num, $word)
     {
-        if (!is_array($word)) {
-            $word = [$word];
-        }
+//        if (!is_array($word)) {
+//            $word = [$word];
+//        }
         $response = $this->json('GET', "/api/to/word/$num");
         $response
             ->assertStatus(200)
             ->assertJson([
-                'result' => $word,
+                'result' => [$num => $word],
             ]);
     }
 
@@ -63,7 +69,7 @@ class JSONTest extends TestCase
         $this->toNum('ck .c .g k q', [7, 7, 7, 7, 7]);
         $this->toNum('f .ph v', [8, 8, 8]);
         $this->toNum('b p', [9, 9]);
-        $this->toNum('.h .y .w a e i o u', []);
+        $this->toNum('.h .y .w a e i o u', ['', '', '', '', '', '', '', '']);
 
         // Test to hit all of the IPA conversions
         $this->toNum('antidisestablishmentarianism', '2110019563214203');
