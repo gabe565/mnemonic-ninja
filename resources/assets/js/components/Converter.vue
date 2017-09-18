@@ -12,7 +12,20 @@
         </div>
         <div class="col-sm-4">
             <h4>{{ to }}</h4>
-            <textarea class="result form-control" readonly v-model="display" v-autosize></textarea>
+            <div class="form-control conversion">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr v-for="(item, key) in result">
+                            <td class="min">{{ key }}:&nbsp;</td>
+                            <td class="result">
+                                <div>
+                                    {{ item }}
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
@@ -26,7 +39,7 @@ export default {
         return {
             query: '',
             response: [],
-            result: '',
+            result: {},
             loading: false
         };
     },
@@ -39,9 +52,9 @@ export default {
                 return ['arrow']
             }
         },
-        display: function() {
-            return this.result
-        },
+        queries: function() {
+            return this.query.split(' ');
+        }
     },
     watch: {
         query: _.debounce(
@@ -52,7 +65,8 @@ export default {
     methods: {
         getResponse: function () {
             if (this.query == '') {
-                this.response = [];
+                this.response = []
+                this.result = {}
                 return
             }
             this.loading = true
@@ -65,25 +79,17 @@ export default {
                 });
         },
         createResult: function() {
-            var result = ''
-            var keyvals = [];
+            this.result = {}
             var vue = this
-            var words = this.query.split(' ')
-                _.forEach(words, function(value) {
-                    var it = '';
-                    if (typeof vue.response[value] != 'undefined') {
-                        if (words.length > 1)
-                            it += value.toLowerCase() + ': '
+            _.forEach(vue.response, function(value, key) {
+                var it = '';
+                if (typeof value == 'string')
+                    it += value
+                else
+                    it += value.join(', ')
 
-                        if (typeof vue.response[value] == 'string')
-                            it += vue.response[value]
-                        else
-                            it += vue.response[value].join(', ')
-
-                        keyvals.push(it)
-                    }
-                })
-            this.result = keyvals.join('\n')
+                vue.result[key] = it
+            })
         }
     },
     created: function() {

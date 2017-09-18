@@ -100,61 +100,86 @@ label {
                 content: "\f063";
             }
         }
+    }
+}
 
-        &:hover {
-            .fa.arrow {
-                cursor: pointer;
-                color: $color_2;
+.conversion {
+    min-height: 90px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+
+    table {
+        margin: 0;
+    }
+}
+
+table {
+    &.table-condensed {
+        font-size: 13px;
+    }
+
+    &.dataTable {
+        width: 100%;
+        max-width: 100%;
+
+        th {
+            white-space: nowrap;
+        }
+
+        ul {
+            display: table-row;
+            list-style-type: none;
+        }
+
+        ul li {
+            padding-bottom: 5px;
+        }
+    }
+
+    > tbody > tr > td {
+        &.result {
+            padding: 0;
+
+            div {
+                padding: 8px;
+
+                max-height: 200px;
+                overflow-x: scroll;
             }
         }
-    }
-}
-.table-condensed {
-    font-size: 13px;
-}
-.table {
-    width: 100%;
-    max-width: 100%;
 
-
-    th {
-        white-space: nowrap;
-    }
-
-    ul {
-        display: table-row;
-        list-style-type: none;
-    }
-
-    ul li {
-        padding-bottom: 5px;
-    }
-}
-
-/* Custom expand buttons */
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] {
-    > {
-        td:first-child:before, th:first-child:before {
-            font-family: 'Font Awesome 5 Regular';
-            font-size: 16px;
-            top: 7px;
-            width: 1.25em;
-            color: $brand-primary;
-            border: 0;
-            box-shadow: none;
-            background-color: transparent;
-            content: '\f0fe';
+        &.min {
+            width: 1%;
+            white-space: nowrap;
         }
     }
-    &.selected > {
-        td:first-child:before, th:first-child:before {
-            color: #fff;
+
+    /* Custom DataTables expand buttons */
+    &.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] {
+        > {
+            td:first-child:before, th:first-child:before {
+                font-family: 'Font Awesome 5 Regular';
+                font-size: 16px;
+                top: 7px;
+                width: 1.25em;
+                color: $brand-primary;
+                border: 0;
+                box-shadow: none;
+                background-color: transparent;
+                content: '\f0fe';
+            }
         }
-    }
-    &.parent > {
-        td:first-child:before, th:first-child:before {
-            background-color: transparent;
-            content: '\f146';
+        &.selected > {
+            td:first-child:before, th:first-child:before {
+                color: #fff;
+            }
+        }
+        &.parent > {
+            td:first-child:before, th:first-child:before {
+                background-color: transparent;
+                content: '\f146';
+            }
         }
     }
 }

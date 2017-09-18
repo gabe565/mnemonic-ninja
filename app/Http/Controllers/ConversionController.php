@@ -65,22 +65,28 @@ class ConversionController extends Controller
         return response()->json(['result' => $nums]);
     }
 
-    public function num_to_word ($num = null)
+    public function num_to_word ($input = null)
     {
-        if ($num === null) return response()->json(['result' => []]);
+        if ($input === null) return response()->json(['result' => []]);
 
-        $words = Word::where('number', $num)
-            ->distinct()
-            ->select('word')
-            ->orderBy('word', 'asc')
-            ->get()
-            ->pluck('word')
-            ->toArray();
+        $nums = preg_split('/ /', $input, NULL, PREG_SPLIT_NO_EMPTY);
 
-        if (count($words) == 1) {
-            $words = array_shift($words);
+        foreach ($nums as $num) {
+            $word = Word::where('number', $num)
+                ->distinct()
+                ->select('word')
+                ->orderBy('word', 'asc')
+                ->get()
+                ->pluck('word')
+                ->toArray();
+
+            if (count($word) == 1) {
+                $word = array_shift($word);
+            }
+
+            $words[$num] = $word;
         }
 
-        return response()->json(['result' => [$num => $words]]);
+        return response()->json(['result' => $words]);
     }
 }
