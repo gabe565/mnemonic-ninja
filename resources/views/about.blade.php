@@ -195,9 +195,9 @@
                 <p>
                 When performing conversions, the application will attempt to perform the conversion from the pronounciation in the database.<br>
                 If the word cannot be found, then it falls back to estimating the conversion by comparing letters instead of sounds.<br>
-                To see this in action, <a href="/?word=garage">try converting "garage" to a number</a>. The result is "746" because the last /ge/ is not a hard G, but a soft G which corresponds to the number 6.<br>
-                <a href="/?word=garages">If you change it to "garages"</a>, it will successfully be converted to "7460" because of the /s/ at the end of the word.<br>
-                Now is where we can test the word list: <a href="/?word=garagez">if something like "garagez" is inserted</a>, it will convert to "7470" because /z/ does convert to "0", but the word "garagez" is not in the wordlist, so it guesses on conversions.
+                To see this in action, <a href="/?word=garage+garages+garagez" target="_blank">look at the conversions of <code>garage</code>, <code>garages</code>, and <code>garagez</code></a>. First, the result of <code>garage</code> is "746" because the last /ge/ is not a hard G, but a soft G which corresponds to the number 6.<br>
+                For the next result, <code>garages</code>, it will successfully be converted to "7460" because the pronounciation is the same, but with an /s/ at the end of the word.<br>
+                Now is where we see the wordlist in action. The last conversion, <code>garagez</code> will convert to "7470" because /z/ does convert to "0", but the word is not in the wordlist, so it guesses on conversions.
                 </p>
                 <p><a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank">This project is now on GitHub</a></p>
             </div>
