@@ -1,8 +1,8 @@
-{% extends '../body.twig' %}
+@extends('body')
 
-{% set title = '404 Not Found' %}
+@section('title', '404 Not Found')
 
-{% block content %}
+@section('content')
     <section id="intro" class="section">
         <div class="container">
             <div class="row">
@@ -20,4 +20,4 @@
             </div>
         </div>
     </section>
-{% endblock %}
+@endsection
