@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('to/word/{number}', 'ConversionController@num_to_word')
-    ->where('number', '[0-9\s,;\.]*');
+    ->where('number', '[0-9\s,;]*');
 
 Route::get('to/num/{word}', 'ConversionController@word_to_num')
-    ->where('word', '[A-Za-z\'\s,;]*');
+    ->where('word', '[A-Za-z\'\s,;\.]*');
