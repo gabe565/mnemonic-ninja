@@ -16,7 +16,7 @@
                 <table class="table table-striped">
                     <tbody>
                         <tr v-for="(item, key) in result">
-                            <td class="min">{{ key }}:&nbsp;</td>
+                            <td class="min">{{ key }}:</td>
                             <td class="result">
                                 <div>
                                     {{ item }}
@@ -43,7 +43,7 @@ export default {
             loading: false
         };
     },
-    props: ['from', 'to', 'url', 'placeholder', 'help', 'joinstr', 'value'],
+    props: ['from', 'to', 'url', 'placeholder', 'help', 'value'],
     computed: {
         loader: function() {
             if (this.loading) {
@@ -86,7 +86,7 @@ export default {
                 if (typeof value == 'string')
                     it += value
                 else
-                    it += value.join(', ')
+                    it += value.join(', ')
 
                 vue.result[key] = it
             })
