@@ -31,9 +31,6 @@
 </template>
 
 <script>
-var VueAutosize = require('./vue-autosize')
-Vue.use(VueAutosize)
-
 export default {
     data: function() {
         return {
