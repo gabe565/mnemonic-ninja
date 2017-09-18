@@ -25,7 +25,7 @@ class ConversionController extends Controller
     {
         if ($input === null) return response()->json(['result' => []]);
 
-        $words = preg_split('/ /', $input, NULL, PREG_SPLIT_NO_EMPTY);
+        $words = $this->split($input);
 
         foreach ($words as $word) {
             $num = Word::distinct()
@@ -69,7 +69,7 @@ class ConversionController extends Controller
     {
         if ($input === null) return response()->json(['result' => []]);
 
-        $nums = preg_split('/ /', $input, NULL, PREG_SPLIT_NO_EMPTY);
+        $nums = $this->split($input);
 
         foreach ($nums as $num) {
             $word = Word::where('number', $num)
@@ -88,5 +88,9 @@ class ConversionController extends Controller
         }
 
         return response()->json(['result' => $words]);
+    }
+
+    private function split($input) {
+        return preg_split('/[,;\s]/', $input, NULL, PREG_SPLIT_NO_EMPTY);
     }
 }
