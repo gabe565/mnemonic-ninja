@@ -30,12 +30,12 @@ class WordsTableSeeder extends Seeder
         $result = [];
         $n = 0;
         while (($line = fgets($handle)) !== false) {
-            $entry = explode(' ', $line, 2);
+            $entry = explode(' ', trim($line), 2);
 
             // Convert to lowercase, remove (#) on duplicates into `word`
-            $word = preg_replace('/\(\d\)/', '', $entry[0]);
+            $word = strtok($entry[0], '(');//preg_replace('/\(\d\)/', '', $entry[0]);
             // Remove newlines from end, remove comments, and convert to IPA into `ipa`
-            $ipa = $arpabetToIPA->getIPA(preg_replace(["/\n/", "/#(.*)/"], '', $entry[1]));
+            $ipa = $arpabetToIPA->getIPA(strtok($entry[1], '#'));
 
             // Number calculated from the list of symbols which are fetched above.
             $number = filter_var(str_replace($ipas['symbol'], $ipas['number'], $ipa), FILTER_SANITIZE_NUMBER_INT);
