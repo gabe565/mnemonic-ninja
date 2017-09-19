@@ -56,7 +56,7 @@ class ConversionController extends Controller
                 $num = str_replace($letters['symbol'], $letters['number'], strtolower($word));
 
                 // In the end, remove all non-digits with regex
-                $num = preg_replace('/[^\d]/', '', $num);
+                $num = filter_var($num, FILTER_SANITIZE_NUMBER_INT);
             }
 
             $nums[$word] = $num;
