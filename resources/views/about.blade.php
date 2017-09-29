@@ -7,7 +7,7 @@
         <h1 id="About">About</h1>
         <hr>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-10 col-sm-offset-1">
                 <p>
                 The <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank">Mnemonic Major System</a> is a great way to easily remember numbers, but learning to remember which sounds and numbers correspond to each other takes time.<br>
                 There are other online converters, but they all performed conversions by directly changing specific letters to a number. This is not how the system is meant to work, though. The system is meant to work with phonetic sounds. That is how this site does conversions. If a word or number is entered that is in its database (Which contains almost 126,000 words!), then it will perform the conversion according to how the word is pronounced.
@@ -16,7 +16,7 @@
         </div>
         <h2 id="Conversions">Conversions</h2>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-10 col-sm-offset-1">
                 <p>Based off of the <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system#The_system" target="_blank">Wikipedia page</a>, here are the numbers and their corresponding sounds:</p>
                 <table class="table datatable table-bordered table-condensed" style="width: 100%">
                     <thead>
@@ -184,7 +184,7 @@
         </div>
         <h2 id="Development">Development</h2>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-10 col-sm-offset-1">
                 <hr>
                 <p>
                 To create this application, I started with the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank">CMU Dictionary</a> (I actually used <a href="https://github.com/cmusphinx/cmudict">this updated version on GitHub</a>).<br>
