@@ -4,8 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+
+        <meta name="description" content="The mnemonic major system aids in numeric memorization by linking numbers with specific phonetic sounds, allowing you to convert a number to a word. This site will help do these conversions for you.">
+        <meta name="author" content="Gabe Cook">
+        <meta name="keywords" content="mnemonic major system, convert, memorize numbers, phonetic, memorization technique">
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title') | {{ config('app.name') }}</title>
