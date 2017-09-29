@@ -1,6 +1,6 @@
 <template>
     <div class="row equal">
-        <div class="col-sm-4 col-sm-offset-1 centered" :class="{ 'has-error': error }">
+        <div class="col-sm-5 col-md-4 col-md-offset-1 centered" :class="{ 'has-error': error }">
             <label :for="_uid">{{ from.label }}</label>
             <textarea :id="_uid" class="form-control conversion" name="query" :placeholder="from.placeholder" autocomplete="off" aria-describedby="help" v-model="query"></textarea>
             <span class="help-block">{{ from.help }}</span>
@@ -10,7 +10,7 @@
                 <i class="far fa-2x fa-fw loader" :class="loader" aria-hidden="true"></i>
             </button>
         </div>
-        <div class="col-sm-4 centered">
+        <div class="col-sm-5 col-md-4 centered">
             <h4>{{ to.label }}</h4>
             <div class="form-control conversion">
                 <table class="table table-striped">
