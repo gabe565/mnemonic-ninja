@@ -1,17 +1,17 @@
 <template>
     <div class="row equal">
         <div class="col-sm-4 col-sm-offset-1 centered" :class="{ 'has-error': error }">
-            <label :for="_uid">{{ from }}</label>
-            <input type="text" :id="_uid" class="form-control" name="query" :placeholder="placeholder" autocomplete="off" aria-describedby="help" v-model="query">
-            <span class="help-block">{{ help }}</span>
+            <label :for="_uid">{{ from.label }}</label>
+            <textarea :id="_uid" class="form-control conversion" name="query" :placeholder="from.placeholder" autocomplete="off" aria-describedby="help" v-model="query"></textarea>
+            <span class="help-block">{{ from.help }}</span>
         </div>
         <div class="col-sm-2 centered">
             <button type="submit" class="btn btn-success btn-sm">
                 <i class="far fa-2x fa-fw loader" :class="loader" aria-hidden="true"></i>
             </button>
         </div>
-        <div class="col-sm-4">
-            <h4>{{ to }}</h4>
+        <div class="col-sm-4 centered">
+            <h4>{{ to.label }}</h4>
             <div class="form-control conversion">
                 <table class="table table-striped">
                     <tbody>
@@ -26,6 +26,7 @@
                     </tbody>
                 </table>
             </div>
+            <span class="help-block">{{ to.help }}</span>
         </div>
     </div>
 </template>
@@ -41,7 +42,17 @@ export default {
             error: false
         };
     },
-    props: ['from', 'to', 'url', 'placeholder', 'help', 'value'],
+    props: {
+        'from': {
+            type: Object
+        },
+        'to': {
+            type: Object
+        },
+        'url': {
+            type: String
+        }
+    },
     computed: {
         loader: function() {
             if (this.loading) {
@@ -96,8 +107,8 @@ export default {
         }
     },
     created: function() {
-        if (this.value) {
-            this.query = this.value
+        if (this.from.value) {
+            this.query = this.from.value
             this.getResponse()
         }
     }

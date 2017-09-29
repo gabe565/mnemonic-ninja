@@ -12,8 +12,8 @@
             </div>
         </div>
         <hr>
-        <converter from="Word" to="Number" url="/api/to/num/" placeholder="example" help="Enter any word(s) to convert" value="{{ $word }}"></converter>
+        <converter :from="{ label: 'Word', placeholder: 'example', help: 'Enter any word(s) to convert', value: '{{ $word }}' }" :to="{ label: 'Number', help: 'Any corresponding numbers will be shown here.' }" url="/api/to/num/"></converter>
         <hr>
-        <converter from="Number" to="Word" url="/api/to/word/" placeholder="70395" help="Enter any number(s) to convert" value="{{ $number }}"></converter>
+        <converter :from="{ label: 'Number', placeholder: 70395, help: 'Enter any number(s) to convert', value: '{{ $number }}' }" :to="{ label: 'Word', help: 'All associated words will be shown here. Note that you may need to scroll through to see all results.' }" url="/api/to/word/"></converter>
     </div>
 @endsection

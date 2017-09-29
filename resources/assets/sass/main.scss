@@ -62,6 +62,10 @@ h6 {
     > form {
         width: 100%;
     }
+
+    .help-block {
+        text-align: center;
+    }
 }
 label {
     font-size: 19px;
@@ -103,6 +107,10 @@ label {
     }
 }
 
+textarea.conversion {
+    padding: 10px 15px;
+    resize: vertical;
+}
 .conversion {
     min-height: 90px;
     height: auto;
