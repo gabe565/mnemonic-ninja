@@ -9,6 +9,12 @@
         <meta name="author" content="Gabe Cook">
         <meta name="keywords" content="mnemonic major system, convert, memorize numbers, phonetic, memorization technique">
 
+        <meta property='og:title' content='Mnemonic Major Converter'/>
+        <meta property='og:image' content='https://mnemonic.gabe565.com/images/thumb.png'/>
+        <meta property='og:description' content='The mnemonic major system aids in numeric memorization by linking numbers with specific phonetic sounds, allowing you to convert a number to a word. This site will help do these conversions for you.'/>
+        <meta property='og:url' content='https://mnemonic.gabe565.com' />
+        <meta property="og:type" content="website" />
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title') | {{ config('app.name') }}</title>
