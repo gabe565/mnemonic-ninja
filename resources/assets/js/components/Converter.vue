@@ -1,6 +1,6 @@
 <template>
     <div class="row equal">
-        <div class="col-sm-3 col-sm-offset-2 centered" :class="{ 'has-error': error }">
+        <div class="col-sm-4 col-sm-offset-1 centered" :class="{ 'has-error': error }">
             <label :for="_uid">{{ from }}</label>
             <input type="text" :id="_uid" class="form-control" name="query" :placeholder="placeholder" autocomplete="off" aria-describedby="help" v-model="query">
             <span class="help-block">{{ help }}</span>

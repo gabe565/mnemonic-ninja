@@ -24,23 +24,15 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <!-- Piwik -->
-        <script type="text/javascript">
-            var _paq = _paq || [];
-            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-            _paq.push(["setDomains", ["*.mnemonic.gabe565.com"]]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                var u="//gabe565.com/analytics/";
-                _paq.push(['setTrackerUrl', u+'piwik.php']);
-                _paq.push(['setSiteId', '3']);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-            })();
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107254206-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments)};
+            gtag('js', new Date());
+
+            gtag('config', 'UA-107254206-1');
         </script>
-        <noscript><p><img src="//gabe565.com/analytics/piwik.php?idsite=3&rec=1" style="border:0;" alt="" /></p></noscript>
-        <!-- End Piwik Code -->
     </head>
     <body>
         <!-- Navigation -->
@@ -58,7 +50,7 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav navbar-right">
                         <li class="{{ (Route::currentRouteNamed('Converters') == 'Converters') ? 'active' : '' }}"> 
                             <a href="{{ route('Converters') }}" class=""><i class="far fa-exchange fa-fw" aria-hidden="true"></i>&nbsp;Converters</a>
                         </li>
