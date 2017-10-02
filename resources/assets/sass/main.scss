@@ -154,7 +154,8 @@ table {
                 padding: 8px;
 
                 max-height: 200px;
-                overflow-x: scroll;
+                overflow-x: hidden;
+                overflow-y: auto;
             }
         }
 
