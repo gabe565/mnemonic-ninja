@@ -108,6 +108,9 @@ label {
     }
 }
 
+div.conversion {
+    overflow-x: auto;
+}
 textarea.conversion {
     padding: 10px 15px;
     resize: vertical;
