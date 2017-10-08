@@ -40,9 +40,6 @@ class JSONTest extends TestCase
      */
     private function toWord($num, $word)
     {
-        //        if (!is_array($word)) {
-        //            $word = [$word];
-        //        }
         $response = $this->json('GET', "/api/to/word/$num");
         $response
             ->assertStatus(200)
