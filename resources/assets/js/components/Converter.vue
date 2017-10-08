@@ -20,11 +20,11 @@
                 <div class="form-control conversion">
                     <table class="table table-striped">
                         <tbody>
-                            <tr v-for="(item, key) in result">
-                                <td class="min">{{ key }}:</td>
+                            <tr v-for="item in result">
+                                <td class="min">{{ item.q }}:</td>
                                 <td class="result">
                                     <div>
-                                        {{ item }}
+                                        {{ item.r }}
                                     </div>
                                 </td>
                             </tr>
@@ -42,7 +42,7 @@ export default {
         return {
             query: '',
             response: [],
-            result: {},
+            result: [],
             loading: false,
             error: false
         };
@@ -89,16 +89,19 @@ export default {
                 })
         },
         createResult: function() {
-            this.result = {}
+            this.result = []
             var vue = this
-            _.forEach(vue.response.result, function(value, key) {
-                var it = '';
-                if (typeof value == 'string')
-                    it += value
+            _.forEach(vue.response.result, function(value) {
+                var it;
+                if (typeof value.r == 'string')
+                    it = value.r
                 else
-                    it += value.join(', ')
+                    it = value.r.join(', ')
 
-                vue.result[key] = it
+                vue.result.push({
+                    q: value.q,
+                    r: it
+                })
             })
         }
     },

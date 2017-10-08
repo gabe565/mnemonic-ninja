@@ -63,7 +63,10 @@ class ConversionController extends Controller
                     $num = filter_var($num, FILTER_SANITIZE_NUMBER_INT);
                 }
 
-                $nums[$word] = $num;
+                $nums[] = [
+                    'q' => $word,
+                    'r' => $num
+                ];
             }
         }
 
@@ -90,7 +93,10 @@ class ConversionController extends Controller
                     $word = array_shift($word);
                 }
 
-                $words[$num] = $word;
+                $words[] = [
+                    'q' => $num,
+                    'r' => $word
+                ];
             }
         }
 
