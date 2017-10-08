@@ -20,13 +20,15 @@ class JSONTest extends TestCase
         $words = explode(' ', $query);
         if (is_array($num)) {
             foreach ($words as $key => $word) {
-                $response->assertJson([
-                    'result' => [$word => $num[$key]],
+                $response->assertJsonFragment([
+                    'q' => $word,
+                    'r' => ["${num[$key]}"]
                 ]);
             }
         } else {
-            $response->assertJson([
-                'result' => [$query => $num],
+            $response->assertJsonFragment([
+                'q' => $query,
+                'r' => ["$num"]
             ]);
         }
     }
@@ -38,14 +40,15 @@ class JSONTest extends TestCase
      */
     private function toWord($num, $word)
     {
-//        if (!is_array($word)) {
-//            $word = [$word];
-//        }
+        //        if (!is_array($word)) {
+        //            $word = [$word];
+        //        }
         $response = $this->json('GET', "/api/to/word/$num");
         $response
             ->assertStatus(200)
-            ->assertJson([
-                'result' => [$num => $word],
+            ->assertJsonFragment([
+                'q' => "$num",
+                'r' => [$word]
             ]);
     }
 
