@@ -23,51 +23,52 @@ class ConversionController extends Controller
 
     public function word_to_num ($input = null)
     {
-        if ($input === null) return response()->json(['result' => []]);
+        if ($input === null)
+            return response()->json(['result' => []]);
 
+        // Split input on any whitespace, comma, or semicolon
         $words = $this->split($input);
 
         foreach ($words as $word) {
-            if (!isset($nums[$word])) {
-                $num = Word::distinct()
-                    ->select('number')
-                    ->where('word', $word)
-                    ->orderBy('number', 'asc')
-                    ->get()
-                    ->pluck('number')
-                    ->toArray();
+            // Get all numbers for the current word
+            $num = Word::distinct()
+                ->select('number')
+                ->where('word', $word)
+                ->orderBy('number', 'asc')
+                ->get()
+                ->pluck('number')
+                ->toArray();
 
-                if (array_filter($num, 'strlen')) {
-                    if (count($num) == 1) {
-                        $num = array_shift($num);
-                    }
-                } else {
-                    if (!isset($letters)) {
-                        $resp = Letter::select('number', 'symbol')
-                            ->orderBy(DB::raw('length(`symbol`)'), 'desc')
-                            ->get();
+            // If $num is empty then we will guess by letter
+            if (empty($num)) {
+                if (!isset($letters)) {
+                    // Get letters and numbers from the database
+                    $resp = Letter::select('number', 'symbol')
+                        ->orderBy(DB::raw('length(`symbol`)'), 'desc')
+                        ->get();
 
-                        $letters = [
-                            'symbol' => $resp->pluck('symbol')->toArray(),
-                            'number' => $resp->pluck('number')->toArray()
-                        ];
-                    }
-
-                    $letters['symbol'][] = '-';
-                    $letters['number'][] = '';
-
-                    // Replace every symbol with its corresponding number
-                    $num = str_replace($letters['symbol'], $letters['number'], strtolower($word));
-
-                    // In the end, remove all non-digits with regex
-                    $num = filter_var($num, FILTER_SANITIZE_NUMBER_INT);
+                    // Rearrange array into two arrays which can be passed to str_replace
+                    $letters = [
+                        'symbol' => $resp->pluck('symbol')->toArray(),
+                        'number' => $resp->pluck('number')->toArray()
+                    ];
                 }
 
-                $nums[] = [
-                    'q' => $word,
-                    'r' => $num
-                ];
+                // Remove minus symbol since filter_var will not pick it up
+                $letters['symbol'][] = '-';
+                $letters['number'][] = '';
+
+                // Replace every symbol with its corresponding number
+                $guess = str_replace($letters['symbol'], $letters['number'], strtolower($word));
+
+                // Remove all non-digits and add to $num
+                $num[] = filter_var($guess, FILTER_SANITIZE_NUMBER_INT);
             }
+
+            $nums[] = [
+                'q' => $word,
+                'r' => $num
+            ];
         }
 
         return response()->json(['result' => $nums]);
@@ -75,29 +76,26 @@ class ConversionController extends Controller
 
     public function num_to_word ($input = null)
     {
-        if ($input === null) return response()->json(['result' => []]);
+        if ($input === null)
+            return response()->json(['result' => []]);
 
+        // Split input on any whitespace, comma, or semicolon
         $nums = $this->split($input);
 
         foreach ($nums as $num) {
-            if (!isset($words[$num])) {
-                $word = Word::where('number', $num)
-                    ->distinct()
-                    ->select('word')
-                    ->orderBy('word', 'asc')
-                    ->get()
-                    ->pluck('word')
-                    ->toArray();
+            // Get all words for the current num
+            $word = Word::where('number', $num)
+                ->distinct()
+                ->select('word')
+                ->orderBy('word', 'asc')
+                ->get()
+                ->pluck('word')
+                ->toArray();
 
-                if (count($word) == 1) {
-                    $word = array_shift($word);
-                }
-
-                $words[] = [
-                    'q' => $num,
-                    'r' => $word
-                ];
-            }
+            $words[] = [
+                'q' => $num,
+                'r' => $word
+            ];
         }
 
         return response()->json(['result' => $words]);

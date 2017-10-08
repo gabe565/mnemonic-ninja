@@ -92,15 +92,9 @@ export default {
             this.result = []
             var vue = this
             _.forEach(vue.response.result, function(value) {
-                var it;
-                if (typeof value.r == 'string')
-                    it = value.r
-                else
-                    it = value.r.join(', ')
-
                 vue.result.push({
                     q: value.q,
-                    r: it
+                    r: value.r.join(', ')
                 })
             })
         }
