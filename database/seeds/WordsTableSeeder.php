@@ -25,7 +25,7 @@ class WordsTableSeeder extends Seeder
         DB::table('words')->truncate();
         DB::connection()->disableQueryLog();
 
-        $handle = fopen('https://raw.githubusercontent.com/cmusphinx/cmudict/master/cmudict.dict', 'r');
+        $handle = fopen(base_path('resources/cmudict/cmudict.dict'), 'r');
 
         $result = [];
         $n = 0;
