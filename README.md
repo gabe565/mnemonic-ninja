@@ -17,7 +17,7 @@ Live at <https://mnemonic.gabe565.com>
   - MySQL, PostgreSQL, SQLite, or SQL Server
 
 ## Installation
-This project is build using [Laravel](https://laravel.com) as an API and [Vue.js](https://vuejs.org) as a front-end controller.
+This project is built using [Laravel](https://laravel.com) as an API and [Vue.js](https://vuejs.org) as a front-end controller.
 
   1. To obtain the code, simply run
 
