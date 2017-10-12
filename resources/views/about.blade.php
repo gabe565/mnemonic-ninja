@@ -190,16 +190,21 @@
                 To create this application, I started with the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank">CMU Dictionary</a> (I actually used <a href="https://github.com/cmusphinx/cmudict">this updated version on GitHub</a>).<br>
                 Then I converted the <a href="https://en.wikipedia.org/wiki/Arpabet" target="_blank">Arpabet pronounciations</a> to the <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet" target="_blank">International Phonetic Alphabet (IPA)</a> using <a href="https://github.com/wwesantos/arpabet-to-ipa" target="_blank">this arpabet-to-ipa converter</a>.</p>
                 <p>
-                The results are stored in the database so that conversions are lighter (The server does not have to perform the conversion every time it is queried, instead it just looks up its saved conversion list) and faster (Database has indexes to speed up the lookups).
+                The results are stored in the database instead of converting live so that queries take less processing and respond more quickly.
                 </p>
                 <p>
-                When performing conversions, the application will attempt to perform the conversion from the pronounciation in the database.<br>
-                If the word cannot be found, then it falls back to estimating the conversion by comparing letters instead of sounds.<br>
-                To see this in action, <a href="/?word=garage+garages+garagez" target="_blank">look at the conversions of <code>garage</code>, <code>garages</code>, and <code>garagez</code></a>. First, the result of <code>garage</code> is "746" because the last /ge/ is not a hard G, but a soft G which corresponds to the number 6.<br>
-                For the next result, <code>garages</code>, it will successfully be converted to "7460" because the pronounciation is the same, but with an /s/ at the end of the word.<br>
-                Now is where we see the wordlist in action. The last conversion, <code>garagez</code> will convert to "7470" because /z/ does convert to "0", but the word is not in the wordlist, so it guesses on conversions.
+                When performing conversions, the application will attempt to perform the conversion from the pronounciation in the database first.<br>
+                If the word cannot be found, then it will fallback to estimating the conversion by comparing letters instead of sounds.<br>
                 </p>
-                <p><a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank">This project is now on GitHub</a></p>
+                <p>
+                To see this in action, <a href="/?word=garage+garages+garagez" target="_blank">look at the conversions of <code>garage</code>, <code>garages</code>, and <code>garagez</code></a>:
+                <ol>
+                    <li><code>garage</code> becomes "746" because the last /ge/ is not a hard G, but a soft G which corresponds to the number 6.</li>
+                    <li><code>garages</code> will successfully be converted to "7460" because the pronounciation is the same, but with an /s/ at the end of the word.</li>
+                    <li>Now is where we see the wordlist in action. <code>garagez</code> will convert to "7470" because the word is not in the wordlist, so the system has to guess on the conversion.</li>
+                </ol>
+                </p>
+                <p>If you find any issues in the site, feel free to <a href="https://gabecook.com/connect" target="_blank">email me through my contact form</a> or <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank">open an issue on this project's GitHub</a>.
             </div>
         </div>
     </div>
