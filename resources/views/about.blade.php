@@ -187,7 +187,7 @@
             <div class="col-sm-10 col-sm-offset-1">
                 <hr>
                 <p>
-                To create this application, I started with the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank">CMU Dictionary</a> (I actually used <a href="https://github.com/cmusphinx/cmudict">this updated version on GitHub</a>).<br>
+                To create this application, I started with the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank">CMU Dictionary</a> (I actually used <a href="https://github.com/cmusphinx/cmudict" target="_blank">this updated version on GitHub</a>).<br>
                 Then I converted the <a href="https://en.wikipedia.org/wiki/Arpabet" target="_blank">Arpabet pronounciations</a> to the <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet" target="_blank">International Phonetic Alphabet (IPA)</a> using <a href="https://github.com/wwesantos/arpabet-to-ipa" target="_blank">this arpabet-to-ipa converter</a>.</p>
                 <p>
                 The results are stored in the database instead of converting live so that queries take less processing and respond more quickly.
