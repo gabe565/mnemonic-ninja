@@ -22,7 +22,7 @@ This project is built using [Laravel](https://laravel.com) as an API and [Vue.js
   1. To obtain the code, simply run
 
       ```
-      git clone https://github.com/gabe565/mnemonic-major-converter
+      git clone --recursive https://github.com/gabe565/mnemonic-major-converter
       cd mnemonic-major-converter
       ```
 
