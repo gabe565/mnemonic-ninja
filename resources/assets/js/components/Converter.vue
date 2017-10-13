@@ -11,7 +11,7 @@
                 <textarea :id="_uid" class="form-control conversion" name="query" :placeholder="from.placeholder" v-model="query"></textarea>
             </div>
             <div class="col-sm-2 centered">
-                <button type="submit" class="btn btn-success btn-sm">
+                <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate">
                     <i class="far fa-2x fa-fw loader" :class="[ loading ? 'fa-sync-alt fa-spin' : 'arrow' ]" aria-hidden="true"></i>
                 </button>
             </div>
@@ -65,9 +65,13 @@ export default {
         query: _.debounce(
             function() {
                 this.getResponse()
-            }, 250)
+            }, 300)
     },
     methods: {
+        manualUpdate: _.throttle(
+            function() {
+                this.getResponse()
+            }, 1000),
         getResponse: function () {
             if (this.query == '') {
                 this.response = []
