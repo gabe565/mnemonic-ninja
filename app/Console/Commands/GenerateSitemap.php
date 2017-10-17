@@ -40,6 +40,9 @@ class GenerateSitemap extends Command
     public function handle()
     {
         SitemapGenerator::create(config('app.url'))
+            ->shouldCrawl(function (Url $url) {
+                return $url->query === NULL;
+            })
             ->writeToFile(public_path('sitemap.xml'));
     }
 }
