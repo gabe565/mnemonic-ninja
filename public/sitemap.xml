@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://mnemonic.ninja/</loc>
+    
+    
+        <lastmod>2017-10-17T19:23:54+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://mnemonic.ninja/?word=garage+garages+garagez</loc>
+    
+    
+        <lastmod>2017-10-17T19:23:56+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://mnemonic.ninja/about</loc>
+    
+    
+        <lastmod>2017-10-17T19:23:55+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+</urlset>
