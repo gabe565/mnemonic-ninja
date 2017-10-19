@@ -26,7 +26,7 @@ require('datatables.net-responsive');
 
 var table = $('.datatable').DataTable({
     fixedHeader: {
-        headerOffset: 70 //$('.navbar').outerHeight()
+        headerOffset: 65 //$('.navbar').outerHeight()
     },
     info: false,
     ordering: false,
