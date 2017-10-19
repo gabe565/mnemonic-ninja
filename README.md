@@ -1,3 +1,5 @@
+![Mnemonic Ninja Logo](/public/images/logo.png?raw=true "Optional Title")
+
 # Mnemonic Major Converter
 <p align="center">
     <a href="https://travis-ci.org/gabe565/mnemonic-major-converter"><img src="https://img.shields.io/travis/gabe565/mnemonic-major-converter.svg" alt="Build Status"></a>
@@ -7,7 +9,6 @@
 
 Website to convert between a number and its corresponding word to aid in memorization.     
 Live at <https://mnemonic.ninja>
-
 
 ## Requirements
   - PHP >= 7.0.0
