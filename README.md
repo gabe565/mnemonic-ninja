@@ -1,5 +1,7 @@
 <p align="center">
-    <img src="/public/images/logo.png?raw=true" title="Mnemonic Ninja Logo">
+    <a href="//mnemonic.ninja">
+        <img src="/public/images/logo.png?raw=true" title="Mnemonic Ninja Logo">
+    </a>
 </p>
 
 # Mnemonic Major Converter
