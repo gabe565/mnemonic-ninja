@@ -19,6 +19,15 @@
 
         <title>@yield('title') | {{ config('app.name') }}</title>
 
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#607d8b">
+        <meta name="apple-mobile-web-app-title" content="Mnemonic Ninja">
+        <meta name="application-name" content="Mnemonic Ninja">
+        <meta name="theme-color" content="#607d8b">
+
         <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ mix('css/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ mix('css/datatables.css') }}" rel="stylesheet">
@@ -51,7 +60,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('Converters') }}">{{ config('app.name') }}</a>
+                    <a class="navbar-brand" href="{{ route('Converters') }}">
+                        <img src="{{ mix('images/logo.svg') }}" height="100%" class="align-top" style="display: inline-block" alt="">
+                        {{ config('app.name') }}
+                    </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
