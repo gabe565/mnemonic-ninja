@@ -1,4 +1,6 @@
-![Mnemonic Ninja Logo](/public/images/logo.png?raw=true "Optional Title")
+<p align="center">
+    <img src="/public/images/logo.png?raw=true" title="Mnemonic Ninja Logo">
+</p>
 
 # Mnemonic Major Converter
 <p align="center">
