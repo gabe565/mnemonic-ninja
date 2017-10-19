@@ -61,7 +61,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{ route('Converters') }}">
-                        <img src="{{ mix('images/logo.svg') }}" height="100%" class="align-top" style="display: inline-block" alt="">
+                        <img src="/images/logo.svg" height="100%" class="align-top" style="display: inline-block" alt="">
                         {{ config('app.name') }}
                     </a>
                 </div>
