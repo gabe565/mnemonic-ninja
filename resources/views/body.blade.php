@@ -19,13 +19,12 @@
 
         <title>@yield('title') | {{ config('app.name') }}</title>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/manifest.json">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#607d8b">
-        <meta name="apple-mobile-web-app-title" content="Mnemonic Ninja">
-        <meta name="application-name" content="Mnemonic Ninja">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=zXrE0PzqQg">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=zXrE0PzqQg">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=zXrE0PzqQg">
+        <link rel="manifest" href="/manifest.json?v=zXrE0PzqQg">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg?v=zXrE0PzqQg" color="#607d8b">
+        <link rel="shortcut icon" href="/favicon.ico?v=zXrE0PzqQg">
         <meta name="theme-color" content="#607d8b">
 
         <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
