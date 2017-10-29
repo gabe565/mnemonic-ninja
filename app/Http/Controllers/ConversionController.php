@@ -72,8 +72,7 @@ class ConversionController extends Controller
         }
 
         return response()->json([
-            'result' => $nums,
-            'time' => $this->getExecTime()
+            'result' => $nums
         ]);
     }
 
@@ -102,16 +101,11 @@ class ConversionController extends Controller
         }
 
         return response()->json([
-            'result' => $words,
-            'time' => $this->getExecTime()
+            'result' => $words
         ]);
     }
 
     private function split($input) {
         return preg_split('/[,;\s]/', $input, NULL, PREG_SPLIT_NO_EMPTY);
-    }
-
-    private function getExecTime() {
-        return microtime(true) - LARAVEL_START;
     }
 }
