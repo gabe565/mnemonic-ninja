@@ -71,7 +71,10 @@ class ConversionController extends Controller
             ];
         }
 
-        return response()->json(['result' => $nums]);
+        return response()->json([
+            'result' => $nums,
+            'time' => $this->getExecTime()
+        ]);
     }
 
     public function num_to_word ($input = null)
@@ -98,10 +101,17 @@ class ConversionController extends Controller
             ];
         }
 
-        return response()->json(['result' => $words]);
+        return response()->json([
+            'result' => $words,
+            'time' => $this->getExecTime()
+        ]);
     }
 
     private function split($input) {
         return preg_split('/[,;\s]/', $input, NULL, PREG_SPLIT_NO_EMPTY);
+    }
+
+    private function getExecTime() {
+        return microtime(true) - LARAVEL_START;
     }
 }
