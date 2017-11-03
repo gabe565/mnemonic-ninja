@@ -69,7 +69,7 @@ gtag('config', 'UA-107254206-1');
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <router-link tag="li" to="/" exact>
+                            <router-link tag="li" to="/convert">
                                 <a>
                                     <i class="far fa-exchange fa-fw" aria-hidden="true"></i>
                                     &nbsp;Converters

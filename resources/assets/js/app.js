@@ -27,7 +27,10 @@ import About from './components/About.vue'
 import NotFound from './components/NotFound.vue'
 
 const routes = [
-    { path: '/', component: Converters, meta: { title: 'Converters' } },
+    { path: '/', redirect: '/convert' },
+    { path: '/convert', component: Converters, meta: { title: 'Converters' } },
+    { path: '/convert/word/:word', component: Converters, meta: { title: 'Converters' } },
+    { path: '/convert/num/:num', component: Converters, meta: { title: 'Converters' } },
     { path: '/about', component: About, meta: { title: 'About' } },
     { path: '*', component: NotFound, meta: { title: 'Not Found' } }
 ]
@@ -36,11 +39,15 @@ const router = new VueRouter({
     routes,
     mode: 'history',
     linkActiveClass: 'active',
-    scrollBehavior (to, from, savedPosition) {
-        if (savedPosition)
-            return savedPosition
-        else
-            return { x: 0, y: 0 }
+    scrollBehavior(to, from, savedPosition) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                if (savedPosition)
+                    return savedPosition
+                else
+                    return { x: 0, y: 0 }
+            }, 200)
+        })
     }
 })
 
