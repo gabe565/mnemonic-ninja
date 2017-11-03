@@ -1,0 +1,64 @@
+$prefix: svg;
+
+.#{$prefix}-icon {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    color: inherit;
+    fill: none;
+    stroke: currentColor;
+    vertical-align: -9%;
+}
+
+.#{$prefix}-fw {
+    text-align: center;
+    width: 1.25em;
+}
+
+.#{$prefix}-fh {
+    height: 1.25em;
+    padding: 0.125em 0;
+}
+
+.#{$prefix}-fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+.#{$prefix}-spin {
+    animation: svg-spin 2s infinite linear;
+}
+
+.#{$prefix}-pulse {
+    animation: #{$prefix}-spin 1s infinite steps(8);
+}
+
+.#{$prefix}-lg {
+    font-size: (4em / 3);
+    line-height: (3em / 4);
+    vertical-align: -15%;
+}
+
+.#{$prefix}-xs {
+    font-size: .75em;
+}
+
+.#{$prefix}-sm {
+    font-size: .875em;
+}
+
+@for $i from 1 through 10 {
+    .#{$prefix}-#{$i}x {
+        font-size: $i * 1em;
+    }
+}
+
+@keyframes #{$prefix}-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

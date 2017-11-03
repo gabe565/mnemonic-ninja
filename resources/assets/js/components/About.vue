@@ -18,26 +18,30 @@
                     <thead>
                         <tr>
                             <th class="all">
-                                <i class="far fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;
-                                Number
+                                <svgicon name="hashtag"></svgicon>
+                                &nbsp;Number
                             </th>
                             <th class="all">
-                                <i class="far fa-volume-up fa-fw" aria-hidden="true"></i>&nbsp;
+                                <svgicon name="volume-up"></svgicon>
                                 Sound
                             </th>
                             <th class="all">
-                                <i class="far fa-bars fa-fw" aria-hidden="true"></i>&nbsp;
+                                <svgicon name="bars"></svgicon>
                                 Letters
                             </th>
                             <th class="min-desktop">
-                                <i class="far fa-comments fa-fw" aria-hidden="true"></i>&nbsp;
+                                <svgicon name="comments"></svgicon>
                                 Comments/Remembering
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>0</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                &nbsp;0
+                            </td>
                             <td>/s/,<br>/z/</td>
                             <td><i>s</i>,<br>soft <i>c</i>,<br><i>z</i>,<br><i>x</i> (in <i>xylophone</i>)</td>
                             <td>
@@ -49,7 +53,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>1</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                1
+                            </td>
                             <td>/t/,<br>/d/,<br>(/θ/, /ð/)</td>
                             <td><i>t</i>,<br><i>d</i>,<br>(<i>th</i> in <i>thing</i> and <i>this</i>)</td>
                             <td>
@@ -60,7 +68,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>2</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                2
+                            </td>
                             <td>/n/</td>
                             <td><i>n</i>
                             </td>
@@ -71,7 +83,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>3</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                3
+                            </td>
                             <td>/m/</td>
                             <td><i>m</i>
                             </td>
@@ -83,7 +99,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>4</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                4
+                            </td>
                             <td>/r/</td>
                             <td><i>r</i>,<br><i>l</i> (in <i>colonel</i>)</td>
                             <td>
@@ -93,7 +113,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>5</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                5
+                            </td>
                             <td>/l/</td>
                             <td><i>l</i>
                             </td>
@@ -105,7 +129,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>6</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                6
+                            </td>
                             <td>/tʃ/,<br>/dʒ/,<br>/ʃ/,<br>/ʒ/</td>
                             <td><i>ch</i> (in <i>cheese</i> and <i>chef</i>),<br><i>j</i>,<br>soft <i>g</i>,<br><i>sh</i>,<br><i>c</i> (in <i>cello</i> and <i>special</i>),<br><i>cz</i> (in <i>Czech</i>),<br><i>s</i> (in <i>tissue</i> and <i>vision</i>),<br><i>sc</i> (in <i>fascist</i>),<br><i>sch</i> (in <i>schwa</i> and <i>eschew</i>),<br><i>t</i> (in <i>ration</i> and <i>equation</i>),<br><i>tsch</i> (in <i>putsch</i>),<br><i>z</i> (in <i>seizure</i>)</td>
                             <td>
@@ -119,7 +147,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>7</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                7
+                            </td>
                             <td>/k/,<br>/ɡ/</td>
                             <td><i>k</i>,<br>hard <i>c</i>,<br><i>q</i>,<br><i>ch</i> (in <i>loch</i>),<br>hard <i>g</i>
                             </td>
@@ -133,7 +165,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>8</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                8
+                            </td>
                             <td>/f/,<br>/v/</td>
                             <td><i>f</i>,<br><i>ph</i> (in <i>phone</i>),<br><i>v,<br>gh (in laugh)</i>
                             </td>
@@ -145,7 +181,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>9</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                9
+                            </td>
                             <td>/p/,<br>/b/</td>
                             <td><i>p</i>,<br><i>b</i>,<br><i>gh</i> (in <i>hiccough</i>)</td>
                             <td>
@@ -157,7 +197,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Unassigned</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                Unassigned
+                            </td>
                             <td>/h/,<br>/j/,<br>/w/, <a href="https://en.wikipedia.org/wiki/English_phonology#Vowels" title="English phonology" target="_blank">vowel sounds</a>
                             </td>
                             <td><i>h</i>,<i>y</i>,<i>w</i>,<i>a</i>,<i>e</i>,<i>i</i>,<i>o</i>,<i>u</i>,<br><a href="https://en.wikipedia.org/wiki/Silent_letter" title="Silent letter" target="_blank">silent letters</a>,<br><i>c</i> (in <i>packet</i> and <i>chutzpah</i>),<br><i>d</i> (in <i>judge</i>),<br><i>j</i> (in <i>Hallelujah</i> and <i>jalapeno</i>),<br><i>ll</i> (in <i>tortilla</i>),<br>the first <i>p</i> in <i>sapphire</i>,<br><i>t</i> (in <i>match</i>),<br>one of doubled letters in most contexts</td>
@@ -168,7 +212,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>(2, 27 or 7)</td>
+                            <td>
+                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                (2, 27 or 7)
+                            </td>
                             <td>/ŋ/</td>
                             <td><i>ng</i>,<br><i>n</i> before <i>k</i>,<br>hard <i>c</i>,<br><i>q</i>,<br>hard <i>g</i> or <i>x</i>
                             </td>
@@ -209,6 +257,12 @@
 </template>
 
 <script>
+import '../svg/hashtag'
+import '../svg/volume-up'
+import '../svg/comments'
+import '../svg/plus-square'
+import '../svg/minus-square'
+
 export default {
     mounted: function() {
         var table = $('.datatable').DataTable({

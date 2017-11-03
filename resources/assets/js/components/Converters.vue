@@ -17,6 +17,7 @@
 
 <script>
 import Converter from './Converter.vue'
+
 export default {
     computed: {
         word: function() {
@@ -35,8 +36,5 @@ export default {
     components: {
         converter: Converter
     },
-    created: function() {
-
-    }
 }
 </script>

@@ -71,13 +71,13 @@ gtag('config', 'UA-107254206-1');
                         <ul class="nav navbar-nav navbar-right">
                             <router-link tag="li" to="/convert">
                                 <a>
-                                    <i class="far fa-exchange fa-fw" aria-hidden="true"></i>
+                                    <svgicon name="exchange"></svgicon>
                                     &nbsp;Converters
                                 </a>
                             </router-link>
                             <router-link tag="li" to="/about">
                                 <a>
-                                    <i class="far fa-info-circle fa-fw" aria-hidden="true"></i>
+                                    <svgicon name="info-circle"></svgicon>
                                     &nbsp;About
                                 </a>
                             </router-link>
@@ -99,7 +99,8 @@ gtag('config', 'UA-107254206-1');
                     </a>
                     <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank" class="pull-right">
                         <span>
-                            <i class="fab fa-github fa-fw"></i>&nbsp;View on GitHub
+                            <svgicon name="github"></svgicon>
+                            &nbsp;View on GitHub
                         </span>
                     </a>
                 </div>

@@ -1,0 +1,13 @@
+/* eslint-disable */
+require('./arrow-down')
+require('./arrow-right')
+require('./bars')
+require('./comments')
+require('./exchange')
+require('./github')
+require('./hashtag')
+require('./info-circle')
+require('./minus-square')
+require('./plus-square')
+require('./sync-alt')
+require('./volume-up')

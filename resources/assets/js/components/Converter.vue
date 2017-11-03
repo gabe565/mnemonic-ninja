@@ -12,7 +12,9 @@
             </div>
             <div class="col-sm-2 centered">
                 <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate">
-                    <i class="far fa-2x fa-fw loader" :class="[ loading ? 'fa-sync-alt fa-spin' : 'arrow' ]" aria-hidden="true"></i>
+                    <svgicon name="arrow-right" class="svg-fh svg-fw svg-2x hidden-xs" v-if="!loading"></svgicon>
+                    <svgicon name="arrow-down" class="svg-fh svg-fw svg-2x visible-xs-inline-block" v-if="!loading"></svgicon>
+                    <svgicon name="sync-alt" class="svg-fh svg-fw svg-2x svg-spin" v-if="loading"></svgicon>
                 </button>
             </div>
             <div class="col-sm-5 col-md-4 centered">
@@ -37,6 +39,10 @@
 </template>
 
 <script>
+import '../svg/arrow-right'
+import '../svg/arrow-down'
+import '../svg/sync-alt'
+
 export default {
     data: function() {
         return {

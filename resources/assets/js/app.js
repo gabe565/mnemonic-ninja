@@ -19,12 +19,19 @@ import 'datatables.net-responsive'
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueSVGIcon from 'vue-svgicon'
 
 Vue.use(VueRouter)
+Vue.use(VueSVGIcon)
 
 import Converters from './components/Converters.vue'
 import About from './components/About.vue'
 import NotFound from './components/NotFound.vue'
+
+import './svg/bars'
+import './svg/exchange'
+import './svg/info-circle'
+import './svg/github'
 
 const routes = [
     { path: '/', redirect: '/convert' },
