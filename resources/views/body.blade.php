@@ -28,7 +28,6 @@
         <meta name="theme-color" content="#607d8b">
 
         <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ mix('css/datatables.css') }}" rel="stylesheet">
         <link href="{{ mix('css/main.css') }}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
