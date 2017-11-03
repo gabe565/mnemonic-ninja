@@ -88,7 +88,7 @@ gtag('config', 'UA-107254206-1');
                 <!-- /.container -->
             </nav>
 
-            <transition :name="transitionName" mode="out-in" appear>
+            <transition :name="transitionName" mode="out-in">
                 <router-view class="child-view"></router-view>
             </transition>
 

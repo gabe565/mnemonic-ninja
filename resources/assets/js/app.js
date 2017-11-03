@@ -17,7 +17,9 @@ import 'datatables.net-responsive'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 
 import Converters from './components/Converters.vue'
@@ -42,13 +44,10 @@ const router = new VueRouter({
     }
 })
 
-router.beforeEach(function (to, from, next) {
+router.beforeEach(function(to, from, next) {
     document.title = to.meta.title ? to.meta.title + ' | Mnemonic Ninja' : 'Mnemonic Ninja'
-    next()
-})
-
-router.afterEach(function(to, from) {
     $('#app').removeClass(from.meta.title).addClass(to.meta.title)
+    next()
 })
 
 new Vue({

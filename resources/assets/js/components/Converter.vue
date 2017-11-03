@@ -108,6 +108,6 @@ export default {
             this.query = this.from.value
             this.getResponse()
         }
-    }
+    },
 }
 </script>

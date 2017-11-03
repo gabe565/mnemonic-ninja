@@ -23,6 +23,9 @@ class ConversionController extends Controller
 
     public function word_to_num ($input = null)
     {
+        if (!preg_match('/^[A-Za-z-\'\s,;\.]*$/', $input))
+            abort(500, 'Invalid Input');
+
         if ($input === null)
             return response()->json(['result' => []]);
 
@@ -78,6 +81,9 @@ class ConversionController extends Controller
 
     public function num_to_word ($input = null)
     {
+        if (!preg_match('/^[0-9\s,;]*$/', $input))
+            abort(500, "Invalid Input");
+
         if ($input === null)
             return response()->json(['result' => []]);
 

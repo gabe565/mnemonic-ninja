@@ -11,13 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.autoload({
-    jquery: ['$', 'window.jQuery', 'jQuery'],
-    axios: ['window.axios', 'axios'],
-    lodash: ['_', 'window._'],
-    vue: ['window.Vue', 'Vue'],
-})
-    .js('resources/assets/js/app.js', 'public/js')
+mix.js('resources/assets/js/app.js', 'public/js')
     .extract(['axios', 'lodash', 'jquery', 'vue'])
     .sass('resources/assets/sass/bootstrap.scss', 'public/css')
     .sass('resources/assets/sass/font-awesome.scss', 'public/css')
