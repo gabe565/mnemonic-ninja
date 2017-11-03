@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', 'ConversionController@show')->name('Converters');
-
-Route::get('/about', 'ShowAbout')->name('About');
+Route::get('/{catchall?}', 'ConversionController@show')->where('catchall', '.*');

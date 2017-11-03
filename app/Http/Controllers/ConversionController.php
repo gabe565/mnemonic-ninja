@@ -15,7 +15,7 @@ class ConversionController extends Controller
         $word = $_GET['word'] ?? '';
         $number = $_GET['number'] ?? '';
 
-        return view('converters', [
+        return view('body', [
             'word' => $word,
             'number' => $number
         ]);

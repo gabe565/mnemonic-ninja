@@ -26,6 +26,7 @@
     "datatables.net-fixedheader": "^3.1.2",
     "datatables.net-fixedheader-bs": "^3.1.2",
     "datatables.net-responsive": "^2.1.1",
-    "datatables.net-responsive-bs": "^2.1.1"
+    "datatables.net-responsive-bs": "^2.1.1",
+    "vue-router": "^3.0.1"
   }
 }

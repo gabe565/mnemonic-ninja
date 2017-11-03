@@ -17,7 +17,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title') | {{ config('app.name') }}</title>
+        <title>{{ config('app.name') }}</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=zXrE0PzqQg">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=zXrE0PzqQg">
@@ -41,61 +41,70 @@
         <!-- Global Site Tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107254206-1"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments)};
-            gtag('js', new Date());
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments)};
+gtag('js', new Date());
 
-            gtag('config', 'UA-107254206-1');
+gtag('config', 'UA-107254206-1');
         </script>
     </head>
     <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="app">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ route('Converters') }}">
-                        <img src="/images/mnemonic-ninja.svg" height="100%" class="align-top" style="display: inline-block" alt="Mnemonic Ninja Logo">
-                        {{ config('app.name') }}
+        <div id="app">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="app">
+                <div class="container">
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <router-link class="navbar-brand" to="/">
+                            <img src="/images/mnemonic-ninja.svg" height="100%" class="align-top" style="display: inline-block" alt="{{ config('app.name') }} Logo">
+                            &nbsp;&nbsp;{{ config('app.name') }}
+                        </router-link>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <router-link tag="li" to="/" exact>
+                                <a>
+                                    <i class="far fa-exchange fa-fw" aria-hidden="true"></i>
+                                    &nbsp;Converters
+                                </a>
+                            </router-link>
+                            <router-link tag="li" to="/about">
+                                <a>
+                                    <i class="far fa-info-circle fa-fw" aria-hidden="true"></i>
+                                    &nbsp;About
+                                </a>
+                            </router-link>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+
+            <transition :name="transitionName" mode="out-in" appear>
+                <router-view class="child-view"></router-view>
+            </transition>
+
+            <div class="footer">
+                <div class="container">
+                    <a href="https://github.com/gabe565/mnemonic-major-converter/blob/master/LICENSE" target="_blank" class="pull-left">
+                        <span>&copy; 2017 Gabe Cook</span>
+                    </a>
+                    <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank" class="pull-right">
+                        <span>
+                            <i class="fab fa-github fa-fw"></i>&nbsp;View on GitHub
+                        </span>
                     </a>
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="{{ (Route::currentRouteNamed('Converters') == 'Converters') ? 'active' : '' }}"> 
-                            <a href="{{ route('Converters') }}" class=""><i class="far fa-exchange fa-fw" aria-hidden="true"></i>&nbsp;Converters</a>
-                        </li>
-                        <li class="{{ (Route::currentRouteNamed('About') == 'About') ? 'active' : '' }}">
-                            <a href="{{ route('About') }}"><i class="far fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp;About</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container -->
-        </nav>
 
-        <div class="container">
-            @yield('content')
-        </div>
-
-        <div class="footer">
-            <div class="container">
-                <a href="https://github.com/gabe565/mnemonic-major-converter/blob/master/LICENSE" target="_blank" class="pull-left">
-                    <span>&copy; 2017 Gabe Cook</span>
-                </a>
-                <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank" class="pull-right">
-                    <span>
-                        <i class="fab fa-github fa-fw"></i>&nbsp;View on GitHub
-                    </span>
-                </a>
-            </div>
         </div>
 
         <script src="{{ mix('js/manifest.js') }}"></script>

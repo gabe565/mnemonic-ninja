@@ -4,8 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-window.Vue = require('vue');
+require('./bootstrap')
+
+import 'datatables.net'
+import 'datatables.net-bs'
+import 'datatables.net-fixedheader'
+import 'datatables.net-responsive'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13,24 +17,62 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('converter', require('./components/Converter.vue'));
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 
-new Vue({
-    el: '#vue'
+import Converters from './components/Converters.vue'
+import About from './components/About.vue'
+import NotFound from './components/NotFound.vue'
+
+const routes = [
+    { path: '/', component: Converters, meta: { title: 'Converters' } },
+    { path: '/about', component: About, meta: { title: 'About' } },
+    { path: '*', component: NotFound, meta: { title: 'Not Found' } }
+]
+
+const router = new VueRouter({
+    routes,
+    mode: 'history',
+    linkActiveClass: 'active',
+    scrollBehavior (to, from, savedPosition) {
+        if (savedPosition)
+            return savedPosition
+        else
+            return { x: 0, y: 0 }
+    }
 })
 
-require('datatables.net');
-require('datatables.net-bs');
-require('datatables.net-fixedheader');
-require('datatables.net-responsive');
+router.beforeEach(function (to, from, next) {
+    document.title = to.meta.title ? to.meta.title + ' | Mnemonic Ninja' : 'Mnemonic Ninja'
+    next()
+})
 
-var table = $('.datatable').DataTable({
-    fixedHeader: {
-        headerOffset: 65 //$('.navbar').outerHeight()
+router.afterEach(function(to, from) {
+    $('#app').removeClass(from.meta.title).addClass(to.meta.title)
+})
+
+new Vue({
+    el: '#app',
+    router,
+    data: function() {
+        return {
+            transitionName: 'fade'
+        }
     },
-    info: false,
-    ordering: false,
-    paging: false,
-    responsive: true,
-    searching: false,
+    watch: {
+        '$route': function(to, from) {
+            var fromIndex = routes.findIndex(function(obj) { return obj.path == from.path })
+            var toIndex = routes.findIndex(function(obj) { return obj.path == to.path })
+            this.transitionName = (fromIndex < toIndex) ? 'slide-left' : 'slide-right'
+        }
+    }
+})
+
+$(function(){ 
+    var navMain = $(".navbar-collapse"); // avoid dependency on #id
+    // "a:not([data-toggle])" - to avoid issues caused
+    // when you have dropdown inside navbar
+    navMain.on("click", "a:not([data-toggle])", null, function () {
+        navMain.collapse('hide');
+    });
 });

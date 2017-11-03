@@ -1,8 +1,4 @@
-@extends('body')
-
-@section('title', 'About')
-
-@section('content')
+<template>
     <div class="container">
         <h1 id="About">About</h1>
         <hr>
@@ -204,8 +200,27 @@
                     <li>Now is where we see the wordlist in action. <code>garagez</code> will convert to "7470" because the word is not in the wordlist, so the system has to guess on the conversion.</li>
                 </ol>
                 </p>
-                <p>If you find any issues in the site, feel free to <a href="https://gabecook.com/connect" target="_blank">email me through my contact form</a> or <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank">open an issue on this project's GitHub</a>.
+                <p>
+                If you find any issues in the site, feel free to <a href="https://gabecook.com/connect" target="_blank">email me through my contact form</a> or <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank">open an issue on this project's GitHub</a>.
+                </p>
             </div>
         </div>
     </div>
-@endsection
+</template>
+
+<script>
+export default {
+    mounted: function() {
+        var table = $('.datatable').DataTable({
+            fixedHeader: {
+                headerOffset: $('.navbar').outerHeight()
+            },
+            info: false,
+            ordering: false,
+            paging: false,
+            responsive: true,
+            searching: false,
+        })
+    }
+}
+</script>
