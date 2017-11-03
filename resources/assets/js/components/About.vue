@@ -212,15 +212,18 @@
 export default {
     mounted: function() {
         var table = $('.datatable').DataTable({
-            fixedHeader: {
-                headerOffset: $('.navbar').outerHeight()
-            },
+            //fixedHeader: {
+            //    headerOffset: 65 //$('.navbar').outerHeight()
+            //},
             info: false,
             ordering: false,
             paging: false,
             responsive: true,
             searching: false,
         })
+    },
+    destroyed: function() {
+        $('.fixedHeader-floating').remove()
     }
 }
 </script>
