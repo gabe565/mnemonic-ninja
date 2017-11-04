@@ -13,7 +13,5 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract(['axios', 'lodash', 'jquery', 'vue'])
-    .sass('resources/assets/sass/bootstrap.scss', 'public/css')
-    .sass('resources/assets/sass/datatables.scss', 'public/css')
-    .sass('resources/assets/sass/main.scss', 'public/css')
+    .sass('resources/assets/sass/app.scss', 'public/css')
     .version()

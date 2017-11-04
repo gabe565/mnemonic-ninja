@@ -1,0 +1,20 @@
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s cubic-bezier(.55,0,.1,1);
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0;
+}
+.child-view {
+    transition: opacity .2s cubic-bezier(0.22, 0.61, 0.36, 1), transform .2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.slide-right-leave-active, .slide-left-leave-active {
+    transition: opacity .2s cubic-bezier(0.55, 0.06, 0.68, 0.19), transform .2s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
+.slide-left-enter, .slide-right-leave-active {
+    opacity: 0;
+    transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+    opacity: 0;
+    transform: translate(-30px, 0);
+}

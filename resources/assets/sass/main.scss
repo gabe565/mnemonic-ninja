@@ -1,7 +1,3 @@
-@import "variables";
-
-@import "svg";
-
 //colors
 $color_1: #dce4ec;
 $color_2: #96acb7;
@@ -14,9 +10,14 @@ html {
 body {
     background-color: $body-bg;
     position: relative;
-    padding: 100px 0;
+    padding: ($navbar-height + 25px) 0;
     min-height: 100%;
 }
+
+#app {
+    overflow-y: hidden;
+}
+
 h1,
 h2,
 h3,
@@ -28,32 +29,26 @@ h6 {
 .row {
     padding: 10px 0;
 }
-.row.centered {
-    text-align: center;
-}
 .navbar-brand {
     font-family: $font-family-serif;
     padding: 4px 15px;
-    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: color .2s ease-in-out;
+    @include transition(color .2s ease-in-out);
+
     &:hover {
-        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-        transition: color .1s ease-in-out;
+        @include transition(color .1s ease-in-out);
     }
 }
-@media(min-width: 768px) {
-    .equal {
+.equal {
+    @media(min-width: 768px) {
         display: flex;
         flex-wrap: wrap;
     }
-    .btn .far.arrow:before {
-        content: "\f061";
-    }
-}
-@media only screen and(max-width: 767px) {
-    .equal > div {
-        height: auto !important;
-        margin-bottom: 10px;
+
+    > div {
+        @media only screen and(max-width: 767px) {
+            height: auto !important;
+            margin-bottom: 10px;
+        }
     }
 }
 .centered {
@@ -63,14 +58,8 @@ h6 {
     align-items: center;
     align-content: center;
     justify-content: center;
-    > form {
-        width: 100%;
-    }
-
-    .help-block {
-        text-align: center;
-    }
 }
+
 label {
     font-size: 19px;
     margin-top: 10.5px;
@@ -80,47 +69,14 @@ label {
     line-height: 1.1;
     color: inherit;
 }
-.nav > li > a, .footer a {
-    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: color .2s ease-in-out;
+.nav > li > a,
+.footer a {
+    @include transition(color .2s ease-in-out);
     &:hover {
-        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-        transition: color .1s ease-in-out;
-    }
-}
-.form-control.result {
-    padding: 10px;
-    //Instead of the line below you could use @include box-sizing($bs)
-    box-sizing: border-box;
-    min-height: 4em;
-    max-height: 33em;
-    overflow-x: hidden;
-    background-color: #fff;
-    resize: none;
-    &:focus {
-        border-color: $color_1;
-    }
-}
-.loader {
-    line-height: 1.25em;
-}
-@media(max-width: 767px) {
-    .btn {
-        .far.arrow {
-            &:before {
-                content: "\f063";
-            }
-        }
+        @include transition(color .1s ease-in-out);
     }
 }
 
-div.conversion {
-    overflow-x: auto;
-}
-textarea.conversion {
-    padding: 10px 15px;
-    resize: vertical;
-}
 .conversion {
     min-height: 90px;
     height: auto;
@@ -130,91 +86,15 @@ textarea.conversion {
     table {
         margin: 0;
     }
-}
 
-table {
-    &.table-condensed {
-        font-size: 13px;
-    }
-
-    &.dataTable {
-        width: 100%;
-        max-width: 100%;
-
-        th {
-            white-space: nowrap;
+    @at-root {
+        div#{&} {
+            overflow-x: auto;
         }
 
-        ul {
-            display: table-row;
-            list-style-type: none;
-        }
-
-        ul li {
-            padding-bottom: 5px;
-        }
-    }
-
-    > tbody > tr > td {
-        &.result {
-            padding: 0;
-
-            div {
-                padding: 8px;
-
-                max-height: 200px;
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-        }
-
-        &.min {
-            width: 1%;
-            white-space: nowrap;
-        }
-    }
-
-    &.dataTable.dtr-inline > tbody > tr[role="row"] {
-        > {
-            td {
-                .plus-icon,
-                .minus-icon {
-                    display: none;
-                }
-            }
-        }
-    }
-
-    /* Custom DataTables expand buttons */
-    &.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] {
-        > {
-            td .plus-icon {
-                display: inline-block;
-            }
-            td .minus-icon {
-                display: none;
-            }
-            &.parent td {
-                .plus-icon {
-                    display: none;
-                }
-                .minus-icon {
-                    display: inline-block;
-                }
-            }
-
-            td:first-child, th:first-child {
-                padding-left: 5px;
-            }
-
-            td:first-child:before, th:first-child:before {
-                display: none;
-            }
-        }
-        &.parent > {
-            td:first-child:before, th:first-child:before {
-                display: none;
-            }
+        textarea#{&} {
+            padding: 10px 15px;
+            resize: vertical;
         }
     }
 }
@@ -240,29 +120,4 @@ table {
             color: $navbar-inverse-link-hover-color;
         }
     }
-}
-
-#app {
-    overflow-y: hidden;
-}
-
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .2s cubic-bezier(.55,0,.1,1);
-}
-.fade-enter, .fade-leave-active {
-    opacity: 0;
-}
-.child-view {
-    transition: opacity .2s cubic-bezier(0.22, 0.61, 0.36, 1), transform .2s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.slide-right-leave-active, .slide-left-leave-active {
-    transition: opacity .2s cubic-bezier(0.55, 0.06, 0.68, 0.19), transform .2s cubic-bezier(0.55, 0.06, 0.68, 0.19);
-}
-.slide-left-enter, .slide-right-leave-active {
-    opacity: 0;
-    transform: translate(30px, 0);
-}
-.slide-left-leave-active, .slide-right-enter {
-    opacity: 0;
-    transform: translate(-30px, 0);
 }

@@ -27,9 +27,7 @@
         <link rel="shortcut icon" href="/favicon.ico?v=zXrE0PzqQg">
         <meta name="theme-color" content="#607d8b">
 
-        <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/datatables.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/main.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -50,7 +48,7 @@ gtag('config', 'UA-107254206-1');
     <body>
         <div id="app">
             <!-- Navigation -->
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="app">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header page-scroll">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

@@ -1,3 +1,85 @@
 @import "~datatables.net-bs/css/dataTables.bootstrap.css";
 @import "~datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css";
 @import "~datatables.net-responsive-bs/css/responsive.bootstrap.css";
+
+table {
+    &.table-condensed {
+        font-size: 13px;
+    }
+
+    > tbody > tr > td {
+        &.result {
+            padding: 0;
+
+            div {
+                padding: 8px;
+
+                max-height: 200px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+
+        &.min {
+            width: 1%;
+            white-space: nowrap;
+        }
+    }
+
+    &.dataTable {
+        width: 100%;
+        max-width: 100%;
+
+        th {
+            white-space: nowrap;
+        }
+
+        ul {
+            display: table-row;
+            list-style-type: none;
+        }
+
+        ul li {
+            padding-bottom: 5px;
+        }
+
+        &.dtr-inline {
+            tbody > tr[role="row"] > {
+                td:first-child:before, th:first-child:before {
+                    display: none;
+                }
+            }
+
+            &.collapsed > tbody > tr[role="row"] > {
+                td .plus-icon {
+                    display: inline-block;
+                }
+                td .minus-icon {
+                    display: none;
+                }
+                &.parent td {
+                    .plus-icon {
+                        display: none;
+                    }
+                    .minus-icon {
+                        display: inline-block;
+                    }
+                }
+
+                td:first-child, th:first-child {
+                    padding-left: 5px;
+                }
+
+                td:first-child:before, th:first-child:before {
+                    display: none;
+                }
+            }
+
+            &.parent > {
+                td:first-child:before, th:first-child:before {
+                    display: none;
+                }
+            }
+        }
+    }
+}

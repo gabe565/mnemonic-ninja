@@ -82,10 +82,15 @@ new Vue({
 })
 
 $(function(){ 
-    var navMain = $(".navbar-collapse"); // avoid dependency on #id
+    var $navbarcollapse = $(".navbar-collapse"); // avoid dependency on #id
     // "a:not([data-toggle])" - to avoid issues caused
     // when you have dropdown inside navbar
-    navMain.on("click", "a:not([data-toggle])", null, function () {
-        navMain.collapse('hide');
+    $navbarcollapse.on("click", "a:not([data-toggle])", null, function () {
+        $navbarcollapse.collapse('hide')
     });
-});
+
+    $(window).scroll(function() {
+        $("nav").toggleClass("navbar-shrink", $(this).scrollTop() > 50)
+    })
+})
+
