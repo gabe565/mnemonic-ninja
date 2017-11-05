@@ -291,9 +291,9 @@ export default {
             searching: false,
         })
     },
-    destroyed: function() {
+    beforeDestroy: function() {
+        this.table.fixedHeader.disable()
         this.table.destroy()
-        $('.fixedHeader-floating').remove()
     }
 }
 </script>
