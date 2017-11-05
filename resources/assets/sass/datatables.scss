@@ -26,6 +26,18 @@ table {
         }
     }
 
+    > tbody > tr[role="row"] td {
+        .plus-icon,
+        .minus-icon {
+            display: none;
+        }
+    }
+
+    ul {
+        display: table-row;
+        list-style-type: none;
+    }
+
     &.dataTable {
         width: 100%;
         max-width: 100%;
@@ -45,13 +57,6 @@ table {
 
         &.dtr-inline {
             tbody > tr[role="row"] > {
-                td {
-                    .plus-icon,
-                    .minus-icon {
-                        display: none;
-                    }
-                }
-
                 td:first-child:before, th:first-child:before {
                     display: none;
                 }

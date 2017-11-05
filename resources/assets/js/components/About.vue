@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
                 <p>Based off of the <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system#The_system" target="_blank">Wikipedia page</a>, here are the numbers and their corresponding sounds:</p>
-                <table class="table datatable table-bordered table-condensed" style="width: 100%">
+                <table class="table dataTable table-bordered table-condensed" style="width: 100%">
                     <thead>
                         <tr>
                             <th class="all">
@@ -280,7 +280,7 @@ export default {
         })
     },
     mounted: function() {
-        this.table = $('.datatable').DataTable({
+        this.table = $('.dataTable').DataTable({
             fixedHeader: {
                 headerOffset: 65 //$('.navbar').outerHeight()
             },
@@ -289,6 +289,7 @@ export default {
             paging: false,
             responsive: true,
             searching: false,
+            dom: "tr"
         })
     },
     beforeDestroy: function() {
