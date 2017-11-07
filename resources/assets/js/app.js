@@ -5,9 +5,10 @@
  */
 
 require('./bootstrap')
+require('./hide-nav')
 
 import 'datatables.net'
-import 'datatables.net-bs'
+import 'datatables.net-bs4'
 import 'datatables.net-fixedheader'
 import 'datatables.net-responsive'
 
@@ -81,16 +82,4 @@ new Vue({
     }
 })
 
-$(function(){ 
-    var $navbarcollapse = $(".navbar-collapse"); // avoid dependency on #id
-    // "a:not([data-toggle])" - to avoid issues caused
-    // when you have dropdown inside navbar
-    $navbarcollapse.on("click", "a:not([data-toggle])", null, function () {
-        $navbarcollapse.collapse('hide')
-    });
-
-    $(window).scroll(function() {
-        $("nav").toggleClass("navbar-shrink", $(this).scrollTop() > 50)
-    })
-})
-
+require('./collapse-on-nav')

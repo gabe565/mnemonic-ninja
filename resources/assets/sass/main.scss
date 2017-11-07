@@ -3,15 +3,15 @@ $color_1: #dce4ec;
 $color_2: #96acb7;
 
 html {
-    background-color: $navbar-inverse-bg;
+    background-color: $secondary;
     width: 100%;
     height: 100%;
 }
 body {
     background-color: $body-bg;
     position: relative;
-    padding: ($navbar-height + 25px) 0;
     min-height: 100%;
+    padding: 100px 0;
 }
 
 #app {
@@ -29,45 +29,23 @@ h6 {
 .row {
     padding: 10px 0;
 }
+nav {
+    transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
 .navbar-brand {
     font-family: $font-family-serif;
-    padding: 4px 15px;
     @include transition(color .2s ease-in-out);
 
     &:hover {
         @include transition(color .1s ease-in-out);
     }
 }
-.equal {
-    @media(min-width: 768px) {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    > div {
-        @media only screen and(max-width: 767px) {
-            height: auto !important;
-            margin-bottom: 10px;
-        }
-    }
-}
-.centered {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+.navbar-hide {
+    transform: translateY(-100%);
 }
 
 label {
-    font-size: 19px;
-    margin-top: 10.5px;
-    margin-bottom: 10.5px;
     font-family: $font-family-serif;
-    font-weight: 400;
-    line-height: 1.1;
-    color: inherit;
 }
 .nav > li > a,
 .footer a {
@@ -104,20 +82,14 @@ label {
     bottom: 0;
     width: 100%;
     height: 60px;
-    background-color: $navbar-inverse-bg;
-    color: $navbar-inverse-color;
-
-    span {
-        display: inline-block;
-        margin: 20px 0;
-    }
+    line-height: 60px;
 
     a {
-        color: $navbar-inverse-link-color;
+        color: $navbar-dark-color;
         text-decoration: none;
 
-        &:hover {
-            color: $navbar-inverse-link-hover-color;
+        @include hover-focus {
+            color: $navbar-dark-hover-color;
         }
     }
 }

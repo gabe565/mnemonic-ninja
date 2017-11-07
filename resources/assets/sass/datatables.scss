@@ -1,10 +1,10 @@
-@import "~datatables.net-bs/css/dataTables.bootstrap.css";
-@import "~datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css";
-@import "~datatables.net-responsive-bs/css/responsive.bootstrap.css";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+@import "~datatables.net-fixedheader-bs4/css/fixedHeader.bootstrap4.css";
+@import "~datatables.net-responsive-bs4/css/responsive.bootstrap4.css";
 
 table {
     &.table-condensed {
-        font-size: 13px;
+        font-size: 0.9em;
     }
 
     > tbody > tr > td {
@@ -12,7 +12,7 @@ table {
             padding: 0;
 
             div {
-                padding: 8px;
+                padding: 0.75rem;
 
                 max-height: 200px;
                 overflow-x: hidden;
@@ -30,6 +30,7 @@ table {
         .plus-icon,
         .minus-icon {
             display: none;
+            fill: $secondary;
         }
     }
 

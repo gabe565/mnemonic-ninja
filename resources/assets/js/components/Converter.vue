@@ -1,26 +1,26 @@
 <template>
     <div class="converter">
         <div class="row">
-            <div class="col-md-10 col-sm-12 col-md-offset-1">
+            <div class="col-lg-10 col-md-12 mx-md-auto">
                 <p v-html="description"></p>
             </div>
         </div>
-        <div class="row equal">
-            <div class="col-sm-5 col-md-4 col-md-offset-1 centered" :class="{ 'has-error': error }">
-                <label :for="_uid">{{ from.label }}</label>
-                <textarea :id="_uid" class="form-control conversion" name="query" :placeholder="from.placeholder" v-model="query"></textarea>
+        <div class="row equal text-center">
+            <div class="col-md-4 ml-md-auto my-auto" :class="{ 'has-error': error }">
+                <label :for="_uid" class="h4">{{ from.label }}</label>
+                <textarea :id="_uid" class="form-control conversion" :class="{ 'is-invalid': !valid }" name="query" :placeholder="from.placeholder" v-model="query"></textarea>
             </div>
-            <div class="col-sm-2 centered">
+            <div class="col-md-2 my-auto">
                 <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate">
-                    <svgicon name="arrow-right" class="svg-fh svg-fw svg-2x hidden-xs" v-if="!loading"></svgicon>
-                    <svgicon name="arrow-down" class="svg-fh svg-fw svg-2x visible-xs-inline-block" v-if="!loading"></svgicon>
+                    <svgicon name="arrow-right" class="svg-fh svg-fw svg-2x d-none d-md-inline-block" v-if="!loading"></svgicon>
+                    <svgicon name="arrow-down" class="svg-fh svg-fw svg-2x d-inline-block d-md-none" v-if="!loading"></svgicon>
                     <svgicon name="sync-alt" class="svg-fh svg-fw svg-2x svg-spin" v-if="loading"></svgicon>
                 </button>
             </div>
-            <div class="col-sm-5 col-md-4 centered">
-                <h4>{{ to.label }}</h4>
+            <div class="col-md-4 mr-md-auto my-auto">
+                <label class="h4">{{ to.label }}</label>
                 <div class="form-control conversion">
-                    <table class="table table-striped">
+                    <table class="table table-striped text-left">
                         <tbody>
                             <tr v-for="item in result">
                                 <td class="min">{{ item.q }}:</td>
@@ -73,13 +73,21 @@ export default {
                 this.getResponse()
             }, 300)
     },
+    computed: {
+        valid: function() {
+            return this.query.match(this.from.regex)
+        },
+        empty: function() {
+            return this.query == ''
+        }
+    },
     methods: {
         manualUpdate: _.throttle(
             function() {
                 this.getResponse()
             }, 1000),
         getResponse: function () {
-            if (this.query == '') {
+            if (this.empty || !this.valid) {
                 this.response = []
                 this.result = {}
                 return

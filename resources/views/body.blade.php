@@ -47,61 +47,51 @@ gtag('config', 'UA-107254206-1');
     </head>
     <body>
         <div id="app">
-            <!-- Navigation -->
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header page-scroll">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <router-link class="navbar-brand" to="/">
-                            <img src="/images/mnemonic-ninja.svg" height="100%" class="align-top" style="display: inline-block" alt="{{ config('app.name') }} Logo">
-                            &nbsp;&nbsp;{{ config('app.name') }}
-                        </router-link>
-                    </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <router-link tag="li" to="/convert">
-                                <a>
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+                <div class="container">
+                    <router-link to="/" class="navbar-brand">
+                        <img src="/images/mnemonic-ninja.svg" class="d-inline-block" alt="{{ config('app.name') }} Logo" style="height: 55px">
+                        &nbsp;{{ config('app.name') }}
+                    </router-link>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <router-link to="/convert" class="nav-link">
                                     <svgicon name="exchange"></svgicon>
                                     &nbsp;Converters
-                                </a>
-                            </router-link>
-                            <router-link tag="li" to="/about">
-                                <a>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/about" class="nav-link">
                                     <svgicon name="info-circle"></svgicon>
                                     &nbsp;About
-                                </a>
-                            </router-link>
+                                </router-link>
+                            </li>
                         </ul>
                     </div>
-                    <!-- /.navbar-collapse -->
                 </div>
-                <!-- /.container -->
             </nav>
 
             <transition :name="transitionName" mode="out-in">
                 <router-view class="child-view"></router-view>
             </transition>
 
-            <div class="footer">
+            <footer class="footer bg-secondary">
                 <div class="container">
-                    <a href="https://github.com/gabe565/mnemonic-major-converter/blob/master/LICENSE" target="_blank" class="pull-left">
-                        <span>&copy; 2017 Gabe Cook</span>
+                    <a href="https://github.com/gabe565/mnemonic-major-converter/blob/master/LICENSE" target="_blank" class="float-left">
+                        &copy; 2017 Gabe Cook
                     </a>
-                    <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank" class="pull-right">
-                        <span>
-                            <svgicon name="github"></svgicon>
-                            &nbsp;View on GitHub
-                        </span>
+                    <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank" class="float-right">
+                        <svgicon name="github"></svgicon>
+                        &nbsp;View on GitHub
                     </a>
                 </div>
-            </div>
+            </footer>
 
         </div>
 
