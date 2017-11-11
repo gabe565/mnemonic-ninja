@@ -15,3 +15,9 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+ebdeploy.zip
