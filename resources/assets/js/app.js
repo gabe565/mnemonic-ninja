@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import 'vue-svgicon/dist/polyfill'
+
 require('./bootstrap')
 require('./hide-nav')
 

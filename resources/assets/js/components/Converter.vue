@@ -12,9 +12,9 @@
             </div>
             <div class="col-md-2 my-auto">
                 <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate">
-                    <svgicon name="arrow-right" class="svg-fh svg-fw svg-2x d-none d-md-inline-block" v-if="!loading"></svgicon>
-                    <svgicon name="arrow-down" class="svg-fh svg-fw svg-2x d-inline-block d-md-none" v-if="!loading"></svgicon>
-                    <svgicon name="sync-alt" class="svg-fh svg-fw svg-2x svg-spin" v-if="loading"></svgicon>
+                    <svgicon name="arrow-right" class="svg-fh svg-2x d-none d-md-inline-block" v-if="!loading"></svgicon>
+                    <svgicon name="arrow-down" class="svg-fh svg-2x d-inline-block d-md-none" v-if="!loading"></svgicon>
+                    <svgicon name="sync-alt" class="svg-fh svg-2x svg-spin" v-if="loading"></svgicon>
                 </button>
             </div>
             <div class="col-md-4 mr-md-auto my-auto">

@@ -38,8 +38,8 @@
                     <tbody>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 &nbsp;0
                             </td>
                             <td>/s/,<br>/z/</td>
@@ -54,8 +54,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 1
                             </td>
                             <td>/t/,<br>/d/,<br>(/θ/, /ð/)</td>
@@ -69,8 +69,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 2
                             </td>
                             <td>/n/</td>
@@ -84,8 +84,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 3
                             </td>
                             <td>/m/</td>
@@ -100,8 +100,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 4
                             </td>
                             <td>/r/</td>
@@ -114,8 +114,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 5
                             </td>
                             <td>/l/</td>
@@ -130,8 +130,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 6
                             </td>
                             <td>/tʃ/,<br>/dʒ/,<br>/ʃ/,<br>/ʒ/</td>
@@ -148,8 +148,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 7
                             </td>
                             <td>/k/,<br>/ɡ/</td>
@@ -166,8 +166,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 8
                             </td>
                             <td>/f/,<br>/v/</td>
@@ -182,8 +182,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 9
                             </td>
                             <td>/p/,<br>/b/</td>
@@ -198,8 +198,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 Unassigned
                             </td>
                             <td>/h/,<br>/j/,<br>/w/, <a href="https://en.wikipedia.org/wiki/English_phonology#Vowels" title="English phonology" target="_blank">vowel sounds</a>
@@ -213,8 +213,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <svgicon name="plus-square" class="svg-fw svg-lg plus-icon"></svgicon>
-                                <svgicon name="minus-square" class="svg-fw svg-lg minus-icon"></svgicon>
+                                <svgicon name="plus-square" class="svg-lg plus-icon"></svgicon>
+                                <svgicon name="minus-square" class="svg-lg minus-icon"></svgicon>
                                 (2, 27 or 7)
                             </td>
                             <td>/ŋ/</td>
