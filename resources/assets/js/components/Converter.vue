@@ -6,11 +6,11 @@
             </div>
         </div>
         <div class="row equal text-center">
-            <div class="col-md-4 ml-md-auto my-auto" :class="{ 'has-error': error }">
+            <div class="col-md-4 ml-md-auto my-md-auto mb-4" :class="{ 'has-error': error }">
                 <label :for="_uid" class="h4">{{ from.label }}</label>
                 <textarea :id="_uid" class="form-control conversion" :class="{ 'is-invalid': !valid }" name="query" :placeholder="from.placeholder" v-model="query"></textarea>
             </div>
-            <div class="col-md-2 my-auto">
+            <div class="col-md-2 my-md-auto mb-4">
                 <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate">
                     <svgicon name="arrow-right" class="svg-fh svg-2x d-none d-md-inline-block" v-if="!loading"></svgicon>
                     <svgicon name="arrow-down" class="svg-fh svg-2x d-inline-block d-md-none" v-if="!loading"></svgicon>
