@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Ipa;
+
 class IpasTableSeeder extends Seeder
 {
 
@@ -12,9 +14,9 @@ class IpasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ipas')->truncate();
+        Ipa::truncate();
 
-        DB::table('ipas')->insert([
+        Ipa::insert([
             [
                 'number' => 0,
                 'symbol' => 's',

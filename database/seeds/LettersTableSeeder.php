@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Letter;
+
 class LettersTableSeeder extends Seeder
 {
 
@@ -12,9 +14,9 @@ class LettersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('letters')->truncate();
+        Letter::truncate();
 
-        DB::table('letters')->insert([
+        Letter::insert([
             [
                 'number' => 0,
                 'symbol' => 's',

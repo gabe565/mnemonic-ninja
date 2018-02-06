@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Ipa;
+use App\Word;
 
 class WordsTableSeeder extends Seeder
 {
@@ -14,51 +16,49 @@ class WordsTableSeeder extends Seeder
     {
         $arpabetToIPA = new ArpabetToIPA\App();
 
-        $db_resp = DB::table('ipas')
-            ->select('number', 'symbol')
-            ->orderBy(DB::raw('length(`symbol`)'), 'desc')
-            ->get()
-            ->toArray();
-        $ipas['symbol'] = array_column($db_resp, 'symbol');
-        $ipas['number'] = array_column($db_resp, 'number');
+        $db_resp = Ipa::orderBy(DB::raw('length(`symbol`)'), 'desc')
+            ->get();
+        $ipas = [
+            'number' => $db_resp->pluck('number')->all(),
+            'symbol' => $db_resp->pluck('symbol')->all()
+        ];
 
-        DB::table('words')->truncate();
-        DB::connection()->disableQueryLog();
-
+        // Open cmudict
         $handle = fopen(base_path('resources/cmudict/cmudict.dict'), 'r');
 
-        $result = [];
-        $n = 0;
+        // Parse through cmudict and store into a collection
+        $collection = collect([]);
         while (($line = fgets($handle)) !== false) {
-            $entry = explode(' ', trim($line), 2);
+            // Separate into word and 
+            $word = strtok(trim($line), ' ');
+            $arpabet = strtok('');
 
-            // Convert to lowercase, remove (#) on duplicates into `word`
-            $word = strtok($entry[0], '(');//preg_replace('/\(\d\)/', '', $entry[0]);
-            // Remove comments and convert to IPA into `ipa`
-            $ipa = $arpabetToIPA->getIPA(strtok($entry[1], '#'));
+            // Remove (#) from duplicates
+            $word = strtok($word, '(');
 
-            // Number calculated from the list of symbols which are fetched above.
+            // Remove comments and convert to IPA
+            $ipa = $arpabetToIPA->getIPA(strtok($arpabet, '#'));
+
+            // Number calculated from the list of symbols, then extra letters filtered out
             $number = filter_var(str_replace($ipas['symbol'], $ipas['number'], $ipa), FILTER_SANITIZE_NUMBER_INT);
 
-            $result[] = [
+            $collection[] = [
                 'word' => $word,
                 'ipa' => $ipa,
                 'number' => $number,
             ];
+        }
+        fclose($handle);
 
-            ++$n;
-            if ($n > 500) {
-                DB::table('words')->insert($result);
-                $result = [];
-                $n = 0;
-            }
+        Word::truncate();
+
+        // Insert 500 into the database at a time
+        foreach($collection->chunk(500) as $chunk) {
+            Word::insert($chunk->all());
         }
 
-        DB::table('words')->insert($result);
-
         // Set any empty numbers to null
-        DB::table('words')
-            ->where('number', '')
+        Word::where('number', '')
             ->update(['number' => null]);
     }
 }
