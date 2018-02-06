@@ -15,7 +15,7 @@ class WordsTableSeeder extends Seeder
         $arpabetToIPA = new ArpabetToIPA\App();
 
         $db_resp = DB::table('ipas')
-            ->select('number','symbol')
+            ->select('number', 'symbol')
             ->orderBy(DB::raw('length(`symbol`)'), 'desc')
             ->get()
             ->toArray();
@@ -34,15 +34,11 @@ class WordsTableSeeder extends Seeder
 
             // Convert to lowercase, remove (#) on duplicates into `word`
             $word = strtok($entry[0], '(');//preg_replace('/\(\d\)/', '', $entry[0]);
-            // Remove newlines from end, remove comments, and convert to IPA into `ipa`
+            // Remove comments and convert to IPA into `ipa`
             $ipa = $arpabetToIPA->getIPA(strtok($entry[1], '#'));
 
             // Number calculated from the list of symbols which are fetched above.
             $number = filter_var(str_replace($ipas['symbol'], $ipas['number'], $ipa), FILTER_SANITIZE_NUMBER_INT);
-
-            if ($number === '') {
-                $number = null;
-            }
 
             $result[] = [
                 'word' => $word,
@@ -59,5 +55,10 @@ class WordsTableSeeder extends Seeder
         }
 
         DB::table('words')->insert($result);
+
+        // Set any empty numbers to null
+        DB::table('words')
+            ->where('number', '')
+            ->update(['number' => null]);
     }
 }
