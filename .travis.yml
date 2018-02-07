@@ -17,7 +17,6 @@ install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - yarn install
   - yarn run dev
-  - php artisan key:generate
   - mysql -e 'CREATE DATABASE mnemonic;' 
   - php artisan migrate
   - php artisan db:seed

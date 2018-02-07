@@ -11,7 +11,6 @@ require('./hide-nav')
 
 import 'datatables.net'
 import 'datatables.net-bs4'
-import 'datatables.net-fixedheader'
 import 'datatables.net-responsive'
 
 /**

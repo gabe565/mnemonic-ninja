@@ -9,27 +9,24 @@ use App\Letter;
 
 class ConversionController extends Controller
 {
-
-    public function show ()
+    public function word_to_num ($word = null)
     {
-        return view('body');
-    }
+        $word = urldecode($word);
 
-    public function word_to_num ($input = null)
-    {
-        if ($input === null)
+        if ($word === null)
             return response()->json(['result' => []]);
-        if (!preg_match('/^[A-Za-z-\'\s,;\.]*$/', $input))
+        if (!preg_match('/^[A-Za-z-\'\s,;\.]*$/', $word))
             abort(500, 'Invalid Input');
 
         // Split input on any whitespace, comma, or semicolon
-        $words = $this->split($input);
+        $words = $this->split($word);
 
         foreach ($words as $word) {
             // Get all numbers for the current word
             $num = Word::select('number')
                 ->distinct()
                 ->where('word', $word)
+                ->whereNotNull('number')
                 ->orderBy('number', 'asc')
                 ->get()
                 ->pluck('number');
@@ -60,6 +57,10 @@ class ConversionController extends Controller
                 $num[] = filter_var($guess, FILTER_SANITIZE_NUMBER_INT);
             }
 
+            if ($num === [null]) {
+                $num = '';
+            }
+
             $nums[] = [
                 'q' => $word,
                 'r' => $num
@@ -71,21 +72,24 @@ class ConversionController extends Controller
         ]);
     }
 
-    public function num_to_word ($input = null)
+    public function num_to_word ($number = null)
     {
-        if ($input === null)
+        $number = urldecode($number);
+
+        if ($number === null)
             return response()->json(['result' => []]);
-        else if (!preg_match('/^[0-9\s,;]*$/', $input))
+        else if (!preg_match('/^[0-9\s,;]*$/', $number))
             abort(500, "Invalid Input");
 
         // Split input on any whitespace, comma, or semicolon
-        $nums = $this->split($input);
+        $nums = $this->split($number);
 
         foreach ($nums as $num) {
             // Get all words for the current num
             $word = Word::select('word')
                 ->distinct()
                 ->where('number', $num)
+                ->whereNotNull('word')
                 ->orderBy('word', 'asc')
                 ->get()
                 ->pluck('word');

@@ -1,8 +1,4 @@
-#!/usr/bin/env php
 <?php
-
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,21 +11,18 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 |
 */
 
-$app = require __DIR__.'/bootstrap/app.php';
+$app = require __DIR__.'/../bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
-| Run The Artisan Application
+| Run The Application
 |--------------------------------------------------------------------------
 |
-| When we run the console application, the current CLI command will be
-| executed in this console and the response sent back to a terminal
-| or another output device for the developers. Here goes nothing!
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
 |
 */
 
-$kernel = $app->make(
-    'Illuminate\Contracts\Console\Kernel'
-);
-
-exit($kernel->handle(new ArgvInput, new ConsoleOutput));
+$app->run();

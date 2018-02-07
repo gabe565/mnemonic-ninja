@@ -2,13 +2,14 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
 |
 */
 
-Route::get('/{catchall?}', 'ConversionController@show')->where('catchall', '.*');
+$router->get('api/to/word/{number}', 'ConversionController@num_to_word');
+$router->get('api/to/num/{word}', 'ConversionController@word_to_num');
