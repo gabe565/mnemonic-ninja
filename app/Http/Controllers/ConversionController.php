@@ -12,38 +12,30 @@ class ConversionController extends Controller
 
     public function show ()
     {
-        $word = $_GET['word'] ?? '';
-        $number = $_GET['number'] ?? '';
-
-        return view('body', [
-            'word' => $word,
-            'number' => $number
-        ]);
+        return view('body');
     }
 
     public function word_to_num ($input = null)
     {
-        if (!preg_match('/^[A-Za-z-\'\s,;\.]*$/', $input))
-            abort(500, 'Invalid Input');
-
         if ($input === null)
             return response()->json(['result' => []]);
+        if (!preg_match('/^[A-Za-z-\'\s,;\.]*$/', $input))
+            abort(500, 'Invalid Input');
 
         // Split input on any whitespace, comma, or semicolon
         $words = $this->split($input);
 
         foreach ($words as $word) {
             // Get all numbers for the current word
-            $num = Word::distinct()
-                ->select('number')
+            $num = Word::select('number')
+                ->distinct()
                 ->where('word', $word)
                 ->orderBy('number', 'asc')
                 ->get()
-                ->pluck('number')
-                ->toArray();
+                ->pluck('number');
 
             // If $num is empty then we will guess by letter
-            if (empty($num)) {
+            if ($num->count() === 0) {
                 if (!isset($letters)) {
                     // Get letters and numbers from the database
                     $resp = Letter::select('number', 'symbol')
@@ -52,8 +44,8 @@ class ConversionController extends Controller
 
                     // Rearrange array into two arrays which can be passed to str_replace
                     $letters = [
-                        'symbol' => $resp->pluck('symbol')->toArray(),
-                        'number' => $resp->pluck('number')->toArray()
+                        'symbol' => $resp->pluck('symbol')->all(),
+                        'number' => $resp->pluck('number')->all()
                     ];
                 }
 
@@ -81,24 +73,22 @@ class ConversionController extends Controller
 
     public function num_to_word ($input = null)
     {
-        if (!preg_match('/^[0-9\s,;]*$/', $input))
-            abort(500, "Invalid Input");
-
         if ($input === null)
             return response()->json(['result' => []]);
+        else if (!preg_match('/^[0-9\s,;]*$/', $input))
+            abort(500, "Invalid Input");
 
         // Split input on any whitespace, comma, or semicolon
         $nums = $this->split($input);
 
         foreach ($nums as $num) {
             // Get all words for the current num
-            $word = Word::where('number', $num)
+            $word = Word::select('word')
                 ->distinct()
-                ->select('word')
+                ->where('number', $num)
                 ->orderBy('word', 'asc')
                 ->get()
-                ->pluck('word')
-                ->toArray();
+                ->pluck('word');
 
             $words[] = [
                 'q' => $num,
