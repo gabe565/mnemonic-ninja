@@ -29,5 +29,8 @@
     "vue": "^2.1.10",
     "vue-router": "^3.0.1",
     "vue-svgicon": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.24.1"
   }
 }

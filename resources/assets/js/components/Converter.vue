@@ -11,7 +11,7 @@
                 <textarea :id="_uid" class="form-control conversion" :class="{ 'is-invalid': !valid }" name="query" :placeholder="from.placeholder" v-model="query"></textarea>
             </div>
             <div class="col-md-2 my-md-auto mb-4">
-                <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate">
+                <button type="submit" class="btn btn-success btn-sm" v-on:click="manualUpdate" :disabled="disabled">
                     <svgicon name="arrow-right" class="svg-fh svg-2x d-none d-md-inline-block" v-if="!loading"></svgicon>
                     <svgicon name="arrow-down" class="svg-fh svg-2x d-inline-block d-md-none" v-if="!loading"></svgicon>
                     <svgicon name="sync-alt" class="svg-fh svg-2x svg-spin" v-if="loading"></svgicon>
@@ -44,26 +44,26 @@ import '../svg/arrow-down'
 import '../svg/sync-alt'
 
 export default {
-    data: function() {
+    data() {
         return {
             query: '',
-            response: [],
-            result: [],
+            response: {},
             loading: false,
-            error: false
-        };
+            error: false,
+            disabled: false
+        }
     },
     props: {
-        'from': {
+        from: {
             type: Object
         },
-        'to': {
+        to: {
             type: Object
         },
-        'url': {
+        url: {
             type: String
         },
-        'description': {
+        description: {
             type: String
         }
     },
@@ -74,54 +74,53 @@ export default {
             }, 300)
     },
     computed: {
-        valid: function() {
+        valid() {
             return this.query.match(this.from.regex)
         },
-        empty: function() {
+        empty() {
             return this.query == ''
+        },
+        result() {
+            if (this.response.result) {
+                return this.response.result.map(value => ({
+                    q: value.q,
+                    r: value.r.join(', ')
+                }))
+            } else
+                return {}
         }
     },
     methods: {
-        manualUpdate: _.throttle(
-            function() {
-                this.getResponse()
-            }, 1000),
-        getResponse: function () {
+        manualUpdate() {
+            this.disabled = true
+            setTimeout(() => { this.disabled = false }, 750)
+            this.getResponse()
+        },
+        getResponse() {
             if (this.empty || !this.valid) {
-                this.response = []
+                this.response = {}
                 this.result = {}
                 return
             }
             this.loading = true
-            var vue = this
             axios.get(this.url + encodeURIComponent(this.query))
-                .then(function (response) {
-                    vue.error = false
-                    vue.response = response.data
-                    vue.createResult()
-                    vue.loading = false
+                .then(response => {
+                    this.error = false
+                    this.response = response.data
+                    this.createResult()
+                    this.loading = false
                 })
-                .catch(function (response) {
-                    vue.error = true
-                    vue.loading = false
+                .catch(response => {
+                    this.error = true
+                    this.loading = false
                 })
-        },
-        createResult: function() {
-            this.result = []
-            var vue = this
-            _.forEach(vue.response.result, function(value) {
-                vue.result.push({
-                    q: value.q,
-                    r: value.r.join(', ')
-                })
-            })
         }
     },
-    created: function() {
+    created() {
         if (this.from.value) {
             this.query = this.from.value
             this.getResponse()
         }
-    },
+    }
 }
 </script>

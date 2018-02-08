@@ -264,26 +264,26 @@ import '../svg/plus-square'
 import '../svg/minus-square'
 
 export default {
-    data: function() {
+    data() {
         return {
             table: null
         }
     },
-    beforeRouteEnter: function(to, fron, next) {
-        next(function(vue) {
-            var interval = setInterval(function() {
+    beforeRouteEnter(to, fron, next) {
+        next((vue) => {
+            let interval = setInterval(() => {
                 vue.table.fixedHeader.adjust()
             }, 25)
-            setTimeout(function() {
+            setTimeout(() => {
                 clearInterval(interval)
             }, 250)
         })
     },
-    mounted: function() {
+    mounted() {
         this.table = $('.dataTable').DataTable({
-            //fixedHeader: {
-            //    headerOffset: 0 //$('.navbar').outerHeight()
-            //},
+            fixedHeader: {
+                headerOffset: 0 //$('.navbar').outerHeight()
+            },
             info: false,
             ordering: false,
             paging: false,
@@ -292,7 +292,7 @@ export default {
             dom: "tr"
         })
     },
-    beforeDestroy: function() {
+    beforeDestroy() {
         this.table.fixedHeader.disable()
         this.table.destroy()
     }

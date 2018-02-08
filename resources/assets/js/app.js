@@ -50,18 +50,18 @@ const router = new VueRouter({
     mode: 'history',
     linkActiveClass: 'active',
     scrollBehavior(to, from, savedPosition) {
-        return new Promise(function(resolve, reject) {
-            setTimeout(function() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
                 if (savedPosition)
-                    return savedPosition
+                    resolve(savedPosition)
                 else
-                    return { x: 0, y: 0 }
-            }, 200)
+                    resolve({ x: 0, y: 0 })
+            }, 250)
         })
     }
 })
 
-router.beforeEach(function(to, from, next) {
+router.beforeEach((to, from, next) => {
     document.title = to.meta.title ? to.meta.title + ' | Mnemonic Ninja' : 'Mnemonic Ninja'
     $('#app').removeClass(from.meta.title).addClass(to.meta.title)
     next()
@@ -70,15 +70,15 @@ router.beforeEach(function(to, from, next) {
 new Vue({
     el: '#app',
     router,
-    data: function() {
+    data() {
         return {
             transitionName: 'fade'
         }
     },
     watch: {
-        '$route': function(to, from) {
-            var fromIndex = routes.findIndex(function(obj) { return obj.path == from.path })
-            var toIndex = routes.findIndex(function(obj) { return obj.path == to.path })
+        '$route'(to, from) {
+            var fromIndex = routes.findIndex(obj => obj.path == from.path)
+            var toIndex = routes.findIndex(obj => obj.path == to.path)
             this.transitionName = (fromIndex < toIndex) ? 'slide-left' : 'slide-right'
         }
     }

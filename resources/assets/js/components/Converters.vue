@@ -20,14 +20,14 @@ import Converter from './Converter.vue'
 
 export default {
     computed: {
-        word: function() {
-            if (_.has(this.$route.params, 'word'))
+        word() {
+            if (this.$route.params.hasOwnProperty('word'))
                 return this.$route.params.word
             else
                 return ''
         },
-        num: function() {
-            if (_.has(this.$route.num, 'num'))
+        num() {
+            if (this.$route.params.hasOwnProperty('num'))
                 return this.$route.params.num
             else
                 return ''
@@ -35,6 +35,6 @@ export default {
     },
     components: {
         converter: Converter
-    },
+    }
 }
 </script>
