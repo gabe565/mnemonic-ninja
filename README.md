@@ -6,9 +6,9 @@
 
 # Mnemonic Ninja
 <p align="center">
-    <a href="https://travis-ci.org/gabe565/mnemonic-major-converter"><img src="https://img.shields.io/travis/gabe565/mnemonic-major-converter.svg" alt="Build Status"></a>
+    <a href="https://travis-ci.org/gabe565/mnemonic-ninja"><img src="https://img.shields.io/travis/gabe565/mnemonic-ninja.svg" alt="Build Status"></a>
     <a href="https://mnemonic.ninja/convert"><img src="https://img.shields.io/website-up-down-green-red/https/mnemonic.ninja.svg?label=site+status" alt="Site Status"></a>
-    <a href="https://github.com/gabe565/mnemonic-major-converter/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gabe565/mnemonic-major-converter.svg" alt="License"></a>
+    <a href="https://github.com/gabe565/mnemonic-ninja/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gabe565/mnemonic-ninja.svg" alt="License"></a>
 </p>
 
 Website to convert between a number and its corresponding word to aid in memorization. Unlike some of the other sites that I had tried out, this one processes conversions by looking at the phonetic pronounciation of a word and not just converting by specific letter.     
@@ -27,8 +27,8 @@ This project is built with [Lumen](https://lumen.laravel.com/) as the API framew
   1. To obtain the code, simply run
 
       ```sh
-      git clone --recursive https://github.com/gabe565/mnemonic-major-converter
-      cd mnemonic-major-converter
+      git clone --recursive https://github.com/gabe565/mnemonic-ninja
+      cd mnemonic-ninja
       ```
 
   2. Then, copy `.env.example` to `.env` and edit the file to set environment variables.     
