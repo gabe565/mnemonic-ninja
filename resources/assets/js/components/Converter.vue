@@ -50,7 +50,7 @@ export default {
             response: {},
             loading: false,
             error: false,
-            disabled: false
+            disabled: true
         }
     },
     props: {
@@ -99,7 +99,7 @@ export default {
         getResponse() {
             if (this.empty || !this.valid) {
                 this.response = {}
-                this.result = {}
+                this.disabled = true
                 return
             }
             this.loading = true
@@ -107,12 +107,13 @@ export default {
                 .then(response => {
                     this.error = false
                     this.response = response.data
-                    this.createResult()
                     this.loading = false
+                    this.disabled = false
                 })
                 .catch(response => {
                     this.error = true
                     this.loading = false
+                    this.disabled = false
                 })
         }
     },
