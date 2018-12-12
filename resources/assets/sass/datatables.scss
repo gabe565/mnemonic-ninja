@@ -63,14 +63,16 @@ table {
                 }
             }
 
-            &.collapsed > tbody > tr[role="row"] > {
-                td .plus-icon {
-                    display: inline-block;
+            &.collapsed > tbody > tr[role="row"] {
+                > td {
+                    .plus-icon {
+                        display: inline-block;
+                    }
+                    .minus-icon {
+                        display: none;
+                    }
                 }
-                td .minus-icon {
-                    display: none;
-                }
-                &.parent td {
+                &.parent > td {
                     .plus-icon {
                         display: none;
                     }

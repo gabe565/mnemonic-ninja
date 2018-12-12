@@ -1,6 +1,3 @@
-window._.debounce = require('lodash/debounce')
-window._.throttle = require('lodash/throttle')
-
 import jQuery from "jquery"
 window.$ = window.jQuery = jQuery
 

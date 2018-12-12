@@ -43,6 +43,8 @@ import '../svg/arrow-right'
 import '../svg/arrow-down'
 import '../svg/sync-alt'
 
+import { debounce } from 'lodash'
+
 export default {
     data() {
         return {
