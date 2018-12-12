@@ -25,16 +25,18 @@ FROM node:8-alpine as frontend
 WORKDIR /app
 
 COPY artisan package.json webpack.mix.js yarn.lock ./
-COPY resources/assets/ resources/assets/
 
 RUN set -x \
     && yarn install \
         --frozen-lockfile \
         --no-cache \
-        --no-progress \
+        --no-progress
+
+COPY resources/assets/ resources/assets/
+
+RUN set -x \
     && yarn run production \
-        --no-progress \
-    && yarn cache clean
+        --no-progress
 
 COPY public public/
 
