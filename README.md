@@ -48,3 +48,14 @@ This project is built with [Lumen](https://lumen.laravel.com/) as the API framew
       ```sh
       php artisan db:seed
       ```
+
+## Running with Docker
+
+There is a Docker container based on the php:7.2-fpm-alpine image.     
+Environment variables match the [.env.example](https://github.com/gabe565/mnemonic-ninja/blob/master/.env.example) file.
+
+```sh
+docker pull gabe565/mnemonic-ninja
+```
+
+Documentation on running and configuring will be added here soon.
