@@ -58,6 +58,7 @@ RUN set -x \
 
 # Final Image
 FROM php:7.2-fpm-alpine
+LABEL maintainer="Gabe Cook <gabe565@gmail.com>"
 
 RUN set -x \
     && apk add --no-cache \
