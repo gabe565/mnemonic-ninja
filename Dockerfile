@@ -1,23 +1,22 @@
 # Composer
-FROM composer as vendor
+FROM gabe565/prestissimo as vendor
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-COPY app app/
-COPY database database/
-# COPY tests tests/
 COPY composer.json composer.lock ./
-
 RUN set -x \
     && composer install \
         --ignore-platform-reqs \
+        --no-autoloader \
         --no-interaction \
-        --no-plugins \
-        --no-scripts \
-        --no-suggest \
-        --no-dev \
-        --classmap-authoritative
+        --no-progress \
+        --no-suggest
 
+COPY . ./
+RUN set -x \
+    && composer dump-autoload \
+        --classmap-authoritative \
+        --no-interaction
 
 # Node
 FROM node:8-alpine as frontend
