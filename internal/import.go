@@ -31,6 +31,7 @@ func ImportWords(db *gorm.DB) error {
 			}
 			lineCount += 1
 		}
+		db.Create(words)
 		return nil
 	})
 	if err != nil {
