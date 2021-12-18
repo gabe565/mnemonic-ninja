@@ -9,10 +9,10 @@ import (
 	"strings"
 )
 
-func ImportWords(db *gorm.DB) error {
+func ImportWords(db *gorm.DB, cmudict string) error {
 	var err error
-	log.Println("Importing words")
-	s := bufio.NewScanner(strings.NewReader(CMUdict))
+	log.Println("Importing words into memory database")
+	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var lineCount int64
 	err = db.Transaction(func(tx *gorm.DB) error {
 		words := make([]*word.Word, 0, 999)
@@ -44,6 +44,5 @@ func ImportWords(db *gorm.DB) error {
 	log.Printf("CMUdict line count: %d\n", lineCount)
 	log.Printf("Imported words: %d\n", count)
 
-	_ = body.Close()
 	return nil
 }

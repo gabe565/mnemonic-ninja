@@ -1,7 +1,8 @@
-//go:generate wget -O .cmudict.dict https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict
+//go:generate go run internal/download/cmudict.go
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/gabe565/mnemonic-ninja/internal"
@@ -9,6 +10,9 @@ import (
 	"github.com/jedib0t/go-pretty/v6/table"
 	"os"
 )
+
+//go:embed .cmudict.dict
+var CMUdict string
 
 func main() {
 	var err error
@@ -18,7 +22,7 @@ func main() {
 		panic(err)
 	}
 
-	err = internal.ImportWords(db)
+	err = internal.ImportWords(db, CMUdict)
 	if err != nil {
 		panic(err)
 	}
