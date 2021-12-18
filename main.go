@@ -5,8 +5,7 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/gabe565/mnemonic-ninja/internal"
 	"github.com/gabe565/mnemonic-ninja/internal/word"
-	"golang.org/x/term"
-	"io"
+	"github.com/jedib0t/go-pretty/v6/table"
 	"os"
 )
 
@@ -51,12 +50,15 @@ func main() {
 			panic(err)
 		}
 
-		if err != nil {
-			fmt.Print(err)
-		}
+		t := table.NewWriter()
+		t.SetStyle(table.StyleRounded)
+		t.SetOutputMirror(os.Stdout)
+		t.AppendHeader(table.Row{"Word", "Arpabet", "Number"})
 		for _, w := range words {
-			fmt.Printf("%s\n", w)
+			t.AppendRow(table.Row{w.Word, w.Arpabet, w.Number})
 		}
+		t.Render()
+		fmt.Printf("Count: %d\n", len(words))
 	}
 	fmt.Println("Exiting")
 }
