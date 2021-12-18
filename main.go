@@ -34,10 +34,14 @@ func main() {
 		var queryType string
 		err = survey.AskOne(&survey.Select{
 			Message: "Choose lookup method:",
-			Options: []string{"word", "number"},
+			Options: []string{"word", "number", "quit"},
 		}, &queryType)
 		if err != nil {
 			return
+		}
+
+		if queryType == "quit" {
+			break
 		}
 
 		var query string
