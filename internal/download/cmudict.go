@@ -3,35 +3,50 @@
 package main
 
 import (
+	flag "github.com/spf13/pflag"
 	"io"
 	"log"
 	"net/http"
 	"os"
 )
 
-const CMUDICT_FILE = ".cmudict.dict"
-const CMUDICT_URL = "https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict"
+const OUT = ".cmudict.dict"
 
 func main() {
-	log.Println("Downloading CMUdict")
-	resp, err := http.Get(CMUDICT_URL)
+	var location string
+	flag.StringVarP(&location,
+		"url",
+		"u",
+		"https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict",
+		"Source URL",
+	)
+
+	var output string
+	flag.StringVarP(&output, "output", "o", ".cmudict.dict", "Output filename")
+
+	flag.Parse()
+
+	log.Println("Downloading CMUdict from " + location)
+	resp, err := http.Get(location)
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
-	if _, err := os.Stat(CMUDICT_FILE); err == nil {
-		log.Println("Removing existing file")
-		err = os.Remove(CMUDICT_FILE)
-		if err != nil {
-			panic(err)
-		}
+	if resp.StatusCode != http.StatusOK {
+		log.Fatalf("Server returned \"%s\"", resp.Status)
 	}
 
-	log.Println("Saving to " + CMUDICT_FILE)
-	out, err := os.Create(CMUDICT_FILE)
+	log.Println("Saving into " + output)
+	out, err := os.Create(output)
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
 	_, err = io.Copy(out, resp.Body)
+
+	err = out.Close()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 }
