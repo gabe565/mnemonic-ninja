@@ -1,18 +1,10 @@
 package internal
 
 import (
-	"bufio"
-	"log"
-	"net/http"
+	_ "embed"
 )
 
-const CMUDICT_URL = "https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict"
+//go:embed cmudict.go
+var CMUdict string
 
-func GetCmudict() (*bufio.Scanner, error) {
-	log.Println("Downloading dictionary")
-	response, err := http.Get(CMUDICT_URL)
-	if err != nil {
-		return nil, err
-	}
-	return bufio.NewScanner(response.Body), nil
-}
+const CMUDICT_URL = "https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict"

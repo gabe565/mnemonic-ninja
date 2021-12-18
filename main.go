@@ -1,3 +1,4 @@
+//go:generate wget -O .cmudict.dict https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict
 package main
 
 import (
@@ -17,15 +18,7 @@ func main() {
 		panic(err)
 	}
 
-	body, err := internal.GetCmudict()
-	defer func(resp io.ReadCloser) {
-		_ = resp.Close()
-	}(body)
-	if err != nil {
-		panic(err)
-	}
-
-	err = internal.ImportWords(db, body)
+	err = internal.ImportWords(db)
 	if err != nil {
 		panic(err)
 	}
