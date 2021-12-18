@@ -22,7 +22,7 @@ func New(s string) *Word {
 	return &Word{
 		Word: split[0],
 		Arpabet: split[1],
-		Number: ArpabetReplacer.Replace(split[1] + " "),
+		Number: strings.Trim(ArpabetReplacer.Replace(split[1] + " "), " "),
 	}
 }
 
