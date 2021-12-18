@@ -16,6 +16,9 @@ func New(s string) *Word {
 	// Remove (#) from duplicate words
 	split[0] = strings.SplitN(split[0], "(", 2)[0]
 
+	// Remove comments
+	split[1] = strings.SplitN(split[1], "#", 2)[0]
+
 	return &Word{
 		Word: split[0],
 		Arpabet: split[1],
