@@ -26,13 +26,7 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 		http.ServeFile(res, req, Public+"/index.html")
 	})
 
-	// Static Files
-	contentFs, err := fs.Sub(rootFs, Public)
-	if err != nil {
-		panic(err)
-	}
-
-	fileserver := http.FileServer(http.FS(contentFs))
+	fileserver := http.FileServer(http.FS(rootFs))
 	r.Get("/*", func(res http.ResponseWriter, req *http.Request) {
 		requestPath := filepath.Join(Public, filepath.Clean("/"+req.URL.Path))
 		if _, err := os.Stat(requestPath); !os.IsNotExist(err) {
