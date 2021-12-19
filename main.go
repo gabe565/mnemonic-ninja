@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal"
+	flag "github.com/spf13/pflag"
 	"net/http"
 	"os"
 )
@@ -14,6 +15,11 @@ var cmudict string
 
 func main() {
 	var err error
+
+	var address string
+	flag.StringVar(&address, "address", ":3000", "Override listen address.")
+
+	flag.Parse()
 
 	db, err := internal.SetupDatabase()
 	if err != nil {
@@ -26,7 +32,7 @@ func main() {
 	}
 
 	router := internal.Router(db)
-	err = http.ListenAndServe(":3000", router)
+	err = http.ListenAndServe(address, router)
 	if err != nil {
 		panic(err)
 	}
