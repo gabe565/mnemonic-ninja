@@ -10,8 +10,6 @@ import (
 	"os"
 )
 
-const OUT = ".cmudict.dict"
-
 func main() {
 	var location string
 	flag.StringVarP(&location,
@@ -43,6 +41,9 @@ func main() {
 	}
 
 	_, err = io.Copy(out, resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	err = out.Close()
 	if err != nil {

@@ -1,11 +1,10 @@
-//go:generate go run internal/download/cmudict.go
+//go:generate go run cmudict.go
 //go:generate npm run build
 
 package main
 
 import (
 	"embed"
-	_ "embed"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal"
 	flag "github.com/spf13/pflag"
