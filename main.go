@@ -1,17 +1,24 @@
 //go:generate go run internal/download/cmudict.go
+//go:generate npm run build
+
 package main
 
 import (
+	"embed"
 	_ "embed"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal"
 	flag "github.com/spf13/pflag"
+	"io/fs"
 	"net/http"
 	"os"
 )
 
 //go:embed .cmudict.dict
 var cmudict string
+
+//go:embed dist
+var dist embed.FS
 
 func main() {
 	var err error
@@ -31,7 +38,7 @@ func main() {
 		panic(err)
 	}
 
-	router := internal.Router(db)
+	router := internal.Router(db, dist)
 	err = http.ListenAndServe(address, router)
 	if err != nil {
 		panic(err)
