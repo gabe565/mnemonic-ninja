@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/render"
 	"gorm.io/gorm"
 	"io/fs"
 	"net/http"
@@ -36,11 +37,16 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 		}
 	})
 
-	tx := db.Begin(&sql.TxOptions{
-		ReadOnly: true,
+	r.Route("/api", func(r chi.Router) {
+		r.Use(render.SetContentType(render.ContentTypeJSON))
+
+		tx := db.Begin(&sql.TxOptions{
+			ReadOnly: true,
+		})
+
+		r.Get("/num/{query}", ConversionHandler(tx, "number"))
+		r.Get("/word/{query}", ConversionHandler(tx, "word"))
 	})
-	r.Get("/api/to/word/{number}", NumToWordHandler(tx))
-	r.Get("/api/to/num/{word}", WordToNumberHandler(tx))
 
 	return r
 }
