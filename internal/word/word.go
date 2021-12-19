@@ -3,10 +3,10 @@ package word
 import "strings"
 
 type Word struct {
-	ID      uint
-	Word    string
-	Arpabet string
-	Number  string
+	ID      uint   `json:"-"`
+	Word    string `json:"word"`
+	Arpabet string `json:"arpabet"`
+	Number  string `json:"number"`
 }
 
 func New(s string) *Word {
