@@ -14,8 +14,8 @@ func SetupDatabase() (*gorm.DB, error) {
 	l := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags),
 		logger.Config{
-			SlowThreshold:              200 * time.Millisecond,
-			LogLevel:                   logger.Warn,
+			SlowThreshold:             200 * time.Millisecond,
+			LogLevel:                  logger.Warn,
 			IgnoreRecordNotFoundError: true,
 			Colorful:                  true,
 		},

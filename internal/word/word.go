@@ -20,9 +20,9 @@ func New(s string) *Word {
 	split[1] = strings.SplitN(split[1], "#", 2)[0]
 
 	return &Word{
-		Word: split[0],
+		Word:    split[0],
 		Arpabet: split[1],
-		Number: strings.Trim(ArpabetReplacer.Replace(split[1] + " "), " "),
+		Number:  strings.Trim(ArpabetReplacer.Replace(split[1]+" "), " "),
 	}
 }
 
