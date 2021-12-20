@@ -9,6 +9,7 @@ import (
 	"github.com/gabe565/mnemonic-ninja/internal"
 	flag "github.com/spf13/pflag"
 	"io/fs"
+	"log"
 	"net/http"
 	"os"
 )
@@ -46,6 +47,7 @@ func main() {
 		}
 	}
 	router := internal.Router(db, contentFs)
+	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {
 		panic(err)
