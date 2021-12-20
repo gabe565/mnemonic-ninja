@@ -20,14 +20,16 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 	return nil
 }
 
-func ConversionHandler(db *gorm.DB, searchCol string) http.HandlerFunc {
+func ConversionHandler(db *gorm.DB, searchCol string, selectCol string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
-
 		query := chi.URLParam(r, "query")
 
 		var response ConversionResponse
-		if err := db.Where(map[string]string{searchCol: query}).Find(&response.Result).Error; err != nil {
+		err = db.Select("arpabet", selectCol).
+			Where(map[string]interface{}{searchCol: query}).
+			Find(&response.Result).Error
+		if err != nil {
 			panic(err)
 		}
 

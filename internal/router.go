@@ -44,8 +44,8 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 			ReadOnly: true,
 		})
 
-		r.Get("/number/{query}", ConversionHandler(tx, "number"))
-		r.Get("/word/{query}", ConversionHandler(tx, "word"))
+		r.Get("/number/{query}", ConversionHandler(tx, "number", "word"))
+		r.Get("/word/{query}", ConversionHandler(tx, "word", "number"))
 	})
 
 	return r
