@@ -7,11 +7,13 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"strings"
+	"time"
 )
 
 func ImportWords(db *gorm.DB, cmudict string) error {
 	var err error
-	log.Println("Importing words into memory database")
+	log.Println("Loading words")
+	startTime := time.Now()
 	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var lineCount int64
 	err = db.Transaction(func(tx *gorm.DB) error {
@@ -37,12 +39,16 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	if err != nil {
 		return err
 	}
-	log.Println("Import complete")
+	timeTaken := time.Since(startTime)
 
 	var count int64
 	db.Model(&word.Word{}).Count(&count)
-	log.Printf("CMUdict line count: %d\n", lineCount)
-	log.Printf("Imported words: %d\n", count)
+
+	if count != lineCount {
+		log.Fatalf("Not all words loaded sucessfully. missed %d words.\n", lineCount-count)
+	}
+
+	log.Printf("Loaded %d words in %s\n", count, timeTaken)
 
 	return nil
 }
