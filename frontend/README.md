@@ -1,4 +1,4 @@
-# mnemonic-ninja
+# frontend
 
 ## Project setup
 ```

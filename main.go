@@ -1,4 +1,6 @@
 //go:generate go run cmudict.go
+//go:generate -command npm npm -prefix frontend
+//go:generate npm install
 //go:generate npm run build
 
 package main
@@ -17,7 +19,7 @@ import (
 //go:embed .cmudict.dict
 var cmudict string
 
-//go:embed dist
+//go:embed frontend/dist
 var dist embed.FS
 
 func main() {
@@ -41,7 +43,7 @@ func main() {
 	if *staticDir != "" {
 		contentFs = os.DirFS(*staticDir)
 	} else {
-		contentFs, err = fs.Sub(dist, "dist")
+		contentFs, err = fs.Sub(dist, "frontend/dist")
 		if err != nil {
 			panic(err)
 		}

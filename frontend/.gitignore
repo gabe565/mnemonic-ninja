@@ -1,9 +1,6 @@
 .DS_Store
 node_modules
-/frontend/dist
-vendor
-mnemonic-ninja
-.cmudict.dict
+/dist
 
 
 # local env files
