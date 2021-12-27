@@ -1,6 +1,9 @@
 package word
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
 
 type Word struct {
 	ID      uint   `json:"-" gorm:"primaryKey"`
@@ -8,6 +11,8 @@ type Word struct {
 	Arpabet string `json:"arpabet"`
 	Number  *string `json:"number,omitempty" gorm:"index"`
 }
+
+var numberRegex = regexp.MustCompile("[^0-9]")
 
 func New(s string) *Word {
 	// Split word and arpabet
@@ -17,14 +22,22 @@ func New(s string) *Word {
 	word := strings.SplitN(split[0], "(", 2)[0]
 
 	// Remove comments
-	arpabet := strings.Trim(strings.SplitN(split[1], "#", 2)[0], " ")
+	arpabet := strings.SplitN(split[1], "#", 2)[0]
+	arpabet = strings.Trim(arpabet, " ")
 
-	number := strings.Trim(ArpabetReplacer.Replace(arpabet+" "), " ")
+	var numbers string
+	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
+		number := ArpabetReplacer.Replace(v)
+		if numberRegex.MatchString(number) {
+			continue
+		}
+		numbers += number
+	}
 
 	return &Word{
 		Word:    &word,
 		Arpabet: arpabet,
-		Number:  &number,
+		Number:  &numbers,
 	}
 }
 

@@ -19,6 +19,7 @@ func TestNewWord(t *testing.T) {
 		{"a.m. EY2 EH1 M", "a.m.", "EY2 EH1 M", "3"},
 		{"computer-generated K AH0 M P Y UW1 T ER0 JH EH1 N ER0 EY2 T AH0 D", "computer-generated", "K AH0 M P Y UW1 T ER0 JH EH1 N ER0 EY2 T AH0 D", "7391462411"},
 		{"waah W AA1", "waah", "W AA1", ""},
+		{"invalid IH1 N V AH0 L AH0 D ASDF", "invalid", "IH1 N V AH0 L AH0 D ASDF", "2851"},
 	}
 	for _, tc := range testCases {
 		tc := tc // capture range variable
