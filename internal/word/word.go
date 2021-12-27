@@ -17,12 +17,13 @@ func New(s string) *Word {
 	word := strings.SplitN(split[0], "(", 2)[0]
 
 	// Remove comments
-	number := strings.SplitN(split[1], "#", 2)[0]
-	number = strings.Trim(ArpabetReplacer.Replace(split[1]+" "), " ")
+	arpabet := strings.Trim(strings.SplitN(split[1], "#", 2)[0], " ")
+
+	number := strings.Trim(ArpabetReplacer.Replace(arpabet+" "), " ")
 
 	return &Word{
 		Word:    &word,
-		Arpabet: split[1],
+		Arpabet: arpabet,
 		Number:  &number,
 	}
 }
