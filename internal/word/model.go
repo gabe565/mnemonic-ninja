@@ -7,10 +7,10 @@ import (
 )
 
 type WordModel struct {
-	ID      uint           `json:"-" gorm:"primaryKey"`
-	Word    sql.NullString `json:"word,omitempty" gorm:"index"`
-	Arpabet string         `json:"arpabet"`
-	Number  sql.NullString `json:"number,omitempty" gorm:"index"`
+	ID      uint           `gorm:"primaryKey"`
+	Word    sql.NullString `gorm:"index"`
+	Arpabet string
+	Number  sql.NullString `gorm:"index"`
 }
 
 var numberRegex = regexp.MustCompile("[^0-9]")

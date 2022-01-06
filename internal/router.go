@@ -40,8 +40,8 @@ func Router(rootFs fs.FS) *chi.Mux {
 	r.Route("/api", func(r chi.Router) {
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
-		r.Get("/number/{query}", ConversionHandler("number", "word"))
-		r.Get("/word/{query}", ConversionHandler("word", "number"))
+		r.Get("/number/{query}", ConversionHandler(SearchNumber))
+		r.Get("/word/{query}", ConversionHandler(SearchWord))
 	})
 
 	return r
