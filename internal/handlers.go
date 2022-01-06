@@ -25,42 +25,46 @@ func (col SearchCol) Column() string {
 }
 
 type ConversionResponse struct {
-	Query  string        `json:"query"`
-	Count  int           `json:"count"`
-	Result []interface{} `json:"result"`
+	Query     string            `json:"query"`
+	Count     int               `json:"count"`
+
+	Words     []*word.WordModel `json:"-"`
+	SearchCol SearchCol         `json:"-"`
+
+	Result    []interface{}     `json:"result"`
 }
 
-func (response ConversionResponse) Render(w http.ResponseWriter, r *http.Request) error {
-	response.Query = chi.URLParam(r, "query")
+func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Request) (err error) {
+	for _, e := range response.Words {
+		var responseEntry interface{}
+		switch response.SearchCol {
+		case SearchWord:
+			responseEntry, err = e.ToWordResponse()
+		case SearchNumber:
+			responseEntry, err = e.ToNumResponse()
+		}
+		if err != nil {
+			return err
+		}
+		response.Result = append(response.Result, responseEntry)
+	}
 	response.Count = len(response.Result)
-	return nil
+	return err
 }
 
 func ConversionHandler(searchCol SearchCol) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
-		query := chi.URLParam(r, "query")
+		response := &ConversionResponse{
+			Query: chi.URLParam(r, "query"),
+			SearchCol: searchCol,
+		}
 
-		var found []*word.WordModel
-		err = Db.Where(map[string]interface{}{searchCol.Column(): query}).Find(&found).Error
+		err = Db.Where(map[string]interface{}{searchCol.Column(): response.Query}).Find(&response.Words).Error
 		if err != nil {
 			panic(err)
 		}
 
-		var response ConversionResponse
-		for _, e := range found {
-			var responseEntry interface{}
-			switch searchCol {
-			case SearchWord:
-				responseEntry, err = e.ToWordResponse()
-			case SearchNumber:
-				responseEntry, err = e.ToNumResponse()
-			}
-			if err != nil {
-				panic(err)
-			}
-			response.Result = append(response.Result, responseEntry)
-		}
 		err = render.Render(w, r, response)
 		if err != nil {
 			panic(err)
