@@ -10,7 +10,11 @@ import (
 	"time"
 )
 
-func SetupDatabase() (*gorm.DB, error) {
+var Db *gorm.DB
+
+func SetupDatabase() error {
+	var err error
+
 	l := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags),
 		logger.Config{
@@ -21,17 +25,17 @@ func SetupDatabase() (*gorm.DB, error) {
 		},
 	)
 
-	db, err := gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{
+	Db, err = gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{
 		Logger: l,
 	})
 	if err != nil {
-		return db, err
+		return err
 	}
 
-	err = db.AutoMigrate(&word.Word{})
+	err = Db.AutoMigrate(&word.WordModel{})
 	if err != nil {
-		return db, err
+		return err
 	}
 
-	return db, nil
+	return nil
 }

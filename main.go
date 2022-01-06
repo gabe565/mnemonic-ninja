@@ -29,12 +29,12 @@ func main() {
 	staticDir := flag.String("static", "", "Override static asset directory. Useful for development. If left empty, embedded assets are used.")
 	flag.Parse()
 
-	db, err := internal.SetupDatabase()
+	err = internal.SetupDatabase()
 	if err != nil {
 		panic(err)
 	}
 
-	err = internal.ImportWords(db, cmudict)
+	err = internal.ImportWords(cmudict)
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +48,7 @@ func main() {
 			panic(err)
 		}
 	}
-	router := internal.Router(db, contentFs)
+	router := internal.Router(contentFs)
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {

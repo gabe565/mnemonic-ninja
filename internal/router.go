@@ -1,11 +1,9 @@
 package internal
 
 import (
-	"database/sql"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/render"
-	"gorm.io/gorm"
 	"io/fs"
 	"net/http"
 	"os"
@@ -13,7 +11,7 @@ import (
 	"strings"
 )
 
-func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
+func Router(rootFs fs.FS) *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
@@ -42,12 +40,8 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	r.Route("/api", func(r chi.Router) {
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
-		tx := db.Begin(&sql.TxOptions{
-			ReadOnly: true,
-		})
-
-		r.Get("/number/{query}", ConversionHandler(tx, "number", "word"))
-		r.Get("/word/{query}", ConversionHandler(tx, "word", "number"))
+		r.Get("/number/{query}", ConversionHandler("number", "word"))
+		r.Get("/word/{query}", ConversionHandler("word", "number"))
 	})
 
 	return r

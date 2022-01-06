@@ -4,7 +4,6 @@ import (
 	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
-	"gorm.io/gorm"
 	"net/http"
 )
 
@@ -20,13 +19,13 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 	return nil
 }
 
-func ConversionHandler(db *gorm.DB, searchCol string, selectCol string) http.HandlerFunc {
+func ConversionHandler(searchCol string, selectCol string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		query := chi.URLParam(r, "query")
 
 		var response ConversionResponse
-		err = db.Select("arpabet", selectCol).
+		err = Db.Select("arpabet", selectCol).
 			Where(map[string]interface{}{searchCol: query}).
 			Find(&response.Result).Error
 		if err != nil {

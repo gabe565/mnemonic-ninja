@@ -10,13 +10,13 @@ import (
 	"time"
 )
 
-func ImportWords(db *gorm.DB, cmudict string) error {
+func ImportWords(cmudict string) error {
 	var err error
 	log.Println("Loading words")
 	startTime := time.Now()
 	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var lineCount int64
-	err = db.Transaction(func(tx *gorm.DB) error {
+	err = Db.Transaction(func(db *gorm.DB) error {
 		words := make([]*word.Word, 0, 999)
 		for s.Scan() {
 			if err := s.Err(); err != nil {
@@ -45,7 +45,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	timeTaken := time.Since(startTime)
 
 	var count int64
-	err = db.Model(&word.Word{}).Count(&count).Error
+	err = Db.Model(&word.Word{}).Count(&count).Error
 	if err != nil {
 		return err
 	}
