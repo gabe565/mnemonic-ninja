@@ -1,29 +1,38 @@
 package word
 
 import (
+	"database/sql"
 	"regexp"
 	"strings"
 )
 
 type WordModel struct {
-	ID      uint    `json:"-" gorm:"primaryKey"`
-	Word    *string `json:"word,omitempty" gorm:"index"`
-	Arpabet string  `json:"arpabet"`
-	Number  *string `json:"number,omitempty" gorm:"index"`
+	ID      uint           `json:"-" gorm:"primaryKey"`
+	Word    sql.NullString `json:"word,omitempty" gorm:"index"`
+	Arpabet string         `json:"arpabet"`
+	Number  sql.NullString `json:"number,omitempty" gorm:"index"`
 }
 
 var numberRegex = regexp.MustCompile("[^0-9]")
 
-func New(s string) *WordModel {
+func New(s string) (*WordModel, error) {
+	var err error
+	w := &WordModel{}
+
 	// Split word and arpabet
 	split := strings.SplitN(s, " ", 2)
 
 	// Remove (#) from duplicate words
 	word := strings.SplitN(split[0], "(", 2)[0]
+	err = w.Word.Scan(word)
+	if err != nil {
+		return w, err
+	}
 
 	// Remove comments
 	arpabet := strings.SplitN(split[1], "#", 2)[0]
 	arpabet = strings.Trim(arpabet, " ")
+	w.Arpabet = arpabet
 
 	var numbers string
 	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
@@ -33,14 +42,10 @@ func New(s string) *WordModel {
 		}
 		numbers += number
 	}
-
-	return &WordModel{
-		Word:    &word,
-		Arpabet: arpabet,
-		Number:  &numbers,
+	err = w.Number.Scan(numbers)
+	if err != nil {
+		return w, err
 	}
-}
 
-func (w Word) String() string {
-	return (*w.Word) + "\t\t" + w.Arpabet + "\t\t" + (*w.Number)
+	return w, nil
 }

@@ -24,7 +24,10 @@ func ImportWords(cmudict string) error {
 			}
 
 			line := s.Text()
-			w := word.New(line)
+			w, err := word.New(line)
+			if err != nil {
+				return err
+			}
 
 			words = append(words, w)
 			if len(words) >= 999 {
