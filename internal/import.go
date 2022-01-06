@@ -17,7 +17,7 @@ func ImportWords(cmudict string) error {
 	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var lineCount int64
 	err = Db.Transaction(func(db *gorm.DB) error {
-		words := make([]*word.Word, 0, 999)
+		words := make([]*word.WordModel, 0, 999)
 		for s.Scan() {
 			if err := s.Err(); err != nil {
 				panic(s.Err())
@@ -32,7 +32,7 @@ func ImportWords(cmudict string) error {
 				if err != nil {
 					return err
 				}
-				words = make([]*word.Word, 0, 999)
+				words = make([]*word.WordModel, 0, 999)
 			}
 			lineCount += 1
 		}
@@ -45,7 +45,7 @@ func ImportWords(cmudict string) error {
 	timeTaken := time.Since(startTime)
 
 	var count int64
-	err = Db.Model(&word.Word{}).Count(&count).Error
+	err = Db.Model(&word.WordModel{}).Count(&count).Error
 	if err != nil {
 		return err
 	}

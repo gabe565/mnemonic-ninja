@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-type Word struct {
+type WordModel struct {
 	ID      uint    `json:"-" gorm:"primaryKey"`
 	Word    *string `json:"word,omitempty" gorm:"index"`
 	Arpabet string  `json:"arpabet"`
@@ -14,7 +14,7 @@ type Word struct {
 
 var numberRegex = regexp.MustCompile("[^0-9]")
 
-func New(s string) *Word {
+func New(s string) *WordModel {
 	// Split word and arpabet
 	split := strings.SplitN(s, " ", 2)
 
@@ -34,7 +34,7 @@ func New(s string) *Word {
 		numbers += number
 	}
 
-	return &Word{
+	return &WordModel{
 		Word:    &word,
 		Arpabet: arpabet,
 		Number:  &numbers,
