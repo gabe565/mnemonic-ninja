@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
@@ -20,14 +21,17 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
+	fileserver := http.FileServer(http.FS(rootFs))
+
 	// Serve index as 404
 	r.NotFound(func(res http.ResponseWriter, req *http.Request) {
-		http.ServeFile(res, req, "/index.html")
+		req.URL.Path = "/"
+		fileserver.ServeHTTP(res, req)
 	})
 
-	fileserver := http.FileServer(http.FS(rootFs))
 	r.Get("/*", func(res http.ResponseWriter, req *http.Request) {
-		requestPath := filepath.Clean("/"+req.URL.Path)
+		requestPath := filepath.Clean(req.URL.Path)
+		requestPath = strings.TrimLeft(requestPath, "/")
 		if _, err := fs.Stat(rootFs, requestPath); !os.IsNotExist(err) {
 			fileserver.ServeHTTP(res, req)
 		} else {
