@@ -28,13 +28,16 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 
 			words = append(words, w)
 			if len(words) >= 999 {
-				db.Create(words)
+				err = db.Create(words).Error
+				if err != nil {
+					return err
+				}
 				words = make([]*word.Word, 0, 999)
 			}
 			lineCount += 1
 		}
-		db.Create(words)
-		return nil
+		err = db.Create(words).Error
+		return err
 	})
 	if err != nil {
 		return err
@@ -42,7 +45,10 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	timeTaken := time.Since(startTime)
 
 	var count int64
-	db.Model(&word.Word{}).Count(&count)
+	err = db.Model(&word.Word{}).Count(&count).Error
+	if err != nil {
+		return err
+	}
 
 	if count != lineCount {
 		log.Fatalf("Not all words loaded sucessfully. missed %d words.\n", lineCount-count)
