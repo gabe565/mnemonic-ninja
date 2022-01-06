@@ -6,9 +6,9 @@ import (
 )
 
 type Word struct {
-	ID      uint   `json:"-" gorm:"primaryKey"`
+	ID      uint    `json:"-" gorm:"primaryKey"`
 	Word    *string `json:"word,omitempty" gorm:"index"`
-	Arpabet string `json:"arpabet"`
+	Arpabet string  `json:"arpabet"`
 	Number  *string `json:"number,omitempty" gorm:"index"`
 }
 

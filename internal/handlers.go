@@ -9,8 +9,8 @@ import (
 )
 
 type ConversionResponse struct {
-	Query  string      `json:"query"`
-	Count  int         `json:"count"`
+	Query  string       `json:"query"`
+	Count  int          `json:"count"`
 	Result []*word.Word `json:"result"`
 }
 
