@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+const ImportBatchSize = 999
+
 func ImportWords(cmudict string) error {
 	var err error
 	log.Println("Loading words")
@@ -17,7 +19,7 @@ func ImportWords(cmudict string) error {
 	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var lineCount int64
 	err = Db.Transaction(func(db *gorm.DB) error {
-		words := make([]*word.WordModel, 0, 999)
+		words := make([]*word.WordModel, 0, ImportBatchSize)
 		for s.Scan() {
 			if err := s.Err(); err != nil {
 				panic(s.Err())
@@ -30,12 +32,12 @@ func ImportWords(cmudict string) error {
 			}
 
 			words = append(words, w)
-			if len(words) >= 999 {
+			if len(words) >= ImportBatchSize {
 				err = db.Create(words).Error
 				if err != nil {
 					return err
 				}
-				words = make([]*word.WordModel, 0, 999)
+				words = make([]*word.WordModel, 0, ImportBatchSize)
 			}
 			lineCount += 1
 		}
