@@ -8,7 +8,9 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/gabe565/mnemonic-ninja/internal"
+	"github.com/gabe565/mnemonic-ninja/internal/database"
+	"github.com/gabe565/mnemonic-ninja/internal/server"
+	"github.com/gabe565/mnemonic-ninja/internal/word"
 	flag "github.com/spf13/pflag"
 	"io/fs"
 	"log"
@@ -29,12 +31,12 @@ func main() {
 	staticDir := flag.String("static", "", "Override static asset directory. Useful for development. If left empty, embedded assets are used.")
 	flag.Parse()
 
-	db, err := internal.SetupDatabase()
+	db, err := database.SetupDatabase()
 	if err != nil {
 		panic(err)
 	}
 
-	err = internal.ImportWords(db, cmudict)
+	err = word.ImportWords(db, cmudict)
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +50,7 @@ func main() {
 			panic(err)
 		}
 	}
-	router := internal.Router(db, contentFs)
+	router := server.Router(db, contentFs)
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {

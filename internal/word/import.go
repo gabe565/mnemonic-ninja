@@ -1,9 +1,8 @@
-package internal
+package word
 
 import (
 	"bufio"
 	_ "embed"
-	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"gorm.io/gorm"
 	"log"
 	"strings"
@@ -19,14 +18,14 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var lineCount int64
 	err = db.Transaction(func(db *gorm.DB) error {
-		words := make([]*word.WordModel, 0, ImportBatchSize)
+		words := make([]*WordModel, 0, ImportBatchSize)
 		for s.Scan() {
 			if err := s.Err(); err != nil {
 				panic(s.Err())
 			}
 
 			line := s.Text()
-			w, err := word.New(line)
+			w, err := New(line)
 			if err != nil {
 				return err
 			}
@@ -37,7 +36,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 				if err != nil {
 					return err
 				}
-				words = make([]*word.WordModel, 0, ImportBatchSize)
+				words = make([]*WordModel, 0, ImportBatchSize)
 			}
 			lineCount += 1
 		}
@@ -50,7 +49,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	timeTaken := time.Since(startTime)
 
 	var count int64
-	err = db.Model(&word.WordModel{}).Count(&count).Error
+	err = db.Model(&WordModel{}).Count(&count).Error
 	if err != nil {
 		return err
 	}
