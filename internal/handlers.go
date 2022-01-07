@@ -35,7 +35,7 @@ func (col QueryType) DistinctColumn() string {
 	return ""
 }
 
-var SplitRegex = regexp.MustCompile("[+,; ]")
+var SplitRegex = regexp.MustCompile("[+,; ]+")
 
 type ConversionEntry struct {
 	Query string `json:"query"`
@@ -88,7 +88,9 @@ func ConversionHandler(queryType QueryType) http.HandlerFunc {
 				panic(err)
 			}
 
-			response.Result = append(response.Result, entry)
+			if len(entry.Words) != 0 {
+				response.Result = append(response.Result, entry)
+			}
 		}
 
 		err = render.Render(w, r, response)
