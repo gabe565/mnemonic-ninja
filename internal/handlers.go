@@ -5,64 +5,90 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
 	"net/http"
+	"regexp"
 )
 
-type SearchCol int
+type QueryType int
 
 const (
-	SearchWord SearchCol = iota
-	SearchNumber
+	QueryWord QueryType = iota
+	QueryNumber
 )
 
-func (col SearchCol) Column() string {
+func (col QueryType) WhereColumn() string {
 	switch col {
-	case SearchWord:
+	case QueryWord:
 		return "word"
-	case SearchNumber:
+	case QueryNumber:
 		return "number"
 	}
 	return ""
 }
 
+func (col QueryType) DistinctColumn() string {
+	switch col {
+	case QueryWord:
+		return "number"
+	case QueryNumber:
+		return "word"
+	}
+	return ""
+}
+
+var SplitRegex = regexp.MustCompile("[+,; ]")
+
+type ConversionEntry struct {
+	Query string `json:"query"`
+	Count int    `json:"count"`
+
+	Words  []*word.WordModel `json:"-"`
+	Result []interface{}     `json:"result"`
+}
+
 type ConversionResponse struct {
-	Query     string            `json:"query"`
-	Count     int               `json:"count"`
-
-	Words     []*word.WordModel `json:"-"`
-	SearchCol SearchCol         `json:"-"`
-
-	Result    []interface{}     `json:"result"`
+	Count     int                `json:"count"`
+	QueryType QueryType          `json:"-"`
+	Result    []*ConversionEntry `json:"result"`
 }
 
 func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Request) (err error) {
-	for _, e := range response.Words {
-		var responseEntry interface{}
-		switch response.SearchCol {
-		case SearchWord:
-			responseEntry, err = e.Number.Value()
-		case SearchNumber:
-			responseEntry, err = e.Word.Value()
+	for _, result := range response.Result {
+		for _, e := range result.Words {
+			var responseEntry interface{}
+			switch response.QueryType {
+			case QueryWord:
+				responseEntry, err = e.Number.Value()
+			case QueryNumber:
+				responseEntry, err = e.Word.Value()
+			}
+			if err != nil {
+				return err
+			}
+			result.Result = append(result.Result, responseEntry)
 		}
-		if err != nil {
-			return err
-		}
-		response.Result = append(response.Result, responseEntry)
+		result.Count = len(result.Result)
 	}
 	response.Count = len(response.Result)
 	return err
 }
 
-func ConversionHandler(searchCol SearchCol) http.HandlerFunc {
+func ConversionHandler(queryType QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
-		response := &ConversionResponse{
-			Query: chi.URLParam(r, "query"),
-			SearchCol: searchCol,
-		}
+		fullQuery := chi.URLParam(r, "query")
+		queries := SplitRegex.Split(fullQuery, -1)
+		response := &ConversionResponse{QueryType: queryType}
+		for _, query := range queries {
+			entry := &ConversionEntry{Query: query}
 
-		err = Db.Where(map[string]interface{}{searchCol.Column(): response.Query}).Find(&response.Words).Error
-		if err != nil {
-			panic(err)
+			err = Db.Distinct(queryType.DistinctColumn()).
+				Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
+				Find(&entry.Words).Error
+			if err != nil {
+				panic(err)
+			}
+
+			response.Result = append(response.Result, entry)
 		}
 
 		err = render.Render(w, r, response)
