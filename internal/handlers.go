@@ -39,9 +39,9 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 		var responseEntry interface{}
 		switch response.SearchCol {
 		case SearchWord:
-			responseEntry, err = e.ToWordResponse()
+			responseEntry, err = e.Number.Value()
 		case SearchNumber:
-			responseEntry, err = e.ToNumResponse()
+			responseEntry, err = e.Word.Value()
 		}
 		if err != nil {
 			return err
