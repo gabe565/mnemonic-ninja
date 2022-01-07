@@ -4,6 +4,7 @@ import (
 	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
+	"gorm.io/gorm"
 	"net/http"
 	"regexp"
 )
@@ -72,7 +73,7 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 	return err
 }
 
-func ConversionHandler(queryType QueryType) http.HandlerFunc {
+func ConversionHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		fullQuery := chi.URLParam(r, "query")
@@ -81,7 +82,7 @@ func ConversionHandler(queryType QueryType) http.HandlerFunc {
 		for _, query := range queries {
 			entry := &ConversionEntry{Query: query}
 
-			err = Db.Distinct(queryType.DistinctColumn()).
+			err = db.Distinct(queryType.DistinctColumn()).
 				Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
 				Find(&entry.Words).Error
 			if err != nil {

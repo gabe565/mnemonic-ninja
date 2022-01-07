@@ -4,6 +4,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/render"
+	"gorm.io/gorm"
 	"io/fs"
 	"net/http"
 	"os"
@@ -11,7 +12,7 @@ import (
 	"strings"
 )
 
-func Router(rootFs fs.FS) *chi.Mux {
+func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
@@ -40,8 +41,8 @@ func Router(rootFs fs.FS) *chi.Mux {
 	r.Route("/api", func(r chi.Router) {
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
-		r.Get("/number/{query}", ConversionHandler(QueryNumber))
-		r.Get("/word/{query}", ConversionHandler(QueryWord))
+		r.Get("/number/{query}", ConversionHandler(db, QueryNumber))
+		r.Get("/word/{query}", ConversionHandler(db, QueryWord))
 	})
 
 	return r
