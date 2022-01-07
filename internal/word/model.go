@@ -13,6 +13,10 @@ type WordModel struct {
 	Number  sql.NullString `gorm:"index"`
 }
 
+func (WordModel) TableName() string {
+	return "words"
+}
+
 var numberRegex = regexp.MustCompile("[^0-9]")
 
 func New(s string) (*WordModel, error) {
