@@ -9,7 +9,7 @@ import (
 type WordModel struct {
 	ID      uint           `gorm:"primaryKey"`
 	Word    sql.NullString `gorm:"index"`
-	Arpabet string
+	Arpabet string         `gorm:"-"`
 	Number  sql.NullString `gorm:"index"`
 }
 
