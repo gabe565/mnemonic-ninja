@@ -43,7 +43,7 @@ type ConversionEntry struct {
 	Count int    `json:"count"`
 
 	Words  []*word.WordModel `json:"-"`
-	Result []interface{}     `json:"result"`
+	Result []string          `json:"result"`
 }
 
 type ConversionResponse struct {
@@ -54,18 +54,18 @@ type ConversionResponse struct {
 
 func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Request) (err error) {
 	for _, result := range response.Result {
-		for _, e := range result.Words {
+		for _, w := range result.Words {
 			var responseEntry interface{}
 			switch response.QueryType {
 			case QueryWord:
-				responseEntry, err = e.Number.Value()
+				responseEntry, err = w.Number.Value()
 			case QueryNumber:
-				responseEntry, err = e.Word.Value()
+				responseEntry, err = w.Word.Value()
 			}
 			if err != nil {
 				return err
 			}
-			result.Result = append(result.Result, responseEntry)
+			result.Result = append(result.Result, responseEntry.(string))
 		}
 		result.Count = len(result.Result)
 	}
