@@ -1,7 +1,4 @@
-//go:generate go run cmudict.go
-//go:generate -command npm npm -prefix frontend
-//go:generate npm install
-//go:generate npm run build
+//go:generate go run internal/cmudict.go
 
 package main
 

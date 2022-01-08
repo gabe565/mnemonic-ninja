@@ -1,0 +1,9 @@
+.DS_Store
+.dockerignore
+.git
+.idea
+Dockerfile
+frontend/dist
+frontend/README.md
+frontend/node_modules
+vendor
