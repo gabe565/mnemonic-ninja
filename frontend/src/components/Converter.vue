@@ -1,13 +1,13 @@
 <template>
   <v-form v-model="valid">
-    <v-container>
+    <v-container class="pa-0">
       <v-row v-if="$slots.default">
         <v-col>
           <slot/>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md class="py-0 py-md-3">
+        <v-col cols="12" md class="py-0 py-md-1">
           <h2 class="text-h4">{{ fromLabel }}</h2>
           <v-textarea
             clearable no-resize outlined
@@ -37,7 +37,7 @@
           </v-btn>
         </v-col>
 
-        <v-col cols="12" md class="py-0 py-md-3">
+        <v-col cols="12" md class="py-0 py-md-1">
           <h2 class="text-h4">{{ toLabel }}</h2>
           <v-simple-table :height="height" class="v-data-table--outlined">
             <tbody>
