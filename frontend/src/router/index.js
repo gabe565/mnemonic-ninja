@@ -1,22 +1,50 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Converters from '@/views/Converters.vue';
+import About from '@/views/About.vue';
+import NotFound from '@/views/NotFound.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: '/converters',
+    name: 'Converters',
+    component: Converters,
+    props: true,
+    meta: {
+      icon: 'fa-sync',
+      showInNav: true,
+    },
+  },
+  {
+    path: '/convert/word/:word',
+    redirect: ({ params }) => ({ name: 'Converters', params: { word: params.word } }),
+  },
+  {
+    path: '/convert/num/:num',
+    redirect: ({ params }) => ({ name: 'Converters', params: { num: params.num } }),
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: About,
+    meta: {
+      icon: 'fa-info-circle',
+      showInNav: true,
+    },
+  },
+  {
+    path: '/',
+    redirect: { name: 'Converters' },
+  },
+  {
+    path: '*',
+    name: '404 Not Found',
+    component: NotFound,
+    meta: {
+      icon: 'fa-exclamation-triangle',
+    },
   },
 ];
 
