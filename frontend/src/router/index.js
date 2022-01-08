@@ -13,7 +13,7 @@ const routes = [
     component: Converters,
     props: true,
     meta: {
-      icon: 'fa-sync',
+      icon: 'fa-exchange-alt',
       showInNav: true,
     },
   },
