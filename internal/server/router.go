@@ -9,7 +9,6 @@ import (
 	"io/fs"
 	"net/http"
 	"os"
-	"path/filepath"
 	"strings"
 	"time"
 )
@@ -21,6 +20,7 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	r.Use(middleware.Heartbeat("/api/health"))
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
+	r.Use(middleware.CleanPath)
 
 	fileserver := http.FileServer(http.FS(rootFs))
 
@@ -31,8 +31,7 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	})
 
 	r.Get("/*", func(res http.ResponseWriter, req *http.Request) {
-		requestPath := filepath.Clean(req.URL.Path)
-		requestPath = strings.TrimLeft(requestPath, "/")
+		requestPath := strings.TrimLeft(req.URL.Path, "/")
 		if _, err := fs.Stat(rootFs, requestPath); !os.IsNotExist(err) {
 			fileserver.ServeHTTP(res, req)
 		} else {
