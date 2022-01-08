@@ -20,7 +20,7 @@ var numberRegex = regexp.MustCompile("[^0-9]")
 
 func New(s string) (*WordModel, error) {
 	var err error
-	w := &WordModel{}
+	w := WordModel{}
 
 	// Split word and arpabet
 	split := strings.SplitN(s, " ", 2)
@@ -29,7 +29,7 @@ func New(s string) (*WordModel, error) {
 	word := strings.SplitN(split[0], "(", 2)[0]
 	err = w.Word.Scan(word)
 	if err != nil {
-		return w, err
+		return &w, err
 	}
 
 	// Remove comments
@@ -47,8 +47,8 @@ func New(s string) (*WordModel, error) {
 	}
 	err = w.Number.Scan(numbers)
 	if err != nil {
-		return w, err
+		return &w, err
 	}
 
-	return w, nil
+	return &w, nil
 }

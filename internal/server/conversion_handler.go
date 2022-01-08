@@ -78,9 +78,9 @@ func ConversionHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 		var err error
 		fullQuery := chi.URLParam(r, "query")
 		queries := SplitRegex.Split(fullQuery, -1)
-		response := &ConversionResponse{QueryType: queryType}
+		response := ConversionResponse{QueryType: queryType}
 		for _, query := range queries {
-			entry := &ConversionEntry{Query: query}
+			entry := ConversionEntry{Query: query}
 
 			err = db.Distinct(queryType.DistinctColumn()).
 				Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
@@ -90,11 +90,11 @@ func ConversionHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 			}
 
 			if len(entry.Words) != 0 {
-				response.Result = append(response.Result, entry)
+				response.Result = append(response.Result, &entry)
 			}
 		}
 
-		err = render.Render(w, r, response)
+		err = render.Render(w, r, &response)
 		if err != nil {
 			panic(err)
 		}
