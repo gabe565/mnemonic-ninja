@@ -27,9 +27,10 @@
             type="submit"
             @click.prevent="manualUpdate"
             :disabled="!valid || disabled"
-            color="accent" min-width="0" class="px-3"
+            :color="error ? 'error' : 'accent'" min-width="0" class="px-3"
           >
             <v-icon v-if="loading">fas fa-spinner-third fa-spin-2x fa-fw</v-icon>
+            <v-icon v-else-if="error">fas fa-exclamation-triangle fa-fw</v-icon>
             <template v-else>
               <v-icon v-if="$vuetify.breakpoint.smAndDown">fas fa-arrow-alt-down fa-fw</v-icon>
               <v-icon v-else>fas fa-arrow-alt-right fa-fw</v-icon>
@@ -121,6 +122,7 @@ export default {
     async getResponse() {
       if (this.empty || !this.valid) {
         this.response = {};
+        this.error = null;
         return;
       }
       this.loading = true;
@@ -131,7 +133,6 @@ export default {
         this.valid = true;
       } catch (err) {
         this.error = err;
-        this.valid = false;
       } finally {
         await wait(100);
         this.loading = false;
