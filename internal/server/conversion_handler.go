@@ -84,6 +84,9 @@ func ConversionHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 		queries := SplitRegex.Split(fullQuery, -1)
 		response := ConversionResponse{QueryType: queryType}
 		for _, query := range queries {
+			if query == "" {
+				continue
+			}
 			entry := ConversionEntry{Query: query}
 
 			err = db.Distinct(queryType.DistinctColumn()).
