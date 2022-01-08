@@ -28,7 +28,7 @@ func main() {
 	var err error
 
 	address := flag.String("address", ":3000", "Override listen address.")
-	staticDir := flag.String("static", "frontend/dist", "Override static asset directory. Useful for development. If left empty, embedded assets are used.")
+	staticDir := flag.String("static", "", "Override static asset directory. Useful for development. If left empty, embedded assets are used.")
 	flag.Parse()
 
 	flag.CommandLine.VisitAll(func(f *flag.Flag) {

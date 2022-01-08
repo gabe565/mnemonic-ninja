@@ -1,9 +1,12 @@
 .DS_Store
+.cmudict.dict
 .dockerignore
 .git
+.gitignore
 .idea
 Dockerfile
-frontend/dist
+frontend/.gitignore
 frontend/README.md
+frontend/dist
 frontend/node_modules
 vendor
