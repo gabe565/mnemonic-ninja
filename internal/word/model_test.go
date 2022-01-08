@@ -26,7 +26,7 @@ func TestNewWord(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(fmt.Sprintf("Create word from %v", tc.word), func(t *testing.T) {
 			t.Parallel()
-			wordModel, err := New(tc.input)
+			wordModel, err := FromCmudict(tc.input)
 			if err != tc.err {
 				t.Errorf("got %v, want %v", err, tc.err)
 			}

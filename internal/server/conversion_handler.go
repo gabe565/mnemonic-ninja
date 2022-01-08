@@ -41,6 +41,7 @@ var SplitRegex = regexp.MustCompile("[+,; ]+")
 type ConversionEntry struct {
 	Query string `json:"query"`
 	Count int    `json:"count"`
+	Guess bool   `json:"guess,omitempty"`
 
 	Words  []*word.WordModel `json:"-"`
 	Result []string          `json:"result"`
@@ -66,6 +67,9 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 				return err
 			}
 			result.Result = append(result.Result, responseEntry.(string))
+			if w.Guess {
+				result.Guess = w.Guess
+			}
 		}
 		result.Count = len(result.Result)
 	}
@@ -89,9 +93,16 @@ func ConversionHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 				panic(err)
 			}
 
-			if len(entry.Words) != 0 {
-				response.Result = append(response.Result, &entry)
+			if queryType == QueryWord && len(entry.Words) == 0 {
+				w, err := word.FromString(query)
+				if err != nil {
+					panic(err)
+				}
+				if w.Word.Valid {
+					entry.Words = append(entry.Words, w)
+				}
 			}
+			response.Result = append(response.Result, &entry)
 		}
 
 		err = render.Render(w, r, &response)

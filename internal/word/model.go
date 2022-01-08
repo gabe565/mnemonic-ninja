@@ -10,6 +10,7 @@ type WordModel struct {
 	Word    sql.NullString `gorm:"index"`
 	Arpabet string         `gorm:"-"`
 	Number  sql.NullString `gorm:"index"`
+	Guess   bool           `gorm:"-"`
 }
 
 func (WordModel) TableName() string {
@@ -18,12 +19,12 @@ func (WordModel) TableName() string {
 
 var numberRegex = regexp.MustCompile("[^0-9]")
 
-func New(s string) (*WordModel, error) {
+func FromCmudict(line string) (*WordModel, error) {
 	var err error
 	w := WordModel{}
 
 	// Split word and arpabet
-	split := strings.SplitN(s, " ", 2)
+	split := strings.SplitN(line, " ", 2)
 
 	// Remove (#) from duplicate words
 	word := strings.SplitN(split[0], "(", 2)[0]
@@ -51,4 +52,20 @@ func New(s string) (*WordModel, error) {
 	}
 
 	return &w, nil
+}
+
+func FromString(word string) (*WordModel, error) {
+	var err error
+	w := WordModel{Guess: true}
+
+	err = w.Word.Scan(word)
+	if err != nil {
+		return &w, err
+	}
+
+	num := LetterReplacer.Replace(word)
+	num = numberRegex.ReplaceAllString(num, "")
+
+	err = w.Number.Scan(num)
+	return &w, err
 }

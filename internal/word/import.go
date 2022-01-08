@@ -25,7 +25,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 			}
 
 			line := s.Text()
-			w, err := New(line)
+			w, err := FromCmudict(line)
 			if err != nil {
 				return err
 			}
