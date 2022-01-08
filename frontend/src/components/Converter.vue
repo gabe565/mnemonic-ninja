@@ -29,10 +29,10 @@
             :disabled="!valid || disabled"
             color="accent" min-width="0" class="px-3"
           >
-            <v-icon v-if="loading">far fa-spinner-third fa-fw fa-spin-2x</v-icon>
+            <v-icon v-if="loading">fas fa-spinner-third fa-spin-2x fa-fw</v-icon>
             <template v-else>
-              <v-icon v-if="$vuetify.breakpoint.smAndDown">far fa-arrow-down fa-fw</v-icon>
-              <v-icon v-else>far fa-arrow-right fa-fw</v-icon>
+              <v-icon v-if="$vuetify.breakpoint.smAndDown">fas fa-arrow-alt-down fa-fw</v-icon>
+              <v-icon v-else>fas fa-arrow-alt-right fa-fw</v-icon>
             </template>
           </v-btn>
         </v-col>
