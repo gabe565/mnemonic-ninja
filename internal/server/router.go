@@ -3,6 +3,7 @@ package server
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
 	"io/fs"
@@ -10,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
@@ -39,6 +41,7 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	})
 
 	r.Route("/api", func(r chi.Router) {
+		r.Use(httprate.LimitByIP(60, time.Minute))
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
 		r.Get("/number/{query}", ConversionHandler(db, QueryNumber))

@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/go-chi/chi/v5 v5.0.7
+	github.com/go-chi/httprate v0.5.2
 	github.com/go-chi/render v1.0.1
 	github.com/spf13/pflag v1.0.5
 	gorm.io/driver/sqlite v1.2.6
@@ -11,6 +12,7 @@ require (
 )
 
 require (
+	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/mattn/go-sqlite3 v1.14.10 // indirect
