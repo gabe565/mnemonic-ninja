@@ -77,10 +77,10 @@ export default {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
       // set to preferred scheme
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      this.$vuetify.theme.isDark = mediaQuery.matches;
+      this.$vuetify.theme.dark = mediaQuery.matches;
       // react to changes
       mediaQuery.addEventListener('change', (e) => {
-        this.$vuetify.theme.isDark = e.matches;
+        this.$vuetify.theme.dark = e.matches;
       });
     }
   },
