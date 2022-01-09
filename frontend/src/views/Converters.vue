@@ -26,6 +26,7 @@
 
               <v-tab-item>
                 <converter
+                  title="Number to Word"
                   from-label="Number"
                   from-placeholder="70395"
                   :from-value="num"
@@ -43,6 +44,7 @@
 
               <v-tab-item>
                 <converter
+                  title="Word to Number"
                   from-label="Word"
                   from-placeholder="example"
                   :from-value="word"

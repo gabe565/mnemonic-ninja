@@ -1,9 +1,18 @@
 <template>
   <v-form v-model="valid">
     <v-container>
+      <v-row>
+        <v-col>
+          <h2 class="text-h4 text-center">
+            {{ title }}
+          </h2>
+        </v-col>
+      </v-row>
       <v-row v-if="$slots.default">
         <v-col>
-          <slot/>
+          <p class="v-card__text text--secondary mb-0 pa-0">
+            <slot/>
+          </p>
         </v-col>
       </v-row>
       <v-row>
@@ -62,6 +71,7 @@ import { wait } from '@/util/helpers';
 
 export default {
   props: {
+    title: String,
     fromLabel: String,
     fromPlaceholder: String,
     fromValue: String,
