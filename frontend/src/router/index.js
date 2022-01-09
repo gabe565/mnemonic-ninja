@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Converters from '@/views/Converters.vue';
+import Converters, { Tabs } from '@/views/Converters.vue';
 import About from '@/views/About.vue';
 import NotFound from '@/views/NotFound.vue';
 
@@ -19,7 +19,7 @@ const routes = [
   },
   {
     path: '/convert/word/:word',
-    redirect: ({ params }) => ({ name: 'Converters', params: { word: params.word } }),
+    redirect: ({ params }) => ({ name: 'Converters', params: { word: params.word, startTab: Tabs.WordToNumber } }),
   },
   {
     path: '/convert/num/:num',

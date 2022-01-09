@@ -13,51 +13,53 @@
           </p>
         </v-col>
       </v-row>
-      <v-row class="py-4">
-        <v-divider/>
-      </v-row>
 
       <v-row>
         <v-col>
-          <converter
-            from-label="Number"
-            from-placeholder="70395"
-            :from-value="num"
-            :from-regex="/[^0-9\s,;]/"
-            to-label="Word"
-            url="/api/number"
-            class="pb-5"
-          >
-            <h2 class="text-h4 pb-4">Number to Word</h2>
-            Enter a number or a list of numbers to get a converted list of words.
-            <br>
-            Many words can show up for a single number. If this happens, the result box will be scrollable.
-          </converter>
+          <v-card elevation="3">
+            <v-tabs
+              v-model="tab" :grow="$vuetify.breakpoint.smAndDown"
+              background-color="tertiary"
+            >
+              <v-tab>Number to Word</v-tab>
+              <v-tab>Word to Number</v-tab>
+
+              <v-tab-item>
+                <converter
+                  from-label="Number"
+                  from-placeholder="70395"
+                  :from-value="num"
+                  :from-regex="/[^0-9\s,;]/"
+                  to-label="Word"
+                  url="/api/number"
+                  class="pb-5"
+                >
+                  <h2 class="text-h4 pb-4">Number to Word</h2>
+                  Enter a number or a list of numbers to get a converted list of words.
+                  <br>
+                  Many words can show up for a single number. If this happens, the result box will be scrollable.
+                </converter>
+              </v-tab-item>
+
+              <v-tab-item>
+                <converter
+                  from-label="Word"
+                  from-placeholder="example"
+                  :from-value="word"
+                  :from-regex="/[^A-Za-z-'\s,;.]/"
+                  to-label="Number"
+                  url="/api/word"
+                  class="pb-5"
+                >
+                  <h2 class="text-h4 pb-4">Word to Number</h2>
+                  Enter a word or a list of words to get a converted list of numbers.
+                  <br>
+                  More than one number may show up for a single word. This means there is more than one pronunciation!
+                </converter>
+              </v-tab-item>
+            </v-tabs>
+          </v-card>
         </v-col>
-      </v-row>
-      <v-row class="py-4">
-        <v-divider/>
-      </v-row>
-      <v-row>
-        <v-col>
-          <converter
-            from-label="Word"
-            from-placeholder="example"
-            :from-value="word"
-            :from-regex="/[^A-Za-z-'\s,;.]/"
-            to-label="Number"
-            url="/api/word"
-            class="pb-5"
-          >
-            <h2 class="text-h4 pb-4">Word to Number</h2>
-            Enter a word or a list of words to get a converted list of numbers.
-            <br>
-            More than one number may show up for a single word. This means there is more than one pronunciation!
-          </converter>
-        </v-col>
-      </v-row>
-      <v-row class="py-4">
-        <v-divider/>
       </v-row>
     </v-container>
   </Page>
@@ -67,23 +69,33 @@
 import Page from '@/layouts/Page.vue';
 import Converter from '@/components/Converter.vue';
 
+export const Tabs = {
+  NumberToWord: 0,
+  WordToNumber: 1,
+};
+
 export default {
   name: 'Converters',
+
+  props: {
+    startTab: Number,
+    word: String,
+    num: String,
+  },
+
+  data: () => ({
+    tab: 0,
+  }),
+
+  created() {
+    if (this.startTab) {
+      this.tab = this.startTab;
+    }
+  },
 
   components: {
     Page,
     Converter,
-  },
-
-  computed: {
-    word() {
-      if ('word' in this.$route.params) return this.$route.params.word;
-      return '';
-    },
-    num() {
-      if ('num' in this.$route.params) return this.$route.params.num;
-      return '';
-    },
   },
 };
 </script>

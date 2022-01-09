@@ -11,15 +11,15 @@ export default new Vuetify({
   theme: {
     dark: true,
     themes: {
-      dark: {
-        primary: colors.blueGrey,
-        secondary: '#60688b',
-        accent: colors.deepPurple,
-      },
       light: {
         primary: colors.blueGrey,
-        secondary: '#60688b',
-        accent: colors.deepPurple,
+        tertiary: colors.blueGrey.lighten4,
+        accent: colors.indigo.lighten3,
+      },
+      dark: {
+        primary: colors.blueGrey,
+        tertiary: colors.blueGrey.darken4,
+        accent: '#2d3874',
       },
     },
   },

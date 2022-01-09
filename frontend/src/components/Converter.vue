@@ -1,6 +1,6 @@
 <template>
   <v-form v-model="valid">
-    <v-container class="pa-0">
+    <v-container>
       <v-row v-if="$slots.default">
         <v-col>
           <slot/>
@@ -27,7 +27,8 @@
             type="submit"
             @click.prevent="manualUpdate"
             :disabled="!valid || disabled"
-            :color="error ? 'error' : 'accent'" min-width="0" class="px-3"
+            :color="error ? 'error' : 'accent'"
+            elevation="0" min-width="0" class="px-3"
           >
             <v-icon v-if="loading">fas fa-fan fa-spin-2x fa-fw</v-icon>
             <v-icon v-else-if="error">fas fa-exclamation-triangle fa-fw</v-icon>
