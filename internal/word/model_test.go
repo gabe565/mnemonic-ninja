@@ -34,7 +34,7 @@ func TestNewWord(t *testing.T) {
 			if err != nil {
 				t.Error(err)
 			}
-			if word != word {
+			if word != tc.word {
 				t.Errorf("invalid word. got %s, want %s", word, tc.word)
 			}
 			if wordModel.Arpabet != tc.arpabet {
