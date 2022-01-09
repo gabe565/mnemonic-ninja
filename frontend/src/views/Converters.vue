@@ -20,10 +20,10 @@
 
       <v-row>
         <v-col>
-          <v-card elevation="3">
+          <v-card elevation="3" class="overflow-hidden">
             <v-tabs
               v-model="tab" :grow="$vuetify.breakpoint.smAndDown"
-              background-color="tertiary"
+              background-color="tertiary" class="rounded-b-0"
             >
               <v-tab>Number to Word</v-tab>
               <v-tab>Word to Number</v-tab>
