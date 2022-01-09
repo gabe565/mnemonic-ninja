@@ -2,7 +2,7 @@
   <v-snackbar
     v-model="show"
     :timeout="timeout"
-    bottom right
+    bottom right class="pb-14 pb-md-0"
   >
     New version available!
     <template #action="{ attrs }">
