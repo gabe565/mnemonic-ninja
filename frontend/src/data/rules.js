@@ -8,13 +8,13 @@ class Rule {
 }
 
 export default {
-  Headers: [
+  headers: [
     { text: 'Number', icon: 'fa-hashtag' },
-    { text: 'Sounds', icon: 'fa-volume-up' },
-    { text: 'Letters', icon: 'fa-bars' },
-    { text: 'Comments/Memorization', icon: 'fa-comment' },
+    { text: 'Sounds', icon: 'fa-lips' },
+    { text: 'Letters', icon: 'fa-comment' },
+    { text: 'Comments/Memorization', icon: 'fa-head-side-brain' },
   ],
-  Rules: [
+  rules: [
     new Rule(
       '0',
       [

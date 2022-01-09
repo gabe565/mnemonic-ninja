@@ -3,14 +3,14 @@
     <template v-slot:default>
       <thead>
       <tr>
-        <th class="text-no-wrap" v-for="(row, key) of Rules.Headers" :key="key">
-          <v-icon x-small>far {{ row.icon }} fa-fw</v-icon>
+        <th class="text-no-wrap" v-for="(row, key) of rules.headers" :key="key">
+          <v-icon x-small>fas {{ row.icon }} fa-fw</v-icon>
           {{ row.text }}
         </th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="rule of Rules.Rules" :key="rule.number">
+      <tr v-for="rule of rules.rules" :key="rule.number">
         <td>{{ rule.number }}</td>
         <td>
           <ul>
@@ -34,14 +34,14 @@
 </template>
 
 <script>
-import Rules from '@/data/rules';
+import rules from '@/data/rules';
 
 export default {
   name: 'RulesTable',
 
-  created() {
-    this.Rules = Rules;
-  },
+  data: () => ({
+    rules,
+  }),
 };
 </script>
 
