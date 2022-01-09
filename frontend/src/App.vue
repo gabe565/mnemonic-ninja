@@ -31,8 +31,7 @@
     <UpdateSnackbar/>
 
     <v-main>
-      <router-view/>
-      <v-spacer :style="{ height: $vuetify.breakpoint.smAndDown ? '56px' : '28px' }"/>
+      <router-view class="pb-16"/>
     </v-main>
 
     <v-bottom-navigation
