@@ -6,6 +6,7 @@ import (
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
 	"net/http"
+	"net/url"
 	"regexp"
 )
 
@@ -81,6 +82,10 @@ func ConversionHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		fullQuery := chi.URLParam(r, "query")
+		fullQuery, err = url.QueryUnescape(fullQuery)
+		if err != nil {
+			panic(err)
+		}
 		queries := SplitRegex.Split(fullQuery, -1)
 		response := ConversionResponse{QueryType: queryType}
 		for _, query := range queries {
