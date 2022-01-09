@@ -117,10 +117,6 @@ export default {
   }
 }
 
-h1, h2, h3, h4, h5 {
-  text-align: center;
-}
-
 .fa-spin-2x {
   animation: fa-spin 750ms infinite linear;
 }

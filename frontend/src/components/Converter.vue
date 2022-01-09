@@ -20,7 +20,7 @@
 
         <v-col
           cols="12" md="auto"
-          align-self="center" class="text-center pt-0 py-md-3"
+          align-self="center" class="text-center py-0"
         >
           <v-btn
             large

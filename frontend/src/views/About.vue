@@ -14,7 +14,7 @@
       </v-row>
       <v-row class="pb-4">
         <v-col>
-          <h2 class="text-h4">Conversion Rules</h2>
+          <h2 class="text-h4 pb-4">Conversion Rules</h2>
           <p>Based on the <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system#The_system" target="_blank">Wikipedia page</a>, here are the numbers and their corresponding sounds:</p>
           <RulesTable/>
         </v-col>
@@ -24,7 +24,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <h2 class="text-h4">Development</h2>
+          <h2 class="text-h4 pb-4">Development</h2>
           <p>
             To create this application, I used the wonderful <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank">CMU Dictionary</a> (I actually used <a href="https://github.com/cmusphinx/cmudict" target="_blank">this updated version on GitHub</a>).<br>
             Then I iterate over every Arpabet entry and convert it to its corresponding numeric form.

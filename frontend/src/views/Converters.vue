@@ -34,7 +34,7 @@
                   url="/api/number"
                   class="pb-5"
                 >
-                  <h2 class="text-h4 pb-4">Number to Word</h2>
+                  <h2 class="text-h4 pb-5 text-center">Number to Word</h2>
                   Enter a number or a list of numbers to get a converted list of words.
                   <br>
                   Many words can show up for a single number. If this happens, the result box will be scrollable.
@@ -51,7 +51,7 @@
                   url="/api/word"
                   class="pb-5"
                 >
-                  <h2 class="text-h4 pb-4">Word to Number</h2>
+                  <h2 class="text-h4 pb-5 text-center">Word to Number</h2>
                   Enter a word or a list of words to get a converted list of numbers.
                   <br>
                   More than one number may show up for a single word. This means there is more than one pronunciation!
