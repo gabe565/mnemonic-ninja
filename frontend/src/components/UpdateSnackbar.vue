@@ -6,7 +6,7 @@
   >
     New version available!
     <template #action="{ attrs }">
-      <v-btn v-bind="attrs" @click.native="refreshApp" text color="primary">
+      <v-btn v-bind="attrs" @click.native="refreshApp" text color="info">
         Refresh
       </v-btn>
       <v-btn icon @click="show = false">
