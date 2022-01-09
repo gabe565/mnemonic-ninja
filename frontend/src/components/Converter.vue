@@ -80,9 +80,6 @@ export default {
     };
   },
   computed: {
-    empty() {
-      return this.query === '';
-    },
     result() {
       if (this.response.result) {
         return this.response.result.map((value) => ({
@@ -120,7 +117,7 @@ export default {
       this.disabled = false;
     },
     async getResponse() {
-      if (this.empty || !this.valid) {
+      if (!this.query || !this.valid) {
         this.response = {};
         this.error = null;
         return;
