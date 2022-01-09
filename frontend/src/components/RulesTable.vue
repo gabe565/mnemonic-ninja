@@ -3,9 +3,9 @@
     <template v-slot:default>
       <thead>
       <tr>
-        <th class="all" v-for="(row, key) of Rules.Headers" :key="key">
+        <th class="text-no-wrap" v-for="(row, key) of Rules.Headers" :key="key">
           <v-icon x-small>far {{ row.icon }} fa-fw</v-icon>
-          &nbsp;{{ row.text }}
+          {{ row.text }}
         </th>
       </tr>
       </thead>
