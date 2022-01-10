@@ -37,7 +37,10 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-snackbar v-model="showCopiedSnackbar" timeout="5000" bottom>
+    <v-snackbar
+      v-model="showCopiedSnackbar" timeout="5000"
+      bottom class="pb-14 pb-md-0"
+    >
       Copied to clipboard.
     </v-snackbar>
   </v-col>
