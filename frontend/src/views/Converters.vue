@@ -22,8 +22,8 @@
         <v-col>
           <v-card elevation="3" class="overflow-hidden">
             <v-tabs
-              v-model="tab" :grow="$vuetify.breakpoint.smAndDown"
-              background-color="tertiary" class="rounded-b-0"
+              v-model="tab" center-active
+              background-color="tertiary" class="rounded-b-0" show-arrows
             >
               <v-tab :to="{ name: 'Converters', params: { startTab: 'interactive' }}">Interactive</v-tab>
               <v-tab :to="{ name: 'Converters', params: { startTab: 'num' }}">Batch Number to Word</v-tab>
