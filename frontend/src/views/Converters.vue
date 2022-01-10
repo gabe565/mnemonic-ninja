@@ -26,8 +26,8 @@
               background-color="tertiary" class="rounded-b-0" show-arrows
             >
               <v-tab :to="{ name: 'Converters', params: { startTab: 'interactive' }}">Interactive</v-tab>
-              <v-tab :to="{ name: 'Converters', params: { startTab: 'num' }}">Batch Number to Word</v-tab>
-              <v-tab :to="{ name: 'Converters', params: { startTab: 'word' }}">Batch Word to Number</v-tab>
+              <v-tab :to="{ name: 'Converters', params: { startTab: 'num' }}">Number to Word</v-tab>
+              <v-tab :to="{ name: 'Converters', params: { startTab: 'word' }}">Word to Number</v-tab>
 
               <v-tab-item value="/converters/interactive">
                 <v-card-text>
