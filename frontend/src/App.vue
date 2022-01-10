@@ -20,7 +20,7 @@
 
       <template #extension v-if="$vuetify.breakpoint.mdAndUp">
         <v-tabs centered color="white">
-          <v-tab v-for="route in routes" :key="route.path" :to="route.path">
+          <v-tab v-for="route in routes" :key="route.path" :to="route.alias || route.path">
             <v-icon class="pr-2">fas {{ route.meta.icon }} fa-fw</v-icon>
             {{ route.name }}
           </v-tab>
@@ -43,8 +43,7 @@
       <v-btn
         v-for="route in routes"
         :key="route.path"
-        :to="route.path"
-        :value="route.name"
+        :to="route.alias || route.path"
       >
         <span>{{ route.name }}</span>
         <v-icon>fas {{ route.meta.icon }} fa-fw</v-icon>

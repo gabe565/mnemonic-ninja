@@ -20,6 +20,7 @@ export default new Vuetify({
         primary: colors.blueGrey,
         tertiary: colors.blueGrey.darken4,
         accent: '#2d3874',
+        anchor: colors.blueGrey.lighten3,
       },
     },
   },

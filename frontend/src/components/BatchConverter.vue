@@ -17,10 +17,10 @@
       </v-row>
       <v-row>
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">{{ fromLabel }}</h2>
+          <h2 class="text-h4">{{ queryLabel }}</h2>
           <v-textarea
             clearable no-resize outlined
-            :name="fromLabel" :placeholder="fromPlaceholder"
+            :name="queryLabel" :placeholder="queryPlaceholder"
             :rules="rules"
             :height="height"
             v-model="query"
@@ -49,7 +49,7 @@
         </v-col>
 
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">{{ toLabel }}</h2>
+          <h2 class="text-h4">{{ resultLabel }}</h2>
           <v-simple-table :height="height" class="v-data-table--outlined">
             <tbody>
             <tr v-for="(item, key) in result" :key="key">
@@ -72,11 +72,11 @@ import { wait } from '@/util/helpers';
 export default {
   props: {
     title: String,
-    fromLabel: String,
-    fromPlaceholder: String,
-    fromValue: String,
-    fromRegex: RegExp,
-    toLabel: String,
+    queryLabel: String,
+    queryPlaceholder: String,
+    queryValue: String,
+    queryRegex: RegExp,
+    resultLabel: String,
     url: String,
     description: String,
   },
@@ -112,11 +112,11 @@ export default {
   },
   async created() {
     this.rules = [
-      (v) => !v || !this.fromRegex.test(v) || 'Invalid input.',
+      (v) => !v || !this.queryRegex.test(v) || 'Invalid input.',
     ];
 
-    if (this.fromValue) {
-      this.query = this.fromValue;
+    if (this.queryValue) {
+      this.query = this.queryValue;
       await this.getResponse();
     }
   },

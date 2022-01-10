@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Converters, { Tabs } from '@/views/Converters.vue';
+import Converters from '@/views/Converters.vue';
 import About from '@/views/About.vue';
 import NotFound from '@/views/NotFound.vue';
 
@@ -9,6 +9,11 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/converters',
+    redirect: { name: 'Converters', params: { startTab: 'interactive' } },
+  },
+  {
+    path: '/converters/:startTab?/:query?',
+    alias: '/converters',
     name: 'Converters',
     component: Converters,
     props: true,
@@ -16,14 +21,6 @@ const routes = [
       icon: 'fa-exchange-alt',
       showInNav: true,
     },
-  },
-  {
-    path: '/convert/word/:word',
-    redirect: ({ params }) => ({ name: 'Converters', params: { word: params.word, startTab: Tabs.WordToNumber } }),
-  },
-  {
-    path: '/convert/num/:num',
-    redirect: ({ params }) => ({ name: 'Converters', params: { num: params.num } }),
   },
   {
     path: '/about',
@@ -36,7 +33,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: { name: 'Converters' },
+    redirect: { name: 'Converters', params: { startTab: 'interactive' } },
   },
   {
     path: '*',

@@ -43,8 +43,9 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 		r.Use(httprate.LimitByIP(60, time.Minute))
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
-		r.Get("/number/{query}", ConversionHandler(db, QueryNumber))
-		r.Get("/word/{query}", ConversionHandler(db, QueryWord))
+		r.Get("/number/{query}", BatchHandler(db, QueryNumber))
+		r.Get("/word/{query}", BatchHandler(db, QueryWord))
+		r.Get("/interactive/{query}", InteractiveHandler(db))
 	})
 
 	return r
