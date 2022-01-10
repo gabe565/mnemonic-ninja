@@ -109,6 +109,11 @@ export default {
     query: debounce(async function () {
       await this.getResponse();
     }, 200),
+    queryValue(newVal) {
+      if (newVal) {
+        this.query = newVal;
+      }
+    },
   },
   async created() {
     this.rules = [
