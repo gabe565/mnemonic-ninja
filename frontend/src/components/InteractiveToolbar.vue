@@ -21,7 +21,7 @@
           <v-chip
             @click:close="$emit('go-back-to', key)"
             v-bind="attrs" v-on="on"
-            class="mr-2"
+            class="ma-1"
             close
           >
             {{ pair.word }}
