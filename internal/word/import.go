@@ -20,12 +20,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	err = db.Transaction(func(db *gorm.DB) error {
 		words := make([]*WordModel, 0, ImportBatchSize)
 		for s.Scan() {
-			if err := s.Err(); err != nil {
-				panic(s.Err())
-			}
-
-			line := s.Text()
-			w, err := FromCmudict(line)
+			w, err := FromCmudict(s.Text())
 			if err != nil {
 				return err
 			}
@@ -40,6 +35,10 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 			}
 			lineCount += 1
 		}
+		if err := s.Err(); err != nil {
+			return s.Err()
+		}
+
 		err = db.Create(words).Error
 		return err
 	})
