@@ -2,6 +2,7 @@ package database
 
 import (
 	"github.com/gabe565/mnemonic-ninja/internal/word"
+	flag "github.com/spf13/pflag"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -9,6 +10,12 @@ import (
 	"os"
 	"time"
 )
+
+var Dsn string
+
+func init() {
+	flag.StringVar(&Dsn, "dsn", "file::memory:?cache=shared", "SQLite connection string")
+}
 
 func SetupDatabase() (*gorm.DB, error) {
 	var err error
@@ -23,7 +30,7 @@ func SetupDatabase() (*gorm.DB, error) {
 		},
 	)
 
-	db, err := gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{
+	db, err := gorm.Open(sqlite.Open(Dsn), &gorm.Config{
 		Logger: l,
 	})
 	if err != nil {
