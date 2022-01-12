@@ -64,7 +64,7 @@ func FromString(word string) (*WordModel, error) {
 	}
 
 	num := LetterReplacer.Replace(word)
-	num = numberRegex.ReplaceAllString(num, "")
+	num = numberRegex.ReplaceAllLiteralString(num, "")
 
 	err = w.Number.Scan(num)
 	return &w, err
