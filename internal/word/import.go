@@ -20,12 +20,9 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	err = db.Transaction(func(db *gorm.DB) error {
 		words := make([]*WordModel, 0, ImportBatchSize)
 		for s.Scan() {
-			w, err := FromCmudict(s.Text())
-			if err != nil {
-				return err
-			}
-
+			w := FromCmudict(s.Text())
 			words = append(words, w)
+
 			if len(words) >= ImportBatchSize {
 				result := db.Create(words)
 				inserted += result.RowsAffected

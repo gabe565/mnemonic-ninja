@@ -41,13 +41,8 @@ func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 			entry.Count = result.RowsAffected
 
 			if queryType == QueryWord && len(entry.Words) == 0 {
-				w, err := word.FromString(query)
-				if err != nil {
-					panic(err)
-				}
-				if w.Word.Valid {
-					entry.Words = append(entry.Words, w)
-				}
+				w := word.FromString(query)
+				entry.Words = append(entry.Words, w)
 			}
 			response.Result = append(response.Result, &entry)
 		}

@@ -1,16 +1,15 @@
 package word
 
 import (
-	"database/sql"
 	"regexp"
 	"strings"
 )
 
 type WordModel struct {
-	Word    sql.NullString `gorm:"index"`
-	Arpabet string         `gorm:"-"`
-	Number  sql.NullString `gorm:"index"`
-	Guess   bool           `gorm:"-"`
+	Word    string `gorm:"index"`
+	Arpabet string `gorm:"-"`
+	Number  string `gorm:"index"`
+	Guess   bool   `gorm:"-"`
 }
 
 func (WordModel) TableName() string {
@@ -19,53 +18,38 @@ func (WordModel) TableName() string {
 
 var numberRegex = regexp.MustCompile("[^0-9]")
 
-func FromCmudict(line string) (*WordModel, error) {
-	var err error
+func FromCmudict(line string) *WordModel {
 	w := WordModel{}
 
 	// Split word and arpabet
 	split := strings.SplitN(line, " ", 2)
 
 	// Remove (#) from duplicate words
-	word := strings.SplitN(split[0], "(", 2)[0]
-	err = w.Word.Scan(word)
-	if err != nil {
-		return &w, err
-	}
+	w.Word = strings.SplitN(split[0], "(", 2)[0]
 
 	// Remove comments
 	arpabet := strings.SplitN(split[1], "#", 2)[0]
 	arpabet = strings.Trim(arpabet, " ")
 	w.Arpabet = arpabet
 
-	var numbers string
 	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
 		number := ArpabetReplacer.Replace(v)
 		if numberRegex.MatchString(number) {
 			continue
 		}
-		numbers += number
-	}
-	err = w.Number.Scan(numbers)
-	if err != nil {
-		return &w, err
+		w.Number += number
 	}
 
-	return &w, nil
+	return &w
 }
 
-func FromString(word string) (*WordModel, error) {
-	var err error
-	w := WordModel{Guess: true}
+func FromString(word string) *WordModel {
+	number := LetterReplacer.Replace(word)
+	number = numberRegex.ReplaceAllLiteralString(number, "")
 
-	err = w.Word.Scan(word)
-	if err != nil {
-		return &w, err
+	return &WordModel{
+		Word:   word,
+		Number: number,
+		Guess:  true,
 	}
-
-	num := LetterReplacer.Replace(word)
-	num = numberRegex.ReplaceAllLiteralString(num, "")
-
-	err = w.Number.Scan(num)
-	return &w, err
 }
