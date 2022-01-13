@@ -16,7 +16,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 	log.Println("Loading words")
 	startTime := time.Now()
 	s := bufio.NewScanner(strings.NewReader(cmudict))
-	var lineCount int64
+	var inserted int64
 	err = db.Transaction(func(db *gorm.DB) error {
 		words := make([]*WordModel, 0, ImportBatchSize)
 		for s.Scan() {
@@ -27,37 +27,28 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 
 			words = append(words, w)
 			if len(words) >= ImportBatchSize {
-				err = db.Create(words).Error
-				if err != nil {
-					return err
+				result := db.Create(words)
+				inserted += result.RowsAffected
+				if result.Error != nil {
+					return result.Error
 				}
 				words = make([]*WordModel, 0, ImportBatchSize)
 			}
-			lineCount += 1
 		}
 		if err := s.Err(); err != nil {
 			return s.Err()
 		}
 
-		err = db.Create(words).Error
-		return err
+		result := db.Create(words)
+		inserted += result.RowsAffected
+		return result.Error
 	})
 	if err != nil {
 		return err
 	}
 	timeTaken := time.Since(startTime)
 
-	var count int64
-	err = db.Model(&WordModel{}).Count(&count).Error
-	if err != nil {
-		return err
-	}
-
-	if count != lineCount {
-		log.Fatalf("Not all words loaded sucessfully. missed %d words.\n", lineCount-count)
-	}
-
-	log.Printf("Loaded %d words in %s\n", count, timeTaken)
+	log.Printf("Loaded %d words in %s\n", inserted, timeTaken)
 
 	return nil
 }

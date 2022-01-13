@@ -31,12 +31,14 @@ func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 			}
 			entry := ConversionEntry{Query: query}
 
-			err = db.Distinct(queryType.DistinctColumn()).
+			result := db.Distinct(queryType.DistinctColumn()).
 				Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
-				Find(&entry.Words).Error
-			if err != nil {
-				panic(err)
+				Find(&entry.Words)
+			if result.Error != nil {
+				panic(result.Error)
 			}
+
+			entry.Count = result.RowsAffected
 
 			if queryType == QueryWord && len(entry.Words) == 0 {
 				w, err := word.FromString(query)

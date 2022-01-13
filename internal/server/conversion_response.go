@@ -7,7 +7,7 @@ import (
 
 type ConversionEntry struct {
 	Query string `json:"query"`
-	Count int    `json:"count"`
+	Count int64  `json:"count"`
 	Guess bool   `json:"guess,omitempty"`
 
 	Words  []*word.WordModel `json:"-"`
@@ -39,7 +39,6 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 				result.Guess = w.Guess
 			}
 		}
-		result.Count = len(result.Result)
 	}
 	response.Count = len(response.Result)
 	return err

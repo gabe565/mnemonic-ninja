@@ -26,14 +26,16 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 			for i := len(query); i > 0; i-- {
 				entry := ConversionEntry{Query: query[0:i]}
 
-				err = db.Distinct(queryType.DistinctColumn()).
+				result := db.Distinct(queryType.DistinctColumn()).
 					Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
-					Find(&entry.Words).Error
-				if err != nil {
-					panic(err)
+					Find(&entry.Words)
+				if result.Error != nil {
+					panic(result.Error)
 				}
 
-				if len(entry.Words) > 0 {
+				entry.Count = result.RowsAffected
+
+				if entry.Count > 0 {
 					response.Result = append(response.Result, &entry)
 				}
 			}
