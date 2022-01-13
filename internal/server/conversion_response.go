@@ -26,9 +26,9 @@ func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Reques
 		for _, w := range result.Words {
 			var responseEntry interface{}
 			switch response.QueryType {
-			case QueryWord:
+			case Word:
 				responseEntry = w.Number
-			case QueryNumber:
+			case Number:
 				responseEntry = w.Word
 			}
 			if err != nil {

@@ -9,7 +9,7 @@ import (
 )
 
 func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
-	queryType := QueryNumber
+	queryType := Number
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		query := chi.URLParam(r, "query")
