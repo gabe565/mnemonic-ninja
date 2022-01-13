@@ -6,8 +6,8 @@ import (
 	"embed"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal/database"
+	"github.com/gabe565/mnemonic-ninja/internal/database/seeds"
 	"github.com/gabe565/mnemonic-ninja/internal/server"
-	"github.com/gabe565/mnemonic-ninja/internal/word"
 	flag "github.com/spf13/pflag"
 	"io/fs"
 	"log"
@@ -43,12 +43,12 @@ func main() {
 		}
 	})
 
-	db, err := database.SetupDatabase()
+	db, err := database.Setup()
 	if err != nil {
 		panic(err)
 	}
 
-	err = word.ImportWords(db, cmudict)
+	err = seeds.SeedWords(db, cmudict)
 	if err != nil {
 		panic(err)
 	}

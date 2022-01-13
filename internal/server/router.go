@@ -1,6 +1,8 @@
 package server
 
 import (
+	"github.com/gabe565/mnemonic-ninja/internal/server/handlers"
+	"github.com/gabe565/mnemonic-ninja/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
@@ -43,9 +45,9 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 		r.Use(httprate.LimitByIP(60, time.Minute))
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
-		r.Get("/number/{query}", BatchHandler(db, Number))
-		r.Get("/word/{query}", BatchHandler(db, Word))
-		r.Get("/interactive/{query}", InteractiveHandler(db))
+		r.Get("/number/{query}", handlers.BatchHandler(db, models.Number))
+		r.Get("/word/{query}", handlers.BatchHandler(db, models.Word))
+		r.Get("/interactive/{query}", handlers.InteractiveHandler(db))
 	})
 
 	return r

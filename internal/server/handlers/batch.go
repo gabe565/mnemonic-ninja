@@ -1,7 +1,8 @@
-package server
+package handlers
 
 import (
-	"github.com/gabe565/mnemonic-ninja/internal/word"
+	models2 "github.com/gabe565/mnemonic-ninja/internal/database/models"
+	"github.com/gabe565/mnemonic-ninja/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
@@ -12,7 +13,7 @@ import (
 
 var SplitRegex = regexp.MustCompile("[+,; ]+")
 
-func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
+func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		fullQuery := chi.URLParam(r, "query")
@@ -21,7 +22,7 @@ func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 			panic(err)
 		}
 		queries := SplitRegex.Split(fullQuery, -1)
-		response := ConversionResponse{
+		response := models.ConversionResponse{
 			Query:     fullQuery,
 			QueryType: queryType,
 		}
@@ -29,7 +30,7 @@ func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 			if query == "" {
 				continue
 			}
-			entry := ConversionEntry{Query: query}
+			entry := models.ConversionEntry{Query: query}
 
 			result := db.Distinct(queryType.DistinctColumn()).
 				Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
@@ -40,8 +41,8 @@ func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 
 			entry.Count = result.RowsAffected
 
-			if queryType == Word && len(entry.Words) == 0 {
-				w := word.FromString(query)
+			if queryType == models.Word && len(entry.Words) == 0 {
+				w := models2.FromString(query)
 				entry.Words = append(entry.Words, w)
 			}
 			response.Result = append(response.Result, &entry)

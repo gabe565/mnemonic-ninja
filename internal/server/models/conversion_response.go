@@ -1,18 +1,8 @@
-package server
+package models
 
 import (
-	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"net/http"
 )
-
-type ConversionEntry struct {
-	Query string `json:"query"`
-	Count int64  `json:"count"`
-	Guess bool   `json:"guess,omitempty"`
-
-	Words  []*word.WordModel `json:"-"`
-	Result []string          `json:"result"`
-}
 
 type ConversionResponse struct {
 	Query     string             `json:"query"`

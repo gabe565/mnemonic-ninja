@@ -2,7 +2,7 @@ package word
 
 import "strings"
 
-var LetterReplacer = strings.NewReplacer(
+var Letter = strings.NewReplacer(
 	"th", "1",
 	"ch", "6",
 	"sh", "6",

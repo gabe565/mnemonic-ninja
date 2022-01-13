@@ -1,6 +1,7 @@
-package server
+package handlers
 
 import (
+	"github.com/gabe565/mnemonic-ninja/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
@@ -9,7 +10,7 @@ import (
 )
 
 func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
-	queryType := Number
+	queryType := models.Number
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		query := chi.URLParam(r, "query")
@@ -17,14 +18,14 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
-		response := ConversionResponse{
+		response := models.ConversionResponse{
 			Query:     query,
 			QueryType: queryType,
 		}
 
 		if query != "" {
 			for i := len(query); i > 0; i-- {
-				entry := ConversionEntry{Query: query[0:i]}
+				entry := models.ConversionEntry{Query: query[0:i]}
 
 				result := db.Distinct(queryType.DistinctColumn()).
 					Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).

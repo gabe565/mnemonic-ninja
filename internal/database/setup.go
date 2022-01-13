@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/gabe565/mnemonic-ninja/internal/word"
+	"github.com/gabe565/mnemonic-ninja/internal/database/models"
 	flag "github.com/spf13/pflag"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -17,7 +17,7 @@ func init() {
 	flag.StringVar(&Dsn, "dsn", "file::memory:?cache=shared", "SQLite connection string")
 }
 
-func SetupDatabase() (*gorm.DB, error) {
+func Setup() (*gorm.DB, error) {
 	var err error
 
 	l := logger.New(
@@ -37,7 +37,7 @@ func SetupDatabase() (*gorm.DB, error) {
 		return db, err
 	}
 
-	err = db.AutoMigrate(&word.WordModel{})
+	err = db.AutoMigrate(&models.Word{})
 	if err != nil {
 		return db, err
 	}

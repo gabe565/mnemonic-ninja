@@ -1,8 +1,9 @@
-package word
+package seeds
 
 import (
 	"bufio"
 	_ "embed"
+	"github.com/gabe565/mnemonic-ninja/internal/database/models"
 	"gorm.io/gorm"
 	"log"
 	"strings"
@@ -11,16 +12,16 @@ import (
 
 const ImportBatchSize = 500
 
-func ImportWords(db *gorm.DB, cmudict string) error {
+func SeedWords(db *gorm.DB, cmudict string) error {
 	var err error
 	log.Println("Loading words")
 	startTime := time.Now()
 	s := bufio.NewScanner(strings.NewReader(cmudict))
 	var inserted int64
 	err = db.Transaction(func(db *gorm.DB) error {
-		words := make([]*WordModel, 0, ImportBatchSize)
+		words := make([]*models.Word, 0, ImportBatchSize)
 		for s.Scan() {
-			w := FromCmudict(s.Text())
+			w := models.FromCmudict(s.Text())
 			words = append(words, w)
 
 			if len(words) >= ImportBatchSize {
@@ -29,7 +30,7 @@ func ImportWords(db *gorm.DB, cmudict string) error {
 				if result.Error != nil {
 					return result.Error
 				}
-				words = make([]*WordModel, 0, ImportBatchSize)
+				words = make([]*models.Word, 0, ImportBatchSize)
 			}
 		}
 		if err := s.Err(); err != nil {

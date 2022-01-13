@@ -2,7 +2,7 @@ package word
 
 import "strings"
 
-var ArpabetReplacer = strings.NewReplacer(
+var Arpabet = strings.NewReplacer(
 	"AA0 ", "",
 	"AA1 ", "",
 	"AA2 ", "",

@@ -1,25 +1,26 @@
-package word
+package models
 
 import (
+	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"regexp"
 	"strings"
 )
 
-type WordModel struct {
+type Word struct {
 	Word    string `gorm:"index"`
 	Arpabet string `gorm:"-"`
 	Number  string `gorm:"index"`
 	Guess   bool   `gorm:"-"`
 }
 
-func (WordModel) TableName() string {
+func (Word) TableName() string {
 	return "words"
 }
 
 var numberRegex = regexp.MustCompile("[^0-9]")
 
-func FromCmudict(line string) *WordModel {
-	w := WordModel{}
+func FromCmudict(line string) *Word {
+	w := Word{}
 
 	// Split word and arpabet
 	split := strings.SplitN(line, " ", 2)
@@ -33,7 +34,7 @@ func FromCmudict(line string) *WordModel {
 	w.Arpabet = arpabet
 
 	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
-		number := ArpabetReplacer.Replace(v)
+		number := word.Arpabet.Replace(v)
 		if numberRegex.MatchString(number) {
 			continue
 		}
@@ -43,12 +44,12 @@ func FromCmudict(line string) *WordModel {
 	return &w
 }
 
-func FromString(word string) *WordModel {
-	number := LetterReplacer.Replace(word)
+func FromString(w string) *Word {
+	number := word.Letter.Replace(w)
 	number = numberRegex.ReplaceAllLiteralString(number, "")
 
-	return &WordModel{
-		Word:   word,
+	return &Word{
+		Word:   w,
 		Number: number,
 		Guess:  true,
 	}

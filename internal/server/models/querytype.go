@@ -1,4 +1,4 @@
-package server
+package models
 
 //go:generate stringer -linecomment -type QueryType
 type QueryType int
