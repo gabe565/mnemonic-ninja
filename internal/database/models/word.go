@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"regexp"
 	"strings"
@@ -19,7 +20,9 @@ func (Word) TableName() string {
 
 var numberRegex = regexp.MustCompile("[^0-9]")
 
-func FromCmudict(line string) *Word {
+var ErrInvalidArpabet = errors.New("invalid arpabet")
+
+func FromCmudict(line string) (*Word, error) {
 	w := Word{}
 
 	// Split word and arpabet
@@ -32,16 +35,19 @@ func FromCmudict(line string) *Word {
 	arpabet := strings.SplitN(split[1], "#", 2)[0]
 	arpabet = strings.Trim(arpabet, " ")
 	w.Arpabet = arpabet
+	if w.Arpabet == "" {
+		return &w, ErrInvalidArpabet
+	}
 
 	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
 		number := word.Arpabet.Replace(v)
 		if numberRegex.MatchString(number) {
-			continue
+			return &w, ErrInvalidArpabet
 		}
 		w.Number += number
 	}
 
-	return &w
+	return &w, nil
 }
 
 func FromString(w string) *Word {

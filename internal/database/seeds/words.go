@@ -21,7 +21,11 @@ func SeedWords(db *gorm.DB, cmudict string) error {
 	err = db.Transaction(func(db *gorm.DB) error {
 		words := make([]*models.Word, 0, ImportBatchSize)
 		for s.Scan() {
-			w := models.FromCmudict(s.Text())
+			w, err := models.FromCmudict(s.Text())
+			if err != nil {
+				return err
+			}
+
 			words = append(words, w)
 
 			if len(words) >= ImportBatchSize {
