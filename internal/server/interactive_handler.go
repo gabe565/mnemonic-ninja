@@ -18,7 +18,7 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 			panic(err)
 		}
 		response := ConversionResponse{
-			Query: query,
+			Query:     query,
 			QueryType: queryType,
 		}
 

@@ -22,7 +22,7 @@ func BatchHandler(db *gorm.DB, queryType QueryType) http.HandlerFunc {
 		}
 		queries := SplitRegex.Split(fullQuery, -1)
 		response := ConversionResponse{
-			Query: fullQuery,
+			Query:     fullQuery,
 			QueryType: queryType,
 		}
 		for _, query := range queries {
