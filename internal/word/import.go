@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const ImportBatchSize = 999
+const ImportBatchSize = 500
 
 func ImportWords(db *gorm.DB, cmudict string) error {
 	var err error
