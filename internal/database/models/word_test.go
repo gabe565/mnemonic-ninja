@@ -55,6 +55,7 @@ func TestFromString(t *testing.T) {
 		{input: "garage", word: "garage", number: "747", err: nil},
 		{input: "garages", word: "garages", number: "7470", err: nil},
 		{input: "garagez", word: "garagez", number: "7470", err: nil},
+		{input: "GARAGES", word: "garages", number: "7470", err: nil},
 	}
 	for _, tc := range testCases {
 		tc := tc

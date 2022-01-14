@@ -8,7 +8,7 @@ import (
 )
 
 type Word struct {
-	Word    string `gorm:"index"`
+	Word    string `gorm:"type:text collate nocase;index"`
 	Arpabet string `gorm:"-"`
 	Number  string `gorm:"index"`
 	Guess   bool   `gorm:"-"`
@@ -51,6 +51,8 @@ func FromCmudict(line string) (*Word, error) {
 }
 
 func FromString(w string) *Word {
+	w = strings.ToLower(w)
+
 	number := word.Letter.Replace(w)
 	number = numberRegex.ReplaceAllLiteralString(number, "")
 
