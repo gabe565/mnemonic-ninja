@@ -18,7 +18,7 @@
       <v-row>
         <v-col>
           <v-text-field
-            rounded filled label="Query" placeholder="70395" v-model="query"
+            rounded filled clearable label="Query" placeholder="70395" v-model="query"
             @keydown.backspace="reset" @select="resetAll" :loading="loading"
             :rules="rules"
           >
