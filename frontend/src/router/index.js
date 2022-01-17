@@ -43,6 +43,16 @@ const routes = [
       icon: 'fa-exclamation-triangle',
     },
   },
+
+  // Deprecated route redirects
+  {
+    path: '/converters/:startTab/:query',
+    redirect: (to) => ({
+      name: 'Converters',
+      ...to.params,
+      query: { q: to.params.query },
+    }),
+  },
 ];
 
 const router = new VueRouter({
