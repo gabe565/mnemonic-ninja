@@ -25,31 +25,17 @@
               v-model="tab" center-active
               background-color="tertiary" class="rounded-b-0" show-arrows
             >
-              <v-tab :to="{ name: 'Converters', params: { startTab: 'interactive' }}">Interactive</v-tab>
-              <v-tab :to="{ name: 'Converters', params: { startTab: 'num' }}">Number to Word</v-tab>
-              <v-tab :to="{ name: 'Converters', params: { startTab: 'word' }}">Word to Number</v-tab>
+              <v-tab
+                v-for="(tab, key) in tabs" :key="key"
+                :to="{ name: 'Converters', params: { startTab: tab.slug }}"
+              >{{ tab.name }}</v-tab>
 
-              <v-tab-item value="/converters/interactive">
+              <v-tab-item
+                v-for="(tab, key) in tabs" :key="key"
+                :value="`/converters/${tab.slug}`"
+              >
                 <v-card-text>
-                  <interactive-converter
-                    :query-value="startTab === 'interactive' ? query : undefined"
-                  />
-                </v-card-text>
-              </v-tab-item>
-
-              <v-tab-item value="/converters/num">
-                <v-card-text>
-                  <number-converter
-                    :query-value="startTab === 'num' ? query : undefined"
-                  />
-                </v-card-text>
-              </v-tab-item>
-
-              <v-tab-item value="/converters/word">
-                <v-card-text>
-                  <word-converter
-                    :query-value="startTab === 'word' ? query : undefined"
-                  />
+                  <component :is="`${tab.slug}-converter`"/>
                 </v-card-text>
               </v-tab-item>
             </v-tabs>
@@ -75,6 +61,11 @@ export default {
 
   data: () => ({
     tab: 'interactive',
+    tabs: [
+      { slug: 'interactive', name: 'Interactive' },
+      { slug: 'number', name: 'Number to Word' },
+      { slug: 'word', name: 'Word to Number' },
+    ],
   }),
 
   computed: {
