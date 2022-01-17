@@ -66,24 +66,22 @@
 
 <script>
 import ConversionApi from '@/mixins/ConversionApi';
+import QueryValidate from '@/mixins/QueryValidate';
 
 export default {
   props: {
     title: String,
-    queryRegex: RegExp,
     resultLabel: String,
     description: String,
   },
-  mixins: [ConversionApi],
+  mixins: [
+    ConversionApi,
+    QueryValidate(),
+  ],
   computed: {
     height() {
       return this.$vuetify.breakpoint.mdAndDown ? '200px' : '250px';
     },
-  },
-  async created() {
-    this.rules = [
-      (v) => !v || !this.queryRegex.test(v) || 'Invalid input.',
-    ];
   },
 };
 </script>

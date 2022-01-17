@@ -56,6 +56,7 @@ import InteractiveToolbar from '@/components/InteractiveToolbar.vue';
 import InteractiveWords from '@/components/InteractiveWords.vue';
 import InteractiveResult from '@/components/InteractiveResult.vue';
 import ConversionApi from '@/mixins/ConversionApi';
+import QueryValidate from '@/mixins/QueryValidate';
 
 export default {
   components: {
@@ -65,9 +66,11 @@ export default {
   },
   props: {
     title: String,
-    queryRegex: RegExp,
   },
-  mixins: [ConversionApi],
+  mixins: [
+    ConversionApi,
+    QueryValidate(),
+  ],
   data() {
     return {
       pairs: [],
@@ -84,11 +87,6 @@ export default {
     allUsed() {
       return !this.query && this.pairs.length;
     },
-  },
-  async created() {
-    this.rules = [
-      (v) => !v || !this.queryRegex.test(v) || 'Invalid input.',
-    ];
   },
   methods: {
     async reset() {
