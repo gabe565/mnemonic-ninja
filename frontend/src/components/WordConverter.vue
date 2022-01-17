@@ -70,11 +70,13 @@
 <script>
 import ConversionApi from '@/mixins/ConversionApi';
 import QueryValidate from '@/mixins/QueryValidate';
+import QueryUrl from '@/mixins/UrlQuery';
 
 export default {
   mixins: [
     ConversionApi('/api/word'),
     QueryValidate(/[^A-Za-z-'\s,;.]/),
+    QueryUrl,
   ],
   computed: {
     height() {

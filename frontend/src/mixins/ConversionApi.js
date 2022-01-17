@@ -3,10 +3,6 @@ import axios from 'axios';
 import { wait } from '@/util/helpers';
 
 export default (url) => ({
-  props: {
-    queryValue: String,
-  },
-
   data: () => ({
     query: '',
     disabled: false,
@@ -18,21 +14,9 @@ export default (url) => ({
 
   watch: {
     // eslint-disable-next-line func-names
-    query: debounce(async function () {
-      await this.getResponse();
-      if (this.queryValue !== this.query) {
-        let query;
-        if (this.query) {
-          query = { q: this.query };
-        }
-        await this.$router.replace({ ...this.$route, query });
-      }
+    query: debounce(function () {
+      return this.apiUpdate();
     }, 200),
-    queryValue(newVal) {
-      if (newVal) {
-        this.query = newVal;
-      }
-    },
   },
 
   computed: {
@@ -47,23 +31,27 @@ export default (url) => ({
     },
   },
 
-  mounted() {
-    if (this.queryValue) {
-      this.query = this.queryValue;
-    }
-  },
-
   methods: {
     async manualUpdate() {
       this.disabled = true;
-      await this.getResponse();
+      await this.apiUpdate(true);
       await wait(1000);
       this.disabled = false;
     },
-    async getResponse() {
+    apiUpdate(force = false) {
+      return Promise.all([
+        this.getResponse(force),
+        this.updateUrl(),
+      ]);
+    },
+    async getResponse(force = false) {
       if (!this.query || !this.valid) {
         this.response = {};
         this.error = null;
+        this.loading = false;
+        return;
+      }
+      if (!force && this.response?.query === this.query) {
         return;
       }
       this.loading = true;

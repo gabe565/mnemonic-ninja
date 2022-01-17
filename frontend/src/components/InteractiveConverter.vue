@@ -61,6 +61,8 @@ import InteractiveWords from '@/components/InteractiveWords.vue';
 import InteractiveResult from '@/components/InteractiveResult.vue';
 import ConversionApi from '@/mixins/ConversionApi';
 import QueryValidate from '@/mixins/QueryValidate';
+import QueryUrl from '@/mixins/UrlQuery';
+import QueryUrlPair from '@/mixins/UrlPair';
 
 export default {
   components: {
@@ -71,6 +73,8 @@ export default {
   mixins: [
     ConversionApi('/api/interactive'),
     QueryValidate(/[^0-9\s,;]/),
+    QueryUrl,
+    QueryUrlPair,
   ],
   data() {
     return {
@@ -103,7 +107,7 @@ export default {
         this.loading = true;
         this.pairs.push(pair);
         this.query = this.query.slice(pair.number.length);
-        await this.manualUpdate();
+        await this.apiUpdate();
       }
     },
     async goBack(n = 1) {
@@ -112,7 +116,7 @@ export default {
         query = this.pairs.pop().number + query;
       }
       this.query = query;
-      await this.manualUpdate();
+      await this.apiUpdate();
     },
     goBackTo(key) {
       return this.goBack(this.pairs?.length - key);

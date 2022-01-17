@@ -22,22 +22,26 @@
         <v-col>
           <v-card elevation="3" class="overflow-hidden">
             <v-tabs
-              :value="tab" center-active
+              :value="currentTab" center-active
               background-color="tertiary" class="rounded-b-0" show-arrows
             >
               <v-tab
                 v-for="tab in tabs" :key="tab.slug"
-                :to="{ name: $route.name, params: { startTab: tab.slug }}"
+                :to="{ name: $route.name, params: { startTab: tab.slug }, query: tab.query }"
               >{{ tab.name }}</v-tab>
             </v-tabs>
 
             <v-card-text>
-              <v-tabs-items :value="tab">
+              <v-tabs-items :value="currentTab">
                 <v-tab-item
                   v-for="tab in tabs" :key="tab.slug"
                   :value="tab.slug"
                 >
-                    <component :is="`${tab.slug}-converter`"/>
+                    <component
+                      :is="`${tab.slug}-converter`"
+                      :is-active="currentTab === tab.slug"
+                      @query="tab.query = $event"
+                    />
                 </v-tab-item>
               </v-tabs-items>
             </v-card-text>
@@ -62,30 +66,24 @@ export default {
   },
 
   data: () => ({
-    tab: 'interactive',
+    currentTab: 'interactive',
     tabs: [
-      { slug: 'interactive', name: 'Interactive' },
-      { slug: 'number', name: 'Number to Word' },
-      { slug: 'word', name: 'Word to Number' },
+      { slug: 'interactive', name: 'Interactive', query: {} },
+      { slug: 'number', name: 'Number to Word', query: {} },
+      { slug: 'word', name: 'Word to Number', query: {} },
     ],
   }),
 
-  computed: {
-    query() {
-      return this.$route.query.q;
-    },
-  },
-
   created() {
     if (this.startTab) {
-      this.tab = this.startTab;
+      this.currentTab = this.startTab;
     }
   },
 
   watch: {
     startTab(newVal) {
       if (newVal) {
-        this.tab = newVal;
+        this.currentTab = newVal;
       }
     },
   },
@@ -98,4 +96,3 @@ export default {
   },
 };
 </script>
-]

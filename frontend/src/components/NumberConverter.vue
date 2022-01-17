@@ -70,11 +70,13 @@
 <script>
 import ConversionApi from '@/mixins/ConversionApi';
 import QueryValidate from '@/mixins/QueryValidate';
+import QueryUrl from '@/mixins/UrlQuery';
 
 export default {
   mixins: [
     ConversionApi('/api/number'),
     QueryValidate(/[^0-9\s,;]/),
+    QueryUrl,
   ],
   computed: {
     height() {
