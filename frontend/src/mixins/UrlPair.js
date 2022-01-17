@@ -15,10 +15,13 @@ export default {
 
   watch: {
     '$route.query.pair': {
-      handler(val) {
+      async handler(val) {
         if (val) {
           this.$route.query.pair = val ? castArray(val) : undefined;
           this.pairs = castPair(this.$route.query.pair);
+          if (this.query === '') {
+            await this.updateUrl();
+          }
         }
       },
       immediate: true,
