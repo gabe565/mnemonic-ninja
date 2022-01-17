@@ -39,7 +39,10 @@
                 If the word cannot be found, then it will fallback to estimating the conversion by comparing letters instead of sounds.<br>
               </p>
               <p>
-                To see this in action, <router-link to="/converters/word/garage garages garagez">look at the conversions of <code>garage</code>, <code>garages</code>, and <code>garagez</code></router-link>:
+                To see this in action,
+                <router-link :to="{ name: 'Converters', params: { startTab: 'word' }, query: { q: 'garage garages garagez' } }">
+                  look at the conversions of <code>garage</code>, <code>garages</code>, and <code>garagez</code>
+                </router-link>:
                 <ol>
                   <li><code>garage</code> becomes "746" because the last /ge/ is not a hard G, but a soft G which corresponds to the number 6.</li>
                   <li><code>garages</code> will successfully be converted to "7460" because the pronounciation is the same, but with an /s/ at the end of the word.</li>
