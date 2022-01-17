@@ -53,8 +53,8 @@
                     title="Number to Word"
                     query-label="Number"
                     query-placeholder="70395"
-                    :query="startTab === 'num' ? query : undefined"
                     :query-regex="/[^0-9\s,;]/"
+                    :query-value="startTab === 'num' ? query : undefined"
                     result-label="Word"
                     url="/api/number"
                   >
@@ -72,8 +72,8 @@
                     title="Word to Number"
                     query-label="Word"
                     query-placeholder="example"
-                    :query-value="startTab === 'word' ? query : undefined"
                     :query-regex="/[^A-Za-z-'\s,;.]/"
+                    :query-value="startTab === 'word' ? query : undefined"
                     result-label="Number"
                     url="/api/word"
                   >
@@ -102,12 +102,17 @@ export default {
 
   props: {
     startTab: String,
-    query: String,
   },
 
   data: () => ({
     tab: 'interactive',
   }),
+
+  computed: {
+    query() {
+      return this.$route.query.q;
+    },
+  },
 
   created() {
     if (this.startTab) {

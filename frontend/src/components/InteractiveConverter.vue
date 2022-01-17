@@ -69,6 +69,7 @@ export default {
     title: String,
     queryPlaceholder: String,
     queryRegex: RegExp,
+    queryValue: String,
     url: String,
   },
   data() {
@@ -97,6 +98,13 @@ export default {
     // eslint-disable-next-line func-names
     query: debounce(async function () {
       await this.getResponse();
+      if (this.queryValue !== this.query) {
+        let query;
+        if (this.query) {
+          query = { q: this.query };
+        }
+        await this.$router.replace({ ...this.$route, query });
+      }
     }, 200),
   },
   async created() {
@@ -104,8 +112,8 @@ export default {
       (v) => !v || !this.queryRegex.test(v) || 'Invalid input.',
     ];
 
-    if (this.fromValue) {
-      this.query = this.fromValue;
+    if (this.queryValue) {
+      this.query = this.queryValue;
       await this.getResponse();
     }
   },
@@ -114,7 +122,6 @@ export default {
       await this.getResponse();
       await wait(1000);
     },
-    debouncedResponse: debounce(() => this.getResponse(), 1000, { leading: true }),
     async getResponse() {
       if (!this.query || !this.valid) {
         this.response = {};

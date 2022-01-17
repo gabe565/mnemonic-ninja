@@ -8,11 +8,15 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    redirect: { name: 'Converters', params: { startTab: 'interactive' } },
+  },
+  {
     path: '/converters',
     redirect: { name: 'Converters', params: { startTab: 'interactive' } },
   },
   {
-    path: '/converters/:startTab?/:query?',
+    path: '/converters/:startTab',
     alias: '/converters',
     name: 'Converters',
     component: Converters,
@@ -30,10 +34,6 @@ const routes = [
       icon: 'fa-info-circle',
       showInNav: true,
     },
-  },
-  {
-    path: '/',
-    redirect: { name: 'Converters', params: { startTab: 'interactive' } },
   },
   {
     path: '*',

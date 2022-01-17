@@ -74,8 +74,8 @@ export default {
     title: String,
     queryLabel: String,
     queryPlaceholder: String,
-    queryValue: String,
     queryRegex: RegExp,
+    queryValue: String,
     resultLabel: String,
     url: String,
     description: String,
@@ -108,6 +108,13 @@ export default {
     // eslint-disable-next-line func-names
     query: debounce(async function () {
       await this.getResponse();
+      if (this.queryValue !== this.query) {
+        let query;
+        if (this.query) {
+          query = { q: this.query };
+        }
+        await this.$router.replace({ ...this.$route, query });
+      }
     }, 200),
     queryValue(newVal) {
       if (newVal) {
