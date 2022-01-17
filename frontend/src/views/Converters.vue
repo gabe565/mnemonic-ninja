@@ -74,17 +74,14 @@ export default {
     ],
   }),
 
-  created() {
-    if (this.startTab) {
-      this.currentTab = this.startTab;
-    }
-  },
-
   watch: {
-    startTab(newVal) {
-      if (newVal) {
-        this.currentTab = newVal;
-      }
+    startTab: {
+      handler(val) {
+        if (val) {
+          this.currentTab = val;
+        }
+      },
+      immediate: true,
     },
   },
 
