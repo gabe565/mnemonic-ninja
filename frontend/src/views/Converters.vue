@@ -26,20 +26,20 @@
               background-color="tertiary" class="rounded-b-0" show-arrows
             >
               <v-tab
-                v-for="tab in tabs" :key="tab.slug"
-                :to="{ name: $route.name, params: { startTab: tab.slug }, query: tab.query }"
+                v-for="(tab, key) in tabs" :key="key"
+                :to="{ name: $route.name, params: { startTab: key }, query: tab.query }"
               >{{ tab.name }}</v-tab>
             </v-tabs>
 
             <v-card-text>
               <v-tabs-items :value="currentTab">
                 <v-tab-item
-                  v-for="tab in tabs" :key="tab.slug"
-                  :value="tab.slug"
+                  v-for="(tab, key) in tabs" :key="key"
+                  :value="key"
                 >
                     <component
-                      :is="`${tab.slug}-converter`"
-                      :is-active="currentTab === tab.slug"
+                      :is="`${key}-converter`"
+                      :is-active="currentTab === key"
                       @query="tab.query = $event"
                     />
                 </v-tab-item>
@@ -67,11 +67,11 @@ export default {
 
   data: () => ({
     currentTab: 'interactive',
-    tabs: [
-      { slug: 'interactive', name: 'Interactive', query: {} },
-      { slug: 'number', name: 'Number to Word', query: {} },
-      { slug: 'word', name: 'Word to Number', query: {} },
-    ],
+    tabs: {
+      interactive: { name: 'Interactive', query: {} },
+      number: { name: 'Number to Word', query: {} },
+      word: { name: 'Word to Number', query: {} },
+    },
   }),
 
   watch: {
