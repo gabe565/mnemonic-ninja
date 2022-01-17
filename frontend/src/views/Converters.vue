@@ -22,23 +22,25 @@
         <v-col>
           <v-card elevation="3" class="overflow-hidden">
             <v-tabs
-              v-model="tab" center-active
+              :value="tab" center-active
               background-color="tertiary" class="rounded-b-0" show-arrows
             >
               <v-tab
-                v-for="(tab, key) in tabs" :key="key"
-                :to="{ name: 'Converters', params: { startTab: tab.slug }}"
+                v-for="tab in tabs" :key="tab.slug"
+                :to="{ name: $route.name, params: { startTab: tab.slug }}"
               >{{ tab.name }}</v-tab>
-
-              <v-tab-item
-                v-for="(tab, key) in tabs" :key="key"
-                :value="`/converters/${tab.slug}`"
-              >
-                <v-card-text>
-                  <component :is="`${tab.slug}-converter`"/>
-                </v-card-text>
-              </v-tab-item>
             </v-tabs>
+
+            <v-card-text>
+              <v-tabs-items :value="tab">
+                <v-tab-item
+                  v-for="tab in tabs" :key="tab.slug"
+                  :value="tab.slug"
+                >
+                    <component :is="`${tab.slug}-converter`"/>
+                </v-tab-item>
+              </v-tabs-items>
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
