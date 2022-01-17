@@ -4,23 +4,26 @@
       <v-row>
         <v-col>
           <h2 class="text-h4 text-center">
-            {{ title }}
+            Number to Word
           </h2>
         </v-col>
       </v-row>
-      <v-row v-if="$slots.default">
+      <v-row>
         <v-col>
           <p class="v-card__text text--secondary mb-0 pa-0">
-            <slot/>
+            Enter a number or a list of numbers to get a converted list of words.
+            <br>
+            Many words can show up for a single number.
+            If this happens, the result box will be scrollable.
           </p>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">{{ queryLabel }}</h2>
+          <h2 class="text-h4">Number</h2>
           <v-textarea
             clearable no-resize outlined
-            :name="queryLabel" :placeholder="queryPlaceholder"
+            name="Number" placeholder="70395"
             :rules="rules"
             :height="height"
             v-model="query"
@@ -49,7 +52,7 @@
         </v-col>
 
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">{{ resultLabel }}</h2>
+          <h2 class="text-h4">Number</h2>
           <v-simple-table :height="height" class="v-data-table--outlined">
             <tbody>
             <tr v-for="(item, key) in result" :key="key">
@@ -69,14 +72,9 @@ import ConversionApi from '@/mixins/ConversionApi';
 import QueryValidate from '@/mixins/QueryValidate';
 
 export default {
-  props: {
-    title: String,
-    resultLabel: String,
-    description: String,
-  },
   mixins: [
-    ConversionApi,
-    QueryValidate(),
+    ConversionApi('/api/number'),
+    QueryValidate(/[^0-9\s,;]/),
   ],
   computed: {
     height() {

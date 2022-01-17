@@ -4,14 +4,18 @@
       <v-row>
         <v-col>
           <h2 class="text-h4 text-center">
-            {{ title }}
+            Interactive
           </h2>
         </v-col>
       </v-row>
-      <v-row v-if="$slots.default">
+      <v-row>
         <v-col>
           <p class="v-card__text text--secondary mb-0 pa-0">
-            <slot/>
+            Enter a number to get a word cloud of available words.
+            Select one of these words to start your phrase.
+            The corresponding numbers will be filtered out of your query,
+            updating the word cloud to show words for the unselected part.
+            Keep selecting words to build a phrase!
           </p>
         </v-col>
       </v-row>
@@ -64,12 +68,9 @@ export default {
     InteractiveWords,
     InteractiveToolbar,
   },
-  props: {
-    title: String,
-  },
   mixins: [
-    ConversionApi,
-    QueryValidate(),
+    ConversionApi('/api/interactive'),
+    QueryValidate(/[^0-9\s,;]/),
   ],
   data() {
     return {

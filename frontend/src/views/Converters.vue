@@ -32,56 +32,24 @@
               <v-tab-item value="/converters/interactive">
                 <v-card-text>
                   <interactive-converter
-                    title="Interactive"
-                    query-placeholder="70395"
-                    :query-regex="/[^0-9\s,;]/"
                     :query-value="startTab === 'interactive' ? query : undefined"
-                    url="/api/interactive"
-                  >
-                    Enter a number to get a word cloud of available words.
-                    Select one of these words to start your phrase.
-                    The corresponding numbers will be filtered out of your query,
-                    updating the word cloud to show words for the unselected part.
-                    Keep selecting words to build a phrase!
-                  </interactive-converter>
+                  />
                 </v-card-text>
               </v-tab-item>
 
               <v-tab-item value="/converters/num">
                 <v-card-text>
-                  <batch-converter
-                    title="Number to Word"
-                    query-label="Number"
-                    query-placeholder="70395"
-                    :query-regex="/[^0-9\s,;]/"
+                  <number-converter
                     :query-value="startTab === 'num' ? query : undefined"
-                    result-label="Word"
-                    url="/api/number"
-                  >
-                    Enter a number or a list of numbers to get a converted list of words.
-                    <br>
-                    Many words can show up for a single number.
-                    If this happens, the result box will be scrollable.
-                  </batch-converter>
+                  />
                 </v-card-text>
               </v-tab-item>
 
               <v-tab-item value="/converters/word">
                 <v-card-text>
-                  <batch-converter
-                    title="Word to Number"
-                    query-label="Word"
-                    query-placeholder="example"
-                    :query-regex="/[^A-Za-z-'\s,;.]/"
+                  <word-converter
                     :query-value="startTab === 'word' ? query : undefined"
-                    result-label="Number"
-                    url="/api/word"
-                  >
-                    Enter a word or a list of words to get a converted list of numbers.
-                    <br>
-                    More than one number may show up for a single word.
-                    This means there is more than one pronunciation!
-                  </batch-converter>
+                  />
                 </v-card-text>
               </v-tab-item>
             </v-tabs>
@@ -94,8 +62,9 @@
 
 <script>
 import Page from '@/layouts/Page.vue';
-import BatchConverter from '@/components/BatchConverter.vue';
 import InteractiveConverter from '@/components/InteractiveConverter.vue';
+import NumberConverter from '@/components/NumberConverter.vue';
+import WordConverter from '@/components/WordConverter.vue';
 
 export default {
   name: 'Converters',
@@ -129,7 +98,8 @@ export default {
   },
 
   components: {
-    BatchConverter,
+    WordConverter,
+    NumberConverter,
     Page,
     InteractiveConverter,
   },

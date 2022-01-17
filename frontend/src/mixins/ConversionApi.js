@@ -2,13 +2,9 @@ import { debounce } from 'lodash';
 import axios from 'axios';
 import { wait } from '@/util/helpers';
 
-export default {
+export default (url) => ({
   props: {
-    queryLabel: String,
-    queryPlaceholder: String,
-    queryRegex: RegExp,
     queryValue: String,
-    url: String,
   },
 
   data: () => ({
@@ -72,7 +68,7 @@ export default {
       }
       this.loading = true;
       try {
-        const { data } = await axios.get(`${this.url}/${encodeURIComponent(this.query)}`);
+        const { data } = await axios.get(`${url}/${encodeURIComponent(this.query)}`);
         this.response = data;
         this.error = false;
         this.valid = true;
@@ -84,4 +80,4 @@ export default {
       }
     },
   },
-};
+});

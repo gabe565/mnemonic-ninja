@@ -1,10 +1,7 @@
-export default (failMessage = 'Invalid input.') => ({
-  props: {
-    queryRegex: RegExp,
-  },
+export default (queryRegex, failMessage = 'Invalid input.') => ({
   async created() {
     this.rules = [
-      (v) => !v || !this.queryRegex.test(v) || failMessage,
+      (v) => !v || !queryRegex.test(v) || failMessage,
     ];
   },
 });
