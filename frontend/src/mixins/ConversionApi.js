@@ -51,7 +51,7 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     if (this.queryValue) {
       this.query = this.queryValue;
     }
