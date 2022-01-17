@@ -52,12 +52,10 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { debounce } from 'lodash';
-import { wait } from '@/util/helpers';
 import InteractiveToolbar from '@/components/InteractiveToolbar.vue';
 import InteractiveWords from '@/components/InteractiveWords.vue';
 import InteractiveResult from '@/components/InteractiveResult.vue';
+import ConversionApi from '@/mixins/ConversionApi';
 
 export default {
   components: {
@@ -67,18 +65,11 @@ export default {
   },
   props: {
     title: String,
-    queryPlaceholder: String,
     queryRegex: RegExp,
-    queryValue: String,
-    url: String,
   },
+  mixins: [ConversionApi],
   data() {
     return {
-      query: '',
-      response: {},
-      loading: false,
-      error: false,
-      valid: false,
       pairs: [],
       showCopiedSnackbar: false,
     };
@@ -94,53 +85,12 @@ export default {
       return !this.query && this.pairs.length;
     },
   },
-  watch: {
-    // eslint-disable-next-line func-names
-    query: debounce(async function () {
-      await this.getResponse();
-      if (this.queryValue !== this.query) {
-        let query;
-        if (this.query) {
-          query = { q: this.query };
-        }
-        await this.$router.replace({ ...this.$route, query });
-      }
-    }, 200),
-  },
   async created() {
     this.rules = [
       (v) => !v || !this.queryRegex.test(v) || 'Invalid input.',
     ];
-
-    if (this.queryValue) {
-      this.query = this.queryValue;
-      await this.getResponse();
-    }
   },
   methods: {
-    async manualUpdate() {
-      await this.getResponse();
-      await wait(1000);
-    },
-    async getResponse() {
-      if (!this.query || !this.valid) {
-        this.response = {};
-        this.error = null;
-        this.loading = false;
-        return;
-      }
-      this.loading = true;
-      try {
-        const { data } = await axios.get(`${this.url}/${encodeURIComponent(this.query)}`);
-        this.response = data;
-        this.error = false;
-        this.valid = true;
-      } catch (err) {
-        this.error = err;
-      } finally {
-        this.loading = false;
-      }
-    },
     async reset() {
       if (this.pairs.length && this.query.length <= 1) {
         await this.goBack();
