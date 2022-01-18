@@ -16,7 +16,7 @@ const routes = [
     redirect: { name: 'Converters', params: { startTab: 'interactive' } },
   },
   {
-    path: '/converters/:startTab',
+    path: '/converters/:startTab(interactive|word|number)',
     alias: '/converters',
     name: 'Converters',
     component: Converters,
