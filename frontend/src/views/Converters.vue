@@ -27,12 +27,12 @@
             >
               <v-tab
                 v-for="(tab, key) in tabs" :key="key"
-                :to="{ name: $route.name, params: { startTab: key }, query: tab.query }"
+                :to="buildLocation(tab, key)"
               >{{ tab.name }}</v-tab>
             </v-tabs>
 
             <v-card-text>
-              <v-tabs-items :value="currentTab" continuous>
+              <v-tabs-items :value="currentTab" @change="tabChange" continuous>
                 <v-tab-item
                   v-for="(tab, key) in tabs" :key="key"
                   :value="key"
@@ -82,6 +82,22 @@ export default {
         }
       },
       immediate: true,
+    },
+  },
+
+  methods: {
+    buildLocation(tab, key) {
+      return {
+        name: this.$route.name,
+        params: {
+          startTab: key,
+        },
+        query: tab.query,
+      };
+    },
+    tabChange(key) {
+      const to = this.buildLocation(this.tabs[key], key);
+      this.$router.push(to);
     },
   },
 
