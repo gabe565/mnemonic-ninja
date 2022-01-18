@@ -32,7 +32,7 @@
             </v-tabs>
 
             <v-card-text>
-              <v-tabs-items :value="currentTab">
+              <v-tabs-items :value="currentTab" continuous>
                 <v-tab-item
                   v-for="(tab, key) in tabs" :key="key"
                   :value="key"
