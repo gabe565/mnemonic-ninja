@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ env.go_version }}
+      - run: mkdir -p frontend/dist \
+      - run: echo stub >frontend/dist/gitkeep \
+      - run: go generate
       - name: Lint
         uses: golangci/golangci-lint-action@v2
         with:
@@ -40,6 +43,9 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+      - run: mkdir -p frontend/dist \
+      - run: echo stub >frontend/dist/gitkeep \
+      - run: go generate
       - name: Test
         run: go test ./...
 
@@ -53,6 +59,9 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ env.go_version }}
+      - run: mkdir -p frontend/dist \
+      - run: echo stub >frontend/dist/gitkeep \
+      - run: go generate
       - run: go build -ldflags='-w -s'
 
   frontend-lint:
