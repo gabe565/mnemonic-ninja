@@ -46,10 +46,18 @@ const routes = [
 
   // Deprecated route redirects
   {
+    path: '/converters/num/:query?',
+    redirect: (to) => ({
+      name: 'Converters',
+      params: { startTab: 'number' },
+      query: { q: to.params.query },
+    }),
+  },
+  {
     path: '/converters/:startTab/:query',
     redirect: (to) => ({
       name: 'Converters',
-      ...to.params,
+      params: { startTab: to.params.startTab },
       query: { q: to.params.query },
     }),
   },
