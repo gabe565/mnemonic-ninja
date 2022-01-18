@@ -16,5 +16,6 @@ module.exports = {
     'max-len': 'off',
     'import/prefer-default-export': 'off',
     'no-restricted-syntax': 'off',
+    'no-param-reassign': ['error', { props: false }],
   },
 };
