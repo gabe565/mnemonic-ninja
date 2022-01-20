@@ -1,10 +1,8 @@
 <template>
   <Page>
-    <v-row>
-      <v-col>
-        Oh no! The requested file could not be located.
-      </v-col>
-    </v-row>
+    <template #description>
+      Oh no! The requested file could not be located.
+    </template>
   </Page>
 </template>
 

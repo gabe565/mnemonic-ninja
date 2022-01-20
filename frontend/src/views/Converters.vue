@@ -1,21 +1,15 @@
 <template>
   <Page>
-    <v-row>
-      <v-col>
-        <v-card>
-          <v-card-text>
-            The mnemonic major system aids in memorizing numbers by linking numbers with specific
-            phonetic sounds, allowing you to convert a number to a word or a phrase.
-            Phrases can create a mental image and be easier to remember than a number.
-            This site will do these conversions for you to help you remember phone numbers,
-            birthdays, addresses, etc.
-            <router-link to="/about">
-              Read more about how it works on the about page!
-            </router-link>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+    <template #description>
+      The mnemonic major system aids in memorizing numbers by linking numbers with specific
+      phonetic sounds, allowing you to convert a number to a word or a phrase.
+      Phrases can create a mental image and be easier to remember than a number.
+      This site will do these conversions for you to help you remember phone numbers,
+      birthdays, addresses, etc.
+      <router-link to="/about">
+        Read more about how it works on the about page!
+      </router-link>
+    </template>
 
     <v-row>
       <v-col>

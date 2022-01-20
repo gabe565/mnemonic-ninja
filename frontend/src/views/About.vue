@@ -1,15 +1,9 @@
 <template>
   <Page>
-    <v-row>
-      <v-col>
-        <v-card>
-          <v-card-text>
-            The <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank">Mnemonic Major System</a> is a great way to easily remember numbers, but learning to remember which sounds and numbers correspond to each other takes time.<br>
-            There are other online converters, but they all performed conversions by directly changing specific letters to a number. This is not how the system is meant to work, though. The system is meant to work with phonetic sounds. That is how this site does conversions. If a word or number is entered that is in its database (Which contains over 135,000 words!), then it will perform the conversion according to how the word is pronounced.
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+    <template #description>
+      The <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank">Mnemonic Major System</a> is a great way to easily remember numbers, but learning to remember which sounds and numbers correspond to each other takes time.<br>
+      There are other online converters, but they all performed conversions by directly changing specific letters to a number. This is not how the system is meant to work, though. The system is meant to work with phonetic sounds. That is how this site does conversions. If a word or number is entered that is in its database (Which contains over 135,000 words!), then it will perform the conversion according to how the word is pronounced.
+    </template>
     <v-row class="pb-4">
       <v-col>
         <v-card>
