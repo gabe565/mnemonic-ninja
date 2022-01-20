@@ -119,4 +119,9 @@ export default {
 .fa-spin-2x {
   animation: fa-spin 750ms infinite linear;
 }
+
+code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
 </style>
