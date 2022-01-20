@@ -23,3 +23,8 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 // workbox.precaching.suppressWarnings(); // Only used with Vue CLI 3 and Workbox v3.
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+// Navigation route
+workbox.routing.registerNavigationRoute(
+  workbox.precaching.getCacheKeyForURL('index.html')
+);
