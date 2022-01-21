@@ -20,8 +20,8 @@
 
       <template #extension v-if="$vuetify.breakpoint.mdAndUp">
         <v-tabs centered color="white">
-          <v-tab v-for="route in routes" :key="route.path" :to="route.alias || route.path">
-            <v-icon class="pr-2">fas {{ route.meta.icon }} fa-fw</v-icon>
+          <v-tab v-for="route in routes" :key="route.path" :to="route.to" :href="route.href">
+            <v-icon class="pr-2">fas {{ route.icon }} fa-fw</v-icon>
             {{ route.name }}
           </v-tab>
         </v-tabs>
@@ -43,10 +43,10 @@
       <v-btn
         v-for="route in routes"
         :key="route.path"
-        :to="route.alias || route.path"
+        :to="route.to"
       >
         <span>{{ route.name }}</span>
-        <v-icon>fas {{ route.meta.icon }} fa-fw</v-icon>
+        <v-icon>fas {{ route.icon }} fa-fw</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
@@ -64,11 +64,12 @@ export default {
     UpdateSnackbar,
   },
 
-  computed: {
-    routes() {
-      return this.$router.options.routes.filter((route) => route.meta?.showInNav);
-    },
-  },
+  data: () => ({
+    routes: [
+      { name: 'Converters', icon: 'fa-exchange-alt', to: '/converters' },
+      { name: 'About', icon: 'fa-info-circle', to: '/about' },
+    ],
+  }),
 
   beforeMount() {
     // check for browser support

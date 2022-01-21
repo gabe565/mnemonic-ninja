@@ -9,55 +9,53 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: { name: 'Converters', params: { startTab: 'interactive' } },
+    redirect: '/converters/interactive',
   },
   {
     path: '/converters',
-    redirect: { name: 'Converters', params: { startTab: 'interactive' } },
+    redirect: '/converters/interactive',
   },
   {
-    path: '/converters/:startTab(interactive|word|number)',
-    alias: '/converters',
-    name: 'Converters',
+    path: '/converters/interactive',
+    name: 'Interactive',
     component: Converters,
-    props: true,
-    meta: {
-      icon: 'fa-exchange-alt',
-      showInNav: true,
-    },
+    props: { startTab: 'interactive' },
+  },
+  {
+    path: '/converters/number',
+    name: 'Number to Word',
+    component: Converters,
+    props: { startTab: 'number' },
+  },
+  {
+    path: '/converters/word',
+    name: 'Word to Number',
+    component: Converters,
+    props: { startTab: 'word' },
   },
   {
     path: '/about',
     name: 'About',
     component: About,
-    meta: {
-      icon: 'fa-info-circle',
-      showInNav: true,
-    },
   },
   {
     path: '*',
     name: '404 Not Found',
     component: NotFound,
-    meta: {
-      icon: 'fa-exclamation-triangle',
-    },
   },
 
   // Deprecated route redirects
   {
-    path: '/converters/num/:query?',
+    path: '/converters/num(ber)?/:query?',
     redirect: (to) => ({
-      name: 'Converters',
-      params: { startTab: 'number' },
+      path: '/converters/number',
       query: { q: to.params.query },
     }),
   },
   {
-    path: '/converters/:startTab/:query',
+    path: '/converters/word/:query',
     redirect: (to) => ({
-      name: 'Converters',
-      params: { startTab: to.params.startTab },
+      path: '/converters/word',
       query: { q: to.params.query },
     }),
   },

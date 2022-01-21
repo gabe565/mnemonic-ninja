@@ -1,5 +1,6 @@
 <template>
   <Page>
+    <template #title>Converters</template>
     <template #description>
       The mnemonic major system aids in memorizing numbers by linking numbers with specific
       phonetic sounds, allowing you to convert a number to a word or a phrase.
@@ -20,7 +21,7 @@
           >
             <v-tab
               v-for="(tab, key) in tabs" :key="key"
-              :to="buildLocation(tab, key)"
+              :to="`/converters/${key}`"
             >{{ tab.name }}</v-tab>
           </v-tabs>
 
@@ -78,15 +79,6 @@ export default {
   },
 
   methods: {
-    buildLocation(tab, key) {
-      return {
-        name: this.$route.name,
-        params: {
-          startTab: key,
-        },
-        query: tab.query,
-      };
-    },
     tabChange(key) {
       const to = this.buildLocation(this.tabs[key], key);
       this.$router.push(to);

@@ -8,7 +8,7 @@
     <v-row>
       <v-col class="v-card__text text--secondary">
         Here your phrase. Once you memorize this phrase, you can go to the
-        <router-link :to="{ name: 'Converters', params: { startTab: 'word' }, query: { q: value } }">
+        <router-link :to="{ path: '/converters/word', query: { q: value } }">
           word to number converter
         </router-link> to change it back to your number.
         <br>

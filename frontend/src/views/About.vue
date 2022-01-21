@@ -33,7 +33,7 @@
             </p>
             <p>
               To see this in action,
-              <router-link :to="{ name: 'Converters', params: { startTab: 'word' }, query: { q: 'garage garages garagez' } }">
+              <router-link :to="{ path: '/converters/word', query: { q: 'garage garages garagez' } }">
                 look at the conversions of <code>garage</code>, <code>garages</code>, and <code>garagez</code>
               </router-link>:
               <ol>
