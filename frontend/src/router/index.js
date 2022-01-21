@@ -67,4 +67,16 @@ const router = new VueRouter({
   routes,
 });
 
+const defaultTitle = document.title;
+router.afterEach(async (to) => {
+  // Use next tick to handle router history correctly
+  // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
+  await Vue.nextTick();
+  if (to.name) {
+    document.title = `${to.name} - ${defaultTitle}`;
+  } else {
+    document.title = defaultTitle;
+  }
+});
+
 export default router;
