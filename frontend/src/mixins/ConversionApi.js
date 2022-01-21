@@ -1,4 +1,4 @@
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import axios from 'axios';
 import { wait } from '@/util/helpers';
 
