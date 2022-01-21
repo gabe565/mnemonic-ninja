@@ -66,7 +66,7 @@ export default {
 
   data: () => ({
     routes: [
-      { name: 'Converters', icon: 'fa-exchange-alt', to: '/converters' },
+      { name: 'Convert', icon: 'fa-exchange-alt', to: '/convert' },
       { name: 'About', icon: 'fa-info-circle', to: '/about' },
     ],
   }),

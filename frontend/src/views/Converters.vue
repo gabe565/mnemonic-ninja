@@ -1,6 +1,6 @@
 <template>
   <Page>
-    <template #title>Converters</template>
+    <template #title>Convert</template>
     <template #description>
       The mnemonic major system aids in memorizing numbers by linking numbers with specific
       phonetic sounds, allowing you to convert a number to a word or a phrase.
@@ -21,7 +21,7 @@
           >
             <v-tab
               v-for="(tab, key) in tabs" :key="key"
-              :to="`/converters/${key}`"
+              :to="`/convert/${key}`"
             >{{ tab.name }}</v-tab>
           </v-tabs>
 
