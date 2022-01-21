@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="pa-5" justify="center">
-      <h1 class="display-2">
+      <h1 class="display-1">
         <slot name="title">{{ $route.name }}</slot>
       </h1>
     </v-row>
