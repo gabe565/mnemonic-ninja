@@ -1,4 +1,4 @@
-import { castArray } from 'lodash';
+import { castArray } from '@/util/helpers';
 
 export const castPair = (val) => val.map((p) => {
   const split = p.split(',');
