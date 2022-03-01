@@ -18,8 +18,8 @@ import (
 
 const EnvPrefix = "MNEMONIC_NINJA_"
 
-//go:embed .cmudict.dict
-var cmudict string
+//go:embed .cmudict.dict.gz
+var cmudictGz string
 
 func main() {
 	var err error
@@ -45,7 +45,7 @@ func main() {
 		panic(err)
 	}
 
-	err = seeds.SeedWords(db, cmudict)
+	err = seeds.SeedWords(db, cmudictGz)
 	if err != nil {
 		panic(err)
 	}

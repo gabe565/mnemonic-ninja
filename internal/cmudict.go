@@ -3,6 +3,7 @@
 package main
 
 import (
+	"compress/gzip"
 	flag "github.com/spf13/pflag"
 	"io"
 	"log"
@@ -20,7 +21,7 @@ func main() {
 	)
 
 	var output string
-	flag.StringVarP(&output, "output", "o", ".cmudict.dict", "Output filename")
+	flag.StringVarP(&output, "output", "o", ".cmudict.dict.gz", "Output filename")
 
 	flag.Parse()
 
@@ -40,7 +41,14 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	_, err = io.Copy(out, resp.Body)
+	gz := gzip.NewWriter(out)
+
+	_, err = io.Copy(gz, resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = gz.Close()
 	if err != nil {
 		log.Fatalln(err)
 	}

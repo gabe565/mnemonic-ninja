@@ -3,7 +3,7 @@ node_modules
 /frontend/dist
 vendor
 mnemonic-ninja
-.cmudict.dict
+.cmudict.dict*
 
 
 # local env files
