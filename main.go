@@ -3,7 +3,7 @@
 package main
 
 import (
-	"embed"
+	_ "embed"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal/database"
 	"github.com/gabe565/mnemonic-ninja/internal/database/seeds"
@@ -21,14 +21,11 @@ const EnvPrefix = "MNEMONIC_NINJA_"
 //go:embed .cmudict.dict
 var cmudict string
 
-//go:embed frontend/dist
-var dist embed.FS
-
 func main() {
 	var err error
 
 	address := flag.String("address", ":3000", "Override listen address.")
-	staticDir := flag.String("static", "", "Override static asset directory. Useful for development. If left empty, embedded assets are used.")
+	frontendDir := flag.String("frontend", defaultFrontend, "Override frontend asset directory."+frontendHelpExt)
 	flag.Parse()
 
 	flag.CommandLine.VisitAll(func(f *flag.Flag) {
@@ -53,16 +50,16 @@ func main() {
 		panic(err)
 	}
 
-	var contentFs fs.FS
-	if *staticDir != "" {
-		contentFs = os.DirFS(*staticDir)
+	var frontendFs fs.FS
+	if *frontendDir != "" {
+		frontendFs = os.DirFS(*frontendDir)
 	} else {
-		contentFs, err = fs.Sub(dist, "frontend/dist")
+		frontendFs, err = fs.Sub(frontendEmbed, "frontend/dist")
 		if err != nil {
 			panic(err)
 		}
 	}
-	router := server.Router(db, contentFs)
+	router := server.Router(db, frontendFs)
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {

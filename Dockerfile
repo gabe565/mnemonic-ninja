@@ -9,7 +9,7 @@ RUN apk add --no-cache gcc g++
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY main.go .
+COPY *.go .
 COPY internal/ internal/
 ARG TARGETPLATFORM
 # Set Golang build envs based on Docker platform string
@@ -21,10 +21,8 @@ RUN set -x \
         'linux/arm64') export GOARCH=arm64 ;; \
         *) echo "Unsupported target: $TARGETPLATFORM" && exit 1 ;; \
     esac \
-    && mkdir -p frontend/dist \
-    && echo stub >frontend/dist/gitkeep \
     && go generate \
-    && go build -ldflags="-w -s"
+    && go build -ldflags='-w -s'
 
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-alpine AS node-builder
@@ -44,8 +42,7 @@ FROM alpine
 WORKDIR /app
 RUN apk add --no-cache lame
 COPY --from=go-builder /app/mnemonic-ninja ./
-COPY --from=node-builder /app/dist/ dist/
+COPY --from=node-builder /app/dist/ frontend/
 
 ENV MNEMONIC_NINJA_ADDRESS ":80"
-ENV MNEMONIC_NINJA_STATIC "dist"
 CMD ["./mnemonic-ninja"]
