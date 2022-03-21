@@ -33,7 +33,7 @@ func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 			entry := models.ConversionEntry{Query: query}
 
 			result := db.Distinct(queryType.DistinctColumn()).
-				Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
+				Where(map[string]any{queryType.WhereColumn(): entry.Query}).
 				Find(&entry.Words)
 			if result.Error != nil {
 				panic(result.Error)

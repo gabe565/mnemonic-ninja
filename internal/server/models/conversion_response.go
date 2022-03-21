@@ -14,7 +14,7 @@ type ConversionResponse struct {
 func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Request) (err error) {
 	for _, result := range response.Result {
 		for _, w := range result.Words {
-			var responseEntry interface{}
+			var responseEntry any
 			switch response.QueryType {
 			case Word:
 				responseEntry = w.Number

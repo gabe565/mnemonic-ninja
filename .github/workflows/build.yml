@@ -3,7 +3,7 @@ name: Build
 on: push
 
 env:
-  go_version: "1.17"
+  go_version: "1.18"
   node_version: "16"
 
 jobs:
@@ -16,14 +16,13 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: ${{ env.go_version }}
+          go-version: ^${{ env.go_version }}
       - run: go generate
       - name: Lint
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.31
+          version: v1.45
           args: --timeout=5m
-          skip-go-installation: true
 
   test-backend:
     name: Backend - Test
@@ -34,7 +33,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: ${{ env.go_version }}
+          go-version: ^${{ env.go_version }}
       - uses: actions/cache@v2
         with:
           path: ~/go/pkg/mod
@@ -54,7 +53,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: ${{ env.go_version }}
+          go-version: ^${{ env.go_version }}
       - run: go generate
       - run: go build -ldflags='-w -s'
 

@@ -28,7 +28,7 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 				entry := models.ConversionEntry{Query: query[0:i]}
 
 				result := db.Distinct(queryType.DistinctColumn()).
-					Where(map[string]interface{}{queryType.WhereColumn(): entry.Query}).
+					Where(map[string]any{queryType.WhereColumn(): entry.Query}).
 					Find(&entry.Words)
 				if result.Error != nil {
 					panic(result.Error)
