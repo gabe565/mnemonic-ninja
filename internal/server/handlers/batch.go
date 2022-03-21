@@ -11,7 +11,7 @@ import (
 	"regexp"
 )
 
-var SplitRegex = regexp.MustCompile("[+,; ]+")
+var SplitRegex = regexp.MustCompile("[+,; \n]+")
 
 func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
