@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"fmt"
 	"testing"
 )
@@ -27,7 +28,7 @@ func TestFromCmudict(t *testing.T) {
 		t.Run(fmt.Sprintf("Create word from cmudict %v", tc.word), func(t *testing.T) {
 			t.Parallel()
 			word, err := FromCmudict(tc.input)
-			if err != tc.err {
+			if err != tc.err && !errors.Is(err, tc.err) {
 				t.Errorf("unexpected error. got %v, want %v", err, tc.err)
 			}
 			if word.Word != tc.word {

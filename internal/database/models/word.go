@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal/word"
 	"regexp"
 	"strings"
@@ -36,13 +37,13 @@ func FromCmudict(line string) (*Word, error) {
 	arpabet = strings.Trim(arpabet, " ")
 	w.Arpabet = arpabet
 	if w.Arpabet == "" {
-		return &w, ErrInvalidArpabet
+		return &w, fmt.Errorf("%v: %w", w.Word, ErrInvalidArpabet)
 	}
 
 	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
 		number := word.Arpabet.Replace(v)
 		if numberRegex.MatchString(number) {
-			return &w, ErrInvalidArpabet
+			return &w, fmt.Errorf("%v: %w", w.Word, ErrInvalidArpabet)
 		}
 		w.Number += number
 	}
