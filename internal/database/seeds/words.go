@@ -2,23 +2,23 @@ package seeds
 
 import (
 	"bufio"
+	"bytes"
 	"compress/gzip"
 	_ "embed"
 	"github.com/gabe565/mnemonic-ninja/internal/database/models"
 	"gorm.io/gorm"
 	"log"
-	"strings"
 	"time"
 )
 
 const ImportBatchSize = 500
 
-func SeedWords(db *gorm.DB, cmudictGz string) error {
+func SeedWords(db *gorm.DB, cmudictGz []byte) error {
 	var err error
 
 	log.Println("Loading words")
 	startTime := time.Now()
-	gz, err := gzip.NewReader(strings.NewReader(cmudictGz))
+	gz, err := gzip.NewReader(bytes.NewReader(cmudictGz))
 	if err != nil {
 		return err
 	}
@@ -31,7 +31,7 @@ func SeedWords(db *gorm.DB, cmudictGz string) error {
 	err = db.Transaction(func(db *gorm.DB) error {
 		words := make([]*models.Word, 0, ImportBatchSize)
 		for s.Scan() {
-			w, err := models.FromCmudict(s.Text())
+			w, err := models.FromCmudict(s.Bytes())
 			if err != nil {
 				return err
 			}

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal/word"
@@ -23,25 +24,29 @@ var numberRegex = regexp.MustCompile("[^0-9]")
 
 var ErrInvalidArpabet = errors.New("invalid arpabet")
 
-func FromCmudict(line string) (*Word, error) {
+func FromCmudict(line []byte) (*Word, error) {
 	w := Word{}
 
 	// Split word and arpabet
-	split := strings.SplitN(line, " ", 2)
+	split := bytes.SplitN(line, []byte{' '}, 2)
 
 	// Remove (#) from duplicate words
-	w.Word = strings.SplitN(split[0], "(", 2)[0]
+	w.Word = string(truncRightAtRune(split[0], '('))
 
 	// Remove comments
-	arpabet := strings.SplitN(split[1], "#", 2)[0]
-	arpabet = strings.Trim(arpabet, " ")
-	w.Arpabet = arpabet
+	arpabet := bytes.TrimSpace(truncRightAtRune(split[1], '#'))
+	w.Arpabet = string(arpabet)
 	if w.Arpabet == "" {
 		return &w, fmt.Errorf("%v: %w", w.Word, ErrInvalidArpabet)
 	}
 
-	for _, v := range strings.SplitAfter(arpabet+" ", " ") {
-		number := word.Arpabet.Replace(v)
+	splitArpabet := bytes.SplitAfter(arpabet, []byte{' '})
+	for k, v := range splitArpabet {
+		str := string(v)
+		if k == len(splitArpabet)-1 {
+			str += " "
+		}
+		number := word.Arpabet.Replace(str)
 		if numberRegex.MatchString(number) {
 			return &w, fmt.Errorf("%v: %w", w.Word, ErrInvalidArpabet)
 		}
@@ -62,4 +67,12 @@ func FromString(w string) *Word {
 		Number: number,
 		Guess:  true,
 	}
+}
+
+func truncRightAtRune(s []byte, r rune) []byte {
+	i := bytes.IndexRune(s, r)
+	if i == -1 {
+		return s
+	}
+	return s[:i]
 }

@@ -19,7 +19,7 @@ import (
 const EnvPrefix = "MNEMONIC_NINJA_"
 
 //go:embed .cmudict.dict.gz
-var cmudictGz string
+var cmudictGz []byte
 
 func main() {
 	var err error

@@ -8,20 +8,20 @@ import (
 
 func TestFromCmudict(t *testing.T) {
 	testCases := []struct {
-		input   string
+		input   []byte
 		word    string
 		arpabet string
 		number  string
 		err     error
 	}{
-		{"test T EH1 S T", "test", "T EH1 S T", "101", nil},
-		{"analysis(2) AH0 N AE1 L IH0 S IH0 S", "analysis", "AH0 N AE1 L IH0 S IH0 S", "2500", nil},
-		{"gdp G IY1 D IY1 P IY1 # abbrev", "gdp", "G IY1 D IY1 P IY1", "719", nil},
-		{"tests' T EH1 S T S", "tests'", "T EH1 S T S", "1010", nil},
-		{"a.m. EY2 EH1 M", "a.m.", "EY2 EH1 M", "3", nil},
-		{"computer-generated K AH0 M P Y UW1 T ER0 JH EH1 N ER0 EY2 T AH0 D", "computer-generated", "K AH0 M P Y UW1 T ER0 JH EH1 N ER0 EY2 T AH0 D", "7391462411", nil},
-		{"waah W AA1", "waah", "W AA1", "", nil},
-		{"invalid IH1 N V AH0 L AH0 D ASDF", "invalid", "IH1 N V AH0 L AH0 D ASDF", "2851", ErrInvalidArpabet},
+		{[]byte("test T EH1 S T"), "test", "T EH1 S T", "101", nil},
+		{[]byte("analysis(2) AH0 N AE1 L IH0 S IH0 S"), "analysis", "AH0 N AE1 L IH0 S IH0 S", "2500", nil},
+		{[]byte("gdp G IY1 D IY1 P IY1 # abbrev"), "gdp", "G IY1 D IY1 P IY1", "719", nil},
+		{[]byte("tests' T EH1 S T S"), "tests'", "T EH1 S T S", "1010", nil},
+		{[]byte("a.m. EY2 EH1 M"), "a.m.", "EY2 EH1 M", "3", nil},
+		{[]byte("computer-generated K AH0 M P Y UW1 T ER0 JH EH1 N ER0 EY2 T AH0 D"), "computer-generated", "K AH0 M P Y UW1 T ER0 JH EH1 N ER0 EY2 T AH0 D", "7391462411", nil},
+		{[]byte("waah W AA1"), "waah", "W AA1", "", nil},
+		{[]byte("invalid IH1 N V AH0 L AH0 D ASDF"), "invalid", "IH1 N V AH0 L AH0 D ASDF", "2851", ErrInvalidArpabet},
 	}
 	for _, tc := range testCases {
 		tc := tc // capture range variable
