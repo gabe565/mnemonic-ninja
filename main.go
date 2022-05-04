@@ -3,12 +3,14 @@
 package main
 
 import (
+	"context"
 	_ "embed"
 	"fmt"
 	"github.com/gabe565/mnemonic-ninja/internal/config"
 	"github.com/gabe565/mnemonic-ninja/internal/database"
 	"github.com/gabe565/mnemonic-ninja/internal/database/seeds"
 	"github.com/gabe565/mnemonic-ninja/internal/server"
+	"github.com/gabe565/mnemonic-ninja/internal/telemetry"
 	flag "github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"io/fs"
@@ -52,7 +54,16 @@ func main() {
 			panic(err)
 		}
 	}
-	router := server.Router(db, frontendFs)
+
+	tp, err := telemetry.Setup()
+	if err != nil {
+		panic(err)
+	}
+	defer func() {
+		_ = tp.Shutdown(context.Background())
+	}()
+
+	router := server.Router(db, frontendFs, tp)
 	address := viper.GetString("address")
 	log.Println("Listening on " + address)
 	err = http.ListenAndServe(address, router)

@@ -7,6 +7,9 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
+	"github.com/riandyrn/otelchi"
+	"github.com/spf13/viper"
+	"go.opentelemetry.io/otel/trace"
 	"gorm.io/gorm"
 	"io/fs"
 	"net/http"
@@ -15,7 +18,7 @@ import (
 	"time"
 )
 
-func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
+func Router(db *gorm.DB, rootFs fs.FS, tp trace.TracerProvider) *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
@@ -23,6 +26,10 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.CleanPath)
+
+	if tp != nil {
+		r.Use(otelchi.Middleware(viper.GetString("telemetry.name"), otelchi.WithChiRoutes(r)))
+	}
 
 	fileserver := http.FileServer(http.FS(rootFs))
 
