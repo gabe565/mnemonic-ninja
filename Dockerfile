@@ -28,8 +28,6 @@ RUN set -x \
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-alpine AS node-builder
 WORKDIR /app
 
-RUN apk add --no-cache g++ make python3
-
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
 ARG FONTAWESOME_NPM_AUTH_TOKEN
 RUN npm ci
@@ -40,9 +38,8 @@ RUN npm run build
 
 FROM alpine
 WORKDIR /app
-RUN apk add --no-cache lame
 COPY --from=go-builder /app/mnemonic-ninja ./
 COPY --from=node-builder /app/dist/ frontend/
 
 ENV MNEMONIC_NINJA_ADDRESS ":80"
-CMD ["./mnemonic-ninja"]
+CMD ["/app/mnemonic-ninja"]
