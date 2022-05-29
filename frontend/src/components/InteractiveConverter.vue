@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid">
+  <v-form v-model="valid" @submit.prevent>
     <v-container>
       <v-row>
         <v-col>
