@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    image: "gabe565/mnemonic-ninja"
+    image: "ghcr.io/gabe565/mnemonic-ninja"
     build:
       args:
         FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
