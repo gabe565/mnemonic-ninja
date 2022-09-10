@@ -3,46 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "watch": "vue-cli-service build --watch",
-    "lint": "vue-cli-service lint"
+    "serve": "vite serve",
+    "build": "vite build",
+    "watch": "vite build --mode=dev --watch",
+    "lint": "eslint --ext .js,.vue --fix src"
   },
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.0.0-beta3",
+    "@vitejs/plugin-vue": "^1.6.1",
     "axios": "^0.24.0",
-    "core-js": "^3.6.5",
     "lodash": "^4.17.21",
-    "register-service-worker": "^1.7.1",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuetify": "^2.4.0"
+    "register-service-worker": "^1.7.2",
+    "sass": "~1.32.6",
+    "unplugin-vue-components": "^0.21.1",
+    "vite": "^2.5.4",
+    "vite-plugin-pwa": "^0.12.2",
+    "vite-plugin-vue2": "1.9.0",
+    "vue": "^2.7.4",
+    "vue-router": "^3.5.4",
+    "vue-template-compiler": "^2.7.4",
+    "vuetify": "^2.6.7"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-pwa": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "lint-staged": "^9.5.0",
-    "sass": "~1.32.0",
-    "sass-loader": "^10.0.0",
-    "vue-cli-plugin-vuetify": "~2.4.5",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.7.0"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "@babel/eslint-parser": "^7.18.2",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-vuetify": "^0.6.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-vue": "^8.7.1",
+    "vue-eslint-parser": "^9.0.3"
   }
 }

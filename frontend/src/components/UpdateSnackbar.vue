@@ -1,15 +1,31 @@
 <template>
   <v-snackbar
-    v-model="show"
-    :timeout="timeout"
-    bottom class="pb-14 pb-md-0"
+    :value="offlineReady || needRefresh"
+    :timeout="needRefresh ? -1 : 5000"
+    bottom
+    class="pb-14 pb-md-0"
+    @input="close"
   >
-    New version available!
+    <span v-if="needRefresh">
+      New content available, click on reload button to update.
+    </span>
+    <span v-else>
+      App ready to work offline
+    </span>
     <template #action="{ attrs }">
-      <v-btn v-bind="attrs" @click.native="refreshApp" text color="info">
+      <v-btn
+        v-if="needRefresh"
+        v-bind="attrs"
+        text
+        color="primary"
+        @click.native="updateServiceWorker"
+      >
         Refresh
       </v-btn>
-      <v-btn icon @click="show = false">
+      <v-btn
+        icon
+        @click="closePromptUpdateSW"
+      >
         <v-icon>$close</v-icon>
       </v-btn>
     </template>
@@ -17,45 +33,18 @@
 </template>
 
 <script>
-import { wait } from '@/util/helpers';
+import useRegisterSW from '../mixins/useRegisterSW';
+
+const intervalMS = 60 * 60 * 1000;
 
 export default {
   name: 'UpdateSnackbar',
-
-  data: () => ({
-    refreshing: false,
-    registration: null,
-    show: false,
-    timeout: -1,
-  }),
-
-  created() {
-    // Listen for swUpdated event and display refresh snackbar as required.
-    document.addEventListener('swUpdated', this.showRefreshUI, { once: true });
-    // Refresh all open app tabs when a new service worker is installed.
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (this.refreshing) return;
-      this.refreshing = true;
-      window.location.reload();
-    });
-  },
-
+  mixins: [useRegisterSW],
   methods: {
-    async showRefreshUI(e) {
-      // Display a snackbar inviting the user to refresh/reload the app due
-      // to an app update being available.
-      // The new service worker is installed, but not yet active.
-      // Store the ServiceWorkerRegistration instance for later use.
-      this.registration = e.detail;
-      await wait(1000);
-      this.show = true;
-    },
-
-    refreshApp() {
-      this.show = false;
-      // Protect against missing registration.waiting.
-      if (!this.registration || !this.registration.waiting) { return; }
-      this.registration.waiting.postMessage('skipWaiting');
+    handleSWManualUpdates(r) {
+      if (r) {
+        setInterval(() => r.update(), intervalMS);
+      }
     },
   },
 };
