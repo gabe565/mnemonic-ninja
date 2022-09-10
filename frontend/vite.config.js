@@ -20,6 +20,7 @@ export default defineConfig({
       ],
     }),
     VitePWA({
+      filename: "service-worker.js",
       devOptions: {
         enabled: true,
       },
