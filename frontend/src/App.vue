@@ -5,46 +5,35 @@
         alt="Mnemonic Ninja Logo"
         class="shrink mr-2 pa-3"
         contain
-        :src="require('@/assets/logo.svg')"
+        :src="require('./assets/logo.svg')"
         transition="scale-transition"
         width="40"
       />
 
-      <v-toolbar-title>
-        Mnemonic Ninja
-      </v-toolbar-title>
+      <v-toolbar-title> Mnemonic Ninja </v-toolbar-title>
 
-      <v-spacer/>
+      <v-spacer />
 
-      <GitHubButton/>
+      <GitHubButton />
 
-      <template #extension v-if="$vuetify.breakpoint.mdAndUp">
+      <template v-if="$vuetify.breakpoint.mdAndUp" #extension>
         <v-tabs centered color="white">
           <v-tab v-for="route in routes" :key="route.path" :to="route.to" :href="route.href">
-            <v-icon class="pr-2">fas {{ route.icon }} fa-fw</v-icon>
+            <v-icon class="pr-2"> fas {{ route.icon }} fa-fw </v-icon>
             {{ route.name }}
           </v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
 
-    <UpdateSnackbar/>
+    <UpdateSnackbar />
 
     <v-main>
-      <router-view class="pb-16"/>
+      <router-view class="pb-16" />
     </v-main>
 
-    <v-bottom-navigation
-      fixed
-      v-if="$vuetify.breakpoint.smAndDown"
-      background-color="primary"
-      dark
-    >
-      <v-btn
-        v-for="route in routes"
-        :key="route.path"
-        :to="route.to"
-      >
+    <v-bottom-navigation v-if="$vuetify.breakpoint.smAndDown" fixed background-color="primary" dark>
+      <v-btn v-for="route in routes" :key="route.path" :to="route.to">
         <span>{{ route.name }}</span>
         <v-icon>fas {{ route.icon }} fa-fw</v-icon>
       </v-btn>
@@ -53,11 +42,11 @@
 </template>
 
 <script>
-import GitHubButton from '@/components/GitHubButton.vue';
-import UpdateSnackbar from '@/components/UpdateSnackbar.vue';
+import GitHubButton from "./components/GitHubButton.vue";
+import UpdateSnackbar from "./components/UpdateSnackbar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     GitHubButton,
@@ -66,19 +55,19 @@ export default {
 
   data: () => ({
     routes: [
-      { name: 'Convert', icon: 'fa-exchange-alt', to: '/convert' },
-      { name: 'About', icon: 'fa-info-circle', to: '/about' },
+      { name: "Convert", icon: "fa-exchange-alt", to: "/convert" },
+      { name: "About", icon: "fa-info-circle", to: "/about" },
     ],
   }),
 
   beforeMount() {
     // check for browser support
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme)").media !== "not all") {
       // set to preferred scheme
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
       this.$vuetify.theme.dark = mediaQuery.matches;
       // react to changes
-      mediaQuery.addEventListener('change', (e) => {
+      mediaQuery.addEventListener("change", (e) => {
         this.$vuetify.theme.dark = e.matches;
       });
     }
@@ -105,13 +94,13 @@ export default {
   &--striped {
     @at-root #{selector-unify(".theme--light", &)} {
       tbody tr:nth-of-type(odd) {
-        background-color: rgba(0, 0, 0, .05);
+        background-color: rgba(0, 0, 0, 0.05);
       }
     }
 
     @at-root #{selector-unify(".theme--dark", &)} {
       tbody tr:nth-of-type(odd) {
-        background-color: rgba(255, 255, 255, .04);
+        background-color: rgba(255, 255, 255, 0.04);
       }
     }
   }
@@ -122,7 +111,6 @@ export default {
 }
 
 code {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 </style>

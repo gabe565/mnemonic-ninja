@@ -3,18 +3,16 @@
     <v-container>
       <v-row>
         <v-col>
-          <h2 class="text-h4 text-center">
-            Word to Number
-          </h2>
+          <h2 class="text-h4 text-center">Word to Number</h2>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <p class="v-card__text text--secondary mb-0 pa-0">
             Enter a word or a list of words to get a converted list of numbers.
-            <br>
-            More than one number may show up for a single word.
-            This means there is more than one pronunciation!
+            <br />
+            More than one number may show up for a single word. This means there is more than one
+            pronunciation!
           </p>
         </v-col>
       </v-row>
@@ -22,31 +20,33 @@
         <v-col cols="12" md class="py-0 py-md-1">
           <h2 class="text-h4">Word</h2>
           <v-textarea
-            clearable no-resize outlined
-            name="Word" placeholder="example"
+            v-model="query"
+            clearable
+            no-resize
+            outlined
+            name="Word"
+            placeholder="example"
             :rules="rules"
             :height="height"
-            v-model="query"
           />
         </v-col>
 
-        <v-col
-          cols="12" md="auto"
-          align-self="center" class="text-center py-0"
-        >
+        <v-col cols="12" md="auto" align-self="center" class="text-center py-0">
           <v-btn
             large
             type="submit"
-            @click.prevent="manualUpdate"
             :disabled="!valid || disabled"
             :color="error ? 'error' : 'accent'"
-            elevation="0" min-width="0" class="px-3"
+            elevation="0"
+            min-width="0"
+            class="px-3"
+            @click.prevent="manualUpdate"
           >
-            <v-icon v-if="loading">fas fa-fan fa-spin-2x fa-fw</v-icon>
-            <v-icon v-else-if="error">fas fa-exclamation-triangle fa-fw</v-icon>
+            <v-icon v-if="loading"> fas fa-fan fa-spin-2x fa-fw </v-icon>
+            <v-icon v-else-if="error"> fas fa-exclamation-triangle fa-fw </v-icon>
             <template v-else>
-              <v-icon v-if="$vuetify.breakpoint.smAndDown">fas fa-arrow-alt-down fa-fw</v-icon>
-              <v-icon v-else>fas fa-arrow-alt-right fa-fw</v-icon>
+              <v-icon v-if="$vuetify.breakpoint.smAndDown"> fas fa-arrow-alt-down fa-fw </v-icon>
+              <v-icon v-else> fas fa-arrow-alt-right fa-fw </v-icon>
             </template>
           </v-btn>
         </v-col>
@@ -55,10 +55,10 @@
           <h2 class="text-h4">Number</h2>
           <v-simple-table :height="height" class="v-data-table--outlined">
             <tbody>
-            <tr v-for="(item, key) in result" :key="key">
-              <td style="width: 1%">{{ item.query }}:</td>
-              <td>{{ item.result }}</td>
-            </tr>
+              <tr v-for="(item, key) in result" :key="key">
+                <td style="width: 1%">{{ item.query }}:</td>
+                <td>{{ item.result }}</td>
+              </tr>
             </tbody>
           </v-simple-table>
         </v-col>
@@ -68,19 +68,15 @@
 </template>
 
 <script>
-import ConversionApi from '@/mixins/ConversionApi';
-import QueryValidate from '@/mixins/QueryValidate';
-import QueryUrl from '@/mixins/UrlQuery';
+import ConversionApi from "../mixins/ConversionApi";
+import QueryValidate from "../mixins/QueryValidate";
+import QueryUrl from "../mixins/UrlQuery";
 
 export default {
-  mixins: [
-    ConversionApi('/api/word'),
-    QueryValidate(/[^A-Za-z-'\s,;.]/),
-    QueryUrl,
-  ],
+  mixins: [ConversionApi("/api/word"), QueryValidate(/[^A-Za-z-'\s,;.]/), QueryUrl],
   computed: {
     height() {
-      return this.$vuetify.breakpoint.mdAndDown ? '200px' : '250px';
+      return this.$vuetify.breakpoint.mdAndDown ? "200px" : "250px";
     },
   },
 };

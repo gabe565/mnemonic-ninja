@@ -1,8 +1,10 @@
 <template>
   <v-container>
     <v-row class="pa-5" justify="center">
-      <h1 class="display-1">
-        <slot name="title">{{ $route.name }}</slot>
+      <h1 class="text-h4">
+        <slot name="title">
+          {{ $route.name }}
+        </slot>
       </h1>
     </v-row>
 
@@ -10,19 +12,18 @@
       <v-col>
         <v-card>
           <v-card-text>
-            <slot name="description"/>
+            <slot name="description" />
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
 
-    <slot/>
-
+    <slot />
   </v-container>
 </template>
 
 <script>
 export default {
-  name: 'Page',
+  name: "PageLayout",
 };
 </script>

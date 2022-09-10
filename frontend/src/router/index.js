@@ -1,72 +1,72 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Converters from '@/views/Converters.vue';
-import About from '@/views/About.vue';
-import NotFound from '@/views/NotFound.vue';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Converters from "../views/ConvertersPage.vue";
+import About from "../views/AboutPage.vue";
+import NotFound from "../views/NotFoundPage.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    redirect: '/convert/interactive',
+    path: "/",
+    redirect: "/convert/interactive",
   },
   {
-    path: '/convert',
-    redirect: '/convert/interactive',
+    path: "/convert",
+    redirect: "/convert/interactive",
   },
   {
-    path: '/convert/interactive',
-    name: 'Interactive',
+    path: "/convert/interactive",
+    name: "Interactive",
     component: Converters,
-    props: { startTab: 'interactive' },
+    props: { startTab: "interactive" },
   },
   {
-    path: '/convert/number',
-    name: 'Number to Word',
+    path: "/convert/number",
+    name: "Number to Word",
     component: Converters,
-    props: { startTab: 'number' },
+    props: { startTab: "number" },
   },
   {
-    path: '/convert/word',
-    name: 'Word to Number',
+    path: "/convert/word",
+    name: "Word to Number",
     component: Converters,
-    props: { startTab: 'word' },
+    props: { startTab: "word" },
   },
   {
-    path: '/about',
-    name: 'About',
+    path: "/about",
+    name: "About",
     component: About,
   },
   {
-    path: '*',
-    name: '404 Not Found',
+    path: "*",
+    name: "404 Not Found",
     component: NotFound,
   },
 
   // Deprecated route redirects
   {
-    path: '/converters(/.*)?',
-    redirect: (to) => to.path.replace('/converters', '/convert'),
+    path: "/converters(/.*)?",
+    redirect: (to) => to.path.replace("/converters", "/convert"),
   },
   {
-    path: '/convert/num(ber)?/:query?',
+    path: "/convert/num(ber)?/:query?",
     redirect: (to) => ({
-      path: '/convert/number',
+      path: "/convert/number",
       query: { q: to.params.query },
     }),
   },
   {
-    path: '/convert/word/:query',
+    path: "/convert/word/:query",
     redirect: (to) => ({
-      path: '/convert/word',
+      path: "/convert/word",
       query: { q: to.params.query },
     }),
   },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes,
 });

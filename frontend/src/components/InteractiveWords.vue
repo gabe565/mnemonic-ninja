@@ -4,7 +4,8 @@
       <ul>
         <template v-for="(query, queryKey) in response.result">
           <li v-for="(word, key) in query.result" :key="`${queryKey}-${key}`">
-            <a @click.prevent="$emit('select', { word, number: query.query })">{{ word }}</a>&nbsp;
+            <a @click.prevent="$emit('select', { word, number: query.query })">{{ word }}</a
+            >&nbsp;
           </li>
         </template>
       </ul>
@@ -14,10 +15,13 @@
 
 <script>
 export default {
-  name: 'InteractiveWords',
+  name: "InteractiveWords",
 
   props: {
-    response: Object,
+    response: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 };
 </script>

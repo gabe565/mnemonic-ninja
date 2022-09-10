@@ -1,4 +1,4 @@
-import isEqual from 'lodash/isEqual';
+import isEqual from "lodash/isEqual";
 
 export default {
   props: {
@@ -6,11 +6,11 @@ export default {
   },
 
   data: () => ({
-    query: '',
+    query: "",
   }),
 
   watch: {
-    '$route.query.q': {
+    "$route.query.q": {
       handler(val) {
         if (val && this.isActive) {
           this.query = val;
@@ -33,7 +33,7 @@ export default {
       if (!isEqual(query, this.$route.query)) {
         await this.$router.replace({ ...this.$route, query });
       }
-      this.$emit('query', query);
+      this.$emit("query", query);
     },
   },
 };

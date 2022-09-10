@@ -10,26 +10,27 @@
         Here your phrase. Once you memorize this phrase, you can go to the
         <router-link :to="{ path: '/convert/word', query: { q: value } }">
           word to number converter
-        </router-link> to change it back to your number.
-        <br>
-        You can also start over by typing in a new query, or change the chosen words by deleting
-        a word up above.
+        </router-link>
+        to change it back to your number.
+        <br />
+        You can also start over by typing in a new query, or change the chosen words by deleting a
+        word up above.
       </v-col>
     </v-row>
     <v-row>
       <v-col>
         <v-text-field
-          filled rounded readonly label="Phrase"
-          v-model="value"
+          :value="value"
+          filled
+          rounded
+          readonly
+          label="Phrase"
           @focus="$event.target.select()"
         >
           <template #prepend-inner>
             <v-tooltip bottom>
               <template #activator="{ on, attrs }">
-                <v-btn
-                  icon @click="copyPhrase"
-                  v-bind="attrs" v-on="on"
-                >
+                <v-btn icon v-bind="attrs" @click="copyPhrase" v-on="on">
                   <v-icon>fas fa-copy</v-icon>
                 </v-btn>
               </template>
@@ -39,10 +40,7 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-snackbar
-      v-model="showCopiedSnackbar" timeout="5000"
-      bottom class="pb-14 pb-md-0"
-    >
+    <v-snackbar v-model="showCopiedSnackbar" timeout="5000" bottom class="pb-14 pb-md-0">
       Copied to clipboard.
     </v-snackbar>
   </v-col>
@@ -50,10 +48,13 @@
 
 <script>
 export default {
-  name: 'InteractiveResult',
+  name: "InteractiveResult",
 
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: "",
+    },
   },
 
   data: () => ({

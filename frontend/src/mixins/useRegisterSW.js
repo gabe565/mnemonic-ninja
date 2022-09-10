@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 export default {
-  name: 'useRegisterSW',
+  name: "useRegisterSW",
   data() {
     return {
       updateSW: undefined,
@@ -10,7 +10,7 @@ export default {
   },
   async mounted() {
     try {
-      const { registerSW } = await import('virtual:pwa-register');
+      const { registerSW } = await import("virtual:pwa-register");
       const vm = this;
       this.updateSW = registerSW({
         immediate: true,
@@ -32,7 +32,7 @@ export default {
         },
       });
     } catch {
-      console.log('PWA disabled.');
+      console.log("PWA disabled.");
     }
   },
   methods: {
@@ -41,10 +41,10 @@ export default {
       this.needRefresh = false;
     },
     async onOfflineReadyFn() {
-      console.log('onOfflineReady');
+      console.log("onOfflineReady");
     },
     onNeedRefreshFn() {
-      console.log('onNeedRefresh');
+      console.log("onNeedRefresh");
     },
     updateServiceWorker() {
       if (this.updateSW) {

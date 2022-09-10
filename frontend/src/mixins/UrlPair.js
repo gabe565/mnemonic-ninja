@@ -1,12 +1,13 @@
-import { castArray } from '@/util/helpers';
+import { castArray } from "../util/helpers";
 
-export const castPair = (val) => val.map((p) => {
-  const split = p.split(',');
-  return {
-    word: split[0],
-    number: split[1],
-  };
-});
+export const castPair = (val) =>
+  val.map((p) => {
+    const split = p.split(",");
+    return {
+      word: split[0],
+      number: split[1],
+    };
+  });
 
 export default {
   data: () => ({
@@ -14,12 +15,12 @@ export default {
   }),
 
   watch: {
-    '$route.query.pair': {
+    "$route.query.pair": {
       async handler(val) {
         if (val) {
           this.$route.query.pair = val ? castArray(val) : undefined;
           this.pairs = castPair(this.$route.query.pair);
-          if (this.query === '') {
+          if (this.query === "") {
             await this.updateUrl();
           }
         }
@@ -35,9 +36,7 @@ export default {
         query.q = this.query;
       }
       if (this.pairs?.length) {
-        query.pair = this.pairs.map(
-          (pair) => [pair.word, pair.number].join(','),
-        );
+        query.pair = this.pairs.map((pair) => [pair.word, pair.number].join(","));
       }
       return query;
     },
