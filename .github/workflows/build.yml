@@ -79,7 +79,7 @@ jobs:
           images: |
             ghcr.io/gabe565/mnemonic-ninja
           tags: |
-            type=raw,priority=1000,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,priority=1000,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=ref,event=branch
             type=sha
       - name: Set up QEMU
@@ -98,7 +98,7 @@ jobs:
         with:
           context: .
           pull: true
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
