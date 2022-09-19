@@ -10,5 +10,12 @@ updates:
       interval: "daily"
   - package-ecosystem: "npm"
     directory: "/frontend"
+    registries:
+      - fontawesome-pro
     schedule:
       interval: "daily"
+registries:
+  fontawesome-pro:
+    type: npm-registry
+    url: https://npm.fontawesome.com/
+    token: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
