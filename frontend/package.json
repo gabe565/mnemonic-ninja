@@ -30,7 +30,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
     "@vue/cli-plugin-babel": "^5.0.8",
-    "eslint": "^8.19.0",
+    "eslint": "^8.23.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-vuetify": "^0.6.1",
