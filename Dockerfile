@@ -44,5 +44,12 @@ WORKDIR /app
 COPY --from=go-builder /app/mnemonic-ninja ./
 COPY --from=node-builder /app/dist/ frontend/
 
+ARG USERNAME=mnemonic-ninja
+ARG UID=1000
+ARG GID=$UID
+RUN addgroup -g "$GID" "$USERNAME" \
+    && adduser -S -u "$UID" -G "$USERNAME" "$USERNAME"
+USER $USERNAME
+
 ENV MNEMONIC_NINJA_ADDRESS ":80"
 CMD ["/app/mnemonic-ninja"]
