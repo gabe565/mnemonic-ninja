@@ -2,8 +2,8 @@ package database
 
 import (
 	"github.com/gabe565/mnemonic-ninja/internal/database/models"
+	"github.com/glebarez/sqlite"
 	flag "github.com/spf13/pflag"
-	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"log"

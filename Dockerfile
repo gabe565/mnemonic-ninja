@@ -4,8 +4,6 @@ ARG NODE_VERSION=16
 FROM --platform=$BUILDPLATFORM golang:$GO_VERSION-alpine as go-builder
 WORKDIR /app
 
-RUN apk add --no-cache gcc g++
-
 COPY go.mod go.sum ./
 RUN go mod download
 
