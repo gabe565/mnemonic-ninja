@@ -6,10 +6,16 @@ package main
 //go:generate npm install
 //go:generate npm run build
 
-import "embed"
+import (
+	"embed"
+	flag "github.com/spf13/pflag"
+)
 
 //go:embed frontend/dist
 var frontendEmbed embed.FS
 
 var defaultFrontend string
-var frontendHelpExt = " If left empty, embedded assets are used."
+
+func init() {
+	flag.String("frontend", defaultFrontend, "Override frontend asset directory. If left empty, embedded assets are used.")
+}

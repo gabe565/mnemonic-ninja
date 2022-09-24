@@ -24,7 +24,6 @@ var cmudictGz []byte
 
 func init() {
 	flag.String("address", ":3000", "Override listen address.")
-	flag.String("frontend", defaultFrontend, "Override frontend asset directory."+frontendHelpExt)
 }
 
 func main() {
