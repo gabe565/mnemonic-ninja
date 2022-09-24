@@ -38,7 +38,7 @@ RUN npm run build
 
 
 FROM alpine
-LABEL org.opencontainers.image.source https://github.com/gabe565/mnemonic-ninja
+LABEL org.opencontainers.image.source="https://github.com/gabe565/mnemonic-ninja"
 WORKDIR /app
 
 COPY --from=go-builder /app/mnemonic-ninja ./
