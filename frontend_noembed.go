@@ -6,5 +6,5 @@ import "embed"
 
 var frontendEmbed embed.FS
 
-var defaultFrontend = "frontend"
+var defaultFrontend = "frontend/dist"
 var frontendHelpExt string

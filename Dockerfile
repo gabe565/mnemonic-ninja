@@ -52,4 +52,5 @@ RUN addgroup -g "$GID" "$USERNAME" \
 USER $UID
 
 ENV MNEMONIC_NINJA_ADDRESS ":80"
+ENV MNEMONIC_NINJA_FRONTEND "frontend"
 CMD ["/app/mnemonic-ninja"]
