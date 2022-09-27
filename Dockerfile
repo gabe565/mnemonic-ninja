@@ -9,6 +9,9 @@ RUN go mod download
 
 COPY *.go .
 COPY internal/ internal/
+
+RUN go generate
+
 ARG TARGETPLATFORM
 # Set Golang build envs based on Docker platform string
 RUN --mount=type=cache,target=/root/.cache \
@@ -20,7 +23,6 @@ RUN --mount=type=cache,target=/root/.cache \
         'linux/arm64' | 'linux/arm64/v8') export GOARCH=arm64 ;; \
         *) echo "Unsupported target: $TARGETPLATFORM" && exit 1 ;; \
     esac \
-    && go generate \
     && go build -ldflags='-w -s'
 
 
