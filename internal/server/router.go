@@ -55,6 +55,9 @@ func Router(db *gorm.DB, rootFs fs.FS, tp trace.TracerProvider) *chi.Mux {
 		r.Get("/number/{query}", handlers.BatchHandler(db, models.Number))
 		r.Get("/word/{query}", handlers.BatchHandler(db, models.Word))
 		r.Get("/interactive/{query}", handlers.InteractiveHandler(db))
+		r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
+			http.NotFound(w, r)
+		})
 	})
 
 	return r
