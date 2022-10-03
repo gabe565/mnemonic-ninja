@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version-file: go.mod
+          cache: true
       - run: go generate
       - name: Lint
         uses: golangci/golangci-lint-action@v3
@@ -32,12 +33,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version-file: go.mod
-      - uses: actions/cache@v3
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
+          cache: true
       - run: go generate
       - name: Test
         run: go test ./...
