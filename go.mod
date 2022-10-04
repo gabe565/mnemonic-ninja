@@ -3,7 +3,7 @@ module github.com/gabe565/mnemonic-ninja
 go 1.19
 
 require (
-	github.com/glebarez/sqlite v1.4.7
+	github.com/glebarez/sqlite v1.4.8
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/httprate v0.7.0
 	github.com/go-chi/render v1.0.2
@@ -25,7 +25,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
-	github.com/glebarez/go-sqlite v1.18.2 // indirect
+	github.com/glebarez/go-sqlite v1.19.1 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
