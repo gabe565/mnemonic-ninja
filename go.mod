@@ -7,7 +7,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/httprate v0.7.0
 	github.com/go-chi/render v1.0.2
-	github.com/riandyrn/otelchi v0.4.0
+	github.com/riandyrn/otelchi v0.5.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.13.0
 	go.opentelemetry.io/otel v1.10.0
