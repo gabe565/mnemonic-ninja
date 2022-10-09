@@ -11,21 +11,21 @@
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.2.0",
     "@vitejs/plugin-vue": "^1.6.1",
-    "axios": "^0.27.2",
+    "axios": "^1.1.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "lodash": "^4.17.21",
     "prettier": "^2.7.1",
     "register-service-worker": "^1.7.2",
     "sass": "~1.32.6",
-    "unplugin-vue-components": "^0.22.7",
+    "unplugin-vue-components": "^0.22.8",
     "vite": "^2.5.4",
     "vite-plugin-pwa": "^0.12.8",
     "vite-plugin-vue2": "2.0.2",
     "vue": "^2.7.10",
     "vue-router": "^3.6.5",
     "vue-template-compiler": "^2.7.10",
-    "vuetify": "^2.6.10"
+    "vuetify": "^2.6.11"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
@@ -35,7 +35,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-vuetify": "^0.6.1",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-vue": "^9.5.1",
+    "eslint-plugin-vue": "^9.6.0",
     "vue-eslint-parser": "^9.1.0"
   }
 }
