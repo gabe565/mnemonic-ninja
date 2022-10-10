@@ -3,7 +3,7 @@ module github.com/gabe565/mnemonic-ninja
 go 1.19
 
 require (
-	github.com/glebarez/sqlite v1.4.8
+	github.com/glebarez/sqlite v1.5.0
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/httprate v0.7.0
 	github.com/go-chi/render v1.0.2
@@ -16,7 +16,7 @@ require (
 	go.opentelemetry.io/otel/sdk v1.10.0
 	go.opentelemetry.io/otel/trace v1.10.0
 	google.golang.org/grpc v1.50.0
-	gorm.io/gorm v1.23.10
+	gorm.io/gorm v1.24.0
 )
 
 require (
