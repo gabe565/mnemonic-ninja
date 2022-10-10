@@ -41,6 +41,8 @@ FROM alpine
 LABEL org.opencontainers.image.source="https://github.com/gabe565/mnemonic-ninja"
 WORKDIR /app
 
+RUN apk add --no-cache tzdata
+
 COPY --from=go-builder /app/mnemonic-ninja ./
 COPY --from=node-builder /app/dist/ frontend/
 
