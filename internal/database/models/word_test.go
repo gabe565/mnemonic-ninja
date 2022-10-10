@@ -3,6 +3,7 @@ package models
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -71,6 +72,28 @@ func TestFromString(t *testing.T) {
 			}
 			if word.Number != tc.number {
 				t.Errorf("invalid number. got %s, want %s", word.Number, tc.number)
+			}
+		})
+	}
+}
+
+func Test_truncRightAtRune(t *testing.T) {
+	type args struct {
+		s []byte
+		r rune
+	}
+	tests := []struct {
+		name string
+		args args
+		want []byte
+	}{
+		{"parenthesis", args{[]byte("testers(2)"), '('}, []byte("testers")},
+		{"comment", args{[]byte("G IY1 D IY1 P IY1 # abbrev"), '#'}, []byte("G IY1 D IY1 P IY1 ")},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := truncRightAtRune(tt.args.s, tt.args.r); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("truncRightAtRune() = %v, want %v", got, tt.want)
 			}
 		})
 	}
