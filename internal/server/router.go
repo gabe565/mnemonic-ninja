@@ -46,8 +46,14 @@ func Router(db *gorm.DB, rootFs fs.FS) *chi.Mux {
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
 		r.Get("/number/{query}", handlers.BatchHandler(db, models.Number))
+		r.Post("/number", handlers.BatchHandler(db, models.Number))
+
 		r.Get("/word/{query}", handlers.BatchHandler(db, models.Word))
+		r.Post("/word", handlers.BatchHandler(db, models.Word))
+
 		r.Get("/interactive/{query}", handlers.InteractiveHandler(db))
+		r.Post("/interactive", handlers.InteractiveHandler(db))
+
 		r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
 			http.NotFound(w, r)
 		})

@@ -16,15 +16,27 @@ var SplitRegex = regexp.MustCompile("[+,; \n]+")
 func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
-		fullQuery := chi.URLParam(r, "query")
-		fullQuery, err = url.QueryUnescape(fullQuery)
-		if err != nil {
-			panic(err)
+
+		request := models.ConversionRequest{QueryType: queryType}
+		switch r.Method {
+		case http.MethodPost:
+			if err := render.Bind(r, &request); err != nil {
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				return
+			}
+		case http.MethodGet:
+			query := chi.URLParam(r, "query")
+			query, err := url.QueryUnescape(query)
+			if err != nil {
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				return
+			}
+			request.Query = query
 		}
-		queries := SplitRegex.Split(fullQuery, -1)
+
+		queries := SplitRegex.Split(request.Query, -1)
 		response := models.ConversionResponse{
-			Query:     fullQuery,
-			QueryType: queryType,
+			ConversionRequest: &request,
 		}
 		for _, query := range queries {
 			if query == "" {

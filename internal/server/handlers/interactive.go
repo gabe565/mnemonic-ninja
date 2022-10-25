@@ -13,19 +13,31 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 	queryType := models.Number
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
-		query := chi.URLParam(r, "query")
-		query, err = url.QueryUnescape(query)
-		if err != nil {
-			panic(err)
-		}
-		response := models.ConversionResponse{
-			Query:     query,
-			QueryType: queryType,
+
+		request := models.ConversionRequest{QueryType: queryType}
+		switch r.Method {
+		case http.MethodPost:
+			if err := render.Bind(r, &request); err != nil {
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				return
+			}
+		case http.MethodGet:
+			query := chi.URLParam(r, "query")
+			query, err := url.QueryUnescape(query)
+			if err != nil {
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				return
+			}
+			request.Query = query
 		}
 
-		if query != "" {
-			for i := len(query); i > 0; i-- {
-				entry := models.ConversionEntry{Query: query[0:i]}
+		response := models.ConversionResponse{
+			ConversionRequest: &request,
+		}
+
+		if request.Query != "" {
+			for i := len(request.Query); i > 0; i-- {
+				entry := models.ConversionEntry{Query: request.Query[0:i]}
 
 				result := db.Distinct(queryType.DistinctColumn()).
 					Where(map[string]any{queryType.WhereColumn(): entry.Query}).

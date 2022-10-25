@@ -53,7 +53,9 @@ export default (url) => ({
       }
       this.loading = true;
       try {
-        const { data } = await axios.get(`${url}/${encodeURIComponent(this.query)}`);
+        const { data } = await axios.post(url, {
+          query: this.query,
+        });
         this.response = data;
         this.error = false;
         this.valid = true;

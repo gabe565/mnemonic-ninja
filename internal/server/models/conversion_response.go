@@ -4,11 +4,19 @@ import (
 	"net/http"
 )
 
+type ConversionRequest struct {
+	Query     string    `json:"query"`
+	QueryType QueryType `json:"-"`
+}
+
+func (c *ConversionRequest) Bind(r *http.Request) error {
+	return nil
+}
+
 type ConversionResponse struct {
-	Query     string             `json:"query"`
-	Count     int                `json:"count"`
-	QueryType QueryType          `json:"-"`
-	Result    []*ConversionEntry `json:"result"`
+	*ConversionRequest
+	Count  int                `json:"count"`
+	Result []*ConversionEntry `json:"result"`
 }
 
 func (response *ConversionResponse) Render(w http.ResponseWriter, r *http.Request) (err error) {
