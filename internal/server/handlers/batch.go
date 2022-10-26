@@ -15,8 +15,6 @@ var SplitRegex = regexp.MustCompile("[+,; \n]+")
 
 func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var err error
-
 		request := models.ConversionRequest{QueryType: queryType}
 		switch r.Method {
 		case http.MethodPost:
@@ -60,8 +58,7 @@ func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 			response.Result = append(response.Result, &entry)
 		}
 
-		err = render.Render(w, r, &response)
-		if err != nil {
+		if err := render.Render(w, r, &response); err != nil {
 			panic(err)
 		}
 	}

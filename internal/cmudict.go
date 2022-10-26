@@ -43,18 +43,15 @@ func main() {
 
 	gz := gzip.NewWriter(out)
 
-	_, err = io.Copy(gz, resp.Body)
-	if err != nil {
+	if _, err := io.Copy(gz, resp.Body); err != nil {
 		log.Fatalln(err)
 	}
 
-	err = gz.Close()
-	if err != nil {
+	if err := gz.Close(); err != nil {
 		log.Fatalln(err)
 	}
 
-	err = out.Close()
-	if err != nil {
+	if err := out.Close(); err != nil {
 		log.Fatalln(err)
 	}
 

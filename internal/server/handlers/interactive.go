@@ -12,8 +12,6 @@ import (
 func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 	queryType := models.Number
 	return func(w http.ResponseWriter, r *http.Request) {
-		var err error
-
 		request := models.ConversionRequest{QueryType: queryType}
 		switch r.Method {
 		case http.MethodPost:
@@ -54,8 +52,7 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 			}
 		}
 
-		err = render.Render(w, r, &response)
-		if err != nil {
+		if err := render.Render(w, r, &response); err != nil {
 			panic(err)
 		}
 	}

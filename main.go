@@ -25,9 +25,7 @@ func init() {
 }
 
 func main() {
-	var err error
-
-	if err = config.Parse(); err != nil {
+	if err := config.Parse(); err != nil {
 		panic(err)
 	}
 
@@ -36,14 +34,12 @@ func main() {
 		panic(err)
 	}
 
-	err = seeds.SeedWords(db, cmudictGz)
-	if err != nil {
+	if err := seeds.SeedWords(db, cmudictGz); err != nil {
 		panic(err)
 	}
 
 	var frontendFs fs.FS
-	frontendDir := viper.GetString("frontend")
-	if frontendDir != "" {
+	if frontendDir := viper.GetString("frontend"); frontendDir != "" {
 		frontendFs = os.DirFS(frontendDir)
 	} else {
 		frontendFs, err = fs.Sub(frontendEmbed, "frontend/dist")
@@ -55,8 +51,7 @@ func main() {
 	router := server.Router(db, frontendFs)
 	address := viper.GetString("address")
 	log.Println("Listening on " + address)
-	err = http.ListenAndServe(address, router)
-	if err != nil {
+	if err := http.ListenAndServe(address, router); err != nil {
 		panic(err)
 	}
 	fmt.Println("Exiting")

@@ -37,8 +37,7 @@ func Setup() (*gorm.DB, error) {
 		return db, err
 	}
 
-	err = db.AutoMigrate(&models.Word{})
-	if err != nil {
+	if err := db.AutoMigrate(&models.Word{}); err != nil {
 		return db, err
 	}
 

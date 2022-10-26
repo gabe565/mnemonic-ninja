@@ -28,7 +28,7 @@ func SeedWords(db *gorm.DB, cmudictGz []byte) error {
 
 	s := bufio.NewScanner(gz)
 	var inserted int64
-	err = db.Transaction(func(db *gorm.DB) error {
+	if err := db.Transaction(func(db *gorm.DB) error {
 		words := make([]*models.Word, 0, ImportBatchSize)
 		for s.Scan() {
 			w, err := models.FromCmudict(s.Bytes())
@@ -54,8 +54,7 @@ func SeedWords(db *gorm.DB, cmudictGz []byte) error {
 		result := db.Create(words)
 		inserted += result.RowsAffected
 		return result.Error
-	})
-	if err != nil {
+	}); err != nil {
 		return err
 	}
 	timeTaken := time.Since(startTime)

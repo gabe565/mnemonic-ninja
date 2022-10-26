@@ -10,7 +10,7 @@ import (
 func Parse() (err error) {
 	flag.Parse()
 	flag.CommandLine.VisitAll(func(f *flag.Flag) {
-		if err = viper.BindPFlag(strings.ReplaceAll(f.Name, "-", "."), f); err != nil {
+		if err := viper.BindPFlag(strings.ReplaceAll(f.Name, "-", "."), f); err != nil {
 			return
 		}
 	})
