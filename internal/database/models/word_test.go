@@ -77,10 +77,10 @@ func TestFromString(t *testing.T) {
 	}
 }
 
-func Test_truncRightAtRune(t *testing.T) {
+func Test_truncateAtByte(t *testing.T) {
 	type args struct {
-		s []byte
-		r rune
+		b []byte
+		c byte
 	}
 	tests := []struct {
 		name string
@@ -92,8 +92,8 @@ func Test_truncRightAtRune(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := truncRightAtRune(tt.args.s, tt.args.r); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("truncRightAtRune() = %v, want %v", got, tt.want)
+			if got := truncateAtByte(tt.args.b, tt.args.c); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("truncateAtByte() = %v, want %v", got, tt.want)
 			}
 		})
 	}

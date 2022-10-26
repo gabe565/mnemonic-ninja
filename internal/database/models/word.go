@@ -31,10 +31,10 @@ func FromCmudict(line []byte) (*Word, error) {
 	split := bytes.SplitN(line, []byte{' '}, 2)
 
 	// Remove (#) from duplicate words
-	w.Word = string(truncRightAtRune(split[0], '('))
+	w.Word = string(truncateAtByte(split[0], '('))
 
 	// Remove comments
-	arpabet := bytes.TrimSpace(truncRightAtRune(split[1], '#'))
+	arpabet := bytes.TrimSpace(truncateAtByte(split[1], '#'))
 	w.Arpabet = string(arpabet)
 	if w.Arpabet == "" {
 		return &w, fmt.Errorf("%v: %w", w.Word, ErrInvalidArpabet)
@@ -69,10 +69,10 @@ func FromString(w string) *Word {
 	}
 }
 
-func truncRightAtRune(s []byte, r rune) []byte {
-	i := bytes.IndexRune(s, r)
+func truncateAtByte(b []byte, c byte) []byte {
+	i := bytes.IndexByte(b, c)
 	if i == -1 {
-		return s
+		return b
 	}
-	return s[:i]
+	return b[:i]
 }
