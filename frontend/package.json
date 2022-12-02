@@ -18,7 +18,7 @@
     "prettier": "^2.8.0",
     "register-service-worker": "^1.7.2",
     "sass": "~1.32.6",
-    "unplugin-vue-components": "^0.22.9",
+    "unplugin-vue-components": "^0.22.11",
     "vite": "^2.5.4",
     "vite-plugin-pwa": "^0.12.8",
     "vite-plugin-vue2": "2.0.2",
