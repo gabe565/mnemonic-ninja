@@ -11,7 +11,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.2.1",
     "@vitejs/plugin-vue": "^1.6.1",
-    "axios": "^1.2.0",
+    "axios": "^1.2.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "lodash": "^4.17.21",
