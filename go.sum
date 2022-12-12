@@ -67,8 +67,8 @@ github.com/glebarez/go-sqlite v1.19.1 h1:o2XhjyR8CQ2m84+bVz10G0cabmG0tY4sIMiCbrc
 github.com/glebarez/go-sqlite v1.19.1/go.mod h1:9AykawGIyIcxoSfpYWiX1SgTNHTNsa/FVc75cDkbp4M=
 github.com/glebarez/sqlite v1.5.0 h1:+8LAEpmywqresSoGlqjjT+I9m4PseIM3NcerIJ/V7mk=
 github.com/glebarez/sqlite v1.5.0/go.mod h1:0wzXzTvfVJIN2GqRhCdMbnYd+m+aH5/QV7B30rM6NgY=
-github.com/go-chi/chi/v5 v5.0.7 h1:rDTPXLDHGATaeHvVlLcR4Qe0zftYethFucbjVQ1PxU8=
-github.com/go-chi/chi/v5 v5.0.7/go.mod h1:DslCQbL2OYiznFReuXYUmQ2hGd1aDpCnlMNITLSKoi8=
+github.com/go-chi/chi/v5 v5.0.8 h1:lD+NLqFcAi1ovnVZpsnObHGW4xb4J8lNmoYVfECH1Y0=
+github.com/go-chi/chi/v5 v5.0.8/go.mod h1:DslCQbL2OYiznFReuXYUmQ2hGd1aDpCnlMNITLSKoi8=
 github.com/go-chi/httprate v0.7.0 h1:8W0dF7Xa2Duz2p8ncGaehIphrxQGNlOtoGY0+NRRfjQ=
 github.com/go-chi/httprate v0.7.0/go.mod h1:6GOYBSwnpra4CQfAKXu8sQZg+nZ0M1g9QnyFvxrAB8A=
 github.com/go-chi/render v1.0.2 h1:4ER/udB0+fMWB2Jlf15RV3F4A2FDuYi/9f+lFttR/Lg=
