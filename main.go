@@ -34,9 +34,11 @@ func main() {
 		panic(err)
 	}
 
-	if err := seeds.SeedWords(db, cmudictGz); err != nil {
-		panic(err)
-	}
+	go func() {
+		if err := seeds.SeedWords(db, cmudictGz); err != nil {
+			panic(err)
+		}
+	}()
 
 	var frontendFs fs.FS
 	if frontendDir := viper.GetString("frontend"); frontendDir != "" {

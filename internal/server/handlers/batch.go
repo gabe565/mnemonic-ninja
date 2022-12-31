@@ -2,6 +2,7 @@ package handlers
 
 import (
 	models2 "github.com/gabe565/mnemonic-ninja/internal/database/models"
+	"github.com/gabe565/mnemonic-ninja/internal/database/seeds"
 	"github.com/gabe565/mnemonic-ninja/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -36,6 +37,9 @@ func BatchHandler(db *gorm.DB, queryType models.QueryType) http.HandlerFunc {
 		response := models.ConversionResponse{
 			ConversionRequest: &request,
 		}
+
+		<-seeds.Done
+
 		for _, query := range queries {
 			if query == "" {
 				continue

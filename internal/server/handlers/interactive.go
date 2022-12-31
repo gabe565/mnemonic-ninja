@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/gabe565/mnemonic-ninja/internal/database/seeds"
 	"github.com/gabe565/mnemonic-ninja/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -32,6 +33,8 @@ func InteractiveHandler(db *gorm.DB) http.HandlerFunc {
 		response := models.ConversionResponse{
 			ConversionRequest: &request,
 		}
+
+		<-seeds.Done
 
 		if request.Query != "" {
 			for i := len(request.Query); i > 0; i-- {

@@ -11,10 +11,16 @@ import (
 	"time"
 )
 
+var Done = make(chan struct{})
+
 const ImportBatchSize = 500
 
 func SeedWords(db *gorm.DB, cmudictGz []byte) error {
 	var err error
+
+	defer func() {
+		close(Done)
+	}()
 
 	log.Println("Loading words")
 	startTime := time.Now()
