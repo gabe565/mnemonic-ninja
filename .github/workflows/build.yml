@@ -1,6 +1,11 @@
 name: Build
 
-on: push
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v*"
 
 jobs:
   backend-lint:
@@ -42,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node.js for use with actions
+      - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version-file: frontend/.nvmrc
@@ -54,23 +59,36 @@ jobs:
           FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
       - run: npm --prefix frontend run lint
 
-  build:
-    name: Build Image
+  frontend-build:
+    name: Frontend Build
     runs-on: ubuntu-latest
-    needs: [backend-lint, backend-test, frontend-lint]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm --prefix frontend install --prefer-offline --no-audit
+        env:
+          FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
+      - run: npm --prefix frontend run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: frontend
+          path: frontend/dist
+
+  backend-build:
+    name: Backend Build
+    runs-on: ubuntu-latest
+    needs: [backend-lint, backend-test, frontend-lint, frontend-build]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
         with:
-          images: |
-            ghcr.io/gabe565/mnemonic-ninja
-          tags: |
-            type=raw,priority=1000,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-            type=ref,event=branch
-            type=sha
+          fetch-depth: 0
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Buildx
@@ -81,17 +99,31 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and Push
-        id: docker_build
-        uses: docker/build-push-action@v3
+      - uses: actions/download-artifact@v3
         with:
-          context: .
-          pull: true
-          push: ${{ github.ref == 'refs/heads/main' }}
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          name: frontend
+          path: frontend/dist
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: Set build variables
+        id: vars
+        run: |
+          args='release --rm-dist'
+          if [[ "$GITHUB_REF" != refs/tags/* ]]; then
+            args+=' --snapshot'
+          fi
+          echo "args=$args" >> $GITHUB_OUTPUT
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v4
+        with:
+          version: latest
+          args: ${{ steps.vars.outputs.args }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
