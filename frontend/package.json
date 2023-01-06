@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.2.1",
-    "@vitejs/plugin-vue": "^1.6.1",
+    "@vitejs/plugin-vue2": "^2.2.0",
     "axios": "^1.2.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -20,7 +20,7 @@
     "sass": "~1.32.6",
     "unplugin-vue-components": "^0.22.11",
     "vite": "^4.0.0",
-    "vite-plugin-pwa": "^0.12.8",
+    "vite-plugin-pwa": "^0.14.1",
     "vite-plugin-vue2": "2.0.3",
     "vue": "^2.7.14",
     "vue-router": "^3.6.5",
