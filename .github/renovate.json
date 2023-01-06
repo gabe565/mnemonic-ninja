@@ -17,6 +17,14 @@
       "depNameTemplate": "node",
       "datasourceTemplate": "node",
       "versioningTemplate": "node"
+    },
+    {
+      "fileMatch": ["\\.go$"],
+      "matchStrings": [
+        "\\/\\/ ?renovate branch=(?<currentValue>.+)\\n.*https:\\/\\/github\\.com\\/(?<depName>.+)\\/raw\\/(?<currentDigest>[^\\/]+)"
+      ],
+      "datasourceTemplate": "git-refs",
+      "packageNameTemplate": "https://github.com/{{depName}}"
     }
   ],
   "packageRules": [
@@ -47,6 +55,10 @@
     },
     {
       "matchManagers": ["github-actions"],
+      "automerge": true
+    },
+    {
+      "matchPackageNames": ["cmusphinx/cmudict"],
       "automerge": true
     }
   ],

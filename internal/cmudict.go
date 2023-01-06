@@ -11,22 +11,17 @@ import (
 	"os"
 )
 
-func main() {
-	var location string
-	flag.StringVarP(&location,
-		"url",
-		"u",
-		"https://github.com/cmusphinx/cmudict/raw/master/cmudict.dict",
-		"Source URL",
-	)
+// renovate branch=master
+const Url = "https://github.com/cmusphinx/cmudict/raw/697cd8957daa07d2cb89e0cee922de6218afde81/cmudict.dict"
 
+func main() {
 	var output string
 	flag.StringVarP(&output, "output", "o", ".cmudict.dict.gz", "Output filename")
 
 	flag.Parse()
 
-	log.Println("Downloading CMUdict from " + location)
-	resp, err := http.Get(location)
+	log.Println("Downloading CMUdict from " + Url)
+	resp, err := http.Get(Url)
 	if err != nil {
 		log.Fatalln(err)
 	}
