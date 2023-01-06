@@ -1,0 +1,58 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "ignorePresets": [":prHourlyLimit2"],
+  "labels": [
+    "dependencies",
+    "{{datasource}}",
+    "{{updateType}}"
+  ],
+  "commitMessagePrefix": ":arrow_up:",
+  "regexManagers": [
+    {
+      "fileMatch": ["Dockerfile"],
+      "matchStrings": ["ARG NODE_VERSION=(?<currentValue>.+)"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["lockFileMaintenance", "pin"],
+      "commitMessagePrefix": ":pushpin:"
+    },
+    {
+      "matchUpdateTypes": ["rollback"],
+      "commitMessagePrefix": ":arrow_down:"
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["node"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["vue"],
+      "allowedVersions": "< 3"
+    },
+    {
+      "matchPackageNames": ["vue-router"],
+      "allowedVersions": "< 4"
+    },
+    {
+      "matchPackageNames": ["sass"],
+      "allowedVersions": "<= 1.32"
+    }
+  ],
+  "hostRules": [
+    {
+      "matchHost": "https://npm.fontawesome.com/",
+      "hostType": "npm",
+      "encrypted": {
+        "token": "wcFMA/xDdHCJBTolAQ//Z26hzYOMZDWWnC5opHFtdmGw2nFuISpVMM/IdLUPYVWjNVVCeyVUBs4OvKp9or6sgkBLzTfcjEICQ1XwwFCvSJfPC0YI86+v9hPueSAEV1stP8OzjNzamhUvyV4iFJ6nKLkDpGQFFohJwMLHmk/aoe/R21R6DDMXAgNv1sPw1cIezcRmEy54nI7Gladk/CoCDqliHr98wo5/BnjOwMk0fl2LZupqBhSSDoB39azWM5LGpON0G6iPLE4vlYHFT3VAUOue+UJZdDymG8VQBDByhA92Fmdkd+BdauWIoNzLp9Ja5vP7Ot3Q1zGSXgfD7sw3nhcC1JBJAkAr+IaEMi/1Itm6OcbbnMynUFnlOD621TTWFHik2RGO19rcX2NlpPtqV5g2shZKhuthHdvAXgOe/Mm6gJUxCCx+FbMZKWK9yoi5lfUs9QquG8lD4ytlxnxGajpnBBnNYwb+JuetLujRoPLTQ7ALtoKlpH0RKnC1uQzIJtDwY7FdiYALdOIj9fOhe9p83YvodOWWr4ZZAmw0oMshxr1RnodasYt+U4qAtLSLjcxVA6T2DLCE4X0q0pWr0dSvQMJ5x+2zGKFGuZlBB0U8Kuhis30TY0tYMeLxvtaT7NSRUiCP60TgEyoe1Obpq7hZTnNnpeIDBgA6kawdAsrdp8EGhczCCLamTlWhBwTSgAEicpeuR0ZorPzTvWBqF8PzXDBn7iAf1YOaOKFQBahaWTKGK3KUAoxXpudR8k6/iV5dprOVvU90bIEOB/W1b+fGPu79GyCSLB6tpJYtMY+7/K4hrYjcQKzlH9WbRSYH788dFCJMNiGXkbcpCKVS3wrP6hUECzrisT9hvhhDFobz"
+      }
+    }
+  ]
+}
