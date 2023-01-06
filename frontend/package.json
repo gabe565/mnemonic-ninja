@@ -21,7 +21,6 @@
     "unplugin-vue-components": "^0.22.11",
     "vite": "^4.0.0",
     "vite-plugin-pwa": "^0.14.1",
-    "vite-plugin-vue2": "2.0.3",
     "vue": "^2.7.14",
     "vue-router": "^3.6.5",
     "vue-template-compiler": "^2.7.14",
