@@ -44,6 +44,10 @@
     {
       "matchPackageNames": ["sass"],
       "allowedVersions": "<= 1.32"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true
     }
   ],
   "hostRules": [
