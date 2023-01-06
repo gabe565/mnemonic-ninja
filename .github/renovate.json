@@ -18,6 +18,18 @@
     {
       "matchUpdateTypes": ["rollback"],
       "commitMessagePrefix": ":arrow_down:"
+    },
+    {
+      "matchPackageNames": ["vue"],
+      "allowedVersions": "< 3"
+    },
+    {
+      "matchPackageNames": ["vue-router"],
+      "allowedVersions": "< 4"
+    },
+    {
+      "matchPackageNames": ["sass"],
+      "allowedVersions": "<= 1.32"
     }
   ],
   "hostRules": [
