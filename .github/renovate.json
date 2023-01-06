@@ -10,6 +10,15 @@
     "{{updateType}}"
   ],
   "commitMessagePrefix": ":arrow_up:",
+  "regexManagers": [
+    {
+      "fileMatch": ["Dockerfile"],
+      "matchStrings": ["ARG NODE_VERSION=(?<currentValue>.+)"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    }
+  ],
   "packageRules": [
     {
       "matchUpdateTypes": ["lockFileMaintenance", "pin"],
@@ -18,6 +27,11 @@
     {
       "matchUpdateTypes": ["rollback"],
       "commitMessagePrefix": ":arrow_down:"
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["node"],
+      "enabled": false
     },
     {
       "matchPackageNames": ["vue"],
