@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^6.2.1",
-    "@vitejs/plugin-vue": "^1.6.1",
+    "@vitejs/plugin-vue": "^4.0.0",
     "axios": "^1.2.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
