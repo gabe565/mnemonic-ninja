@@ -13,7 +13,7 @@
   "regexManagers": [
     {
       "fileMatch": ["Dockerfile"],
-      "matchStrings": ["ARG NODE_VERSION=(?<currentValue>.+)"],
+      "matchStrings": ["node:(?<currentValue>.+)-alpine"],
       "depNameTemplate": "node",
       "datasourceTemplate": "node",
       "versioningTemplate": "node"

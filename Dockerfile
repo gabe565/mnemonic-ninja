@@ -1,7 +1,4 @@
-ARG GO_VERSION=1.19
-ARG NODE_VERSION=18
-
-FROM --platform=$BUILDPLATFORM golang:$GO_VERSION-alpine as go-builder
+FROM --platform=$BUILDPLATFORM golang:1.19-alpine as go-builder
 WORKDIR /app
 
 COPY go.mod go.sum ./
@@ -26,7 +23,7 @@ RUN --mount=type=cache,target=/root/.cache \
     && go build -ldflags='-w -s'
 
 
-FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:18-alpine AS node-builder
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
