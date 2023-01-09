@@ -27,7 +27,6 @@ func TestFromCmudict(t *testing.T) {
 	for _, tc := range testCases {
 		tc := tc // capture range variable
 		t.Run(fmt.Sprintf("Create word from cmudict %v", tc.word), func(t *testing.T) {
-			t.Parallel()
 			word, err := FromCmudict(tc.input)
 			if err != tc.err && !errors.Is(err, tc.err) {
 				t.Errorf("unexpected error. got %v, want %v", err, tc.err)
@@ -62,7 +61,6 @@ func TestFromString(t *testing.T) {
 	for _, tc := range testCases {
 		tc := tc
 		t.Run(fmt.Sprintf("Create word from user input %s", tc.input), func(t *testing.T) {
-			t.Parallel()
 			word := FromString(tc.input)
 			if word.Word != tc.word {
 				t.Errorf("invalid word. got %s, want %s", word.Word, tc.word)
