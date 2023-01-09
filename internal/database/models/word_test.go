@@ -1,9 +1,8 @@
 package models
 
 import (
-	"errors"
 	"fmt"
-	"reflect"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -28,18 +27,12 @@ func TestFromCmudict(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(fmt.Sprintf("Create word from cmudict %v", tc.word), func(t *testing.T) {
 			word, err := FromCmudict(tc.input)
-			if err != tc.err && !errors.Is(err, tc.err) {
-				t.Errorf("unexpected error. got %v, want %v", err, tc.err)
+			if !assert.ErrorIs(t, err, tc.err) {
+				return
 			}
-			if word.Word != tc.word {
-				t.Errorf("invalid word. got %s, want %s", word.Word, tc.word)
-			}
-			if word.Arpabet != tc.arpabet {
-				t.Errorf("invalid arpabet. got %s, want %s", word.Arpabet, tc.arpabet)
-			}
-			if word.Number != tc.number {
-				t.Errorf("invalid number. got %s, want %s", word.Number, tc.number)
-			}
+			assert.Equal(t, tc.word, word.Word)
+			assert.Equal(t, tc.arpabet, word.Arpabet)
+			assert.Equal(t, tc.number, word.Number)
 		})
 	}
 }
@@ -62,15 +55,9 @@ func TestFromString(t *testing.T) {
 		tc := tc
 		t.Run(fmt.Sprintf("Create word from user input %s", tc.input), func(t *testing.T) {
 			word := FromString(tc.input)
-			if word.Word != tc.word {
-				t.Errorf("invalid word. got %s, want %s", word.Word, tc.word)
-			}
-			if word.Arpabet != tc.arpabet {
-				t.Errorf("invalid arpabet. got %s, want %s", word.Arpabet, tc.arpabet)
-			}
-			if word.Number != tc.number {
-				t.Errorf("invalid number. got %s, want %s", word.Number, tc.number)
-			}
+			assert.Equal(t, tc.word, word.Word)
+			assert.Equal(t, tc.arpabet, word.Arpabet)
+			assert.Equal(t, tc.number, word.Number)
 		})
 	}
 }
@@ -90,9 +77,8 @@ func Test_truncateAtByte(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := truncateAtByte(tt.args.b, tt.args.c); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("truncateAtByte() = %v, want %v", got, tt.want)
-			}
+			got := truncateAtByte(tt.args.b, tt.args.c)
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }

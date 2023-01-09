@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -18,9 +19,7 @@ func TestWhereColumn(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(fmt.Sprintf("Get where column for QueryType %v", tc.queryType), func(t *testing.T) {
 			got := tc.queryType.WhereColumn()
-			if got != tc.expect {
-				t.Errorf("invalid where column. got %s, want %s", got, tc.expect)
-			}
+			assert.Equal(t, tc.expect, got)
 		})
 	}
 }
@@ -38,9 +37,7 @@ func TestDistinctColumn(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(fmt.Sprintf("Get where column for QueryType %v", tc.queryType), func(t *testing.T) {
 			got := tc.queryType.WhereColumn()
-			if got != tc.expect {
-				t.Errorf("invalid where column. got %s, want %s", got, tc.expect)
-			}
+			assert.Equal(t, tc.expect, got)
 		})
 	}
 }
