@@ -1,23 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "github>gabe565/renovate-config"
   ],
-  "ignorePresets": [":prHourlyLimit2"],
-  "labels": [
-    "dependencies",
-    "{{datasource}}",
-    "{{updateType}}"
-  ],
-  "commitMessagePrefix": ":arrow_up:",
   "regexManagers": [
-    {
-      "fileMatch": ["Dockerfile"],
-      "matchStrings": ["node:(?<currentValue>.+)-alpine"],
-      "depNameTemplate": "node",
-      "datasourceTemplate": "node",
-      "versioningTemplate": "node"
-    },
     {
       "fileMatch": ["\\.go$"],
       "matchStrings": [
@@ -29,19 +15,6 @@
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["lockFileMaintenance", "pin"],
-      "commitMessagePrefix": ":pushpin:"
-    },
-    {
-      "matchUpdateTypes": ["rollback"],
-      "commitMessagePrefix": ":arrow_down:"
-    },
-    {
-      "matchManagers": ["dockerfile"],
-      "matchPackageNames": ["node"],
-      "enabled": false
-    },
-    {
       "matchPackageNames": ["vue"],
       "allowedVersions": "< 3"
     },
@@ -52,10 +25,6 @@
     {
       "matchPackageNames": ["sass"],
       "allowedVersions": "<= 1.32"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "automerge": true
     },
     {
       "matchPackageNames": ["cmusphinx/cmudict"],
