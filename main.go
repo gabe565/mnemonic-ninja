@@ -3,8 +3,9 @@
 package main
 
 import (
+	"context"
 	_ "embed"
-	"fmt"
+	"errors"
 	"github.com/gabe565/mnemonic-ninja/internal/config"
 	"github.com/gabe565/mnemonic-ninja/internal/database"
 	"github.com/gabe565/mnemonic-ninja/internal/database/seeds"
@@ -15,6 +16,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
+	"time"
 )
 
 //go:embed .cmudict.dict.gz
@@ -50,11 +54,44 @@ func main() {
 		}
 	}
 
-	router := server.Router(db, frontendFs)
 	address := viper.GetString("address")
-	log.Println("Listening on " + address)
-	if err := http.ListenAndServe(address, router); err != nil {
-		panic(err)
+	server := &http.Server{
+		Addr:    address,
+		Handler: server.Router(db, frontendFs),
 	}
-	fmt.Println("Exiting")
+
+	ctx, cancel := context.WithCancel(context.Background())
+
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+	go func() {
+		<-sig
+
+		// Shutdown signal with grace period of 60 seconds
+		ctx, cancelTimeout := context.WithTimeout(ctx, 60*time.Second)
+		defer func() {
+			cancelTimeout()
+		}()
+
+		// Trigger graceful shutdown
+		log.Println("Performing graceful shutdown...")
+		if err := server.Shutdown(ctx); err != nil {
+			if errors.Is(ctx.Err(), context.DeadlineExceeded) {
+				log.Println("Graceful shutdown timed out")
+			} else {
+				log.Println(err)
+			}
+		}
+		cancel()
+	}()
+
+	log.Println("Listening on " + address)
+	err = server.ListenAndServe()
+	if err != nil && !errors.Is(err, http.ErrServerClosed) {
+		log.Fatal(err)
+	}
+
+	// Wait for server context to be stopped
+	<-ctx.Done()
+	log.Println("Exiting")
 }
