@@ -52,7 +52,7 @@
         </v-col>
 
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">Number</h2>
+          <h2 class="text-h4">Word</h2>
           <v-simple-table :height="height" class="v-data-table--outlined">
             <tbody>
               <tr v-for="(item, key) in result" :key="key">
