@@ -2,9 +2,9 @@
   <v-row justify="center" class="text-body-1 text-center">
     <v-col>
       <ul>
-        <template v-for="(queries, queryKey) in result">
-          <template v-for="query in queries">
-            <li v-for="(word, key) in query.result" :key="`${queryKey}-${key}`">
+        <template v-for="(queries, queriesKey) in result">
+          <template v-for="(query, queryKey) in queries">
+            <li v-for="(word, key) in query.result" :key="`${queriesKey}-${queryKey}-${key}`">
               <a @click.prevent="$emit('select', { word, number: query.query })">{{ word }}</a
               >&nbsp;
             </li>
