@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://mnemonic.ninja">
-        <img src="/frontend/src/assets/logo.png?raw=true" alt="Mnemonic Ninja Logo" height="120">
+        <img src="/src/assets/logo.png?raw=true" alt="Mnemonic Ninja Logo" height="120">
     </a>
 </p>
 
