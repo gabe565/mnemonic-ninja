@@ -9,12 +9,12 @@ repos:
       - id: golangci-lint-mod
         args: [--fix]
 
-  - repo: local
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.33.0
     hooks:
       - id: eslint
-        name: eslint
-        entry: npm run lint
-        language: system
         files: '^src'
+        types: []
         types_or: [javascript, vue]
-        pass_filenames: false
+        args:
+          - --fix
