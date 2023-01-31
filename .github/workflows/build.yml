@@ -24,35 +24,8 @@ jobs:
           FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
       - run: npm run lint
 
-  build-gh-pages:
-    name: Build GitHub Pages
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-          cache-dependency-path: package-lock.json
-      - name: Install dependencies
-        run: npm install --prefer-offline --no-audit
-        env:
-          FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
-      - run: npm run build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: github.ref == 'refs/heads/main'
-        with:
-          folder: dist
-      - uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist
-
-  build-docker:
-    name: Build Docker
+  build:
+    name: Build
     runs-on: ubuntu-latest
     needs: lint
     steps:
