@@ -34,6 +34,37 @@
     <v-row>
       <v-col>
         <v-card>
+          <v-card-title class="text-h4">Security</v-card-title>
+          <v-card-text>
+            <p>
+              All conversions are performed directly in your browser. No input data is logged or
+              sent to any remote servers.
+            </p>
+            <p>
+              When you load the site for the first time (or after an update), a word list is
+              downloaded to allow conversions to occur locally on your machine. You can verify this
+              by
+              <a href="https://developer.chrome.com/docs/devtools/network/#open" target="_blank"
+                >inspecting this site's network activity</a
+              >
+              or by taking a look at the
+              <a href="https://github.com/gabe565/mnemonic-ninja" target="_blank"
+                >codebase on GitHub</a
+              >.
+            </p>
+            <p>
+              Mnemonic Ninja even works without an internet connection! A service worker is
+              installed which caches all necessary assets. If you're using a mobile phone, you can
+              add the site to your home screen, open the app without an internet connection, and
+              everything should behave normally!
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card>
           <v-card-title class="text-h4"> Development </v-card-title>
           <v-card-text>
             <p>
