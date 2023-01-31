@@ -1,5 +1,5 @@
 <template>
-  <Page>
+  <PageLayout>
     <template #title> Convert </template>
     <template #description>
       The mnemonic major system aids in memorizing numbers by linking numbers with specific phonetic
@@ -39,11 +39,10 @@
         </v-card>
       </v-col>
     </v-row>
-  </Page>
+  </PageLayout>
 </template>
 
 <script>
-import Page from "../layouts/PageLayout.vue";
 import InteractiveConverter from "../components/InteractiveConverter.vue";
 import NumberConverter from "../components/NumberConverter.vue";
 import WordConverter from "../components/WordConverter.vue";
@@ -54,7 +53,6 @@ export default {
   components: {
     WordConverter,
     NumberConverter,
-    Page,
     InteractiveConverter,
   },
 

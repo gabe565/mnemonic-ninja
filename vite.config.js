@@ -8,8 +8,10 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      directives: false,
+      dirs: ["src/components", "src/layouts"],
+      dts: true,
       resolvers: [VuetifyResolver()],
+      directives: false,
       types: [
         {
           from: "vue-router",

@@ -58,20 +58,12 @@
 </template>
 
 <script>
-import InteractiveToolbar from "./InteractiveToolbar.vue";
-import InteractiveWords from "./InteractiveWords.vue";
-import InteractiveResult from "./InteractiveResult.vue";
 import ConversionApi from "../mixins/ConversionApi";
 import QueryValidate from "../mixins/QueryValidate";
 import QueryUrl from "../mixins/UrlQuery";
 import QueryUrlPair from "../mixins/UrlPair";
 
 export default {
-  components: {
-    InteractiveResult,
-    InteractiveWords,
-    InteractiveToolbar,
-  },
   mixins: [ConversionApi("interactive"), QueryValidate(/[^0-9\s,;]/), QueryUrl, QueryUrlPair],
   data() {
     return {

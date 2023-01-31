@@ -1,14 +1,11 @@
 <template>
-  <Page>
+  <PageLayout>
     <template #description> Oh no! The requested file could not be located. </template>
-  </Page>
+  </PageLayout>
 </template>
 
 <script>
-import Page from "../layouts/PageLayout.vue";
-
 export default {
   name: "NotFoundPage",
-  components: { Page },
 };
 </script>

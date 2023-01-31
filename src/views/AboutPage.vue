@@ -1,5 +1,5 @@
 <template>
-  <Page>
+  <PageLayout>
     <template #description>
       <p>
         The
@@ -142,20 +142,12 @@
         </v-card>
       </v-col>
     </v-row>
-  </Page>
+  </PageLayout>
 </template>
 
 <script>
-import Page from "../layouts/PageLayout.vue";
-import RulesTable from "../components/RulesTable.vue";
-
 export default {
   name: "AboutPage",
-
-  components: {
-    RulesTable,
-    Page,
-  },
 };
 </script>
 

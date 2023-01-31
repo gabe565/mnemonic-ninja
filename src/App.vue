@@ -42,16 +42,8 @@
 </template>
 
 <script>
-import GitHubButton from "./components/GitHubButton.vue";
-import UpdateSnackbar from "./components/UpdateSnackbar.vue";
-
 export default {
   name: "App",
-
-  components: {
-    GitHubButton,
-    UpdateSnackbar,
-  },
 
   data: () => ({
     routes: [
