@@ -1,0 +1,5 @@
+https://mnemonic.ninja/
+https://mnemonic.ninja/?/convert/interactive
+https://mnemonic.ninja/?/convert/number
+https://mnemonic.ninja/?/convert/word
+https://mnemonic.ninja/?/about
