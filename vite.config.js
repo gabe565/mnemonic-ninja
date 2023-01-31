@@ -19,7 +19,6 @@ export default defineConfig({
     }),
     VitePWA({
       filename: "service-worker.js",
-      registerType: "autoUpdate",
       devOptions: {
         enabled: true,
       },
