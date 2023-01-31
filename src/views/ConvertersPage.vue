@@ -15,6 +15,7 @@
           <v-tabs
             :value="currentTab"
             center-active
+            color="convertTab"
             background-color="tertiary"
             class="rounded-b-0"
             show-arrows

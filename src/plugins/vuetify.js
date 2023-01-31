@@ -12,15 +12,18 @@ export default new Vuetify({
     dark: true,
     themes: {
       light: {
-        primary: colors.blueGrey,
-        tertiary: colors.blueGrey.lighten4,
+        primary: colors.blueGrey.darken2,
+        tertiary: colors.blueGrey.lighten5,
         accent: colors.indigo.lighten3,
+        anchor: colors.blue.accent4,
+        convertTab: "#1554ff",
       },
       dark: {
-        primary: colors.blueGrey,
+        primary: colors.blueGrey.darken2,
         tertiary: colors.blueGrey.darken4,
         accent: "#2d3874",
-        anchor: colors.blueGrey.lighten3,
+        anchor: colors.blue.accent1,
+        convertTab: colors.blue.accent1,
       },
     },
   },

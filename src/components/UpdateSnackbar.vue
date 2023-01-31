@@ -17,7 +17,7 @@
       >
         Refresh
       </v-btn>
-      <v-btn icon @click="closePromptUpdateSW">
+      <v-btn icon aria-label="Close" @click="closePromptUpdateSW">
         <v-icon>$close</v-icon>
       </v-btn>
     </template>

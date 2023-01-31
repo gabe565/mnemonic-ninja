@@ -7,6 +7,7 @@
         target="_blank"
         rel="noopener"
         v-bind="attrs"
+        aria-label="View on GitHub"
         v-on="on"
       >
         <v-icon>fab fa-github</v-icon>
