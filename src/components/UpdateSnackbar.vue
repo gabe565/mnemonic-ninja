@@ -12,7 +12,7 @@
         v-if="needRefresh"
         v-bind="attrs"
         text
-        color="primary"
+        color="blue lighten-2"
         :loading="loading"
         @click.native="updateServiceWorker"
       >
