@@ -86,7 +86,7 @@
                 >email me through my contact form</a
               >
               or
-              <a href="https://github.com/gabe565/mnemonic-major-converter" target="_blank"
+              <a href="https://github.com/gabe565/mnemonic-ninja/issues/new" target="_blank"
                 >open an issue on this project's GitHub</a
               >.
             </p>
