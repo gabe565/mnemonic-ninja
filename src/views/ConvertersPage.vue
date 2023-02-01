@@ -29,7 +29,7 @@
             <v-tabs-items :value="currentTab" continuous @change="tabChange">
               <v-tab-item v-for="(tab, key) in tabs" :key="key" :value="key">
                 <component
-                  :is="`${key}-converter`"
+                  :is="tab.component"
                   :is-active="currentTab === key"
                   @query="tab.query = $event"
                 />
@@ -48,12 +48,6 @@ import NumberConverter from "../components/NumberConverter.vue";
 import WordConverter from "../components/WordConverter.vue";
 
 export default {
-  components: {
-    WordConverter,
-    NumberConverter,
-    InteractiveConverter,
-  },
-
   props: {
     startTab: {
       type: String,
@@ -64,9 +58,9 @@ export default {
   data: () => ({
     currentTab: "interactive",
     tabs: {
-      interactive: { name: "Interactive", query: {} },
-      number: { name: "Number to Word", query: {} },
-      word: { name: "Word to Number", query: {} },
+      interactive: { name: "Interactive", query: {}, component: InteractiveConverter },
+      number: { name: "Number to Word", query: {}, component: NumberConverter },
+      word: { name: "Word to Number", query: {}, component: WordConverter },
     },
   }),
 
