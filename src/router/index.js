@@ -16,22 +16,10 @@ const routes = [
     redirect: "/convert/interactive",
   },
   {
-    path: "/convert/interactive",
-    name: "Interactive",
+    path: "/convert/:startTab(interactive|word|number)",
+    name: "Convert",
     component: Converters,
-    props: { startTab: "interactive" },
-  },
-  {
-    path: "/convert/number",
-    name: "Number to Word",
-    component: Converters,
-    props: { startTab: "number" },
-  },
-  {
-    path: "/convert/word",
-    name: "Word to Number",
-    component: Converters,
-    props: { startTab: "word" },
+    props: true,
   },
   {
     path: "/about",
