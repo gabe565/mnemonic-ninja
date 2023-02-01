@@ -26,7 +26,7 @@
           </v-tabs>
 
           <v-card-text>
-            <v-tabs-items :value="currentTab" continuous @change="tabChange">
+            <v-tabs-items :value="currentTab" touchless @change="tabChange">
               <v-tab-item v-for="(tab, key) in tabs" :key="key" :value="key">
                 <component
                   :is="tab.component"
