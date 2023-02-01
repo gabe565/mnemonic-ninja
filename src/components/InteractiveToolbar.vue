@@ -31,8 +31,6 @@
 
 <script>
 export default {
-  name: "InteractiveToolbar",
-
   props: {
     pairs: {
       type: Array,

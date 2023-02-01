@@ -20,8 +20,6 @@
 
 <script>
 export default {
-  name: "InteractiveWords",
-
   props: {
     result: {
       type: Array,

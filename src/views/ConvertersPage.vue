@@ -48,8 +48,6 @@ import NumberConverter from "../components/NumberConverter.vue";
 import WordConverter from "../components/WordConverter.vue";
 
 export default {
-  name: "ConvertersPage",
-
   components: {
     WordConverter,
     NumberConverter,

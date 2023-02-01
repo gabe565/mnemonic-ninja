@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 export default {
-  name: "useRegisterSW",
   data() {
     return {
       updateSW: undefined,

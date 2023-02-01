@@ -21,9 +21,3 @@
     <slot />
   </v-container>
 </template>
-
-<script>
-export default {
-  name: "PageLayout",
-};
-</script>

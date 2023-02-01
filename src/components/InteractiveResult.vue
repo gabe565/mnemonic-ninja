@@ -48,8 +48,6 @@
 
 <script>
 export default {
-  name: "InteractiveResult",
-
   props: {
     value: {
       type: String,

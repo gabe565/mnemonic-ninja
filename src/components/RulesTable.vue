@@ -40,8 +40,6 @@
 import rules from "../data/rules";
 
 export default {
-  name: "RulesTable",
-
   data: () => ({
     rules,
   }),

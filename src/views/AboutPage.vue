@@ -145,12 +145,6 @@
   </PageLayout>
 </template>
 
-<script>
-export default {
-  name: "AboutPage",
-};
-</script>
-
 <style scoped>
 .anchor {
   display: block;

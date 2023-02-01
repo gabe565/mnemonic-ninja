@@ -16,9 +16,3 @@
     <span>View on GitHub</span>
   </v-tooltip>
 </template>
-
-<script>
-export default {
-  name: "GitHubButton",
-};
-</script>
