@@ -1,13 +1,15 @@
-<p align="center">
-    <a href="https://mnemonic.ninja">
-        <img src="/src/assets/logo.png?raw=true" alt="Mnemonic Ninja Logo" height="120">
-    </a>
-</p>
-
 # Mnemonic Ninja
+
+<a href="https://mnemonic.ninja">
+  <img src="./src/assets/logo.svg" align="right" height="92" alt="Mnemonic Ninja Logo">
+</a>
 
 [![Build](https://github.com/gabe565/mnemonic-ninja/actions/workflows/build.yml/badge.svg)](https://github.com/gabe565/mnemonic-ninja/actions/workflows/build.yml)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/gabe565)](https://artifacthub.io/packages/helm/gabe565/mnemonic-ninja)
+
+Website to convert between a number and its corresponding word to aid in memorization.
+
+## About
 
 Mnemonic Ninja is a website written in Go that converts numbers to words
 and back to aid in memorization. There are other mnemonic major converters,
