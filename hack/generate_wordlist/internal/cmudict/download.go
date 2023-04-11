@@ -9,7 +9,7 @@ import (
 )
 
 // renovate branch=master
-const Url = "https://github.com/cmusphinx/cmudict/raw/697cd8957daa07d2cb89e0cee922de6218afde81/cmudict.dict"
+const Url = "https://github.com/cmusphinx/cmudict/raw/7cd8fb5b5a18058688f413e92282eb18815f1956/cmudict.dict"
 
 var ErrUnexpectedResponse = errors.New("unexpected response")
 
