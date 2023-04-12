@@ -2,11 +2,12 @@ package main
 
 import (
 	_ "embed"
-	"github.com/gabe565/mnemonic-ninja/hack/generate_wordlist/internal/cmudict"
 	"log"
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/gabe565/mnemonic-ninja/hack/generate_wordlist/internal/cmudict"
 )
 
 //go:generate go run $GOFILE
@@ -22,7 +23,7 @@ func main() {
 	}
 
 	dstPath := filepath.Join("..", "..", "src", "assets", "wordlist.csv")
-	if err := os.MkdirAll(filepath.Dir(dstPath), 0777); err != nil {
+	if err := os.MkdirAll(filepath.Dir(dstPath), 0o777); err != nil {
 		log.Panic(err)
 	}
 

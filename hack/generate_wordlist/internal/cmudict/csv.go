@@ -3,8 +3,9 @@ package cmudict
 import (
 	"bufio"
 	"encoding/csv"
-	"github.com/gabe565/mnemonic-ninja/hack/generate_wordlist/internal/models"
 	"io"
+
+	"github.com/gabe565/mnemonic-ninja/hack/generate_wordlist/internal/models"
 )
 
 func Csv(w io.Writer, r io.Reader) (int, error) {

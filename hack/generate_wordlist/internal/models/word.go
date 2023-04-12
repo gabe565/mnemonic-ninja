@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/gabe565/mnemonic-ninja/hack/generate_wordlist/internal/word"
 	"regexp"
+
+	"github.com/gabe565/mnemonic-ninja/hack/generate_wordlist/internal/word"
 )
 
 type Word struct {
