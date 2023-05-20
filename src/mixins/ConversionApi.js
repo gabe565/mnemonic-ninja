@@ -61,8 +61,8 @@ export default (type) => ({
   }),
 
   watch: {
-    // eslint-disable-next-line func-names
-    query: debounce(function () {
+    query: debounce(() => {
+      // eslint-disable-next-line no-invalid-this
       return this.updateUrl();
     }, 200),
   },

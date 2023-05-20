@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
   },
   extends: [
-    "airbnb",
+    "google",
     "plugin:vue/recommended",
     "plugin:vuetify/recommended",
     "prettier",
@@ -14,13 +14,15 @@ module.exports = {
     parser: "@babel/eslint-parser",
   },
   rules: {
-    "import/prefer-default-export": "off",
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-continue": "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-param-reassign": ["error", { props: false }],
-    "no-underscore-dangle": "off",
-    "no-restricted-syntax": "off",
-    "import/no-unresolved": "off",
+    "object-curly-spacing": ["error", "always"],
+    "require-jsdoc": "off",
+    indent: ["error", 2, { SwitchCase: 1 }],
+    "no-unused-vars": [
+      "error",
+      { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
+    ],
+    "valid-jsdoc": "off",
+    "new-cap": "off",
+    "vue/no-template-shadow": "off",
   },
 };
