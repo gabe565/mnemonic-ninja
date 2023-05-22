@@ -94,6 +94,12 @@ export default {
 
 <style lang="scss">
 .v-application {
+  @media (min-width: 1920px) {
+    .v-container {
+      max-width: 1400px;
+    }
+  }
+
   p {
     margin-bottom: 1rem;
   }
