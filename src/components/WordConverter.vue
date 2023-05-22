@@ -42,7 +42,7 @@
 
         <v-col cols="12" md class="py-0 py-md-3">
           <h2 class="text-h4" aria-hidden="true">Number</h2>
-          <v-table :height="height" class="v-table--variant-outlined">
+          <v-table :height="height" class="v-table--variant-outlined v-table--variant-striped">
             <caption class="d-sr-only">
               Number
             </caption>
