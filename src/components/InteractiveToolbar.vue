@@ -4,7 +4,7 @@
       <v-tooltip v-model="showBackTooltip" location="top">
         <template #activator="{ props }">
           <v-btn icon v-bind="props" :disabled="!pairs.length" @click="goBack">
-            <v-icon>fas fa-arrow-alt-left fa-fw</v-icon>
+            <v-icon :icon="mdiArrowLeftBold" />
           </v-btn>
         </template>
         <span>Go Back</span>
@@ -28,6 +28,10 @@
     </v-col>
   </v-row>
 </template>
+
+<script setup>
+import { mdiArrowLeftBold } from "@mdi/js";
+</script>
 
 <script>
 export default {

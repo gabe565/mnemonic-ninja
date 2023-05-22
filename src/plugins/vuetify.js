@@ -1,15 +1,15 @@
 import { createVuetify } from "vuetify";
-import { aliases, fa } from "vuetify/iconsets/fa";
+import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 import colors from "vuetify/lib/util/colors";
 
 import "vuetify/styles";
 
 export default createVuetify({
   icons: {
-    defaultSet: "fa",
+    defaultSet: "mdi",
     aliases,
     sets: {
-      fa,
+      mdi,
     },
   },
   theme: {

@@ -42,11 +42,10 @@
             class="px-3"
             @click.prevent
           >
-            <v-icon v-if="loading"> fas fa-fan fa-spin-2x fa-fw </v-icon>
-            <v-icon v-else-if="error"> fas fa-exclamation-triangle fa-fw </v-icon>
+            <v-icon v-if="loading" :icon="mdiShuriken" />
             <template v-else>
-              <v-icon v-if="$vuetify.display.smAndDown"> fas fa-arrow-alt-down fa-fw </v-icon>
-              <v-icon v-else> fas fa-arrow-alt-right fa-fw </v-icon>
+              <v-icon v-if="$vuetify.display.smAndDown" :icon="mdiArrowDownBold" />
+              <v-icon v-else :icon="mdiArrowRightBold" />
             </template>
           </v-btn>
         </v-col>
@@ -66,6 +65,10 @@
     </v-container>
   </v-form>
 </template>
+
+<script setup>
+import { mdiArrowDownBold, mdiArrowRightBold, mdiShuriken } from "@mdi/js";
+</script>
 
 <script>
 import ConversionApi from "../mixins/ConversionApi";

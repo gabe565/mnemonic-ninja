@@ -1,3 +1,5 @@
+import { mdiPound, mdiSpeaker, mdiComment, mdiHeadSnowflake } from "@mdi/js";
+
 class Rule {
   constructor(number, sounds, letters, comments) {
     this.number = number;
@@ -9,10 +11,10 @@ class Rule {
 
 export default {
   headers: [
-    { text: "Number", icon: "fa-hashtag" },
-    { text: "Sounds", icon: "fa-lips" },
-    { text: "Letters", icon: "fa-comment" },
-    { text: "Comments/Memorization", icon: "fa-head-side-brain" },
+    { text: "Number", icon: mdiPound },
+    { text: "Sounds", icon: mdiSpeaker },
+    { text: "Letters", icon: mdiComment },
+    { text: "Comments/Memorization", icon: mdiHeadSnowflake },
   ],
   rules: [
     new Rule(

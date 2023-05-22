@@ -31,7 +31,7 @@
             <v-tooltip location="bottom">
               <template #activator="{ props }">
                 <v-btn icon v-bind="props" @click="copyPhrase">
-                  <v-icon>fas fa-copy</v-icon>
+                  <v-icon :icon="mdiContentCopy" />
                 </v-btn>
               </template>
               <span>Copy to Clipboard</span>
@@ -45,6 +45,10 @@
     </v-snackbar>
   </v-col>
 </template>
+
+<script setup>
+import { mdiContentCopy } from "@mdi/js";
+</script>
 
 <script>
 export default {

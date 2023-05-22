@@ -1,10 +1,10 @@
 <template>
-  <v-table class="v-table--variant-outlined v-data-table--striped">
+  <v-table class="v-table--variant-outlined v-table--variant-striped">
     <template #default>
       <thead>
         <tr>
           <th v-for="(row, key) of rules.headers" :key="key" class="text-no-wrap">
-            <v-icon size="x-small">fas {{ row.icon }} fa-fw</v-icon>
+            <v-icon :icon="row.icon" size="small" />
             {{ row.text }}
           </th>
         </tr>

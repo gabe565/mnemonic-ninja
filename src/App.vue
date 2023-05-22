@@ -3,7 +3,7 @@
     <v-app-bar app theme="dark" color="primary">
       <v-btn to="/" class="text-body-2 text-none px-2" size="x-large">
         <template #prepend>
-          <img alt="Mnemonic Ninja Logo" :src="logo" style="height: 40px" />
+          <v-icon :icon="LogoIcon" style="--v-icon-size-multiplier: 1.25" />
         </template>
 
         <v-app-bar-title>Mnemonic Ninja</v-app-bar-title>
@@ -16,7 +16,7 @@
       <template v-if="$vuetify.display.mdAndUp" #extension>
         <v-tabs :model-value="currentRoute" align-tabs="center" color="white" style="width: 100%">
           <v-tab v-for="route in routes" :key="route.path" :to="route.to">
-            <v-icon class="pr-2"> fas {{ route.icon }} fa-fw </v-icon>
+            <v-icon :icon="route.icon" class="pr-2" size="x-large" />
             {{ route.name }}
           </v-tab>
         </v-tabs>
@@ -42,7 +42,7 @@
         :active="currentRoute === key"
         :to="route.to"
       >
-        <v-icon>fas {{ route.icon }} fa-fw</v-icon>
+        <v-icon :icon="route.icon" />
         <span>{{ route.name }}</span>
       </v-btn>
     </v-bottom-navigation>
@@ -50,17 +50,19 @@
 </template>
 
 <script setup>
-import logo from "./assets/logo.svg";
+import LogoIcon from "./assets/logo.svg";
 </script>
 
 <script>
+import { mdiInformation, mdiSwapHorizontalCircle } from "@mdi/js";
+
 export default {
   name: "App",
 
   data: () => ({
     routes: [
-      { name: "Convert", icon: "fa-exchange-alt", to: "/convert" },
-      { name: "About", icon: "fa-info-circle", to: "/about" },
+      { name: "Convert", icon: mdiSwapHorizontalCircle, to: "/convert" },
+      { name: "About", icon: mdiInformation, to: "/about" },
     ],
   }),
 
@@ -135,8 +137,24 @@ a {
   }
 }
 
-.fa-spin-2x {
-  animation: fa-spin 750ms infinite linear;
+.v-tab.v-btn .v-icon {
+  --v-icon-size-multiplier: 1;
+}
+
+.icon-spin {
+  animation-name: icon-spin;
+  animation-duration: 750ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 code {
