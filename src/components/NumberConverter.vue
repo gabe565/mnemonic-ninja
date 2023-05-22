@@ -33,17 +33,7 @@
         </v-col>
 
         <v-col cols="12" md="auto" align-self="center" class="text-center py-0">
-          <v-btn
-            size="large"
-            type="submit"
-            :disabled="!valid || disabled"
-            :color="error ? 'error' : 'accent'"
-            elevation="0"
-            min-width="0"
-            class="px-3"
-            aria-hidden="true"
-            @click.prevent
-          >
+          <v-btn icon disabled aria-hidden="true">
             <v-icon v-if="loading" :icon="mdiShuriken" />
             <v-icon v-else-if="$vuetify.display.smAndDown" :icon="mdiArrowDownBold" />
             <v-icon v-else :icon="mdiArrowRightBold" />
