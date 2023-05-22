@@ -3,6 +3,7 @@ import debounce from "lodash/debounce";
 import UrlQuery from "./UrlQuery";
 
 let wordlist = [];
+export const wordlistReady = ref(false);
 
 const parseWordlist = async () => {
   console.info("Loading wordlist...");
@@ -10,6 +11,7 @@ const parseWordlist = async () => {
   try {
     const wordlistSrc = await import("../assets/wordlist.csv?raw");
     wordlist = wordlistSrc.default.split("\n").map((e) => e.split(","));
+    wordlistReady.value = true;
   } catch (error) {
     console.error(error);
     return;

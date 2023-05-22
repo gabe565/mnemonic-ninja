@@ -76,7 +76,7 @@ import { mdiArrowDownBold, mdiArrowRightBold, mdiShuriken } from "@mdi/js";
 </script>
 
 <script>
-import ConversionApi from "../mixins/ConversionApi";
+import ConversionApi, { wordlistReady } from "../mixins/ConversionApi";
 import QueryValidate from "../mixins/QueryValidate";
 import QueryUrl from "../mixins/UrlQuery";
 
@@ -90,7 +90,7 @@ export default {
       return this.$vuetify.display.mdAndDown ? 7 : 8;
     },
     result() {
-      if (!this.query || !this.valid) {
+      if (!this.query || !this.valid || !wordlistReady.value) {
         return [];
       }
       return this.lookupWordlist(this.query);

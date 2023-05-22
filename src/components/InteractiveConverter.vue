@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import ConversionApi from "../mixins/ConversionApi";
+import ConversionApi, { wordlistReady } from "../mixins/ConversionApi";
 import QueryValidate from "../mixins/QueryValidate";
 import QueryUrl from "../mixins/UrlQuery";
 import QueryUrlPair from "../mixins/UrlPair";
@@ -82,7 +82,7 @@ export default {
       return !this.query && this.pairs.length;
     },
     result() {
-      if (!this.query || !this.valid) {
+      if (!this.query || !this.valid || !wordlistReady.value) {
         return [];
       }
 
