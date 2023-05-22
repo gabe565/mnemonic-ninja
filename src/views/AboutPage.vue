@@ -1,25 +1,17 @@
 <template>
   <PageLayout>
     <template #description>
-      <p>
-        The
-        <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
-          >Mnemonic Major System</a
-        >
-        is a great way to easily remember numbers, but learning to remember which sounds and numbers
-        correspond to each other takes time.<br />
-        There are other online converters, but they all performed conversions by directly changing
-        specific letters to a number. This is not how the system is meant to work, though. The
-        system is meant to work with phonetic sounds. That is how this site does conversions. If a
-        word or number is entered that is in its database (Which contains over 135,000 words!), then
-        it will perform the conversion according to how the word is pronounced.
-      </p>
-      <h2 class="text-h5">Table of Contents</h2>
-      <ol>
-        <li><a href="#conversion-rules">Conversion Rules</a></li>
-        <li><a href="#security">Security</a></li>
-        <li><a href="#development">Development</a></li>
-      </ol>
+      The
+      <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
+        >Mnemonic Major System</a
+      >
+      is a great way to easily remember numbers, but learning to remember which sounds and numbers
+      correspond to each other takes time.<br />
+      There are other online converters, but they all performed conversions by directly changing
+      specific letters to a number. This is not how the system is meant to work, though. The system
+      is meant to work with phonetic sounds. That is how this site does conversions. If a word or
+      number is entered that is in its database (Which contains over 135,000 words!), then it will
+      perform the conversion according to how the word is pronounced.
     </template>
     <section>
       <v-row>
@@ -153,3 +145,5 @@
     </section>
   </PageLayout>
 </template>
+
+<script setup></script>
