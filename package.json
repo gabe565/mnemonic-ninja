@@ -21,7 +21,7 @@
     "unplugin-auto-import": "0.16.1",
     "unplugin-vue-components": "0.24.1",
     "vite": "4.3.8",
-    "vite-plugin-pwa": "0.14.4",
+    "vite-plugin-pwa": "0.15.0",
     "vite-plugin-vuetify": "1.0.2",
     "vite-svg-loader": "4.0.0",
     "vue": "3.3.4",
