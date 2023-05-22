@@ -13,28 +13,28 @@
       <v-col>
         <v-card elevation="3" class="overflow-hidden">
           <v-tabs
-            :value="currentTab"
+            :model-value="currentTab"
             center-active
             color="convertTab"
-            background-color="tertiary"
+            bg-color="tertiary"
             class="rounded-b-0"
             show-arrows
           >
-            <v-tab v-for="(tab, key) in tabs" :key="key" :to="`/convert/${key}`">
+            <v-tab v-for="(tab, key) in tabs" :key="key" :to="`/convert/${tab.slug}`">
               {{ tab.name }}
             </v-tab>
           </v-tabs>
 
           <v-card-text>
-            <v-tabs-items :value="currentTab" touchless @change="tabChange">
-              <v-tab-item v-for="(tab, key) in tabs" :key="key" :value="key">
+            <v-window :model-value="currentTab" :touch="false">
+              <v-window-item v-for="(tab, key) in tabs" :key="key">
                 <component
                   :is="tab.component"
                   :is-active="currentTab === key"
                   @query="tab.query = $event"
                 />
-              </v-tab-item>
-            </v-tabs-items>
+              </v-window-item>
+            </v-window>
           </v-card-text>
         </v-card>
       </v-col>
@@ -56,29 +56,37 @@ export default {
   },
 
   data: () => ({
-    currentTab: "interactive",
-    tabs: {
-      interactive: { name: "Interactive", query: {}, component: InteractiveConverter },
-      number: { name: "Number to Word", query: {}, component: NumberConverter },
-      word: { name: "Word to Number", query: {}, component: WordConverter },
-    },
+    currentTab: 0,
+    tabs: [
+      {
+        slug: "interactive",
+        name: "Interactive",
+        query: {},
+        component: markRaw(InteractiveConverter),
+      },
+      {
+        slug: "number",
+        name: "Number to Word",
+        query: {},
+        component: markRaw(NumberConverter),
+      },
+      {
+        slug: "word",
+        name: "Word to Number",
+        query: {},
+        component: markRaw(WordConverter),
+      },
+    ],
   }),
 
   watch: {
     startTab: {
       handler(val) {
         if (val) {
-          this.currentTab = val;
+          this.currentTab = Object.values(this.tabs).findIndex((e) => e.slug === val);
         }
       },
       immediate: true,
-    },
-  },
-
-  methods: {
-    tabChange(key) {
-      const to = this.buildLocation(this.tabs[key], key);
-      this.$router.push(to);
     },
   },
 };

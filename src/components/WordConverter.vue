@@ -17,23 +17,24 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md class="py-0 py-md-1">
+        <v-col cols="12" md class="d-flex flex-column py-0 py-md-1">
           <h2 class="text-h4">Word</h2>
           <v-textarea
             v-model="query"
+            class="flex-grow-1"
             clearable
             no-resize
-            outlined
+            variant="outlined"
             name="Word"
             placeholder="example"
             :rules="rules"
-            :height="height"
+            :rows="rows"
           />
         </v-col>
 
         <v-col cols="12" md="auto" align-self="center" class="text-center py-0">
           <v-btn
-            large
+            size="large"
             type="submit"
             :disabled="!valid || disabled"
             :color="error ? 'error' : 'accent'"
@@ -45,7 +46,7 @@
             <v-icon v-if="loading"> fas fa-fan fa-spin-2x fa-fw </v-icon>
             <v-icon v-else-if="error"> fas fa-exclamation-triangle fa-fw </v-icon>
             <template v-else>
-              <v-icon v-if="$vuetify.breakpoint.smAndDown"> fas fa-arrow-alt-down fa-fw </v-icon>
+              <v-icon v-if="$vuetify.display.smAndDown"> fas fa-arrow-alt-down fa-fw </v-icon>
               <v-icon v-else> fas fa-arrow-alt-right fa-fw </v-icon>
             </template>
           </v-btn>
@@ -53,14 +54,14 @@
 
         <v-col cols="12" md class="py-0 py-md-1">
           <h2 class="text-h4">Number</h2>
-          <v-simple-table :height="height" class="v-data-table--outlined">
+          <v-table :height="height" class="v-table--variant-outlined">
             <tbody>
               <tr v-for="(item, key) in result" :key="key">
                 <td style="width: 1%">{{ item.query }}:</td>
                 <td>{{ item.result.join(", ") }}</td>
               </tr>
             </tbody>
-          </v-simple-table>
+          </v-table>
         </v-col>
       </v-row>
     </v-container>
@@ -76,7 +77,10 @@ export default {
   mixins: [ConversionApi("word"), QueryValidate(/[^A-Za-z-'\s,;.]/), QueryUrl],
   computed: {
     height() {
-      return this.$vuetify.breakpoint.mdAndDown ? "200px" : "250px";
+      return this.$vuetify.display.mdAndDown ? "212px" : "238px";
+    },
+    rows() {
+      return this.$vuetify.display.mdAndDown ? 7 : 8;
     },
     result() {
       if (!this.query || !this.valid) {
@@ -87,14 +91,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.v-data-table {
-  @at-root #{selector-unify(".theme--light", &)} {
-    background-color: #f6f6f6 !important;
-  }
-  @at-root #{selector-unify(".theme--dark", &)} {
-    background-color: #1b1b1b !important;
-  }
-}
-</style>

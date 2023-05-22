@@ -14,7 +14,7 @@
         word or number is entered that is in its database (Which contains over 135,000 words!), then
         it will perform the conversion according to how the word is pronounced.
       </p>
-      <h2>Table of Contents</h2>
+      <h2 class="text-h5">Table of Contents</h2>
       <ol>
         <li><a href="#conversion-rules">Conversion Rules</a></li>
         <li><a href="#security">Security</a></li>
@@ -109,22 +109,23 @@
             <div>
               To see this in action,
               <router-link :to="{ path: '/convert/word', query: { q: 'garage garages garagez' } }">
-                look at the conversions of <code>garage</code>, <code>garages</code>, and
-                <code>garagez</code> </router-link
+                look at the conversions of <v-code tag="code">garage</v-code>,
+                <v-code tag="code">garages</v-code>, and
+                <v-code tag="code">garagez</v-code> </router-link
               >:
               <ol>
                 <li>
-                  <code>garage</code> becomes "746" because the last /ge/ is not a hard G, but a
-                  soft G which corresponds to the number 6.
+                  <v-code tag="code">garage</v-code> becomes "746" because the last /ge/ is not a
+                  hard G, but a soft G which corresponds to the number 6.
                 </li>
                 <li>
-                  <code>garages</code> will successfully be converted to "7460" because the
-                  pronounciation is the same, but with an /s/ at the end of the word.
+                  <v-code tag="code">garages</v-code> will successfully be converted to "7460"
+                  because the pronounciation is the same, but with an /s/ at the end of the word.
                 </li>
                 <li>
-                  Now to see the wordlist in action. <code>garagez</code> will convert to "7470"
-                  because the word is not in the wordlist, so the system has to guess on the
-                  conversion.
+                  Now to see the wordlist in action. <v-code tag="code">garagez</v-code> will
+                  convert to "7470" because the word is not in the wordlist, so the system has to
+                  guess on the conversion.
                 </li>
               </ol>
             </div>

@@ -7,6 +7,7 @@
             <li v-for="(word, key) in query.result" :key="`${queriesKey}-${queryKey}-${key}`">
               <a
                 :title="query.query"
+                href="#"
                 @click.prevent="$emit('select', { word, number: query.query })"
                 >{{ word }}</a
               >&nbsp;
@@ -26,6 +27,7 @@ export default {
       default: () => [],
     },
   },
+  emits: ["select"],
 };
 </script>
 

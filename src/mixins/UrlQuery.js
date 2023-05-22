@@ -5,10 +5,6 @@ export default {
     isActive: Boolean,
   },
 
-  data: () => ({
-    query: "",
-  }),
-
   watch: {
     "$route.query.q": {
       handler(val) {
@@ -17,8 +13,11 @@ export default {
         }
       },
       immediate: true,
+      flush: "post",
     },
   },
+
+  emits: ["query"],
 
   methods: {
     buildQueryParams() {

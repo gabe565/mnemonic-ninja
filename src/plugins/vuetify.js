@@ -1,29 +1,38 @@
-import Vue from "vue";
-import Vuetify from "vuetify/lib/framework";
+import { createVuetify } from "vuetify";
+import { aliases, fa } from "vuetify/iconsets/fa";
 import colors from "vuetify/lib/util/colors";
 
-Vue.use(Vuetify);
+import "vuetify/styles";
 
-export default new Vuetify({
+export default createVuetify({
   icons: {
-    iconfont: "fa",
+    defaultSet: "fa",
+    aliases,
+    sets: {
+      fa,
+    },
   },
   theme: {
-    dark: true,
+    defaultTheme: "dark",
     themes: {
       light: {
-        primary: colors.blueGrey.darken2,
-        tertiary: colors.blueGrey.lighten5,
-        accent: colors.indigo.lighten3,
-        anchor: colors.blue.accent4,
-        convertTab: "#1554ff",
+        colors: {
+          primary: colors.blueGrey.darken2,
+          tertiary: colors.blueGrey.lighten5,
+          accent: colors.indigo.lighten3,
+          anchor: colors.blue.accent4,
+          convertTab: "#1554ff",
+        },
       },
       dark: {
-        primary: colors.blueGrey.darken2,
-        tertiary: colors.blueGrey.darken4,
-        accent: "#2d3874",
-        anchor: colors.blue.accent1,
-        convertTab: colors.blue.accent1,
+        dark: true,
+        colors: {
+          primary: colors.blueGrey.darken2,
+          tertiary: colors.blueGrey.darken4,
+          accent: "#2d3874",
+          anchor: colors.blue.accent1,
+          convertTab: colors.blue.accent1,
+        },
       },
     },
   },

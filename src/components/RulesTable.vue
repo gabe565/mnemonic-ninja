@@ -1,10 +1,10 @@
 <template>
-  <v-simple-table class="v-data-table--outlined v-data-table--striped">
+  <v-table class="v-table--variant-outlined v-data-table--striped">
     <template #default>
       <thead>
         <tr>
           <th v-for="(row, key) of rules.headers" :key="key" class="text-no-wrap">
-            <v-icon x-small>fas {{ row.icon }} fa-fw</v-icon>
+            <v-icon size="x-small">fas {{ row.icon }} fa-fw</v-icon>
             {{ row.text }}
           </th>
         </tr>
@@ -33,7 +33,7 @@
         </tr>
       </tbody>
     </template>
-  </v-simple-table>
+  </v-table>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.v-data-table {
+.v-table {
   ul {
     list-style-type: none;
     padding-left: 0;

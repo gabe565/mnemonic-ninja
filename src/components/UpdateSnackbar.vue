@@ -1,20 +1,20 @@
 <template>
   <v-snackbar
-    :value="offlineReady || needRefresh"
+    :model-value="offlineReady || needRefresh"
     :timeout="needRefresh ? -1 : 5000"
     bottom
     class="pb-14 pb-md-0"
+    theme="light"
   >
     <span v-if="needRefresh"> New content available, click on reload button to update. </span>
     <span v-else> App ready to work offline </span>
-    <template #action="{ attrs }">
+    <template #actions>
       <v-btn
         v-if="needRefresh"
-        v-bind="attrs"
-        text
-        color="blue lighten-2"
+        variant="text"
+        color="blue-lighten-2"
         :loading="loading"
-        @click.native="updateServiceWorker"
+        @click="updateServiceWorker"
       >
         Refresh
       </v-btn>

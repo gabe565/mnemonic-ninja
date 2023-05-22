@@ -21,7 +21,7 @@
           <v-text-field
             v-model="query"
             rounded
-            filled
+            variant="filled"
             clearable
             label="Query"
             placeholder="70395"
@@ -31,7 +31,7 @@
             @select="resetAll"
           >
             <template #prepend-inner>
-              <div style="margin-top: 13px">
+              <div style="margin-top: 20px">
                 <span v-for="(pair, key) in pairs" :key="key">{{ pair.number }}</span>
               </div>
             </template>

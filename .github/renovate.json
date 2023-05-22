@@ -16,18 +16,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["vue"],
-      "allowedVersions": "< 3"
-    },
-    {
-      "matchPackageNames": ["vue-router"],
-      "allowedVersions": "< 4"
-    },
-    {
-      "matchPackageNames": ["sass"],
-      "allowedVersions": "<= 1.32"
-    },
-    {
       "matchPackageNames": ["cmusphinx/cmudict"],
       "automerge": true
     }

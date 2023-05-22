@@ -1,4 +1,5 @@
 import { castArray } from "../util/helpers";
+import UrlQuery from "./UrlQuery";
 
 export const castPair = (val) =>
   val.map((p) => {
@@ -14,6 +15,8 @@ export default {
     pairs: [],
   }),
 
+  mixins: [UrlQuery],
+
   watch: {
     "$route.query.pair": {
       async handler(val) {
@@ -26,6 +29,7 @@ export default {
         }
       },
       immediate: true,
+      flush: "post",
     },
   },
 

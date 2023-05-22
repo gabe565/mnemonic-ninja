@@ -1,14 +1,13 @@
 <template>
-  <v-tooltip bottom>
-    <template #activator="{ on, attrs }">
+  <v-tooltip location="bottom">
+    <template #activator="{ props }">
       <v-btn
         icon
         href="https://github.com/gabe565/mnemonic-ninja"
         target="_blank"
         rel="noopener"
-        v-bind="attrs"
+        v-bind="props"
         aria-label="View on GitHub"
-        v-on="on"
       >
         <v-icon>fab fa-github</v-icon>
       </v-btn>

@@ -1,9 +1,9 @@
 <template>
   <v-row>
     <v-col cols="auto" align-self="center" class="pr-0">
-      <v-tooltip bottom>
-        <template #activator="{ on, attrs }">
-          <v-btn icon v-bind="attrs" :disabled="!pairs.length" @click="$emit('go-back')" v-on="on">
+      <v-tooltip v-model="showBackTooltip" location="top">
+        <template #activator="{ props }">
+          <v-btn icon v-bind="props" :disabled="!pairs.length" @click="goBack">
             <v-icon>fas fa-arrow-alt-left fa-fw</v-icon>
           </v-btn>
         </template>
@@ -11,14 +11,14 @@
       </v-tooltip>
     </v-col>
     <v-col>
-      <v-tooltip v-for="(pair, key) in pairs" :key="key" bottom>
-        <template #activator="{ on, attrs }">
+      <v-tooltip v-for="(pair, key) in pairs" :key="key" location="top">
+        <template #activator="{ props }">
           <v-chip
-            v-bind="attrs"
+            v-bind="props"
             class="ma-1"
+            closable
             close
             @click:close="$emit('go-back-to', key)"
-            v-on="on"
           >
             {{ pair.word }}
           </v-chip>
@@ -35,6 +35,18 @@ export default {
     pairs: {
       type: Array,
       default: () => [],
+    },
+  },
+  emits: ["go-back", "go-back-to"],
+  data: () => ({
+    showBackTooltip: false,
+  }),
+  methods: {
+    goBack() {
+      if (this.pairs.length === 1) {
+        this.showBackTooltip = false;
+      }
+      this.$emit("go-back");
     },
   },
 };

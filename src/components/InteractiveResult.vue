@@ -8,7 +8,7 @@
     <v-row>
       <v-col class="v-card__text text--secondary">
         Here your phrase. Once you memorize this phrase, you can go to the
-        <router-link :to="{ path: '/convert/word', query: { q: value } }">
+        <router-link :to="{ path: '/convert/word', query: { q: modelValue } }">
           word to number converter
         </router-link>
         to change it back to your number.
@@ -20,7 +20,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          :value="value"
+          :model-value="modelValue"
           filled
           rounded
           readonly
@@ -28,9 +28,9 @@
           @focus="$event.target.select()"
         >
           <template #prepend-inner>
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" @click="copyPhrase" v-on="on">
+            <v-tooltip location="bottom">
+              <template #activator="{ props }">
+                <v-btn icon v-bind="props" @click="copyPhrase">
                   <v-icon>fas fa-copy</v-icon>
                 </v-btn>
               </template>
@@ -49,7 +49,7 @@
 <script>
 export default {
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: "",
     },
@@ -61,7 +61,7 @@ export default {
 
   methods: {
     async copyPhrase() {
-      await navigator.clipboard.writeText(this.value);
+      await navigator.clipboard.writeText(this.modelValue);
       if (this.showCopiedSnackbar) {
         this.showCopiedSnackbar = false;
         await this.$nextTick();

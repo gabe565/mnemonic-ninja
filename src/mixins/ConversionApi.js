@@ -1,5 +1,7 @@
+/* eslint-disable no-invalid-this */
 import debounce from "lodash/debounce";
 import { parseCsv } from "../util/parse";
+import UrlQuery from "./UrlQuery";
 
 let wordlist = [];
 
@@ -60,10 +62,13 @@ export default (type) => ({
     response: {},
   }),
 
+  mixins: [UrlQuery],
+
   watch: {
-    query: debounce(() => {
-      // eslint-disable-next-line no-invalid-this
-      return this.updateUrl();
+    query: debounce(function () {
+      if (this.isActive) {
+        return this.updateUrl();
+      }
     }, 200),
   },
 

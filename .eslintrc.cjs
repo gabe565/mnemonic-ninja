@@ -1,18 +1,15 @@
+/* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
+
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-  },
   extends: [
     "google",
-    "plugin:vue/recommended",
-    "plugin:vuetify/recommended",
-    "prettier",
-    "plugin:prettier/recommended",
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "@vue/eslint-config-prettier",
+    "./.eslintrc-auto-import.json",
   ],
-  parserOptions: {
-    parser: "@babel/eslint-parser",
-  },
   rules: {
     "object-curly-spacing": ["error", "always"],
     "require-jsdoc": "off",
@@ -24,5 +21,8 @@ module.exports = {
     "valid-jsdoc": "off",
     "new-cap": "off",
     "vue/no-template-shadow": "off",
+  },
+  parserOptions: {
+    ecmaVersion: "latest",
   },
 };
