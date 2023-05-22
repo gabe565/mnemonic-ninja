@@ -8,7 +8,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <p class="v-card__text text--secondary mb-0 pa-0">
+          <p class="mb-0">
             Enter a number or a list of numbers to get a converted list of words.
             <br />
             Many words can show up for a single number. If this happens, the result box will be
@@ -17,7 +17,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md class="py-0 py-md-1">
+        <v-col cols="12" md class="py-0 py-md-3">
           <label for="number-query" class="text-h4">Number</label>
           <v-textarea
             id="number-query"
@@ -50,7 +50,7 @@
           </v-btn>
         </v-col>
 
-        <v-col cols="12" md class="py-0 py-md-1">
+        <v-col cols="12" md class="py-0 py-md-3">
           <h2 class="text-h4" aria-hidden="true">Word</h2>
           <v-table :height="height" class="v-table--variant-outlined">
             <caption class="d-sr-only">

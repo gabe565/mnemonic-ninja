@@ -8,7 +8,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <p class="v-card__text text--secondary mb-0 pa-0">
+          <p class="mb-0">
             Enter a word or a list of words to get a converted list of numbers.
             <br />
             More than one number may show up for a single word. This means there is more than one
@@ -17,12 +17,11 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md class="d-flex flex-column py-0 py-md-1">
+        <v-col cols="12" md class="py-0 py-md-3">
           <label for="word-query" class="text-h4">Word</label>
           <v-textarea
             id="word-query"
             v-model="query"
-            class="flex-grow-1"
             clearable
             no-resize
             variant="outlined"
@@ -51,7 +50,7 @@
           </v-btn>
         </v-col>
 
-        <v-col cols="12" md class="py-0 py-md-1">
+        <v-col cols="12" md class="py-0 py-md-3">
           <h2 class="text-h4" aria-hidden="true">Number</h2>
           <v-table :height="height" class="v-table--variant-outlined">
             <caption class="d-sr-only">
