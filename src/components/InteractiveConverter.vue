@@ -31,7 +31,9 @@
             @select="resetAll"
           >
             <template #prepend-inner>
-              <span v-for="(pair, key) in pairs" :key="key">{{ pair.number }}</span>
+              <span v-for="(pair, key) in pairs" :key="key" class="text-grey">{{
+                pair.number
+              }}</span>
             </template>
           </v-text-field>
         </v-col>
@@ -123,3 +125,12 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.v-application.v-theme--dark .text-grey {
+  color: #aaa;
+}
+.v-application.v-theme--light .text-grey {
+  color: #777;
+}
+</style>
