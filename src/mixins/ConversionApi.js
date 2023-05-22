@@ -1,6 +1,5 @@
 /* eslint-disable no-invalid-this */
 import debounce from "lodash/debounce";
-import { parseCsv } from "../util/parse";
 import UrlQuery from "./UrlQuery";
 
 let wordlist = [];
@@ -10,7 +9,7 @@ const parseWordlist = async () => {
   let timeTaken = performance.now();
   try {
     const wordlistSrc = await import("../assets/wordlist.csv?raw");
-    ({ data: wordlist } = await parseCsv(wordlistSrc.default));
+    wordlist = wordlistSrc.default.split("\n").map((e) => e.split(","));
   } catch (error) {
     console.error(error);
     return;
