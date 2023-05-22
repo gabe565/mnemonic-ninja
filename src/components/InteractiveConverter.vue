@@ -27,8 +27,10 @@
             placeholder="70395"
             :loading="loading"
             :rules="rules"
-            @keydown.backspace="reset"
-            @select="resetAll"
+            @keydown.backspace.passive.capture="keyEvent"
+            @keydown.left.passive.capture="keyEvent"
+            @select.passive.capture="selectEvent"
+            @click:clear="clear"
           >
             <template #prepend-inner>
               <span v-for="(pair, key) in pairs" :key="key" class="text-grey">{{
@@ -63,6 +65,8 @@ import QueryValidate from "../mixins/QueryValidate";
 import QueryUrl from "../mixins/UrlQuery";
 import QueryUrlPair from "../mixins/UrlPair";
 
+let moved = false;
+
 export default {
   mixins: [ConversionApi("interactive"), QueryValidate(/[^0-9\s,;]/), QueryUrl, QueryUrlPair],
   data() {
@@ -96,30 +100,60 @@ export default {
     },
   },
   methods: {
-    async reset() {
-      if (this.pairs.length && this.query.length <= 1) {
-        await this.goBack();
+    async keyEvent(event) {
+      moved = false;
+      const { target } = event;
+      if (!this.pairs.length) {
+        return;
+      }
+      if (target.selectionStart === 0) {
+        const addedLength = this.pairs[this.pairs.length - 1].number.length;
+        const prevSelectionStart = target.selectionStart;
+        const prevSelectionEnd = target.selectionEnd;
+        this.goBack();
+        await nextTick();
+        target.selectionStart = prevSelectionStart + addedLength;
+        target.selectionEnd = prevSelectionEnd + addedLength;
+      } else if (target.selectionStart === 1) {
+        if (target.selectionStart !== target.selectionEnd) {
+          moved = true;
+        }
       }
     },
-    resetAll() {
-      return this.goBack(this.pairs.length);
+    async selectEvent(event) {
+      const { target } = event;
+      if (
+        !this.pairs.length ||
+        target.selectionStart !== 0 ||
+        target.selectionEnd !== this.query.length ||
+        moved
+      ) {
+        moved = false;
+        return;
+      }
+      this.goBackTo(0);
+      await nextTick();
+      target.selectionStart = 0;
+      target.selectionEnd = this.query.length;
     },
-    async select(pair) {
+    clear() {
+      this.query = "";
+      this.pairs = [];
+    },
+    select(pair) {
       this.pairs.push(pair);
       this.query = this.query.slice(pair.number.length);
-      await this.updateUrl();
     },
-    async goBack(n = 1) {
+    goBack(n = 1) {
       let { query } = this;
       for (let i = 0; i < n; i += 1) {
         query = this.pairs.pop().number + query;
       }
       this.query = query;
-      await this.updateUrl();
     },
-    async goBackTo(key) {
+    goBackTo(key) {
       if (this.pairs.length) {
-        await this.goBack(this.pairs.length - key);
+        this.goBack(this.pairs.length - key);
       }
     },
   },
