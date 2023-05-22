@@ -80,6 +80,7 @@ export default (type) => ({
         return [];
       }
 
+      rawQuery = rawQuery.toLowerCase();
       const queries = rawQuery.split(/[\s;,]/);
 
       const result = [];
