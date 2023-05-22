@@ -78,7 +78,7 @@
           <v-card>
             <v-card-title>
               <span id="development" class="anchor" />
-              <h4 class="text-h4">Development</h4>
+              <h2 class="text-h4">Development</h2>
             </v-card-title>
             <v-card-text>
               <p>
