@@ -18,8 +18,9 @@
       </v-row>
       <v-row>
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">Number</h2>
+          <label for="number-query" class="text-h4">Number</label>
           <v-textarea
+            id="number-query"
             v-model="query"
             clearable
             no-resize
@@ -40,6 +41,7 @@
             elevation="0"
             min-width="0"
             class="px-3"
+            aria-hidden="true"
             @click.prevent
           >
             <v-icon v-if="loading" :icon="mdiShuriken" />
@@ -51,8 +53,11 @@
         </v-col>
 
         <v-col cols="12" md class="py-0 py-md-1">
-          <h2 class="text-h4">Word</h2>
+          <h2 class="text-h4" aria-hidden="true">Word</h2>
           <v-table :height="height" class="v-table--variant-outlined">
+            <caption class="d-sr-only">
+              Word
+            </caption>
             <tbody>
               <tr v-for="(item, key) in result" :key="key">
                 <td style="width: 1%">{{ item.query }}:</td>

@@ -1,5 +1,9 @@
 <template>
   <v-app>
+    <v-btn class="position-absolute d-sr-only-focusable" href="#content" style="z-index: 1007"
+      >Skip to main content</v-btn
+    >
+
     <v-app-bar app theme="dark" color="primary">
       <v-btn to="/" class="text-body-2 text-none px-2" size="x-large">
         <template #prepend>
@@ -23,12 +27,6 @@
       </template>
     </v-app-bar>
 
-    <UpdateSnackbar />
-
-    <v-main>
-      <router-view class="pb-16" />
-    </v-main>
-
     <v-bottom-navigation
       v-if="$vuetify.display.smAndDown"
       position="fixed"
@@ -46,6 +44,13 @@
         <span>{{ route.name }}</span>
       </v-btn>
     </v-bottom-navigation>
+
+    <UpdateSnackbar />
+
+    <v-main>
+      <a id="content" class="anchor" />
+      <router-view class="pb-16" />
+    </v-main>
   </v-app>
 </template>
 
@@ -105,6 +110,13 @@ a {
   &:not(:hover) {
     text-decoration: none;
   }
+}
+
+.anchor {
+  display: block;
+  position: relative;
+  top: -150px;
+  visibility: hidden;
 }
 
 .v-table {
