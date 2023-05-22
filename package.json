@@ -17,7 +17,7 @@
     "register-service-worker": "1.7.2",
     "sass": "1.62.1",
     "simple-icons": "8.15.0",
-    "unplugin-auto-import": "0.16.1",
+    "unplugin-auto-import": "0.16.2",
     "unplugin-vue-components": "0.24.1",
     "vite": "4.3.8",
     "vite-plugin-pwa": "0.15.0",
