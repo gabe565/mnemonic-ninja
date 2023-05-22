@@ -21,7 +21,7 @@
       <v-col>
         <v-text-field
           :model-value="modelValue"
-          filled
+          variant="outlined"
           rounded
           readonly
           label="Phrase"
