@@ -7,8 +7,8 @@ let wordlist = [];
 
 const parseWordlist = async () => {
   console.info("Loading wordlist...");
-  const wordlistSrc = await import("../assets/wordlist.csv?raw");
   try {
+    const wordlistSrc = await import("../assets/wordlist.csv?raw");
     let timeTaken = performance.now();
     ({ data: wordlist } = await parseCsv(wordlistSrc.default));
     timeTaken = performance.now() - timeTaken;
