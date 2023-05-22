@@ -7,17 +7,18 @@ let wordlist = [];
 
 const parseWordlist = async () => {
   console.info("Loading wordlist...");
+  let timeTaken = performance.now();
   try {
     const wordlistSrc = await import("../assets/wordlist.csv?raw");
-    let timeTaken = performance.now();
     ({ data: wordlist } = await parseCsv(wordlistSrc.default));
-    timeTaken = performance.now() - timeTaken;
-    console.info(
-      `Loaded ${wordlist.length.toLocaleString()} words in ${timeTaken.toLocaleString()}ms`
-    );
   } catch (error) {
     console.error(error);
+    return;
   }
+  timeTaken = performance.now() - timeTaken;
+  console.info(
+    `Loaded ${wordlist.length.toLocaleString()} words in ${timeTaken.toLocaleString()}ms`
+  );
 };
 parseWordlist();
 
