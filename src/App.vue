@@ -48,7 +48,7 @@
     <UpdateSnackbar />
 
     <v-main>
-      <a id="content" class="anchor" />
+      <span id="content" class="anchor" />
       <router-view class="pb-16" />
     </v-main>
   </v-app>
@@ -112,7 +112,7 @@ a {
   }
 }
 
-.anchor {
+span.anchor {
   display: block;
   position: relative;
   top: -150px;

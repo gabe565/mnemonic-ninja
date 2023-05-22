@@ -26,7 +26,7 @@
         <v-col>
           <v-card>
             <v-card-title>
-              <a id="conversion-rules" class="anchor" />
+              <span id="conversion-rules" class="anchor" />
               <h2 class="text-h4">Conversion Rules</h2>
             </v-card-title>
             <v-card-text>
@@ -49,7 +49,7 @@
         <v-col>
           <v-card>
             <v-card-title>
-              <a id="security" class="anchor" />
+              <span id="security" class="anchor" />
               <h2 class="text-h4">Security</h2>
             </v-card-title>
             <v-card-text>
@@ -85,7 +85,7 @@
         <v-col>
           <v-card>
             <v-card-title>
-              <a id="development" class="anchor" />
+              <span id="development" class="anchor" />
               <h4 class="text-h4">Development</h4>
             </v-card-title>
             <v-card-text>
