@@ -48,7 +48,7 @@
         <v-row>
           <v-divider />
         </v-row>
-        <interactive-words v-if="result" :result="result" @select="select" />
+        <interactive-words v-if="result && !allUsed" :result="result" @select="select" />
       </template>
       <v-row v-if="allUsed">
         <v-col>

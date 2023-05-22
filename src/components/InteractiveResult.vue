@@ -1,13 +1,13 @@
 <template>
-  <v-col class="pa-0">
+  <v-col class="px-0">
     <v-row>
       <v-col>
-        <h2 class="text-h4">Chosen Phrase</h2>
+        <h3 class="text-h4">Chosen Phrase</h3>
       </v-col>
     </v-row>
     <v-row>
       <v-col class="v-card__text text--secondary">
-        Here your phrase. Once you memorize this phrase, you can go to the
+        Here's the phrase you chose. Once you memorize this phrase, you can go to the
         <router-link :to="{ path: '/convert/word', query: { q: modelValue } }">
           word to number converter
         </router-link>
