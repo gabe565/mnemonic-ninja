@@ -45,10 +45,8 @@
             @click.prevent
           >
             <v-icon v-if="loading" :icon="mdiShuriken" />
-            <template v-else>
-              <v-icon v-if="$vuetify.display.smAndDown" :icon="mdiArrowDownBold" />
-              <v-icon v-else :icon="mdiArrowRightBold" />
-            </template>
+            <v-icon v-else-if="$vuetify.display.smAndDown" :icon="mdiArrowDownBold" />
+            <v-icon v-else :icon="mdiArrowRightBold" />
           </v-btn>
         </v-col>
 
