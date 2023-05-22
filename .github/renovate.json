@@ -4,19 +4,12 @@
     "local>gabe565/renovate-config",
     "local>gabe565/renovate-config:golang"
   ],
-  "regexManagers": [
-    {
-      "fileMatch": ["\\.go$"],
-      "matchStrings": [
-        "\\/\\/ ?renovate branch=(?<currentValue>.+)\\n.*https:\\/\\/github\\.com\\/(?<depName>.+)\\/raw\\/(?<currentDigest>[^\\/]+)"
-      ],
-      "datasourceTemplate": "git-refs",
-      "packageNameTemplate": "https://github.com/{{depName}}"
-    }
-  ],
+  "git-submodules": {
+    "enabled": true
+  },
   "packageRules": [
     {
-      "matchPackageNames": ["cmusphinx/cmudict"],
+      "matchPackageNames": ["src/data/cmudict"],
       "automerge": true
     }
   ]

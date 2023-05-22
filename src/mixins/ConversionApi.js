@@ -9,8 +9,8 @@ const parseWordlist = async () => {
   console.info("Loading wordlist...");
   let timeTaken = performance.now();
   try {
-    const wordlistSrc = await import("../assets/wordlist.csv?raw");
-    wordlist = wordlistSrc.default.split("\n").map((e) => e.split(","));
+    const module = await import("../data/cmudict/cmudict.dict");
+    wordlist = module.default;
     wordlistReady.value = true;
   } catch (error) {
     console.error(error);

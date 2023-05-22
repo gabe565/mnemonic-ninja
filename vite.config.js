@@ -5,6 +5,7 @@ import Components from "unplugin-vue-components/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import svgLoader from "vite-svg-loader";
+import { CompileCmudict } from "./src/plugins/compile-cmudict/CompileCmudict";
 
 export default defineConfig({
   plugins: [
@@ -78,5 +79,6 @@ export default defineConfig({
         globPatterns: ["**/*{js,css,html,woff2,svg}"],
       },
     }),
+    CompileCmudict(),
   ],
 });
