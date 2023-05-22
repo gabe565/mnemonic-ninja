@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row align="center">
     <v-col cols="auto" align-self="center" class="pr-0">
       <v-tooltip v-model="showBackTooltip" location="top">
         <template #activator="{ props }">
