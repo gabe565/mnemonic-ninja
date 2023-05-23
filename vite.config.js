@@ -6,6 +6,7 @@ import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import svgLoader from "vite-svg-loader";
 import { CompileCmudict } from "./src/plugins/compile-cmudict/CompileCmudict";
+import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   plugins: [
@@ -81,4 +82,9 @@ export default defineConfig({
     }),
     CompileCmudict(),
   ],
+  css: {
+    postcss: {
+      plugins: [autoprefixer({})],
+    },
+  },
 });
