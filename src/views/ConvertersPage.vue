@@ -9,6 +9,12 @@
       <router-link to="/about"> Read more about how it works on the about page! </router-link>
     </template>
 
+    <v-row v-if="error">
+      <v-col>
+        <v-alert type="error">{{ error }}</v-alert>
+      </v-col>
+    </v-row>
+
     <v-row>
       <v-col>
         <v-card elevation="3" class="overflow-hidden">
@@ -46,6 +52,7 @@
 import InteractiveConverter from "../components/InteractiveConverter.vue";
 import NumberConverter from "../components/NumberConverter.vue";
 import WordConverter from "../components/WordConverter.vue";
+import { error } from "../data/wordlist";
 
 const props = defineProps({
   startTab: {

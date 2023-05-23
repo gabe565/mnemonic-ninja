@@ -1,4 +1,5 @@
 export const ready = ref(false);
+export const error = ref(null);
 export let wordlist = [];
 
 const load = async () => {
@@ -10,6 +11,7 @@ const load = async () => {
     ready.value = true;
   } catch (error) {
     console.error(error);
+    error.value = "Failed to load word list. Please refresh or try again later.";
     return;
   }
   timeTaken = performance.now() - timeTaken;
