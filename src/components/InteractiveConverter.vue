@@ -67,7 +67,7 @@ const props = defineProps({
 });
 const emit = defineEmits(["query"]);
 
-const rules = useQueryRules(/[^0-9\s,;]/);
+const rules = useQueryRules(/[^0-9]/);
 
 const { query, pairs, result, valid } = useQueryConverter("number", props, emit, true);
 
