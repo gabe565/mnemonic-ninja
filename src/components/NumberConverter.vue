@@ -76,8 +76,8 @@ const { query, result, valid, loading } = useQueryConverter("number", props, emi
 
 const rules = useQueryRules(/[^0-9\s,;]/);
 
-const display = useDisplay();
-const height = computed(() => (display.mdAndDown.value ? "212px" : "238px"));
-const rows = computed(() => (display.mdAndDown.value ? 7 : 8));
-const arrow = computed(() => (display.smAndDown.value ? mdiArrowDownBold : mdiArrowRightBold));
+const { mdAndDown, smAndDown } = useDisplay();
+const height = computed(() => (mdAndDown.value ? "212px" : "238px"));
+const rows = computed(() => (mdAndDown.value ? 7 : 8));
+const arrow = computed(() => (smAndDown.value ? mdiArrowDownBold : mdiArrowRightBold));
 </script>
