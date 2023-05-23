@@ -8,18 +8,16 @@
       </h1>
     </v-row>
 
-    <section>
+    <v-row v-if="$slots.description" tag="section">
       <h2 class="d-sr-only">Description</h2>
-      <v-row v-if="$slots.description">
-        <v-col>
-          <v-card>
-            <v-card-text>
-              <slot name="description" />
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </section>
+      <v-col>
+        <v-card>
+          <v-card-text>
+            <slot name="description" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <slot />
   </v-container>
