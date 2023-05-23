@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Converters from "../views/ConvertersPage.vue";
-import About from "../views/AboutPage.vue";
-import NotFound from "../views/NotFoundPage.vue";
 
 const routes = [
   {
@@ -15,18 +12,18 @@ const routes = [
   {
     path: "/convert/:startTab(interactive|word|number)",
     name: "Convert",
-    component: Converters,
+    component: () => import("../views/ConvertersPage.vue"),
     props: true,
   },
   {
     path: "/about",
     name: "About",
-    component: About,
+    component: () => import("../views/AboutPage.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "404 Not Found",
-    component: NotFound,
+    component: () => import("../views/NotFoundPage.vue"),
   },
 
   // Deprecated route redirects
