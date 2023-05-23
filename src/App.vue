@@ -65,9 +65,10 @@ const routes = ref([
   { name: "About", icon: mdiInformation, to: "/about" },
 ]);
 
-const currentRoute = computed(() =>
-  routes.value.findIndex((e) => useRoute().path.startsWith(e.to))
-);
+const currentRoute = computed(() => {
+  const route = useRoute();
+  return routes.value.findIndex((e) => route.path.startsWith(e.to));
+});
 
 const display = useDisplay();
 
