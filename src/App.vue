@@ -17,7 +17,7 @@
 
       <GitHubButton />
 
-      <template v-if="display.mdAndUp" #extension>
+      <template v-if="mdAndUp" #extension>
         <v-tabs :model-value="currentRoute" align-tabs="center" color="white" style="width: 100%">
           <v-tab v-for="route in routes" :key="route.path" :to="route.to">
             <v-icon :icon="route.icon" class="pr-2" size="x-large" />
@@ -27,13 +27,7 @@
       </template>
     </v-app-bar>
 
-    <v-bottom-navigation
-      v-if="display.smAndDown"
-      position="fixed"
-      bg-color="primary"
-      theme="dark"
-      grow
-    >
+    <v-bottom-navigation v-if="smAndDown" position="fixed" bg-color="primary" theme="dark" grow>
       <v-btn
         v-for="(route, key) in routes"
         :key="route.path"
@@ -70,7 +64,7 @@ const currentRoute = computed(() => {
   return routes.value.findIndex((e) => route.path.startsWith(e.to));
 });
 
-const display = useDisplay();
+const { mdAndUp, smAndDown } = useDisplay();
 
 onBeforeMount(() => {
   // check for browser support
