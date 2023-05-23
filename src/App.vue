@@ -17,7 +17,7 @@
 
       <GitHubButton />
 
-      <template v-if="$vuetify.display.mdAndUp" #extension>
+      <template v-if="display.mdAndUp" #extension>
         <v-tabs :model-value="currentRoute" align-tabs="center" color="white" style="width: 100%">
           <v-tab v-for="route in routes" :key="route.path" :to="route.to">
             <v-icon :icon="route.icon" class="pr-2" size="x-large" />
@@ -28,7 +28,7 @@
     </v-app-bar>
 
     <v-bottom-navigation
-      v-if="$vuetify.display.smAndDown"
+      v-if="display.smAndDown"
       position="fixed"
       bg-color="primary"
       theme="dark"
@@ -58,7 +58,7 @@
 import { mdiInformation, mdiSwapHorizontalCircle } from "@mdi/js";
 import LogoIcon from "./assets/logo.svg";
 import { useRoute } from "vue-router";
-import { useTheme } from "vuetify";
+import { useDisplay, useTheme } from "vuetify";
 
 const routes = ref([
   { name: "Convert", icon: mdiSwapHorizontalCircle, to: "/convert" },
@@ -68,6 +68,8 @@ const routes = ref([
 const currentRoute = computed(() =>
   routes.value.findIndex((e) => useRoute().path.startsWith(e.to))
 );
+
+const display = useDisplay();
 
 onBeforeMount(() => {
   // check for browser support
