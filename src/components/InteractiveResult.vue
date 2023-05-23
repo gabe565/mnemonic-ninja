@@ -48,30 +48,22 @@
 
 <script setup>
 import { mdiContentCopy } from "@mdi/js";
-</script>
 
-<script>
-export default {
-  props: {
-    modelValue: {
-      type: String,
-      default: "",
-    },
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "",
   },
+});
 
-  data: () => ({
-    showCopiedSnackbar: false,
-  }),
+const showCopiedSnackbar = ref(false);
 
-  methods: {
-    async copyPhrase() {
-      await navigator.clipboard.writeText(this.modelValue);
-      if (this.showCopiedSnackbar) {
-        this.showCopiedSnackbar = false;
-        await this.$nextTick();
-      }
-      this.showCopiedSnackbar = true;
-    },
-  },
+const copyPhrase = async () => {
+  if (showCopiedSnackbar.value) {
+    showCopiedSnackbar.value = false;
+    await nextTick();
+  }
+  await navigator.clipboard.writeText(props.modelValue);
+  showCopiedSnackbar.value = true;
 };
 </script>

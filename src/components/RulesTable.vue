@@ -36,14 +36,8 @@
   </v-table>
 </template>
 
-<script>
+<script setup>
 import rules from "../data/rules";
-
-export default {
-  data: () => ({
-    rules,
-  }),
-};
 </script>
 
 <style scoped lang="scss">

@@ -55,41 +55,33 @@
 </template>
 
 <script setup>
-import LogoIcon from "./assets/logo.svg";
-</script>
-
-<script>
 import { mdiInformation, mdiSwapHorizontalCircle } from "@mdi/js";
+import LogoIcon from "./assets/logo.svg";
+import { useRoute } from "vue-router";
+import { useTheme } from "vuetify";
 
-export default {
-  name: "App",
+const routes = ref([
+  { name: "Convert", icon: mdiSwapHorizontalCircle, to: "/convert" },
+  { name: "About", icon: mdiInformation, to: "/about" },
+]);
 
-  data: () => ({
-    routes: [
-      { name: "Convert", icon: mdiSwapHorizontalCircle, to: "/convert" },
-      { name: "About", icon: mdiInformation, to: "/about" },
-    ],
-  }),
+const currentRoute = computed(() =>
+  routes.value.findIndex((e) => useRoute().path.startsWith(e.to))
+);
 
-  computed: {
-    currentRoute() {
-      return this.routes.findIndex((e) => this.$route.path.startsWith(e.to));
-    },
-  },
-
-  beforeMount() {
-    // check for browser support
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme)").media !== "not all") {
-      // set to preferred scheme
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      this.$vuetify.theme.name = mediaQuery.matches ? "dark" : "light";
-      // react to changes
-      mediaQuery.addEventListener("change", (e) => {
-        this.$vuetify.theme.name = e.matches ? "dark" : "light";
-      });
-    }
-  },
-};
+onBeforeMount(() => {
+  // check for browser support
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme)").media !== "not all") {
+    // set to preferred scheme
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const theme = useTheme();
+    theme.name.value = mediaQuery.matches ? "dark" : "light";
+    // react to changes
+    mediaQuery.addEventListener("change", (e) => {
+      theme.name.value = e.matches ? "dark" : "light";
+    });
+  }
+});
 </script>
 
 <style lang="scss">

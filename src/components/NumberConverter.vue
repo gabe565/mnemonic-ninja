@@ -34,9 +34,7 @@
 
         <v-col cols="12" md="auto" align-self="center" class="text-center py-0">
           <v-btn icon disabled aria-hidden="true">
-            <v-icon v-if="loading" :icon="mdiShuriken" />
-            <v-icon v-else-if="$vuetify.display.smAndDown" :icon="mdiArrowDownBold" />
-            <v-icon v-else :icon="mdiArrowRightBold" />
+            <v-icon :icon="arrow" />
           </v-btn>
         </v-col>
 
@@ -60,29 +58,22 @@
 </template>
 
 <script setup>
-import { mdiArrowDownBold, mdiArrowRightBold, mdiShuriken } from "@mdi/js";
-</script>
+import { mdiArrowDownBold, mdiArrowRightBold } from "@mdi/js";
+import { useQueryConverter } from "../composables/query_converter";
+import { useQueryRules } from "../composables/query_rules";
+import { useDisplay } from "vuetify";
 
-<script>
-import ConversionApi, { wordlistReady } from "../mixins/ConversionApi";
-import QueryValidate from "../mixins/QueryValidate";
-import QueryUrl from "../mixins/UrlQuery";
+const props = defineProps({
+  isActive: Boolean,
+});
+const emit = defineEmits(["query"]);
 
-export default {
-  mixins: [ConversionApi("number"), QueryValidate(/[^0-9\s,;]/), QueryUrl],
-  computed: {
-    height() {
-      return this.$vuetify.display.mdAndDown ? "212px" : "238px";
-    },
-    rows() {
-      return this.$vuetify.display.mdAndDown ? 7 : 8;
-    },
-    result() {
-      if (!this.query || !this.valid || !wordlistReady.value) {
-        return [];
-      }
-      return this.lookupWordlist(this.query);
-    },
-  },
-};
+const { query, result, valid } = useQueryConverter("number", props, emit);
+
+const rules = useQueryRules(/[^0-9\s,;]/);
+
+const display = useDisplay();
+const height = computed(() => (display.mdAndDown.value ? "212px" : "238px"));
+const rows = computed(() => (display.mdAndDown.value ? 7 : 8));
+const arrow = computed(() => (display.smAndDown.value ? mdiArrowDownBold : mdiArrowRightBold));
 </script>

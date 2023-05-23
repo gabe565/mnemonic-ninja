@@ -15,7 +15,7 @@
             <a
               :title="query.query"
               href="#"
-              @click.prevent="$emit('select', { word, number: query.query })"
+              @click.prevent="emit('select', { word, number: query.query })"
               >{{ word }}</a
             >&nbsp;
           </li>
@@ -28,21 +28,16 @@
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    result: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+const props = defineProps({
+  result: {
+    type: Array,
+    default: () => [],
   },
-  emits: ["select"],
-  computed: {
-    filtered() {
-      return this.result.map((e) => e[0]).filter((e) => e.result.length);
-    },
-  },
-};
+});
+const emit = defineEmits(["select"]);
+
+const filtered = computed(() => props.result.map((e) => e[0]).filter((e) => e.result.length));
 </script>
 
 <style scoped lang="scss">

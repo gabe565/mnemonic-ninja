@@ -25,19 +25,50 @@
   </v-snackbar>
 </template>
 
-<script>
-import useRegisterSW from "../mixins/useRegisterSW";
+<script setup>
+const updateSW = ref(undefined);
+const offlineReady = ref(false);
+const needRefresh = ref(false);
+const loading = ref(false);
 
 const intervalMS = 60 * 60 * 1000;
 
-export default {
-  mixins: [useRegisterSW],
-  methods: {
-    handleSWManualUpdates(r) {
-      if (r) {
-        setInterval(() => r.update(), intervalMS);
-      }
-    },
-  },
+onMounted(async () => {
+  try {
+    const { registerSW } = await import("virtual:pwa-register");
+    updateSW.value = registerSW({
+      immediate: true,
+      onOfflineReady() {
+        offlineReady.value = true;
+        console.log("onOfflineReady");
+      },
+      onNeedRefresh() {
+        needRefresh.value = true;
+        console.log("onNeedRefresh");
+      },
+      onRegistered(swRegistration) {
+        if (swRegistration) {
+          setInterval(() => swRegistration.update(), intervalMS);
+        }
+      },
+      onRegisterError(error) {
+        console.error(error);
+      },
+    });
+  } catch {
+    console.log("PWA disabled.");
+  }
+});
+
+const closePromptUpdateSW = async () => {
+  offlineReady.value = false;
+  needRefresh.value = false;
+};
+
+const updateServiceWorker = () => {
+  if (updateSW.value) {
+    loading.value = true;
+    updateSW.value(true);
+  }
 };
 </script>

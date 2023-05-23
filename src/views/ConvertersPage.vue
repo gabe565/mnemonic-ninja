@@ -42,52 +42,48 @@
   </PageLayout>
 </template>
 
-<script>
+<script setup>
 import InteractiveConverter from "../components/InteractiveConverter.vue";
 import NumberConverter from "../components/NumberConverter.vue";
 import WordConverter from "../components/WordConverter.vue";
 
-export default {
-  props: {
-    startTab: {
-      type: String,
-      default: "interactive",
-    },
+const props = defineProps({
+  startTab: {
+    type: String,
+    default: "interactive",
   },
+});
 
-  data: () => ({
-    currentTab: 0,
-    tabs: [
-      {
-        slug: "interactive",
-        name: "Interactive",
-        query: {},
-        component: markRaw(InteractiveConverter),
-      },
-      {
-        slug: "number",
-        name: "Number to Word",
-        query: {},
-        component: markRaw(NumberConverter),
-      },
-      {
-        slug: "word",
-        name: "Word to Number",
-        query: {},
-        component: markRaw(WordConverter),
-      },
-    ],
-  }),
+const currentTab = ref(0);
 
-  watch: {
-    startTab: {
-      handler(val) {
-        if (val) {
-          this.currentTab = Object.values(this.tabs).findIndex((e) => e.slug === val);
-        }
-      },
-      immediate: true,
-    },
+const tabs = ref([
+  {
+    slug: "interactive",
+    name: "Interactive",
+    query: {},
+    component: markRaw(InteractiveConverter),
   },
-};
+  {
+    slug: "number",
+    name: "Number to Word",
+    query: {},
+    component: markRaw(NumberConverter),
+  },
+  {
+    slug: "word",
+    name: "Word to Number",
+    query: {},
+    component: markRaw(WordConverter),
+  },
+]);
+
+watch(
+  () => props.startTab,
+  (val) => {
+    if (val) {
+      currentTab.value = Object.values(tabs.value).findIndex((e) => e.slug === val);
+    }
+  },
+  { immediate: true }
+);
 </script>

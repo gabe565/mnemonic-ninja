@@ -25,7 +25,6 @@
             clearable
             label="Query"
             placeholder="70395"
-            :loading="loading"
             :rules="rules"
             @keydown.backspace.passive.capture="keyEvent"
             @keydown.left.passive.capture="keyEvent"
@@ -59,104 +58,87 @@
   </v-form>
 </template>
 
-<script>
-import ConversionApi, { wordlistReady } from "../mixins/ConversionApi";
-import QueryValidate from "../mixins/QueryValidate";
-import QueryUrl from "../mixins/UrlQuery";
-import QueryUrlPair from "../mixins/UrlPair";
+<script setup>
+import { useQueryConverter } from "../composables/query_converter";
+import { useQueryRules } from "../composables/query_rules";
+
+const props = defineProps({
+  isActive: Boolean,
+});
+const emit = defineEmits(["query"]);
+
+const rules = useQueryRules(/[^0-9\s,;]/);
+
+const { query, pairs, result, valid } = useQueryConverter("number", props, emit, true);
+
+const phrase = computed(() => {
+  return pairs.value.map((e) => e.word).join(" ");
+});
+
+const allUsed = computed(() => {
+  return !query.value && pairs.value.length;
+});
 
 let moved = false;
 
-export default {
-  mixins: [ConversionApi("interactive"), QueryValidate(/[^0-9\s,;]/), QueryUrl, QueryUrlPair],
-  data() {
-    return {
-      pairs: [],
-      showCopiedSnackbar: false,
-    };
-  },
-  computed: {
-    usedNumbers() {
-      return this.pairs.map((e) => e.number).join("");
-    },
-    phrase() {
-      return this.pairs.map((e) => e.word).join(" ");
-    },
-    allUsed() {
-      return !this.query && this.pairs.length;
-    },
-    result() {
-      if (!this.query || !this.valid || !wordlistReady.value) {
-        return [];
-      }
+const keyEvent = async (event) => {
+  moved = false;
+  const { target } = event;
+  if (!pairs.value.length) {
+    return;
+  }
+  if (target.selectionStart === 0) {
+    const addedLength = pairs.value[pairs.value.length - 1].number.length;
+    const prevSelectionStart = target.selectionStart;
+    const prevSelectionEnd = target.selectionEnd;
+    goBack();
+    await nextTick();
+    target.selectionStart = prevSelectionStart + addedLength;
+    target.selectionEnd = prevSelectionEnd + addedLength;
+  } else if (target.selectionStart === 1) {
+    if (target.selectionStart !== target.selectionEnd) {
+      moved = true;
+    }
+  }
+};
 
-      const results = [];
-      for (let i = 0; i < this.query.length; i += 1) {
-        const query = this.query.slice(0, this.query.length - i);
-        results.push(this.lookupWordlist(query));
-      }
+const selectEvent = async (event) => {
+  const { target } = event;
+  if (
+    !pairs.value.length ||
+    target.selectionStart !== 0 ||
+    target.selectionEnd !== query.value.length ||
+    moved
+  ) {
+    moved = false;
+    return;
+  }
+  goBackTo(0);
+  await nextTick();
+  target.selectionStart = 0;
+  target.selectionEnd = query.value.length;
+};
 
-      return results;
-    },
-  },
-  methods: {
-    async keyEvent(event) {
-      moved = false;
-      const { target } = event;
-      if (!this.pairs.length) {
-        return;
-      }
-      if (target.selectionStart === 0) {
-        const addedLength = this.pairs[this.pairs.length - 1].number.length;
-        const prevSelectionStart = target.selectionStart;
-        const prevSelectionEnd = target.selectionEnd;
-        this.goBack();
-        await nextTick();
-        target.selectionStart = prevSelectionStart + addedLength;
-        target.selectionEnd = prevSelectionEnd + addedLength;
-      } else if (target.selectionStart === 1) {
-        if (target.selectionStart !== target.selectionEnd) {
-          moved = true;
-        }
-      }
-    },
-    async selectEvent(event) {
-      const { target } = event;
-      if (
-        !this.pairs.length ||
-        target.selectionStart !== 0 ||
-        target.selectionEnd !== this.query.length ||
-        moved
-      ) {
-        moved = false;
-        return;
-      }
-      this.goBackTo(0);
-      await nextTick();
-      target.selectionStart = 0;
-      target.selectionEnd = this.query.length;
-    },
-    clear() {
-      this.query = "";
-      this.pairs = [];
-    },
-    select(pair) {
-      this.pairs.push(pair);
-      this.query = this.query.slice(pair.number.length);
-    },
-    goBack(n = 1) {
-      let { query } = this;
-      for (let i = 0; i < n; i += 1) {
-        query = this.pairs.pop().number + query;
-      }
-      this.query = query;
-    },
-    goBackTo(key) {
-      if (this.pairs.length) {
-        this.goBack(this.pairs.length - key);
-      }
-    },
-  },
+const clear = () => {
+  query.value = "";
+  pairs.value = [];
+};
+
+const select = (pair) => {
+  pairs.value.push(pair);
+  query.value = query.value.slice(pair.number.length);
+};
+
+const goBack = (n = 1) => {
+  for (let i = 0; i < n; i += 1) {
+    query.value = pairs.value.pop().number + query.value;
+  }
+};
+
+const goBackTo = (key) => {
+  if (pairs.value.length) {
+    goBack(pairs.value.length - key);
+  }
 };
 </script>
 

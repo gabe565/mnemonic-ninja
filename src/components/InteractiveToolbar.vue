@@ -13,13 +13,7 @@
     <v-col>
       <v-tooltip v-for="(pair, key) in pairs" :key="key" location="top">
         <template #activator="{ props }">
-          <v-chip
-            v-bind="props"
-            class="ma-1"
-            closable
-            close
-            @click:close="$emit('go-back-to', key)"
-          >
+          <v-chip v-bind="props" class="ma-1" closable close @click:close="emit('go-back-to', key)">
             {{ pair.word }}
           </v-chip>
         </template>
@@ -31,27 +25,21 @@
 
 <script setup>
 import { mdiArrowLeftBold } from "@mdi/js";
-</script>
 
-<script>
-export default {
-  props: {
-    pairs: {
-      type: Array,
-      default: () => [],
-    },
+const props = defineProps({
+  pairs: {
+    type: Array,
+    default: () => [],
   },
-  emits: ["go-back", "go-back-to"],
-  data: () => ({
-    showBackTooltip: false,
-  }),
-  methods: {
-    goBack() {
-      if (this.pairs.length === 1) {
-        this.showBackTooltip = false;
-      }
-      this.$emit("go-back");
-    },
-  },
+});
+const emit = defineEmits(["go-back", "go-back-to"]);
+
+const showBackTooltip = ref(false);
+
+const goBack = () => {
+  if (props.pairs.length === 1) {
+    showBackTooltip.value = false;
+  }
+  emit("go-back");
 };
 </script>
