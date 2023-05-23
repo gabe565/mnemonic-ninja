@@ -1,25 +1,4 @@
-/* eslint-disable no-invalid-this */
-
-let wordlist = [];
-export const wordlistReady = ref(false);
-
-const parseWordlist = async () => {
-  console.info("Loading wordlist...");
-  let timeTaken = performance.now();
-  try {
-    const module = await import("../data/cmudict/cmudict.dict");
-    wordlist = module.default;
-    wordlistReady.value = true;
-  } catch (error) {
-    console.error(error);
-    return;
-  }
-  timeTaken = performance.now() - timeTaken;
-  console.info(
-    `Loaded ${wordlist.length.toLocaleString()} words in ${timeTaken.toLocaleString()}ms`
-  );
-};
-parseWordlist();
+import { wordlist, ready } from "../data/wordlist";
 
 const types = {
   word: [0, 1],
@@ -53,7 +32,7 @@ const guesses = [
 ];
 
 export const useConversionApi = (type) => {
-  const loading = computed(() => !wordlistReady.value);
+  const loading = computed(() => !ready.value);
 
   const lookupWordlist = (rawQuery) => {
     if (!rawQuery) {

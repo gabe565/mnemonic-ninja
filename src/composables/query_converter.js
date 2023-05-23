@@ -1,9 +1,10 @@
 import isEqual from "lodash/isEqual";
 import { useRoute } from "vue-router";
-import { useConversionApi, wordlistReady } from "./conversion_api";
+import { useConversionApi } from "./conversion_api";
 import debounce from "lodash/debounce";
 import router from "../plugins/router";
 import { castArray } from "../util/helpers";
+import { ready } from "../data/wordlist";
 
 export const castPair = (val) =>
   val.map((p) => {
@@ -72,7 +73,7 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
 
   const { loading, lookupWordlist } = useConversionApi(type);
   const result = computed(() => {
-    if (!query.value || !wordlistReady.value) {
+    if (!query.value || !ready.value) {
       return [];
     }
 
