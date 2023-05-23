@@ -65,7 +65,7 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
     }, 200)
   );
 
-  const { lookupWordlist } = useConversionApi(type);
+  const { loading, lookupWordlist } = useConversionApi(type);
   const result = computed(() => {
     if (!query.value || !wordlistReady.value) {
       return [];
@@ -83,5 +83,5 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
     }
   });
 
-  return { query, pairs, result, valid };
+  return { query, pairs, result, valid, loading };
 };

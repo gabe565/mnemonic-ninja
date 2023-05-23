@@ -53,6 +53,8 @@ const guesses = [
 ];
 
 export const useConversionApi = (type) => {
+  const loading = computed(() => !wordlistReady.value);
+
   const lookupWordlist = (rawQuery) => {
     if (!rawQuery) {
       return [];
@@ -100,5 +102,5 @@ export const useConversionApi = (type) => {
     return result;
   };
 
-  return { lookupWordlist };
+  return { loading, lookupWordlist };
 };

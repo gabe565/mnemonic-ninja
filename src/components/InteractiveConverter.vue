@@ -26,6 +26,7 @@
             label="Query"
             placeholder="70395"
             :rules="rules"
+            :loading="loading"
             @keydown.backspace.passive.capture="keyEvent"
             @keydown.left.passive.capture="keyEvent"
             @select.passive.capture="selectEvent"
@@ -69,7 +70,7 @@ const emit = defineEmits(["query"]);
 
 const rules = useQueryRules(/[^0-9]/);
 
-const { query, pairs, result, valid } = useQueryConverter("number", props, emit, true);
+const { query, pairs, result, valid, loading } = useQueryConverter("number", props, emit, true);
 
 const phrase = computed(() => {
   return pairs.value.map((e) => e.word).join(" ");

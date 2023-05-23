@@ -29,11 +29,15 @@
             placeholder="70395"
             :rules="rules"
             :rows="rows"
+            :loading="loading"
           />
         </v-col>
 
         <v-col cols="12" md="auto" align-self="center" class="text-center py-0">
-          <v-btn icon disabled aria-hidden="true">
+          <v-btn icon disabled aria-hidden="true" :loading="loading">
+            <template #loader>
+              <v-icon :icon="mdiShuriken" class="icon-spin" />
+            </template>
             <v-icon :icon="arrow" />
           </v-btn>
         </v-col>
@@ -58,7 +62,7 @@
 </template>
 
 <script setup>
-import { mdiArrowDownBold, mdiArrowRightBold } from "@mdi/js";
+import { mdiArrowDownBold, mdiArrowRightBold, mdiShuriken } from "@mdi/js";
 import { useQueryConverter } from "../composables/query_converter";
 import { useQueryRules } from "../composables/query_rules";
 import { useDisplay } from "vuetify";
@@ -68,7 +72,7 @@ const props = defineProps({
 });
 const emit = defineEmits(["query"]);
 
-const { query, result, valid } = useQueryConverter("number", props, emit);
+const { query, result, valid, loading } = useQueryConverter("number", props, emit);
 
 const rules = useQueryRules(/[^0-9\s,;]/);
 

@@ -153,7 +153,7 @@ span.anchor {
 
 .icon-spin {
   animation-name: icon-spin;
-  animation-duration: 750ms;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
