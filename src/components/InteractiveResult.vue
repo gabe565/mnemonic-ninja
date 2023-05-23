@@ -28,7 +28,7 @@
           @focus="$event.target.select()"
         >
           <template #prepend-inner>
-            <v-tooltip location="bottom">
+            <v-tooltip location="bottom" aria-label="Copy to Clipboard">
               <template #activator="{ props }">
                 <v-btn icon v-bind="props" @click="copyPhrase">
                   <v-icon :icon="mdiContentCopy" />

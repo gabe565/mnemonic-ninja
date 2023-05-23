@@ -1,7 +1,7 @@
 <template>
   <v-row align="center">
     <v-col cols="auto" align-self="center" class="pr-0">
-      <v-tooltip v-model="showBackTooltip" location="top">
+      <v-tooltip v-model="showBackTooltip" location="top" aria-label="Back">
         <template #activator="{ props }">
           <v-btn icon v-bind="props" :disabled="!pairs.length" @click="goBack">
             <v-icon :icon="mdiArrowLeftBold" />
@@ -11,7 +11,7 @@
       </v-tooltip>
     </v-col>
     <v-col>
-      <v-tooltip v-for="(pair, key) in pairs" :key="key" location="top">
+      <v-tooltip v-for="(pair, key) in pairs" :key="key" location="top" :aria-label="pair.number">
         <template #activator="{ props }">
           <v-chip v-bind="props" class="ma-1" closable close @click:close="emit('go-back-to', key)">
             {{ pair.word }}

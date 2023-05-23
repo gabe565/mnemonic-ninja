@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip location="bottom">
+  <v-tooltip location="bottom" aria-label="View on GitHub">
     <template #activator="{ props }">
       <v-btn
         icon
