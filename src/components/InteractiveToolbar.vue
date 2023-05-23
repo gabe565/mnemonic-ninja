@@ -36,10 +36,12 @@ const emit = defineEmits(["go-back", "go-back-to"]);
 
 const showBackTooltip = ref(false);
 
+const router = useRouter();
+
 const goBack = () => {
   if (props.pairs.length === 1) {
     showBackTooltip.value = false;
   }
-  emit("go-back");
+  router.go(-1);
 };
 </script>

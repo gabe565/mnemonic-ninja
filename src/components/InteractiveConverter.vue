@@ -70,7 +70,12 @@ const emit = defineEmits(["query"]);
 
 const rules = useQueryRules(/[^0-9]/);
 
-const { query, pairs, result, valid, loading } = useQueryConverter("number", props, emit, true);
+const { query, pairs, result, valid, loading, updateUrl } = useQueryConverter(
+  "number",
+  props,
+  emit,
+  true
+);
 
 const phrase = computed(() => {
   return pairs.value.map((e) => e.word).join(" ");
@@ -92,8 +97,7 @@ const keyEvent = async (event) => {
     const addedLength = pairs.value[pairs.value.length - 1].number.length;
     const prevSelectionStart = target.selectionStart;
     const prevSelectionEnd = target.selectionEnd;
-    goBack();
-    await nextTick();
+    await goBack();
     target.selectionStart = prevSelectionStart + addedLength;
     target.selectionEnd = prevSelectionEnd + addedLength;
   } else if (target.selectionStart === 1) {
@@ -114,32 +118,35 @@ const selectEvent = async (event) => {
     moved = false;
     return;
   }
-  goBackTo(0);
-  await nextTick();
+  await goBackTo(0);
   target.selectionStart = 0;
   target.selectionEnd = query.value.length;
 };
 
-const clear = () => {
+const clear = async () => {
   query.value = "";
   pairs.value = [];
+  await updateUrl(true);
 };
 
-const select = (pair) => {
+const select = async (pair) => {
   pairs.value.push(pair);
   query.value = query.value.slice(pair.number.length);
+  await updateUrl(true);
 };
 
-const goBack = (n = 1) => {
+const goBack = async (n = 1) => {
   for (let i = 0; i < n; i += 1) {
     query.value = pairs.value.pop().number + query.value;
   }
+  await updateUrl(true);
 };
 
-const goBackTo = (key) => {
+const goBackTo = async (key) => {
   if (pairs.value.length) {
-    goBack(pairs.value.length - key);
+    await goBack(pairs.value.length - key);
   }
+  await updateUrl(true);
 };
 </script>
 

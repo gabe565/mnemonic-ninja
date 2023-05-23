@@ -3,6 +3,7 @@ import { useRoute } from "vue-router";
 import { useConversionApi, wordlistReady } from "./conversion_api";
 import debounce from "lodash/debounce";
 import router from "../plugins/router";
+import { castArray } from "../util/helpers";
 
 export const castPair = (val) =>
   val.map((p) => {
@@ -24,11 +25,11 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
     () => route.query,
     (val) => {
       if (props.isActive && val) {
-        if (val.q) {
-          query.value = val.q;
+        if (val.q || val.pair) {
+          query.value = val.q || "";
         }
         if (usePairs && val.pair) {
-          pairs.value = castPair(val.pair);
+          pairs.value = castPair(castArray(val.pair));
         } else {
           pairs.value = [];
         }
@@ -48,10 +49,14 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
     return result;
   };
 
-  const updateUrl = async () => {
+  const updateUrl = async (push = false) => {
     const query = buildQueryParams();
     if (!isEqual(query, route.query)) {
-      await router.replace({ ...route, query });
+      if (push) {
+        await router.push({ ...route, query });
+      } else {
+        await router.replace({ ...route, query });
+      }
     }
     emit("query", query);
   };
@@ -83,5 +88,5 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
     }
   });
 
-  return { query, pairs, result, valid, loading };
+  return { query, pairs, result, valid, loading, updateUrl };
 };
