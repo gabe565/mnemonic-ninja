@@ -1,9 +1,7 @@
-import isEqual from "lodash/isEqual";
 import { useRoute } from "vue-router";
 import { useConversionApi } from "./conversion_api";
-import debounce from "lodash/debounce";
 import router from "../plugins/router";
-import { castArray } from "../util/helpers";
+import { castArray, debounce } from "../util/helpers";
 import { ready } from "../data/wordlist";
 
 export const castPair = (val) =>
@@ -52,7 +50,7 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
 
   const updateUrl = async (push = false) => {
     const query = buildQueryParams();
-    if (!isEqual(query, route.query)) {
+    if (query.q !== route.query?.q || query.pair !== route.query?.pair) {
       if (push) {
         await router.push({ ...route, query });
       } else {
