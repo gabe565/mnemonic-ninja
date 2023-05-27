@@ -32,8 +32,9 @@ const compileFileToJS = (src) => {
   const data = src
     .trim()
     .split("\n")
-    .map((e) => parseCmudictLine(e))
-    .filter(Boolean);
+    .map((e) => parseCmudictLine(e).join(","))
+    .filter(Boolean)
+    .join("\n");
 
   return `const data = ${JSON.stringify(data)};\nexport default data;`;
 };

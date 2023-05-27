@@ -7,7 +7,7 @@ const load = async () => {
   let timeTaken = performance.now();
   try {
     const module = await import("./cmudict/cmudict.dict");
-    wordlist = module.default;
+    wordlist = module.default.split("\n").map((e) => e.split(","));
     ready.value = true;
   } catch (error) {
     console.error(error);
