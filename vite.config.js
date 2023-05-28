@@ -11,9 +11,7 @@ import autoprefixer from "autoprefixer";
 export default defineConfig({
   plugins: [
     vue(),
-    svgLoader({
-      svgo: false,
-    }),
+    svgLoader(),
     vuetify({
       styles: {
         configFile: "src/scss/variables.scss",
