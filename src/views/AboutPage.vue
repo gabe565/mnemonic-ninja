@@ -95,8 +95,8 @@
             <p>
               When performing conversions, the application will attempt to perform the conversion
               from the pronunciation in the database first.<br />
-              If the word cannot be found, then it will fallback to estimating the conversion by
-              comparing letters instead of sounds.<br />
+              If the word cannot be found, then it will approximate the output by comparing letters
+              instead of sounds.<br />
             </p>
             <div>
               To see this in action,
@@ -117,7 +117,7 @@
                 <li>
                   Now to see the wordlist in action. <v-code tag="code">garagez</v-code> will
                   convert to "7470" because the word is not in the wordlist, so the system has to
-                  guess on the conversion.
+                  approximate the output.
                 </li>
               </ol>
             </div>
