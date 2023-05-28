@@ -167,4 +167,8 @@ span.anchor {
 code {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
+.text-decoration-dotted {
+  text-decoration: underline dotted;
+}
 </style>

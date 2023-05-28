@@ -8,11 +8,17 @@
       </v-row>
       <v-row>
         <v-col>
-          <p class="mb-0">
+          <p>
             Enter a word or a list of words to get a converted list of numbers.
             <br />
             More than one number may show up for a single word. This means there is more than one
             pronunciation!
+          </p>
+          <p class="mb-0">
+            <span class="text-warning">Yellow</span> rows are not in the dictionary, so the output
+            is approximated.
+            <br />
+            <span class="text-error">Red</span> rows have invalid input.
           </p>
         </v-col>
       </v-row>
@@ -49,8 +55,14 @@
               Number
             </caption>
             <tbody>
-              <tr v-for="(item, key) in result" :key="key">
-                <td style="width: 1%">{{ item.query }}:</td>
+              <tr v-for="(item, key) in result" :key="key" :class="item.class">
+                <td
+                  style="width: 1%"
+                  :class="{ 'text-decoration-dotted': item.title }"
+                  :title="item.title"
+                >
+                  {{ item.query }}:
+                </td>
                 <td>{{ item.result.join(", ") }}</td>
               </tr>
             </tbody>

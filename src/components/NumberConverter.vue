@@ -8,12 +8,13 @@
       </v-row>
       <v-row>
         <v-col>
-          <p class="mb-0">
+          <p>
             Enter a number or a list of numbers to get a converted list of words.
             <br />
             Many words can show up for a single number. If this happens, the result box will be
             scrollable.
           </p>
+          <p class="mb-0"><span class="text-error">Red</span> rows have invalid input.</p>
         </v-col>
       </v-row>
       <v-row>
@@ -49,8 +50,14 @@
               Word
             </caption>
             <tbody>
-              <tr v-for="(item, key) in result" :key="key">
-                <td style="width: 1%">{{ item.query }}:</td>
+              <tr v-for="(item, key) in result" :key="key" :class="item.class">
+                <td
+                  style="width: 1%"
+                  :class="{ 'text-decoration-dotted': item.title }"
+                  :title="item.title"
+                >
+                  {{ item.query }}:
+                </td>
                 <td>{{ item.result.join(", ") }}</td>
               </tr>
             </tbody>

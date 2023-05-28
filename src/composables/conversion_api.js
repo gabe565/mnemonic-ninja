@@ -63,18 +63,32 @@ export const useConversionApi = (type) => {
       // Filter unique
       matches = matches.filter((v, i, a) => a.indexOf(v) === i);
 
-      if (matches.length === 0 && type === "word") {
-        let guess = query.replaceAll(/[^A-Za-z]/g, "");
-        for (const replacement of guesses) {
-          guess = guess.replaceAll(replacement[0], replacement[1]);
+      let error = false;
+      let guess = false;
+      if (matches.length === 0) {
+        if (type === "word") {
+          let val = query.replaceAll(/[^A-Za-z]/g, "");
+          error = val !== query;
+          if (!error) {
+            guess = true;
+            for (const replacement of guesses) {
+              val = val.replaceAll(replacement[0], replacement[1]);
+            }
+            val = val.replaceAll(/[^0-9]/g, "");
+            matches.push(val);
+          }
+        } else if (type === "number") {
+          if (query.match(/[^0-9]/)) {
+            error = true;
+          }
         }
-        guess = guess.replaceAll(/[^0-9]/g, "");
-        matches.push(guess);
       }
 
       result.push({
         query,
         result: matches,
+        class: error ? "text-error" : guess ? "text-warning" : "",
+        title: error ? "Invalid input" : guess ? "Unknown word. Output is approximated." : "",
       });
     }
 
