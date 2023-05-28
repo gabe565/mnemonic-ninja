@@ -94,7 +94,7 @@
             </p>
             <p>
               When performing conversions, the application will attempt to perform the conversion
-              from the pronounciation in the database first.<br />
+              from the pronunciation in the database first.<br />
               If the word cannot be found, then it will fallback to estimating the conversion by
               comparing letters instead of sounds.<br />
             </p>
@@ -112,7 +112,7 @@
                 </li>
                 <li>
                   <v-code tag="code">garages</v-code> will successfully be converted to "7460"
-                  because the pronounciation is the same, but with an /s/ at the end of the word.
+                  because the pronunciation is the same, but with an /s/ at the end of the word.
                 </li>
                 <li>
                   Now to see the wordlist in action. <v-code tag="code">garagez</v-code> will
