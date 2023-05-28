@@ -7,7 +7,7 @@
     <v-app-bar app theme="dark" color="primary">
       <v-btn to="/" class="text-body-2 text-none px-2" size="x-large">
         <template #prepend>
-          <v-icon :icon="LogoIcon" style="--v-icon-size-multiplier: 1.25" />
+          <img alt="Mnemonic Ninja Logo" :src="LogoIcon" style="height: 42px" />
         </template>
 
         <v-app-bar-title>Mnemonic Ninja</v-app-bar-title>
@@ -50,7 +50,7 @@
 
 <script setup>
 import { mdiInformation, mdiSwapHorizontalCircle } from "@mdi/js";
-import LogoIcon from "./assets/logo.svg";
+import LogoIcon from "./assets/logo.svg?url";
 import { useRoute } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
 
