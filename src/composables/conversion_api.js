@@ -64,7 +64,7 @@ export const useConversionApi = (type) => {
       matches = matches.filter((v, i, a) => a.indexOf(v) === i);
 
       if (matches.length === 0 && type === "word") {
-        let guess = query;
+        let guess = query.replaceAll(/[^A-Za-z]/g, "");
         for (const replacement of guesses) {
           guess = guess.replaceAll(replacement[0], replacement[1]);
         }
