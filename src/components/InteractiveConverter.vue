@@ -25,6 +25,7 @@
             clearable
             label="Query"
             placeholder="70395"
+            inputmode="numeric"
             :rules="rules"
             :loading="loading"
             @keydown.backspace.passive.capture="keyEvent"
