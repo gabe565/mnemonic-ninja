@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+      url:
+        type: string
+      bucket-name:
+        type: string
+        required: true
+    secrets:
+      aws-role-arn:
+        required: true
+      cloudfront-id:
+        required: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    concurrency: ${{ inputs.environment }}
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ inputs.url }}
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.aws-role-arn }}
+          role-session-name: mnemonic-ninja-ci
+          aws-region: us-east-2
+
+      - name: Deploy
+        run: aws s3 sync --delete --no-progress . s3://${{ inputs.bucket-name }}
+
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.cloudfront-id }} --paths '/*'
