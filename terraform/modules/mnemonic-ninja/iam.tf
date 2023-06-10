@@ -54,7 +54,7 @@ data "aws_iam_policy_document" "role" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:gabe565/mnemonic-ninja:*"]
+      values   = ["repo:gabe565/mnemonic-ninja:environment:${var.env}"]
     }
 
     principals {
