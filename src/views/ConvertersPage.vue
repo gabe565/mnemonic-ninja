@@ -91,6 +91,6 @@ watch(
       currentTab.value = Object.values(tabs.value).findIndex((e) => e.slug === val);
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>

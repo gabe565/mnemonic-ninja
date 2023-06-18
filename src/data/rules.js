@@ -25,7 +25,7 @@ export default {
         "<i>Zero</i> begins with <i>z</i>.",
         "Upper case <i>S</i> and <i>Z</i>, as well as lower case <i>s</i> and <i>z</i>, have <i>zero</i> vertical strokes each, as with the number <i>0</i>.",
         'The alveolar fricatives /s/ and /z/ form a <a href="https://en.wikipedia.org/wiki/Voice_(phonetics)" target="_blank">voiceless and voiced pair</a>.',
-      ]
+      ],
     ),
     new Rule(
       "1",
@@ -34,7 +34,7 @@ export default {
       [
         "Upper case <i>T</i> and <i>D</i>, as well as lower case <i>t</i> and <i>d</i> have one vertical stroke each, as with the number <i>1</i>.",
         "The alveolar stops /t/ and /d/ form a voiceless and voiced pair, as do the similar-sounding dental fricatives /θ/ and /ð/, though some variant systems may omit the latter pair.",
-      ]
+      ],
     ),
     new Rule(
       "2",
@@ -42,7 +42,7 @@ export default {
       ["<i>n</i>"],
       [
         'Upper case <i>N</i> and lower case <i>n</i> each have <i>two</i> vertical strokes and <i>two</i> points on the <a href="https://en.wikipedia.org/wiki/Baseline_(typography)" target="_blank">baseline</a>.',
-      ]
+      ],
     ),
     new Rule(
       "3",
@@ -51,13 +51,13 @@ export default {
       [
         "Lower case <i>m</i> has <i>three</i> vertical strokes.",
         "Both upper case <i>M</i> and lower case <i>m</i> each have <i>three</i> points on the baseline and look like the number <i>3</i> on its side.",
-      ]
+      ],
     ),
     new Rule(
       "4",
       ["/r/"],
       ["<i>r</i>,", "<i>l</i> (in <i>colonel</i>)"],
-      ["<i>Four</i> ends with <i>r</i> (and /r/ in rhotic accents)."]
+      ["<i>Four</i> ends with <i>r</i> (and /r/ in rhotic accents)."],
     ),
     new Rule(
       "5",
@@ -66,7 +66,7 @@ export default {
       [
         '<i>L</i> is the <a href="https://en.wikipedia.org/wiki/Roman_number" target="_blank">Roman number</a> for <i>5</i>0.',
         "Among the <i>five</i> digits of one's <i>l</i>eft hand, the thumb and index fingers also form an <i>L</i>",
-      ]
+      ],
     ),
     new Rule(
       "6",
@@ -91,7 +91,7 @@ export default {
         'In some <a href="https://en.wikipedia.org/wiki/Serif" target="_blank">serif</a> fonts, upper case <i>CH</i>, <i>SH</i> and <i>ZH</i> each have <i>six</i> serifs.',
         "The postalveolar affricates /tʃ/ and /dʒ/ form a voiceless and voiced pair, as do the similar-sounding postalveolar fricatives /ʃ/ and /ʒ/.",
         "<i>CH</i>urch has six letters.",
-      ]
+      ],
     ),
     new Rule(
       "7",
@@ -102,7 +102,7 @@ export default {
         "In some fonts, the lower-right part of the upper case <i>G</i> looks like a <i>7</i>.",
         "<i>G</i> is also the <i>7</i>th letter of the alphabet.",
         "The velar stops /k/ and /g/ form a voiceless and voiced pair.",
-      ]
+      ],
     ),
     new Rule(
       "8",
@@ -111,7 +111,7 @@ export default {
       [
         "Lower case script <i>f</i>, which tends to have an upper and lower loop, looks like a <i>f</i>igure-<i>8</i>.",
         "The labiodental fricatives /f/ and /v/ form a voiceless and voiced pair.",
-      ]
+      ],
     ),
     new Rule(
       "9",
@@ -121,7 +121,7 @@ export default {
         "Upper case <i>P</i> and lower case <i>p</i> look like the number <i>9</i> flipped horizontally.",
         "Lower case <i>b</i> looks like the number <i>9</i> turned 180°.",
         "The labial stops /p/ and /b/ form a voiceless and voiced pair.",
-      ]
+      ],
     ),
     new Rule(
       "Unassigned",
@@ -144,7 +144,7 @@ export default {
       ],
       [
         '<a href="https://en.wikipedia.org/wiki/Vowel" target="_blank">Vowel</a> sounds, <a href="https://en.wikipedia.org/wiki/Semivowel" target="_blank">semivowels</a> (/j/ and /w/) and /h/ do not correspond to any number. They can appear anywhere in a word without changing its number value.',
-      ]
+      ],
     ),
     new Rule(
       "(2, 27 or 7)",
@@ -158,7 +158,7 @@ export default {
       ],
       [
         "Variant systems differ about whether /ŋ/ should encode <i>2</i> and classified together with /n/, <i>7</i> and classified together with /k/ and /g/ or even <i>27</i> (e.g. <i>ring</i> could be <i>42</i>, <i>47</i> or <i>427</i>). When a /k/ and /g/ is pronounced separately after the /ŋ/, variant systems that chose /ŋ/ to be <i>27</i> also disagree if an extra <i>7</i> should be written (e.g. finger could be <i>8274</i> or <i>82774</i>, or if /ŋ/ is chosen to be <i>7</i>, <i>8774</i>).",
-      ]
+      ],
     ),
   ],
 };

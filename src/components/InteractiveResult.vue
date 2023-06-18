@@ -22,7 +22,6 @@
         <v-text-field
           :model-value="modelValue"
           variant="outlined"
-          rounded
           readonly
           label="Phrase"
           @focus="$event.target.select()"
@@ -40,7 +39,7 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-snackbar v-model="showCopiedSnackbar" timeout="5000" bottom class="pb-14 pb-md-0">
+    <v-snackbar v-model="showCopiedSnackbar" timeout="5000" location="bottom" class="pb-14 pb-md-0">
       Copied to clipboard.
     </v-snackbar>
   </v-col>

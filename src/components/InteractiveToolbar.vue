@@ -13,7 +13,7 @@
     <v-col>
       <v-tooltip v-for="(pair, key) in pairs" :key="key" location="top" :aria-label="pair.number">
         <template #activator="{ props }">
-          <v-chip v-bind="props" class="ma-1" closable close @click:close="emit('go-back-to', key)">
+          <v-chip v-bind="props" class="ma-1" closable @click:close="emit('go-back-to', key)">
             {{ pair.word }}
           </v-chip>
         </template>

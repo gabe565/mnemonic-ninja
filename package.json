@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "watch": "vite build --mode=dev --watch",
-    "lint": "eslint --ext .js,.vue --fix src"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
     "@mdi/js": "7.2.96",
@@ -29,8 +30,8 @@
     "@rushstack/eslint-patch": "1.3.2",
     "@vue/eslint-config-prettier": "7.1.0",
     "eslint": "8.43.0",
-    "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-vue": "9.14.1",
     "eslint-plugin-vuetify": "2.0.2",
     "prettier": "2.8.8",

@@ -20,7 +20,6 @@
         <v-col>
           <v-text-field
             v-model="query"
-            rounded
             variant="outlined"
             clearable
             label="Query"
@@ -75,7 +74,7 @@ const { query, pairs, result, valid, loading, updateUrl } = useQueryConverter(
   "number",
   props,
   emit,
-  true
+  true,
 );
 
 const phrase = computed(() => {

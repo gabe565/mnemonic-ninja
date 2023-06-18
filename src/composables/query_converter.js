@@ -34,7 +34,7 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
         }
       }
     },
-    { immediate: true, flush: "post" }
+    { immediate: true, flush: "post" },
   );
 
   const buildQueryParams = () => {
@@ -66,7 +66,7 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
       if (props.isActive) {
         return updateUrl();
       }
-    }, 200)
+    }, 200),
   );
 
   const { loading, lookupWordlist } = useConversionApi(type);

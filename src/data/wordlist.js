@@ -16,7 +16,7 @@ const load = async () => {
   }
   timeTaken = performance.now() - timeTaken;
   console.info(
-    `Loaded ${wordlist.length.toLocaleString()} words in ${timeTaken.toLocaleString()}ms`
+    `Loaded ${wordlist.length.toLocaleString()} words in ${timeTaken.toLocaleString()}ms`,
   );
 };
 

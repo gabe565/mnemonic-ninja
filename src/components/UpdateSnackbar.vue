@@ -2,7 +2,7 @@
   <v-snackbar
     :model-value="offlineReady || needRefresh"
     :timeout="needRefresh ? -1 : 5000"
-    bottom
+    location="bottom"
     class="mb-16 mb-md-2"
     theme="light"
   >

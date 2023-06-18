@@ -4,7 +4,7 @@
       >Skip to main content</v-btn
     >
 
-    <v-app-bar app theme="dark" color="primary">
+    <v-app-bar theme="dark" color="primary">
       <v-btn to="/" class="text-body-2 text-none px-2" size="x-large">
         <template #prepend>
           <img alt="Mnemonic Ninja Logo" :src="LogoIcon" style="height: 42px" />
