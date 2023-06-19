@@ -14,7 +14,7 @@
     "@mdi/js": "7.2.96",
     "@vitejs/plugin-vue": "4.2.3",
     "autoprefixer": "10.4.14",
-    "sass": "1.63.3",
+    "sass": "1.63.4",
     "simple-icons": "9.0.0",
     "unplugin-auto-import": "0.16.4",
     "unplugin-vue-components": "0.25.1",
