@@ -7,7 +7,7 @@
     <v-app-bar theme="dark" color="primary">
       <v-btn to="/" class="text-body-2 text-none px-2" size="x-large">
         <template #prepend>
-          <img alt="Mnemonic Ninja Logo" :src="LogoIcon" style="height: 42px" />
+          <v-icon alt="Mnemonic Ninja Logo" :icon="LogoIcon" size="35px" />
         </template>
 
         <v-app-bar-title>Mnemonic Ninja</v-app-bar-title>
@@ -49,14 +49,15 @@
 </template>
 
 <script setup>
-import { mdiInformation, mdiSwapHorizontalCircle } from "@mdi/js";
-import LogoIcon from "./assets/logo.svg?url";
+import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
+import InfoIcon from "~icons/material-symbols/info-rounded";
+import LogoIcon from "~icons/mnemonic-ninja/logo";
 import { useRoute } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
 
 const routes = ref([
-  { name: "Convert", icon: mdiSwapHorizontalCircle, to: "/convert" },
-  { name: "About", icon: mdiInformation, to: "/about" },
+  { name: "Convert", icon: SwapIcon, to: "/convert" },
+  { name: "About", icon: InfoIcon, to: "/about" },
 ]);
 
 const currentRoute = computed(() => {

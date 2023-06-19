@@ -4,7 +4,7 @@
       <v-tooltip v-model="showBackTooltip" location="top" aria-label="Back">
         <template #activator="{ props }">
           <v-btn icon v-bind="props" :disabled="!pairs.length" @click="goBack">
-            <v-icon :icon="mdiArrowLeftBold" />
+            <v-icon :icon="ArrowLeftIcon" />
           </v-btn>
         </template>
         <span>Go Back</span>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { mdiArrowLeftBold } from "@mdi/js";
+import ArrowLeftIcon from "~icons/material-symbols/chevron-left";
 
 const props = defineProps({
   pairs: {

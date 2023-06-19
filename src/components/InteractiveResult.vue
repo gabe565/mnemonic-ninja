@@ -30,7 +30,7 @@
             <v-tooltip location="bottom" aria-label="Copy to Clipboard">
               <template #activator="{ props }">
                 <v-btn icon v-bind="props" @click="copyPhrase">
-                  <v-icon :icon="mdiContentCopy" />
+                  <v-icon :icon="CopyIcon" />
                 </v-btn>
               </template>
               <span>Copy to Clipboard</span>
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { mdiContentCopy } from "@mdi/js";
+import CopyIcon from "~icons/material-symbols/content-copy-rounded";
 
 const props = defineProps({
   modelValue: {

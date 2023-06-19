@@ -1,7 +1,7 @@
 # Mnemonic Ninja
 
 <a href="https://mnemonic.ninja">
-  <img src="./src/assets/logo.svg" align="right" height="92" alt="Mnemonic Ninja Logo">
+  <img src="src/assets/icons/logo.svg" align="right" height="92" alt="Mnemonic Ninja Logo">
 </a>
 
 [![Build](https://github.com/gabe565/mnemonic-ninja/actions/workflows/build.yml/badge.svg)](https://github.com/gabe565/mnemonic-ninja/actions/workflows/build.yml)

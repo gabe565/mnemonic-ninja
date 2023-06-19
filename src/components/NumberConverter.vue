@@ -35,12 +35,8 @@
         </v-col>
 
         <v-col cols="12" md="auto" align-self="center" class="text-center py-0">
-          <v-btn icon disabled aria-hidden="true" :loading="loading">
-            <template #loader>
-              <v-icon :icon="mdiShuriken" class="icon-spin" />
-            </template>
-            <v-icon :icon="arrow" />
-          </v-btn>
+          <v-icon v-if="loading" :icon="LoadingIcon" class="icon-spin" />
+          <v-icon v-else :icon="arrowIcon" />
         </v-col>
 
         <v-col cols="12" md class="py-0 py-md-3">
@@ -69,7 +65,9 @@
 </template>
 
 <script setup>
-import { mdiArrowDownBold, mdiArrowRightBold, mdiShuriken } from "@mdi/js";
+import ArrowRightIcon from "~icons/material-symbols/chevron-right";
+import ArrowDownIcon from "~icons/material-symbols/keyboard-arrow-down";
+import LoadingIcon from "~icons/mdi/shuriken";
 import { useQueryConverter } from "../composables/query_converter";
 import { useQueryRules } from "../composables/query_rules";
 import { useDisplay } from "vuetify";
@@ -86,5 +84,5 @@ const rules = useQueryRules(/[^0-9\s,;]/);
 const { mdAndDown, smAndDown } = useDisplay();
 const height = computed(() => (mdAndDown.value ? "212px" : "238px"));
 const rows = computed(() => (mdAndDown.value ? 7 : 8));
-const arrow = computed(() => (smAndDown.value ? mdiArrowDownBold : mdiArrowRightBold));
+const arrowIcon = computed(() => (smAndDown.value ? ArrowDownIcon : ArrowRightIcon));
 </script>

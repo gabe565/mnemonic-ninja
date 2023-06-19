@@ -4,14 +4,23 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import svgLoader from "vite-svg-loader";
+import Icons from "unplugin-icons/vite";
+import { FileSystemIconLoader } from "unplugin-icons/loaders";
 import { CompileCmudict } from "./src/plugins/compile-cmudict/CompileCmudict";
 import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   plugins: [
     vue(),
-    svgLoader(),
+    Icons({
+      compiler: "vue3",
+      autoInstall: true,
+      customCollections: {
+        "mnemonic-ninja": FileSystemIconLoader("./src/assets/icons", (svg) =>
+          svg.replace(/^<svg /, '<svg fill="currentColor" '),
+        ),
+      },
+    }),
     vuetify({
       styles: {
         configFile: "src/scss/variables.scss",

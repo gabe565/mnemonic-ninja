@@ -11,12 +11,14 @@
     "format": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "@mdi/js": "7.2.96",
+    "@iconify-json/material-symbols": "1.1.48",
+    "@iconify-json/mdi": "1.1.52",
+    "@iconify-json/simple-icons": "1.1.57",
     "@vitejs/plugin-vue": "4.2.3",
     "autoprefixer": "10.4.14",
     "sass": "1.63.4",
-    "simple-icons": "9.0.0",
     "unplugin-auto-import": "0.16.4",
+    "unplugin-icons": "0.16.3",
     "unplugin-vue-components": "0.25.1",
     "vite": "4.3.9",
     "vite-plugin-pwa": "0.16.4",

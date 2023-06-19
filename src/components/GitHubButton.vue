@@ -9,9 +9,7 @@
         v-bind="props"
         aria-label="View on GitHub"
       >
-        <v-icon>
-          <GitHubIcon class="v-icon__svg" />
-        </v-icon>
+        <v-icon :icon="GitHubIcon" />
       </v-btn>
     </template>
     <span>View on GitHub</span>
@@ -19,5 +17,5 @@
 </template>
 
 <script setup>
-import GitHubIcon from "simple-icons/icons/github.svg";
+import GitHubIcon from "~icons/simple-icons/github";
 </script>

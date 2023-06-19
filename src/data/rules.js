@@ -1,4 +1,7 @@
-import { mdiPound, mdiSpeaker, mdiComment, mdiHeadSnowflake } from "@mdi/js";
+import NumberIcon from "~icons/material-symbols/123-rounded";
+import SoundIcon from "~icons/material-symbols/sound-detection-loud-sound-rounded";
+import LetterIcon from "~icons/material-symbols/abc-rounded";
+import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
 
 class Rule {
   constructor(number, sounds, letters, comments) {
@@ -11,10 +14,10 @@ class Rule {
 
 export default {
   headers: [
-    { text: "Number", icon: mdiPound },
-    { text: "Sounds", icon: mdiSpeaker },
-    { text: "Letters", icon: mdiComment },
-    { text: "Comments/Memorization", icon: mdiHeadSnowflake },
+    { text: "Number", icon: NumberIcon },
+    { text: "Sounds", icon: SoundIcon },
+    { text: "Letters", icon: LetterIcon },
+    { text: "Comments/Memorization", icon: CommentIcon },
   ],
   rules: [
     new Rule(
