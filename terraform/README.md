@@ -5,14 +5,14 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.2.0 |
-| <a name="provider_aws.us-east-1"></a> [aws.us-east-1](#provider\_aws.us-east-1) | 5.2.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.4.0 |
+| <a name="provider_aws.us-east-1"></a> [aws.us-east-1](#provider\_aws.us-east-1) | 5.4.0 |
 
 ## Modules
 
@@ -25,8 +25,8 @@
 
 | Name | Type |
 |------|------|
-| [aws_acm_certificate.app](https://registry.terraform.io/providers/hashicorp/aws/5.2.0/docs/resources/acm_certificate) | resource |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/5.2.0/docs/data-sources/caller_identity) | data source |
+| [aws_acm_certificate.app](https://registry.terraform.io/providers/hashicorp/aws/5.4.0/docs/resources/acm_certificate) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/5.4.0/docs/data-sources/caller_identity) | data source |
 
 ## Inputs
 

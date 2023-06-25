@@ -4,7 +4,7 @@ resource "aws_acm_certificate" "app" {
   domain_name       = "mnemonic.ninja"
   validation_method = "DNS"
 
-  subject_alternative_names = ["*.mnemonic.ninja", "mnemonic.ninja"]
+  subject_alternative_names = ["*.mnemonic.ninja"]
 
   tags = {
     app = "mnemonic-ninja"
