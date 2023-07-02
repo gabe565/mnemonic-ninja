@@ -22,7 +22,7 @@ resource "aws_cloudfront_distribution" "app" {
     viewer_protocol_policy     = "redirect-to-https"
   }
 
-  price_class = "PriceClass_100"
+  price_class = var.cloudfront_price_class
 
   viewer_certificate {
     acm_certificate_arn      = var.acm_certificate_arn

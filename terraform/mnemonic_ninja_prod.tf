@@ -7,10 +7,11 @@ variable "prod_hostname" {
 module "prod" {
   source = "./modules/mnemonic-ninja"
 
-  aws_account_id      = data.aws_caller_identity.current.account_id
-  env                 = "prod"
-  hostname            = var.prod_hostname
-  acm_certificate_arn = aws_acm_certificate.app.arn
+  aws_account_id         = data.aws_caller_identity.current.account_id
+  env                    = "prod"
+  hostname               = var.prod_hostname
+  acm_certificate_arn    = aws_acm_certificate.app.arn
+  cloudfront_price_class = "PriceClass_200"
 }
 
 output "prod_cloudfront_hostname" {

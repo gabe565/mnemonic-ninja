@@ -38,6 +38,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | ACM certificate ARN | `string` | n/a | yes |
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account ID | `string` | n/a | yes |
+| <a name="input_cloudfront_price_class"></a> [cloudfront\_price\_class](#input\_cloudfront\_price\_class) | n/a | `string` | `"PriceClass_100"` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | Deployment hostname | `string` | n/a | yes |
 
