@@ -32,7 +32,7 @@ jobs:
           name: dist
 
       - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.aws-role-arn }}
           role-session-name: mnemonic-ninja-ci
