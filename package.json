@@ -29,7 +29,7 @@
     "vuetify": "3.3.3"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "1.4.0",
+    "@rushstack/eslint-patch": "1.5.0",
     "@vue/eslint-config-prettier": "8.0.0",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0",
