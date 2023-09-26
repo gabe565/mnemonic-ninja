@@ -26,7 +26,7 @@
     "vite-svg-loader": "4.0.0",
     "vue": "3.3.4",
     "vue-router": "4.2.2",
-    "vuetify": "3.3.3"
+    "vuetify": "3.3.19"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "1.5.0",
