@@ -19,7 +19,7 @@
     "sass": "1.68.0",
     "unplugin-auto-import": "0.16.4",
     "unplugin-icons": "0.17.0",
-    "unplugin-vue-components": "0.25.1",
+    "unplugin-vue-components": "0.25.2",
     "vite": "4.4.9",
     "vite-plugin-pwa": "0.16.4",
     "vite-plugin-vuetify": "1.0.2",
