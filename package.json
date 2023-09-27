@@ -11,7 +11,7 @@
     "format": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "@iconify-json/material-symbols": "1.1.48",
+    "@iconify-json/material-symbols": "1.1.59",
     "@iconify-json/mdi": "1.1.52",
     "@iconify-json/simple-icons": "1.1.57",
     "@vitejs/plugin-vue": "4.2.3",
