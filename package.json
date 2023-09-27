@@ -17,7 +17,7 @@
     "@vitejs/plugin-vue": "4.2.3",
     "autoprefixer": "10.4.16",
     "sass": "1.68.0",
-    "unplugin-auto-import": "0.16.4",
+    "unplugin-auto-import": "0.16.6",
     "unplugin-icons": "0.17.0",
     "unplugin-vue-components": "0.25.1",
     "vite": "4.4.9",
