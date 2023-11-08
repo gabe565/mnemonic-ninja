@@ -20,7 +20,7 @@
     "unplugin-auto-import": "0.16.6",
     "unplugin-icons": "0.17.0",
     "unplugin-vue-components": "0.25.2",
-    "vite": "4.4.9",
+    "vite": "4.5.0",
     "vite-plugin-pwa": "0.16.5",
     "vite-plugin-vuetify": "1.0.2",
     "vite-svg-loader": "4.0.0",
