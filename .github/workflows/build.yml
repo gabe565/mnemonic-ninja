@@ -82,35 +82,3 @@ jobs:
         with:
           name: dist
           path: dist
-
-  deploy-dev:
-    name: Deploy (dev)
-    needs: build
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
-    permissions:
-      id-token: write
-      contents: read
-    uses: ./.github/workflows/deploy.yml
-    with:
-      environment: dev
-      url: https://dev.mnemonic.ninja
-      bucket-name: dev.mnemonic.ninja
-    secrets:
-      aws-role-arn: ${{ secrets.DEV_AWS_ROLE_ARN }}
-      cloudfront-id: ${{ secrets.DEV_CLOUDFRONT_ID }}
-
-  deploy-prod:
-    name: Deploy (prod)
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/v')
-    permissions:
-      id-token: write
-      contents: read
-    uses: ./.github/workflows/deploy.yml
-    with:
-      environment: prod
-      url: https://mnemonic.ninja
-      bucket-name: mnemonic.ninja
-    secrets:
-      aws-role-arn: ${{ secrets.PROD_AWS_ROLE_ARN }}
-      cloudfront-id: ${{ secrets.PROD_CLOUDFRONT_ID }}
