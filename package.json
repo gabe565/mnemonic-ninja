@@ -32,7 +32,7 @@
     "@rushstack/eslint-patch": "1.6.0",
     "@vue/eslint-config-prettier": "8.0.0",
     "eslint": "8.55.0",
-    "eslint-config-prettier": "9.0.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-vue": "9.19.2",
     "eslint-plugin-vuetify": "2.1.0",
