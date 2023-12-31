@@ -14,7 +14,7 @@
     "@iconify-json/material-symbols": "1.1.61",
     "@iconify-json/mdi": "1.1.55",
     "@iconify-json/simple-icons": "1.1.77",
-    "@vitejs/plugin-vue": "4.4.0",
+    "@vitejs/plugin-vue": "4.6.2",
     "autoprefixer": "10.4.16",
     "sass": "1.69.5",
     "unplugin-auto-import": "0.16.7",
