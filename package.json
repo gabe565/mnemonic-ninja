@@ -23,7 +23,6 @@
     "vite": "4.5.0",
     "vite-plugin-pwa": "0.17.4",
     "vite-plugin-vuetify": "1.0.2",
-    "vite-svg-loader": "4.0.0",
     "vue": "3.3.8",
     "vue-router": "4.2.5",
     "vuetify": "3.4.10"
