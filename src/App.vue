@@ -57,7 +57,7 @@ import { useDisplay, useTheme } from "vuetify";
 
 const route = useRoute();
 
-const routes = ref([
+const routes = shallowRef([
   { name: "Convert", icon: SwapIcon, to: "/convert" },
   { name: "About", icon: InfoIcon, to: "/about" },
 ]);
