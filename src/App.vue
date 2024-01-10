@@ -55,13 +55,14 @@ import LogoIcon from "~icons/mnemonic-ninja/logo";
 import { useRoute } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
 
+const route = useRoute();
+
 const routes = ref([
   { name: "Convert", icon: SwapIcon, to: "/convert" },
   { name: "About", icon: InfoIcon, to: "/about" },
 ]);
 
 const currentRoute = computed(() => {
-  const route = useRoute();
   return routes.value.findIndex((e) => route.path.startsWith(e.to));
 });
 
