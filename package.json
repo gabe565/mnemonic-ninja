@@ -16,7 +16,7 @@
     "@iconify-json/simple-icons": "1.1.87",
     "@vitejs/plugin-vue": "4.6.2",
     "autoprefixer": "10.4.16",
-    "sass": "1.69.5",
+    "sass": "1.69.7",
     "unplugin-auto-import": "0.16.7",
     "unplugin-icons": "0.18.2",
     "unplugin-vue-components": "0.26.0",
