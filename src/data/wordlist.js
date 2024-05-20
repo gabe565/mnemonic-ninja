@@ -1,5 +1,5 @@
 export const ready = ref(false);
-export const error = ref(null);
+export const error = ref("");
 export let wordlist = [];
 
 const load = async () => {
@@ -9,8 +9,8 @@ const load = async () => {
     const module = await import("./cmudict/cmudict.dict");
     wordlist = module.default.split("\n").map((e) => e.split(","));
     ready.value = true;
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     error.value = "Failed to load word list. Please refresh or try again later.";
     return;
   }
