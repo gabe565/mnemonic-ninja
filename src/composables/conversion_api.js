@@ -1,4 +1,4 @@
-import { wordlist, ready } from "../data/wordlist";
+import { wordlist, loading } from "../data/wordlist";
 
 const types = {
   word: [0, 1],
@@ -32,8 +32,6 @@ const guesses = [
 ];
 
 export const useConversionApi = (type) => {
-  const loading = computed(() => !ready.value);
-
   const lookupWordlist = (rawQuery) => {
     if (!rawQuery) {
       return [];

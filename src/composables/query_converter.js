@@ -2,7 +2,6 @@ import { useRoute } from "vue-router";
 import { useConversionApi } from "./conversion_api";
 import router from "../plugins/router";
 import { castArray, debounce } from "../util/helpers";
-import { ready } from "../data/wordlist";
 
 export const castPair = (val) =>
   val.map((p) => {
@@ -71,7 +70,7 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
 
   const { loading, lookupWordlist } = useConversionApi(type);
   const result = computed(() => {
-    if (!query.value || !ready.value) {
+    if (!query.value || loading.value) {
       return [];
     }
 
