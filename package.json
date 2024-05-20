@@ -25,7 +25,7 @@
     "vite-plugin-vuetify": "2.0.1",
     "vue": "3.4.14",
     "vue-router": "4.2.5",
-    "vuetify": "3.4.10"
+    "vuetify": "3.6.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "1.10.2",
