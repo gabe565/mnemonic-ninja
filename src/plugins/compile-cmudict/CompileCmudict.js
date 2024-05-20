@@ -36,7 +36,7 @@ const compileFileToJS = (src) => {
     .filter(Boolean)
     .join("\n");
 
-  return `const data = ${JSON.stringify(data)};\nexport default data;`;
+  return `const raw = ${JSON.stringify(data)};\nexport default raw.split("\\n").map((e) => e.split(","));`;
 };
 
 export const CompileCmudict = () => ({

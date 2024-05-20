@@ -7,8 +7,7 @@ const load = async () => {
     loading.value = true;
     console.info("Loading wordlist...");
     let timeTaken = performance.now();
-    const module = await import("./cmudict/cmudict.dict");
-    wordlist = module.default.split("\n").map((e) => e.split(","));
+    ({ default: wordlist } = await import("./cmudict/cmudict.dict"));
     timeTaken = performance.now() - timeTaken;
     console.info(
       `Loaded ${wordlist.length.toLocaleString()} words in ${timeTaken.toLocaleString()}ms`,
