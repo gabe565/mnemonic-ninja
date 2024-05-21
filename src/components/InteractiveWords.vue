@@ -7,7 +7,7 @@
     </v-row>
     <v-row v-for="(query, key) in filtered" :key="query.query" tag="section" justify="center">
       <v-col cols="12" class="pt-1 pb-0">
-        <h4 class="text-h5">{{ query.query }}</h4>
+        <h4 class="text-h5">{{ query.query.length === 0 ? "Filler" : query.query }}</h4>
       </v-col>
       <v-col cols="12" class="pa-1">
         <ul>

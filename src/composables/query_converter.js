@@ -76,9 +76,9 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
 
     if (usePairs) {
       const results = [];
-      for (let i = 0; i < query.value.length; i += 1) {
+      for (let i = 0; i <= query.value.length; i += 1) {
         const val = query.value.slice(0, query.value.length - i);
-        results.push(lookupWordlist(val));
+        results.push(lookupWordlist(val, i === query.value.length));
       }
       return results;
     } else {

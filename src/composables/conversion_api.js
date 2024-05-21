@@ -32,8 +32,8 @@ const guesses = [
 ];
 
 export const useConversionApi = (type) => {
-  const lookupWordlist = (rawQuery) => {
-    if (!rawQuery) {
+  const lookupWordlist = (rawQuery, allowEmpty = false) => {
+    if (!rawQuery && !allowEmpty) {
       return [];
     }
 
@@ -46,14 +46,14 @@ export const useConversionApi = (type) => {
 
     for (let query of queries) {
       query = query.trim();
-      if (!query) {
+      if (!query && !allowEmpty) {
         continue;
       }
 
       let matches = [];
 
       for (const word of wordlist) {
-        if (word[srcType] === query && query !== "") {
+        if (word[srcType] === query) {
           matches.push(word[dstType]);
         }
       }
