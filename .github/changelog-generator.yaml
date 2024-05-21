@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://gabe565.github.io/changelog-generator/config.schema.json
+filters:
+  exclude:
+    - "^docs"
+    - "^test"
+groups:
+  - title: Features
+    order: 0
+    regexp: "^(feat)"
+  - title: Dependencies
+    order: 3
+    regexp: "\\(deps\\):"
+  - title: Fixes
+    order: 1
+    regexp: "^(fix|perf)"
+  - title: Others
+    order: 2
