@@ -1,5 +1,5 @@
 <template>
-  <v-table class="v-table--variant-outlined v-table--variant-striped">
+  <v-table class="v-table--variant-striped rounded border">
     <template #default>
       <thead>
         <tr>

@@ -1,25 +1,32 @@
 <template>
-  <v-container>
-    <v-row class="pa-5" justify="center">
-      <h1 class="text-h4">
-        <slot name="title">
-          {{ $route.name }}
-        </slot>
-      </h1>
-    </v-row>
+  <v-app-bar color="primary" flat :title="$route.name">
+    <template #prepend>
+      <v-btn v-if="isMobile" to="/" icon size="small" :active="false">
+        <v-icon :icon="AppIcon" size="28" style="opacity: 0.7" aria-label="Mnemonic Ninja" />
+      </v-btn>
+    </template>
+    <template #append>
+      <GitHubButton v-if="isMobile" />
+    </template>
+  </v-app-bar>
 
-    <v-row v-if="$slots.description" tag="section">
-      <h2 class="d-sr-only">Description</h2>
-      <v-col>
-        <v-card>
-          <v-card-text>
-            <slot name="description" />
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+  <div class="d-flex align-center" style="min-height: 100%">
+    <v-container class="pt-6 pt-lg-12">
+      <v-row v-if="$slots.description" tag="section">
+        <h2 class="d-sr-only">Description</h2>
+        <v-col>
+          <slot name="description" />
+        </v-col>
+      </v-row>
 
-    <slot />
-  </v-container>
+      <slot />
+    </v-container>
+  </div>
 </template>
-<script setup></script>
+
+<script setup>
+import AppIcon from "~icons/mnemonic-ninja/logo";
+import { useDisplay } from "vuetify";
+
+const { smAndDown: isMobile } = useDisplay();
+</script>

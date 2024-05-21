@@ -21,7 +21,7 @@
       <v-col>
         <v-text-field
           :model-value="modelValue"
-          variant="outlined"
+          variant="filled"
           readonly
           label="Phrase"
           @focus="$event.target.select()"
@@ -29,7 +29,7 @@
           <template #prepend-inner>
             <v-tooltip location="bottom" aria-label="Copy to Clipboard">
               <template #activator="{ props }">
-                <v-btn icon v-bind="props" @click="copyPhrase">
+                <v-btn icon v-bind="props" variant="plain" @click="copyPhrase">
                   <v-icon :icon="CopyIcon" />
                 </v-btn>
               </template>

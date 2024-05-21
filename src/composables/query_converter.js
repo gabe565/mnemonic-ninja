@@ -12,7 +12,7 @@ export const castPair = (val) =>
     };
   });
 
-export const useQueryConverter = (type, props, emit, usePairs = false) => {
+export const useQueryConverter = (type, props, usePairs = false) => {
   const query = ref("");
   const pairs = ref([]);
 
@@ -20,9 +20,9 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
   const route = useRoute();
 
   watch(
-    () => route.query,
+    () => props,
     (val) => {
-      if (props.isActive && val) {
+      if (val.q && (!usePairs || val.pair)) {
         if (val.q || val.pair) {
           query.value = val.q || "";
         }
@@ -31,9 +31,13 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
         } else {
           pairs.value = [];
         }
+      } else {
+        if (query.value) {
+          updateUrl();
+        }
       }
     },
-    { immediate: true, flush: "post" },
+    { immediate: true, deep: true },
   );
 
   const buildQueryParams = () => {
@@ -49,22 +53,19 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
 
   const updateUrl = async (push = false) => {
     const query = buildQueryParams();
-    if (query.q !== route.query?.q || query.pair !== route.query?.pair) {
+    if (query.q !== props.q || query.pair !== props.pair) {
       if (push) {
         await router.push({ ...route, query });
       } else {
         await router.replace({ ...route, query });
       }
     }
-    emit("query", query);
   };
 
   watch(
     query,
     debounce(() => {
-      if (props.isActive) {
-        return updateUrl();
-      }
+      return updateUrl();
     }, 200),
   );
 
@@ -86,5 +87,5 @@ export const useQueryConverter = (type, props, emit, usePairs = false) => {
     }
   });
 
-  return { query, pairs, result, valid, loading, updateUrl };
+  return { query, pairs, result, valid, loading };
 };

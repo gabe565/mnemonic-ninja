@@ -1,24 +1,67 @@
 import { createRouter, createWebHistory } from "vue-router";
+import HomeIcon from "~icons/material-symbols/home-rounded";
+import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
+import InfoIcon from "~icons/material-symbols/info-rounded";
 
 const routes = [
   {
     path: "/",
-    redirect: "/convert/interactive",
+    name: "Home",
+    component: () => import("../views/HomePage.vue"),
+    meta: {
+      showInNav: true,
+      icon: HomeIcon,
+      group: "Info",
+    },
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("../views/AboutPage.vue"),
+    meta: {
+      showInNav: true,
+      icon: InfoIcon,
+      group: "Info",
+    },
   },
   {
     path: "/convert",
     redirect: "/convert/interactive",
   },
   {
-    path: "/convert/:startTab(interactive|word|number)",
-    name: "Convert",
-    component: () => import("../views/ConvertersPage.vue"),
-    props: true,
+    path: "/convert/interactive",
+    name: "Interactive",
+    component: () => import("../views/InteractiveConverter.vue"),
+    props: (route) => route.query,
+    meta: {
+      showInNav: true,
+      icon: SwapIcon,
+      group: "Converters",
+    },
   },
   {
-    path: "/about",
-    name: "About",
-    component: () => import("../views/AboutPage.vue"),
+    path: "/convert/number",
+    name: "Number to Word",
+    component: () => import("../views/NumberConverter.vue"),
+    props: (route) => route.query,
+    meta: {
+      showInNav: true,
+      icon: SwapIcon,
+      group: "Converters",
+      short: "Num to Word",
+    },
+  },
+  {
+    path: "/convert/word",
+    name: "Word to Number",
+    component: () => import("../views/WordConverter.vue"),
+    props: (route) => route.query,
+    meta: {
+      showInNav: true,
+      icon: SwapIcon,
+      group: "Converters",
+      short: "Word to Num",
+    },
   },
   {
     path: "/:pathMatch(.*)*",

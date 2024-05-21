@@ -3,7 +3,7 @@
     <v-col cols="auto" align-self="center" class="pr-0">
       <v-tooltip v-model="showBackTooltip" location="top" aria-label="Back">
         <template #activator="{ props }">
-          <v-btn icon v-bind="props" :disabled="!pairs.length" @click="goBack">
+          <v-btn icon v-bind="props" :disabled="!pairs.length" variant="plain" @click="goBack">
             <v-icon :icon="ArrowLeftIcon" />
           </v-btn>
         </template>
@@ -36,12 +36,10 @@ const emit = defineEmits(["go-back", "go-back-to"]);
 
 const showBackTooltip = ref(false);
 
-const router = useRouter();
-
 const goBack = () => {
   if (props.pairs.length === 1) {
     showBackTooltip.value = false;
   }
-  router.go(-1);
+  emit("go-back");
 };
 </script>

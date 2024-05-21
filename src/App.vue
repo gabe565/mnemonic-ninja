@@ -1,72 +1,89 @@
 <template>
   <v-app>
-    <v-btn class="position-absolute d-sr-only-focusable" href="#content" style="z-index: 1007"
-      >Skip to main content</v-btn
-    >
+    <v-btn class="position-absolute d-sr-only-focusable" href="#content" style="z-index: 1007">
+      Skip to main content
+    </v-btn>
 
-    <v-app-bar theme="dark" color="primary">
-      <v-btn to="/" class="text-body-2 text-none px-2" size="x-large">
-        <template #prepend>
-          <v-icon alt="Mnemonic Ninja Logo" :icon="LogoIcon" size="35px" />
-        </template>
-
-        <v-app-bar-title>Mnemonic Ninja</v-app-bar-title>
-      </v-btn>
-
-      <v-spacer />
-
-      <GitHubButton />
-
-      <template v-if="mdAndUp" #extension>
-        <v-tabs :model-value="currentRoute" align-tabs="center" color="white" style="width: 100%">
-          <v-tab v-for="route in routes" :key="route.path" :to="route.to">
-            <v-icon :icon="route.icon" class="pr-2" size="x-large" />
-            {{ route.name }}
-          </v-tab>
-        </v-tabs>
+    <v-navigation-drawer color="primary" width="220" mobile-breakpoint="md">
+      <template #prepend>
+        <v-list v-if="!isMobile">
+          <v-list-item to="/" title="Mnemonic Ninja" :prepend-icon="LogoIcon" :active="false" />
+        </v-list>
+        <v-divider />
       </template>
-    </v-app-bar>
 
-    <v-bottom-navigation v-if="smAndDown" position="fixed" bg-color="primary" theme="dark" grow>
-      <v-btn
-        v-for="(route, key) in routes"
-        :key="route.path"
-        :active="currentRoute === key"
-        :to="route.to"
-      >
-        <v-icon :icon="route.icon" />
-        <span>{{ route.name }}</span>
-      </v-btn>
+      <v-list nav>
+        <template v-for="(group, title) in routes" :key="title">
+          <v-list-item
+            v-for="route in group"
+            :key="route.path"
+            :to="route.path"
+            link
+            :title="route.name"
+            :prepend-icon="route.meta.icon"
+          />
+          <v-divider v-if="title !== routeKeys[routeKeys.length - 1]" />
+        </template>
+      </v-list>
+
+      <template #append>
+        <div class="d-flex overflow-hidden">
+          <GitHubButton />
+        </div>
+      </template>
+    </v-navigation-drawer>
+
+    <v-bottom-navigation v-if="isMobile" position="fixed" bg-color="primary" theme="dark" grow>
+      <template v-for="(group, title) in routes" :key="title">
+        <v-divider v-if="title !== routeKeys[0]" vertical inset />
+        <v-btn
+          v-for="route in group"
+          :key="route.path"
+          :active="route.path === currentRoute.path"
+          :to="route.path"
+          :prepend-icon="route.meta.icon"
+        >
+          <span>{{ route.meta?.short || route.name }}</span>
+        </v-btn>
+      </template>
     </v-bottom-navigation>
 
     <UpdateSnackbar />
 
     <v-main>
       <span id="content" class="anchor" />
-      <router-view class="pb-16" />
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </v-main>
   </v-app>
 </template>
 
 <script setup>
-import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
-import InfoIcon from "~icons/material-symbols/info-rounded";
 import LogoIcon from "~icons/mnemonic-ninja/logo";
 import { useRoute } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
 
-const route = useRoute();
+const { smAndDown: isMobile } = useDisplay();
 
-const routes = shallowRef([
-  { name: "Convert", icon: SwapIcon, to: "/convert" },
-  { name: "About", icon: InfoIcon, to: "/about" },
-]);
+const currentRoute = useRoute();
 
-const currentRoute = computed(() => {
-  return routes.value.findIndex((e) => route.path.startsWith(e.to));
+const routes = computed(() => {
+  return useRouter()
+    .options.routes.filter((route) => route.meta?.showInNav)
+    .reduce((acc, route) => {
+      const group = route.meta?.group || "Other";
+      if (!acc[group]) {
+        acc[group] = [];
+      }
+      acc[group].push(route);
+      return acc;
+    }, {});
 });
 
-const { mdAndUp, smAndDown } = useDisplay();
+const routeKeys = computed(() => Object.keys(routes.value));
 
 onBeforeMount(() => {
   // check for browser support
@@ -85,12 +102,6 @@ onBeforeMount(() => {
 
 <style lang="scss">
 .v-application {
-  @media (min-width: 1920px) {
-    .v-container {
-      max-width: 1400px;
-    }
-  }
-
   p {
     margin-bottom: 1rem;
   }
@@ -112,7 +123,7 @@ a {
 span.anchor {
   display: block;
   position: relative;
-  top: -150px;
+  top: -80px;
   visibility: hidden;
 }
 

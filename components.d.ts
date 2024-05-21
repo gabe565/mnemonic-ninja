@@ -7,17 +7,18 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    GitHubButton: typeof import('./src/components/GitHubButton.vue')['default']
-    InteractiveConverter: typeof import('./src/components/InteractiveConverter.vue')['default']
+    ConvertersPage: typeof import('./src/layouts/ConvertersPage.vue')['default']
+    GitHubButton: typeof import('./src/components/NavButtons/GitHubButton.vue')['default']
+    InteractiveConverter: typeof import('./src/views/InteractiveConverter.vue')['default']
     InteractiveResult: typeof import('./src/components/InteractiveResult.vue')['default']
     InteractiveToolbar: typeof import('./src/components/InteractiveToolbar.vue')['default']
     InteractiveWords: typeof import('./src/components/InteractiveWords.vue')['default']
-    NumberConverter: typeof import('./src/components/NumberConverter.vue')['default']
+    NumberConverter: typeof import('./src/views/NumberConverter.vue')['default']
     PageLayout: typeof import('./src/layouts/PageLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     RulesTable: typeof import('./src/components/RulesTable.vue')['default']
     UpdateSnackbar: typeof import('./src/components/UpdateSnackbar.vue')['default']
-    WordConverter: typeof import('./src/components/WordConverter.vue')['default']
+    WordConverter: typeof import('./src/views/WordConverter.vue')['default']
   }
 }
