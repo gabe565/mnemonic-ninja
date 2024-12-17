@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:20-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:22-alpine AS node-builder
 WORKDIR /app
 
 COPY package.json package-lock.json .npmrc ./
