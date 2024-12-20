@@ -15,7 +15,7 @@
     "@iconify-json/material-symbols": "1.2.12",
     "@iconify-json/mdi": "1.2.2",
     "@iconify-json/simple-icons": "1.2.16",
-    "@vitejs/plugin-vue": "5.1.2",
+    "@vitejs/plugin-vue": "5.2.1",
     "autoprefixer": "10.4.20",
     "plausible-tracker": "0.3.9",
     "sass": "1.77.8",
