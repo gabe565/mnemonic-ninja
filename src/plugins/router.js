@@ -1,8 +1,8 @@
+import { nextTick } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeIcon from "~icons/material-symbols/home-rounded";
-import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
 import InfoIcon from "~icons/material-symbols/info-rounded";
-import { nextTick } from "vue";
+import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
 
 const routes = [
   {

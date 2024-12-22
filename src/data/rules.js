@@ -1,7 +1,7 @@
 import NumberIcon from "~icons/material-symbols/123-rounded";
-import SoundIcon from "~icons/material-symbols/sound-detection-loud-sound-rounded";
 import LetterIcon from "~icons/material-symbols/abc-rounded";
 import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
+import SoundIcon from "~icons/material-symbols/sound-detection-loud-sound-rounded";
 
 class Rule {
   constructor(number, sounds, letters, comments) {

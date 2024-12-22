@@ -1,8 +1,8 @@
-import globals from "globals";
 import pluginJs from "@eslint/js";
+import pluginPrettier from "eslint-plugin-prettier/recommended";
 import pluginVue from "eslint-plugin-vue";
 import pluginVuetify from "eslint-plugin-vuetify";
-import pluginPrettier from "eslint-plugin-prettier/recommended";
+import globals from "globals";
 
 export default [
   {

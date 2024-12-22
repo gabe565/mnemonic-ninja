@@ -65,14 +65,14 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+import { useDisplay } from "vuetify";
+import { useQueryConverter } from "../composables/query_converter.js";
+import { useQueryRules } from "../composables/query_rules.js";
+import ConvertersPage from "../layouts/ConvertersPage.vue";
 import ArrowRightIcon from "~icons/material-symbols/chevron-right";
 import ArrowDownIcon from "~icons/material-symbols/keyboard-arrow-down";
 import LoadingIcon from "~icons/mdi/shuriken";
-import { useQueryConverter } from "../composables/query_converter.js";
-import { useQueryRules } from "../composables/query_rules.js";
-import { useDisplay } from "vuetify";
-import ConvertersPage from "../layouts/ConvertersPage.vue";
-import { computed } from "vue";
 
 const props = defineProps({
   q: {

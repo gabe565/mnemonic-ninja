@@ -1,6 +1,6 @@
-import "./plugins/plausible";
 import { createApp } from "vue";
 import App from "./App.vue";
+import "./plugins/plausible";
 import router from "./plugins/router";
 import vuetify from "./plugins/vuetify";
 

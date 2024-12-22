@@ -56,13 +56,13 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+import InteractiveResult from "../components/InteractiveResult.vue";
+import InteractiveToolbar from "../components/InteractiveToolbar.vue";
+import InteractiveWords from "../components/InteractiveWords.vue";
 import { useQueryConverter } from "../composables/query_converter.js";
 import { useQueryRules } from "../composables/query_rules.js";
 import ConvertersPage from "../layouts/ConvertersPage.vue";
-import InteractiveToolbar from "../components/InteractiveToolbar.vue";
-import InteractiveWords from "../components/InteractiveWords.vue";
-import { computed } from "vue";
-import InteractiveResult from "../components/InteractiveResult.vue";
 
 const props = defineProps({
   q: {

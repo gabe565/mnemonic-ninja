@@ -1,11 +1,11 @@
 import vue from "@vitejs/plugin-vue";
-import vuetify from "vite-plugin-vuetify";
+import autoprefixer from "autoprefixer";
+import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import Icons from "unplugin-icons/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import Icons from "unplugin-icons/vite";
-import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import vuetify from "vite-plugin-vuetify";
 import { CompileCmudict } from "./src/plugins/compile-cmudict/CompileCmudict";
-import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   plugins: [

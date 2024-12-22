@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import ArrowLeftIcon from "~icons/material-symbols/chevron-left";
 import { ref } from "vue";
+import ArrowLeftIcon from "~icons/material-symbols/chevron-left";
 
 const props = defineProps({
   pairs: {

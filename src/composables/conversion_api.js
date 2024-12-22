@@ -1,4 +1,4 @@
-import { wordlist, loading } from "../data/wordlist";
+import { loading, wordlist } from "../data/wordlist";
 
 const types = {
   word: [0, 1],

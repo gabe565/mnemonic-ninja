@@ -1,8 +1,8 @@
+import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useConversionApi } from "./conversion_api";
 import router from "../plugins/router";
 import { castArray, debounce } from "../util/helpers";
-import { computed, ref, watch } from "vue";
+import { useConversionApi } from "./conversion_api";
 
 export const castPair = (val) =>
   val.map((p) => {

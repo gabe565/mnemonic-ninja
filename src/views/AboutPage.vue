@@ -130,9 +130,9 @@
 </template>
 
 <script setup>
-import RulesIcon from "~icons/material-symbols/checklist-rounded";
-import SecurityIcon from "~icons/material-symbols/shield-lock-rounded";
-import DevelopmentIcon from "~icons/material-symbols/code-rounded";
-import PageLayout from "../layouts/PageLayout.vue";
 import RulesTable from "../components/RulesTable.vue";
+import PageLayout from "../layouts/PageLayout.vue";
+import RulesIcon from "~icons/material-symbols/checklist-rounded";
+import DevelopmentIcon from "~icons/material-symbols/code-rounded";
+import SecurityIcon from "~icons/material-symbols/shield-lock-rounded";
 </script>

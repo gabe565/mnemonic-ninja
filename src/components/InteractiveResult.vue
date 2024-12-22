@@ -46,8 +46,8 @@
 </template>
 
 <script setup>
-import CopyIcon from "~icons/material-symbols/content-copy-rounded";
 import { nextTick, ref } from "vue";
+import CopyIcon from "~icons/material-symbols/content-copy-rounded";
 
 const props = defineProps({
   modelValue: {
