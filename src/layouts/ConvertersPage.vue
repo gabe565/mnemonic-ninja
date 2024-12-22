@@ -1,5 +1,5 @@
 <template>
-  <PageLayout>
+  <page-layout>
     <v-row v-if="error">
       <v-col>
         <v-alert type="error">{{ error }}</v-alert>
@@ -11,7 +11,7 @@
         <slot />
       </v-col>
     </v-row>
-  </PageLayout>
+  </page-layout>
 </template>
 
 <script setup>

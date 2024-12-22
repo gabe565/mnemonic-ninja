@@ -1,5 +1,5 @@
 <template>
-  <PageLayout>
+  <page-layout>
     <template #description>
       The
       <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
@@ -36,7 +36,7 @@
         />
       </v-col>
     </v-row>
-  </PageLayout>
+  </page-layout>
 </template>
 
 <script setup>

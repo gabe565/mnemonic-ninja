@@ -1,5 +1,5 @@
 <template>
-  <ConvertersPage>
+  <converters-page>
     <v-form v-model="valid">
       <v-container>
         <v-row>
@@ -61,7 +61,7 @@
         </v-row>
       </v-container>
     </v-form>
-  </ConvertersPage>
+  </converters-page>
 </template>
 
 <script setup>

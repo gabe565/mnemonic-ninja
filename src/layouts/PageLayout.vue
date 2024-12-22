@@ -6,7 +6,7 @@
       </v-btn>
     </template>
     <template #append>
-      <GitHubButton v-if="isMobile" />
+      <github-button v-if="isMobile" />
     </template>
   </v-app-bar>
 
@@ -27,7 +27,7 @@
 <script setup>
 import AppIcon from "~icons/mnemonic-ninja/logo";
 import { useDisplay } from "vuetify";
-import GitHubButton from "../components/NavButtons/GitHubButton.vue";
+import GithubButton from "../components/NavButtons/GithubButton.vue";
 
 const { smAndDown: isMobile } = useDisplay();
 </script>

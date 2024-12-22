@@ -28,7 +28,7 @@
 
       <template #append>
         <div class="d-flex overflow-hidden">
-          <GitHubButton />
+          <github-button />
         </div>
       </template>
     </v-navigation-drawer>
@@ -48,7 +48,7 @@
       </template>
     </v-bottom-navigation>
 
-    <UpdateSnackbar />
+    <update-snackbar />
 
     <v-main>
       <span id="content" class="anchor" />
@@ -67,7 +67,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
 import { computed, onBeforeMount } from "vue";
 import UpdateSnackbar from "./components/UpdateSnackbar.vue";
-import GitHubButton from "./components/NavButtons/GitHubButton.vue";
+import GithubButton from "./components/NavButtons/GithubButton.vue";
 
 const { smAndDown: isMobile } = useDisplay();
 

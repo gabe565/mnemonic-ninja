@@ -1,5 +1,5 @@
 <template>
-  <PageLayout>
+  <page-layout>
     <template #description>
       The
       <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
@@ -29,7 +29,7 @@
             >Wikipedia page</a
           >, here are the numbers and their corresponding sounds:
         </p>
-        <RulesTable />
+        <rules-table />
       </v-col>
     </v-row>
     <v-row tag="section">
@@ -126,7 +126,7 @@
         </p>
       </v-col>
     </v-row>
-  </PageLayout>
+  </page-layout>
 </template>
 
 <script setup>

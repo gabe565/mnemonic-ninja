@@ -1,7 +1,7 @@
 <template>
-  <PageLayout>
+  <page-layout>
     <template #description> Oh no! The requested file could not be located. </template>
-  </PageLayout>
+  </page-layout>
 </template>
 
 <script setup lang="ts">
