@@ -27,6 +27,7 @@
 <script setup>
 import AppIcon from "~icons/mnemonic-ninja/logo";
 import { useDisplay } from "vuetify";
+import GitHubButton from "../components/NavButtons/GitHubButton.vue";
 
 const { smAndDown: isMobile } = useDisplay();
 </script>

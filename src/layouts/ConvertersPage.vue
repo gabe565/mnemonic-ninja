@@ -16,4 +16,5 @@
 
 <script setup>
 import { error } from "../data/wordlist.js";
+import PageLayout from "./PageLayout.vue";
 </script>

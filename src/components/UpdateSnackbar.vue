@@ -26,6 +26,8 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
+
 const updateSW = ref(undefined);
 const offlineReady = ref(false);
 const needRefresh = ref(false);

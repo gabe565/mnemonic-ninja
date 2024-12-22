@@ -66,6 +66,8 @@ import LoadingIcon from "~icons/mdi/shuriken";
 import { useQueryConverter } from "../composables/query_converter.js";
 import { useQueryRules } from "../composables/query_rules.js";
 import { useDisplay } from "vuetify";
+import ConvertersPage from "../layouts/ConvertersPage.vue";
+import { computed } from "vue";
 
 const props = defineProps({
   q: {

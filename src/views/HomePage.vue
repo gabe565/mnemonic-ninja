@@ -41,6 +41,7 @@
 
 <script setup>
 import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
+import PageLayout from "../layouts/PageLayout.vue";
 
 const converters = [
   {

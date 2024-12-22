@@ -1,7 +1,5 @@
 import vue from "@vitejs/plugin-vue";
 import vuetify from "vite-plugin-vuetify";
-import AutoImport from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import Icons from "unplugin-icons/vite";
@@ -25,24 +23,6 @@ export default defineConfig({
       styles: {
         configFile: "src/scss/variables.scss",
       },
-    }),
-    AutoImport({
-      dts: true,
-      imports: ["vue", "vue-router"],
-      eslintrc: {
-        enabled: true,
-      },
-    }),
-    Components({
-      dirs: ["src/components", "src/layouts"],
-      dts: true,
-      directives: false,
-      types: [
-        {
-          from: "vue-router",
-          names: ["RouterLink", "RouterView"],
-        },
-      ],
     }),
     VitePWA({
       filename: "service-worker.js",

@@ -63,8 +63,11 @@
 
 <script setup>
 import LogoIcon from "~icons/mnemonic-ninja/logo";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
+import { computed, onBeforeMount } from "vue";
+import UpdateSnackbar from "./components/UpdateSnackbar.vue";
+import GitHubButton from "./components/NavButtons/GitHubButton.vue";
 
 const { smAndDown: isMobile } = useDisplay();
 

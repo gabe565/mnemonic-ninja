@@ -25,6 +25,7 @@
 
 <script setup>
 import ArrowLeftIcon from "~icons/material-symbols/chevron-left";
+import { ref } from "vue";
 
 const props = defineProps({
   pairs: {

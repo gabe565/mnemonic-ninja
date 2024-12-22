@@ -1,3 +1,5 @@
+import { ref } from "vue";
+
 export const loading = ref(true);
 export const error = ref("");
 export let wordlist = [];

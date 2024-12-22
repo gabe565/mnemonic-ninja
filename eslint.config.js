@@ -3,7 +3,6 @@ import pluginJs from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
 import pluginVuetify from "eslint-plugin-vuetify";
 import pluginPrettier from "eslint-plugin-prettier/recommended";
-import pluginAutoImport from "./.eslintrc-auto-import.json" with { type: "json" };
 
 export default [
   {
@@ -16,7 +15,6 @@ export default [
   ...pluginVue.configs["flat/recommended"],
   ...pluginVuetify.configs["flat/recommended"],
   pluginPrettier,
-  { languageOptions: pluginAutoImport },
   {
     rules: {
       "no-unused-vars": ["error", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }],
