@@ -101,6 +101,8 @@ onBeforeMount(() => {
 </script>
 
 <style lang="scss">
+@use "sass:selector";
+
 .v-application {
   p {
     margin-bottom: 1rem;
@@ -132,24 +134,24 @@ span.anchor {
   &--variant-outlined {
     border-radius: 4px !important;
 
-    @at-root #{selector-unify(".v-theme--light", &)} {
+    @at-root #{selector.unify(".v-theme--light", &)} {
       border: thin solid rgba(0, 0, 0, 0.42);
     }
 
-    @at-root #{selector-unify(".v-theme--dark", &)} {
+    @at-root #{selector.unify(".v-theme--dark", &)} {
       border: thin solid rgba(255, 255, 255, 0.24);
     }
   }
 
   /* Striped Tables */
   &--variant-striped {
-    @at-root #{selector-unify(".v-theme--light", &)} {
+    @at-root #{selector.unify(".v-theme--light", &)} {
       tbody tr:nth-of-type(odd) {
         background-color: rgba(0, 0, 0, 0.05);
       }
     }
 
-    @at-root #{selector-unify(".v-theme--dark", &)} {
+    @at-root #{selector.unify(".v-theme--dark", &)} {
       tbody tr:nth-of-type(odd) {
         background-color: rgba(255, 255, 255, 0.04);
       }
