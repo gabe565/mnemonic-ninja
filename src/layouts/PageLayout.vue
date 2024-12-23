@@ -1,15 +1,4 @@
 <template>
-  <v-app-bar color="primary" flat :title="$route.name">
-    <template #prepend>
-      <v-btn v-if="isMobile" to="/" icon size="small" :active="false">
-        <v-icon :icon="AppIcon" size="28" style="opacity: 0.7" aria-label="Mnemonic Ninja" />
-      </v-btn>
-    </template>
-    <template #append>
-      <github-button v-if="isMobile" />
-    </template>
-  </v-app-bar>
-
   <div class="d-flex align-center" style="min-height: 100%">
     <v-container class="pt-6 pt-lg-12">
       <v-row v-if="$slots.description" tag="section">
@@ -23,11 +12,3 @@
     </v-container>
   </div>
 </template>
-
-<script setup>
-import { useDisplay } from "vuetify";
-import GithubButton from "../components/NavButtons/GithubButton.vue";
-import AppIcon from "~icons/mnemonic-ninja/logo";
-
-const { smAndDown: isMobile } = useDisplay();
-</script>

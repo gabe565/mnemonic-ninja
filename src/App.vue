@@ -4,9 +4,9 @@
       Skip to main content
     </v-btn>
 
-    <v-navigation-drawer color="primary" width="220" mobile-breakpoint="md">
+    <v-navigation-drawer v-model="drawer" color="primary" width="220" mobile-breakpoint="md">
       <template #prepend>
-        <v-list v-if="!isMobile">
+        <v-list>
           <v-list-item to="/" title="Mnemonic Ninja" :prepend-icon="LogoIcon" :active="false" />
         </v-list>
         <v-divider />
@@ -27,30 +27,57 @@
       </v-list>
 
       <template #append>
-        <div class="d-flex overflow-hidden">
-          <github-button />
-        </div>
+        <v-divider />
+        <v-list nav density="compact">
+          <v-list-item
+            href="https://gabecook.com"
+            target="_blank"
+            rel="noopener"
+            title="Built by Gabe Cook"
+            link
+            :prepend-icon="PersonIcon"
+          />
+          <v-list-item
+            href="https://github.com/gabe565/mnemonic-ninja"
+            target="_blank"
+            rel="noopener"
+            title="Source on GitHub"
+            :prepend-icon="GitHubIcon"
+            link
+          />
+        </v-list>
       </template>
     </v-navigation-drawer>
 
     <v-bottom-navigation v-if="isMobile" position="fixed" bg-color="primary" theme="dark" grow>
       <template v-for="(group, title) in routes" :key="title">
-        <v-divider v-if="title !== routeKeys[0]" vertical inset />
-        <v-btn
-          v-for="route in group"
-          :key="route.path"
-          :active="route.path === currentRoute.path"
-          :to="route.path"
-          :prepend-icon="route.meta.icon"
-        >
-          <span>{{ route.meta?.short || route.name }}</span>
-        </v-btn>
+        <template v-if="title === 'Converters'">
+          <v-btn
+            v-for="route in group"
+            :key="route.path"
+            :active="route.path === currentRoute.path"
+            :to="route.path"
+            :prepend-icon="route.meta.icon"
+          >
+            <span>{{ route.meta?.short || route.name }}</span>
+          </v-btn>
+        </template>
       </template>
     </v-bottom-navigation>
 
     <update-snackbar />
 
     <v-main>
+      <v-app-bar color="primary" flat>
+        <template #title>
+          <template v-if="isMobile && $route.name === 'Home'"> Mnemonic Ninja</template>
+          <template v-else>{{ $route.name }}</template>
+        </template>
+        <template #prepend>
+          <v-btn v-if="isMobile" :icon="MenuIcon" @click.stop="drawer = !drawer" />
+        </template>
+      </v-app-bar>
+
       <span id="content" class="anchor" />
       <router-view v-slot="{ Component }">
         <keep-alive>
@@ -62,14 +89,18 @@
 </template>
 
 <script setup>
-import { computed, onBeforeMount } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
-import GithubButton from "./components/NavButtons/GithubButton.vue";
 import UpdateSnackbar from "./components/UpdateSnackbar.vue";
+import MenuIcon from "~icons/material-symbols/menu-rounded";
+import PersonIcon from "~icons/material-symbols/person-rounded";
 import LogoIcon from "~icons/mnemonic-ninja/logo";
+import GitHubIcon from "~icons/simple-icons/github";
 
 const { smAndDown: isMobile } = useDisplay();
+
+const drawer = ref(!isMobile.value);
 
 const currentRoute = useRoute();
 
