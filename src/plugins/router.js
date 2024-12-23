@@ -101,8 +101,8 @@ router.afterEach(async (to) => {
   // Use next tick to handle router history correctly
   // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
   await nextTick();
-  if (to.name) {
-    document.title = `${to.name} - ${defaultTitle}`;
+  if (to.name && to.name !== "Home") {
+    document.title = `${to.name} · ${defaultTitle}`;
   } else {
     document.title = defaultTitle;
   }
