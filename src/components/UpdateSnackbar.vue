@@ -3,7 +3,7 @@
     :model-value="offlineReady || needRefresh"
     :timeout="needRefresh ? -1 : 5000"
     location="bottom"
-    class="mb-16 mb-md-2"
+    class="mb-6 mb-md-2"
     theme="light"
   >
     <span v-if="needRefresh"> New content available, click on reload button to update. </span>
