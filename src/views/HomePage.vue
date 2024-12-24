@@ -1,21 +1,26 @@
 <template>
   <page-layout>
     <template #description>
-      The
-      <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
-        >Mnemonic Major System</a
-      >
-      is a strategy for memorizing numbers by converting them into memorable words and phrases,
-      using specific phonetic sounds.
-      <br />
-      Mnemonic Ninja is a free and open-source service that transforms numbers into mental images
-      that are much easier to remember than abstract digits. Whether it's a phone number, birthday,
-      or address, Mnemonic Ninja simplifies the conversion process, making it effortless for you to
-      recall important information. Mnemonic Ninja is useful for both newcomers learning the
-      Mnemonic Major System, and experienced users who might need help converting a specific number.
-      <br />
-      Read more about the Major System and how it can help your memory
-      <router-link to="/about">on the about page</router-link>!
+      <p>
+        The
+        <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
+          >Mnemonic Major System</a
+        >
+        is a strategy for memorizing numbers by converting them into memorable words and phrases,
+        using specific phonetic sounds.
+      </p>
+      <p>
+        Mnemonic Ninja is a free and open-source service that transforms numbers into mental images
+        that are much easier to remember than abstract digits. Whether it's a phone number,
+        birthday, or address, Mnemonic Ninja simplifies the conversion process, making it effortless
+        for you to recall important information. Mnemonic Ninja is useful for both newcomers
+        learning the Mnemonic Major System, and experienced users who might need help converting a
+        specific number.
+      </p>
+      <p>
+        Read more about the Major System and how it can help your memory
+        <router-link to="/about">on the about page</router-link>.
+      </p>
     </template>
 
     <v-row tag="section">

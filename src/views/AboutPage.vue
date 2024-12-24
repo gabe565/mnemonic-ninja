@@ -1,18 +1,22 @@
 <template>
   <page-layout>
     <template #description>
-      The
-      <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
-        >Mnemonic Major System</a
-      >
-      is an effective technique for remembering numbers, though learning the associations between
-      sounds and numbers can take time.
-      <br />
-      Unlike other online converters that simply match letters to numbers, Mnemonic Ninja performs
-      conversions based on phonetic sounds, which is the correct method for using the system.
-      <br />
-      With a database of over 135,000 words, you can rely on Mnemonic Ninja for precise and helpful
-      conversions.
+      <p>
+        The
+        <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank"
+          >Mnemonic Major System</a
+        >
+        is an effective technique for remembering numbers, though learning the associations between
+        sounds and numbers can take time.
+      </p>
+      <p>
+        Unlike other online converters that simply match letters to numbers, Mnemonic Ninja performs
+        conversions based on phonetic sounds, which is the correct method for using the system.
+      </p>
+      <p>
+        With a database of over 135,000 words, you can rely on Mnemonic Ninja for precise and
+        helpful conversions.
+      </p>
     </template>
     <v-row tag="section">
       <v-col cols="12">
