@@ -46,7 +46,7 @@ import SwapIcon from "~icons/material-symbols/swap-horizontal-circle-rounded";
 const converters = [
   {
     title: "Interactive",
-    text: "Enter a number, select words from generated lists to form a sentence that can be converted back to the original number.",
+    text: "Enter a number and select words from generated lists to form a sentence that can be converted back to the original number.",
     path: "/converters/interactive",
   },
   {
