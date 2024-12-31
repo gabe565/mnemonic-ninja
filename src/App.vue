@@ -30,20 +30,21 @@
         <v-divider />
         <v-list nav density="compact">
           <v-list-item
-            href="https://gabecook.com"
-            target="_blank"
-            rel="noopener"
-            title="Built by Gabe Cook"
-            link
-            :prepend-icon="PersonIcon"
-          />
-          <v-list-item
             href="https://github.com/gabe565/mnemonic-ninja"
             target="_blank"
             rel="noopener"
             title="Source on GitHub"
             :prepend-icon="GitHubIcon"
             link
+            color="black"
+          />
+          <v-list-item
+            href="https://gabecook.com"
+            target="_blank"
+            rel="noopener"
+            :title="`&copy; ${new Date().getFullYear()} Gabe Cook`"
+            link
+            :prepend-icon="PersonIcon"
           />
         </v-list>
       </template>
