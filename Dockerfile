@@ -1,11 +1,15 @@
 FROM --platform=$BUILDPLATFORM node:22-alpine AS node-builder
 WORKDIR /app
 
-COPY package.json package-lock.json .npmrc ./
-RUN npm ci
+RUN corepack enable
+
+COPY package.json pnpm-*.yaml .npmrc ./
+RUN --mount=type=cache,id=pnpm,target=/root/.cache \
+  pnpm install --prod --frozen-lockfile
 
 COPY . .
-RUN npm run build
+RUN --mount=type=cache,id=pnpm,target=/root/.cache \
+  pnpm run build
 
 
 FROM nginx:stable-alpine

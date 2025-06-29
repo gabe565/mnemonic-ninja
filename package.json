@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.12.4",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,6 +18,7 @@
     "@iconify-json/simple-icons": "1.2.16",
     "@vitejs/plugin-vue": "5.2.1",
     "autoprefixer": "10.4.20",
+    "globals": "16.2.0",
     "plausible-tracker": "0.3.9",
     "sass-embedded": "1.83.0",
     "unplugin-icons": "0.22.0",
@@ -25,7 +27,8 @@
     "vite-plugin-vuetify": "2.0.4",
     "vue": "3.5.13",
     "vue-router": "4.5.0",
-    "vuetify": "3.7.6"
+    "vuetify": "3.7.6",
+    "workbox-window": "7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "9.17.0",
