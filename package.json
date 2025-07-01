@@ -40,6 +40,6 @@
     "eslint-plugin-vue": "9.32.0",
     "eslint-plugin-vuetify": "2.5.1",
     "prettier": "3.4.2",
-    "vue-eslint-parser": "9.4.3"
+    "vue-eslint-parser": "10.2.0"
   }
 }
