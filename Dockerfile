@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:22-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:26-alpine AS node-builder
 WORKDIR /app
 
 RUN corepack enable
